@@ -1,0 +1,40 @@
+.email-application .email-app-list #users-list {
+    height: unset;
+}
+
+.single-email div.media {
+    border-left: 4px solid transparent;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+.single-email .unseen-email {
+    background: #ededed;
+    border-left-color: #42d094 !important;
+    position: relative;
+    font-weight: bolder;
+}
+
+.single-email .open-email, .single-email div.media:hover {
+    border-left-color: #ec3030 !important;
+    position: relative;
+    box-shadow: inset 0 0 8px 2px #ccc;
+    border-radius: 6px;
+    transition: all .1s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+}
+
+.single-email .unseen-email::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #42d094;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(-50%, -50%);
+}

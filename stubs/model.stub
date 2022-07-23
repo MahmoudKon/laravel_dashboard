@@ -1,0 +1,26 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class {{ class }} extends Model
+{
+    use HasFactory;
+
+    public function scopeFilter($query)
+    {
+        return $query;
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('orderDesc', function (Builder $builder) {
+            $builder->orderBy('id', 'DESC');
+        });
+    }
+}

@@ -1,0 +1,48 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\DataTables\{{ model }}DataTable;
+use {{ rootNamespace }}Http\Controllers\BackendController;
+use Illuminate\Http\Request;
+use {{ namespacedModel }};
+use App\Http\Services\{{ model }}Service;
+use App\Http\Requests\{{ model }}Request;
+
+class {{ class }} extends BackendController
+{
+    public $full_page_ajax  = false;
+    public $use_form_ajax   = false;
+    public $use_button_ajax = false;
+
+    public function __construct({{ model }}DataTable $dataTable, {{ model }} ${{ model }})
+    {
+        parent::__construct($dataTable, ${{ model }});
+    }
+
+    public function store({{ model }}Request $request, {{ model }}Service ${{ model }}Service)
+    {
+        $row = ${{ model }}Service->handle($request->validated());
+        if (is_string($row)) return $this->throwException($row);
+        return $this->redirect("Row Created Successfully!");
+    }
+
+    public function update({{ model }}Request $request, {{ model }}Service ${{ model }}Service, $id)
+    {
+        $row = ${{ model }}Service->handle($request->validated(), $id);
+        if (is_string($row)) return $this->throwException($row);
+        return $this->redirect("Row Updated Successfully!");
+    }
+
+    public function append(): array
+    {
+        return [
+            {{ appends }}
+        ];
+    }
+
+    public function query($id) :object|null
+    {
+        return $this->model::find($id);
+    }
+}

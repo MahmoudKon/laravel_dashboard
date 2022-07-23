@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ namespace }};
+
+use Exception;
+use {{ modelNamespace }};
+
+class {{ class }} {
+
+    public function handle($request, $id = null)
+    {
+        try {
+            $row = {{ model }}::updateOrCreate(['id' => $id], $request);
+            return $row;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+}
