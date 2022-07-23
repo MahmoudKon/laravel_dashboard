@@ -196,9 +196,9 @@ class GenerateClasses extends Command
         ]);
 
         Menu::firstOrCreate([
-            'name->en' => $menu_name,
+            'name->en' => "List $menu_name",
             'route'    => "{$this->argument('table')}.index",
-            'parent_id'=> $parent->id
+            'parent_id' => $parent->id
         ], [
             'name' => ['en' => "List $menu_name", 'ar' => "List $menu_name"],
             'route' => "{$this->argument('table')}.index",
@@ -207,9 +207,9 @@ class GenerateClasses extends Command
         ]);
 
         Menu::firstOrCreate([
-            'name->en' => $menu_name,
+            'name->en' => "Create $menu_name",
             'route'    => "{$this->argument('table')}.create",
-            'parent_id'=> $parent->id
+            'parent_id' => $parent->id
         ], [
             'name' => ['en' => "Create $menu_name", 'ar' => "Create $menu_name"],
             'route' => "{$this->argument('table')}.create",

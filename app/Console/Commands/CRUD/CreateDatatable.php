@@ -109,7 +109,7 @@ class CreateDatatable extends GeneratorCommand
         $relations = '';
         foreach ($this->columns as $column) {
             if (stripos($column, '_id') !== false && $column !== "id")
-                $relations .= "'".Str::plural( str_replace('_id', '', $column) )."', ";
+                $relations .= "'".str_replace('_id', '', $column)."', ";
         }
 
         return $relations !== ''

@@ -124,6 +124,7 @@ class CreateView extends Command
 
     protected function html($column) :string
     {
+        $related_table = stripos($column->Field, '_id') !== false ? Str::plural( str_replace('_id', '', $column->Field) ) : '';
         $type = self::getInputType($column);
         $content = file_get_contents(base_path("stubs/html.$type.stub"));
         return str_replace([
@@ -133,10 +134,12 @@ class CreateView extends Command
             '{{ type }}',
             '{{ related }}'
         ], [
-            $this->argument('table'),
+            $related_table,
             $column->Field,
-            $column->Null != 'NO' ? 'required' : '',
-            stripos($column->Type, 'varchar') !== false ? 'text' : (stripos($column->Type, 'varchar') !== false ? 'date' : 'number'),
+            stripos($column->Null, 'NO') !== false ? 'required' : '',
+            stripos($column->Type, 'varchar') !== false || stripos($column->Type, 'text') !== false
+                    ? 'text'
+                    : (stripos($column->Type, 'date') !== false || stripos($column->Type, 'timestamp') !== false ? 'date' : 'number'),
             $type == 'select' ? Str::plural( str_replace('_id', '', $column->Field)) : ''
         ], $content);
     }

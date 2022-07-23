@@ -57,7 +57,7 @@ class CreateRequest extends Command
     {
         $validate = [];
 
-        if (stripos($column->Null, "Yes") !== false) array_push($validate, 'nullable');
+        if (stripos($column->Null, "Yes") !== false || stripos($column->Type, "tinyint") !== false) array_push($validate, 'nullable');
         else array_push($validate, 'required');
 
         if(stripos($column->Type, "tinyint") !== false)
