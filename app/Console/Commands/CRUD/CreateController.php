@@ -88,9 +88,8 @@ class CreateController extends Command
     protected function createAppends()
     {
         $appends = "";
-        foreach (self::getRelatedTables() as $column) {
-            $column = str_replace('_id', '', $column);
-            $appends .= "\n\t\t\t'".Str::plural($column)."' => \App\Models\\".ucfirst($column)."::pluck('id', 'id'),";
+        foreach (self::getRelatedTables() as $data) {
+            $appends .= "\n\t\t\t'{$data['table']}' => \App\Models\\".ucfirst($data['model'])."::pluck('{$data['related_column']}', 'id'),";
         }
         return $appends;
     }
@@ -99,8 +98,20 @@ class CreateController extends Command
     {
         $related_columns = [];
         foreach (Schema::getColumnListing($this->argument('table')) as $column) {
-            if (stripos($column, '_id') !== false && $column !== "id")
-                array_push($related_columns, $column);
+            if (stripos($column, '_id') !== false && $column !== "id") {
+                $table = Str::plural( str_replace('_id', '', $column) );
+                foreach (Schema::getColumnListing($table) as $related_column) {
+                    if (in_array($related_column, ['created_at', 'updated_at', 'id'])) continue;
+
+                    array_push($related_columns, [
+                        'table' => $table,
+                        'related_column' => $related_column,
+                        'model' => ucfirst( str_replace('_id', '', $column) )
+                    ]);
+                    break;
+                }
+
+            }
         }
 
         return $related_columns;
