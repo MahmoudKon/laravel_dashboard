@@ -8,8 +8,9 @@
     <meta name="keywords" content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
     <title>@yield('page_title')</title>
-    <link rel="apple-touch-icon" href="{{ assetHelper('images/ico/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ assetHelper('images/ico/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset(setting('logo', '/')) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset(setting('logo', '/')) }}">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/fontawesome-all.min.css') }}">
     <!-- BEGIN VENDOR CSS-->
@@ -45,7 +46,12 @@
                                 <div class="card-header border-0 pb-0">
                                     <div class="card-title text-center">
                                         <div class="pb-1">
+                                            @auth
+                                            <img alt="{{ auth()->user()->name }}" src="{{ auth()->user()->image }}" class="rounded-circle img-fluid center-block">
+                                            <h5 class="card-title mt-1">{{ auth()->user()->name }}</h5>
+                                            @else
                                             <img alt="@lang('menu.logo')" src="{{ asset(setting('logo', 'samples/logo/ivas.png')) }}" style="max-width: 100px;">
+                                            @endauth
                                         </div>
                                     </div>
                                     <h6 class="card-subtitle line-on-side text-muted text-center font-medium-2 p-0">

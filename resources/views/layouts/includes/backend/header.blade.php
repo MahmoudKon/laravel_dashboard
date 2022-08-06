@@ -13,11 +13,11 @@
         content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard {{ getModel() == 'dashboard' ? '' : ' | ' . ucfirst(getModel()) }}</title>
+    <title>@lang('menu.dashboard') {{ getModel() == 'dashboard' ? '' : ' | ' . trans('menu.'.getModel()) }}</title>
 
     {{-- ************** START ICON ************** --}}
-    <link rel="apple-touch-icon" href="{{ assetHelper('images/ico/e-learning.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ assetHelper('images/ico/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset(setting('logo', '/')) }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset(setting('logo', '/')) }}">
     {{-- ************** START ICON ************** --}}
 
     {{-- ************** START FONTS AWESOME ************** --}}

@@ -28,4 +28,9 @@ return [
     'are you sure' => 'Are you sure ?',
     'you wont be able to revert this' => 'You won\'t be able to revert this ?',
     'please select some rows' => 'Please select some rows!',
+
+
+
+    // LOCK SCREEN PAGE
+    'unlock account' => 'Unlook Your Account',
 ];

@@ -24,7 +24,7 @@ class SettingObserver
         }
 
         if ($Setting->key == "default_lang") {
-            app()->setLocale($Setting->getOriginal('value'));
+            session()->forget('locale');
         }
     }
 

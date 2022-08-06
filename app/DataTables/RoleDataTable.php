@@ -55,7 +55,6 @@ class RoleDataTable extends DataTable
         ->buttons([
             Button::make()->text('<i class="fa fa-plus"></i> <span class="hidden" data-yajra-href="'.routeHelper('roles.create').'"></span>')->addClass('btn btn-outline-info show-modal-form '. (canUser("routes.assign") ? "" : "remove-hidden-element"))->titleAttr(trans('menu.create-row', ['model' => trans('menu.role')])),
             Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("routes-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),
-            Button::make('excel')->text('<i class="fas fa-download"></i>')->addClass('btn btn-outline-success')->titleAttr(trans('buttons.export-file')),
             Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
         ])
         ->responsive(true)

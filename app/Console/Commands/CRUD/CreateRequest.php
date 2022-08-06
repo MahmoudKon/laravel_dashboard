@@ -43,6 +43,7 @@ class CreateRequest extends Command
     protected function getColumns()
     {
         $rows = [];
+        // SHOW FULL COLUMNS FROM => replace describe
         foreach (DB::select('describe '.$this->argument('table')) as $column) {
             if (in_array($column->Field, ['id', 'created_at', 'updated_at'])) continue;
             $rows[$column->Field] = self::getValidation($column);
@@ -76,8 +77,8 @@ class CreateRequest extends Command
             array_push($validate, "exists:$related_table,id");
         }
 
-        if (stripos($column->Key, "UNI") !== false)
-            array_push($validate, "unique:{$this->argument('table')},$column->Field");
+        if (stripos($column->Key, "UNI") !== false) // is unique
+            array_push($validate, "unique:{$this->argument('table')},$column->Field,'" . ".request()->route('".Str::singular($this->argument('table'))."').'" );
 
         return implode('|', $validate);
     }
@@ -86,7 +87,9 @@ class CreateRequest extends Command
     {
         $model_name = Str::studly(Str::singular($this->argument('table'))).'Request';
         $this->request['name'] = $model_name;
+
         foreach (getFilesInDir(app_path('Http/Requests')) as $name => $class) {
+            // ["AggregatorRequest.php" => "App\Http\Requests\AggregatorRequest"]
             if (stripos($name, $model_name) !== false) {
                 $this->request['namespace'] = str_replace('\\', '/', $class);
                 break;

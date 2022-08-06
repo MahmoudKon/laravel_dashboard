@@ -1,5 +1,5 @@
     {{-- START FOOTER --}}
-    <footer class="footer footer-static footer-light navbar-border navbar-shadow" style="position: relative; z-index: 1;">
+    <footer class="footer footer-static footer-light footer-dark navbar-border navbar-shadow" style="position: relative; z-index: 1;">
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
             <span class="float-md-left d-block d-md-inline-block">
                 Copyright &copy; {{ date('Y') }}
@@ -18,9 +18,9 @@
     <script>
         const ENDPOINT = "{{ routeHelper('/') }}"; // Main project url
         const main_path = "{{ url('/') }}"; // Main project url
-        var successAudio = "{{ url($successAudio) }}"; // Success audio from setting or from defualt value
-        var warrningAudio = "{{ url($warrningAudio) }}";  // Warring or error audio from setting or from defualt value
-        var RUN_SOUND = false;
+        var successAudio = "{{ asset($successAudio) }}"; // Success audio from setting or from defualt value
+        var warrningAudio = "{{ asset($warrningAudio) }}";  // Warring or error audio from setting or from defualt value
+        var RUN_SOUND = true;
         var SWAL_TITLE = "@lang('title.are you sure')";
         var SWAL_MESSAGE = "@lang('title.you wont be able to revert this')";
         var SWAL_DELETE_BUTTON = "@lang('buttons.yes delete')";
@@ -30,6 +30,7 @@
         // window.open("file:///D:/Hello.txt");
     </script>
 
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('vendors/js/vendors.min.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/select/select2.full.min.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/extended/maxlength/bootstrap-maxlength.js') }}"></script>
@@ -61,8 +62,8 @@
     <script type="text/javascript" src="{{ assetHelper('customs/js/email-notification.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('customs/js/script.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('customs/js/check-offline.js') }}"></script>
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <script src="/js/app.js"></script>
+    <script type="text/javascript" src="{{ assetHelper('customs/js/lock-page.js') }}"></script>
+    {{-- <script type="text/javascript" src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
     {{-- <script type="text/javascript" src="{{ assetHelper('customs/js/pusher.js') }}"></script> --}}
     {{-- ************** END CUSTOM JS ************** --}}
 

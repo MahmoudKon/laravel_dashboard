@@ -38,8 +38,4 @@ window.Echo = new Echo({
     forceTLS: true
 });
 
-window.Echo.channel(`new-email`)
-    .listen('App\Events\NewEmail', (e) => {
-        console.log(e);
-        toast('Hello');
-    });
+

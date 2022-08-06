@@ -48,6 +48,9 @@ class BackendController extends Controller
     public function create()
     {
         try {
+            if (! request()->ajax() && $this->use_form_ajax)
+                $this->create_view = "backend.includes.pages.form-page";
+
             return view($this->create_view, $this->append());
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
@@ -66,6 +69,9 @@ class BackendController extends Controller
         try {
             $row = $this->query($id);
             if (! $row) return $this->throwException(trans('flash.something is wrong'));
+            if (! request()->ajax() && $this->use_form_ajax)
+                $this->update_view = "backend.includes.pages.form-page";
+
             return view($this->update_view, $this->append(), compact('row'));
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);

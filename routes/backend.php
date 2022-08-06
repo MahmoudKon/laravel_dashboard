@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/','HomeController@index')->name('/');
-Route::post('read/notifications/{id?}', 'NotificationController@readNotification')->name('read.notifications');
 Route::get('file-manager', 'FileManagerController@index')->name('file.manager');
 
 Route::controller('RouteController')->group(function () {
@@ -133,3 +132,5 @@ Route::resource('cities', 'CityController')->except('show');
 Route::get('governorates/{governorate}/cities', 'CityController@index')->name('governorates.cities.index');
 Route::get('governorates/{governorate}/cities/create', 'CityController@create')->name('governorates.cities.create');
 Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.multidelete');
+
+Route::resource('langs', 'LangController');

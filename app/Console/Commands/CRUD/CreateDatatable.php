@@ -16,7 +16,7 @@ class CreateDatatable extends GeneratorCommand
     protected $signature = 'crud:datatable {table}';
     protected $datatable = array();
     protected $model_class;
-    protected $columns = array();
+    protected $table_details = array();
 
     /**
      * The console command description.
@@ -44,11 +44,6 @@ class CreateDatatable extends GeneratorCommand
      */
     public function handle()
     {
-        if ($this->isReservedName($this->argument('table'))) {
-            $this->error('The name "'.$this->argument('table').'" is reserved by PHP.');
-            return false;
-        }
-
         self::getColumns();
 
         $class_name = getTableModel( $this->argument('table') );
@@ -98,18 +93,14 @@ class CreateDatatable extends GeneratorCommand
 
     protected function getColumns()
     {
-        foreach (Schema::getColumnListing($this->argument('table')) as $column) {
-            if (!in_array($column, ['created_at', 'updated_at', 'id']))
-                array_push($this->columns, $column);
-        }
+        $this->table_details = getTableDetails($this->argument('table'));
     }
 
     protected function getRelatedTables()
     {
         $relations = '';
-        foreach ($this->columns as $column) {
-            if (stripos($column, '_id') !== false && $column !== "id")
-                $relations .= "'".str_replace('_id', '', $column)."', ";
+        foreach ($this->table_details['relations'] as $table => $columns) {
+            $relations .= "'".getRelationName($table)."', ";
         }
 
         return $relations !== ''
@@ -120,11 +111,16 @@ class CreateDatatable extends GeneratorCommand
     protected function getTableColumns()
     {
         $rows = '';
-        foreach ($this->columns as $column) {
-            $translate = stripos($column, "_id") !== false
-                        ? "menu.".str_replace("_id", '', $column)
-                        : "inputs.$column";
-            $rows .= "\n\t\t\tColumn::make('$column')->title(trans('$translate')),";
+        foreach ($this->table_details['columns'] as $column) {
+            $translate = "inputs.$column->Field";
+            $name = $column->Field;
+
+            if (stripos($column->Field, "_id") !== false) {
+                $related_table = Str::plural(str_replace("_id", '', $column->Field));
+                $translate = "menu.$related_table";
+                $name = getRelationName($related_table) . '.' . getFirstStringColumn( $this->table_details['relations'][$related_table]['columns']);
+            }
+            $rows .= "\n\t\t\tColumn::make('$name')->title(trans('$translate')),";
         }
 
         return $rows;

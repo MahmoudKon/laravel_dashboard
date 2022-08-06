@@ -3,10 +3,10 @@
         <div class="media {{ $email->isSeen() ? "" : "unseen-email" }}">
             <div class="media-left align-self-center">
                 <span class="avatar avatar-md">
-                    @if ($email->notifier->image)
+                    @if ($email->notifier && $email->notifier->image)
                         <img src="{{ asset($email->notifier->image) }}" class="rounded-circle" width="55px">
                     @else
-                        <span class="media-object rounded-circle text-circle bg-{{ randomColor( getFirstChars($email->notifier->name) ) }}">{{ getFirstChars($email->notifier->name) }}</span>
+                        <span class="media-object rounded-circle text-circle bg-{{ randomColor( getFirstChars($email->notifier?->name ?? "System") ) }}">{{ getFirstChars($email->notifier?->name ?? "System") }}</span>
                     @endif
                 </span>
             </div>

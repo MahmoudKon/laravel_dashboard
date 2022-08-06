@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        activeLanguages();
         if ($this->app->environment('local')) {
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
@@ -40,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         Category::observe(CategoryObserver::class);
         Setting::observe(SettingObserver::class);
 
+        Cache::forget('list_menus');
         if (! app()->runningInConsole()) {
             $list_menus = Cache::remember('list_menus', 60 * 60 * 24, function () {
                 return Menu::with('visibleSubs')->parent()->getVisible()->get();

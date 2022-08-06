@@ -1,11 +1,16 @@
 @extends('layouts.backend')
 
 @section('content')
+
+<a href = "{{ routeHelper('/') }}" class="btn btn-primary d-block w-30 mb-5" id="push-email"> <i class="fa fa-share"></i> Test Push Email</a>
+
 <!-- eCommerce statistic -->
 <div class="row">
-    @include("backend.home.statistics", ['model' => 'users', 'count' => $count['users'], 'icon' => 'fa-users', 'color' => 'info'])
-    @include("backend.home.statistics", ['model' => 'departments', 'count' => $count['departments'], 'icon' => 'fa-building-user', 'color' => 'primary'])
-    @include("backend.home.statistics", ['model' => 'roles', 'count' => $count['roles'], 'icon' => 'fa-shield', 'color' => 'warning'])
+    @foreach ($tables as $table => $info)
+        @if ($table !== 'routes')
+            @include("backend.home.statistics")
+        @endif
+    @endforeach
 
     {{-- START CATEGORIES --}}
     <div class="col-xl-3 col-lg-6 col-12">
@@ -15,17 +20,17 @@
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <h3 class="success">{{ $count['routes'] }}</h3>
+                                <h3 class="{{ $tables['routes']['color'] }}">{{ $tables['routes']['count'] }}</h3>
                                 <h6>@lang('menu.routes')</h6>
                             </div>
-                            <div> <i class="fa fa-anchor success font-large-2 float-right"></i> </div></div>
+                            <div> <i class="fa fa-anchor {{ $tables['routes']['color'] }} font-large-2 float-right"></i> </div></div>
                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                            <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: {{ $count['routes'] }}%" aria-valuenow="{{ $count['routes'] }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-gradient-x-{{ $tables['routes']['color'] }}" role="progressbar" style="width: {{ $tables['routes']['count'] }}%" aria-valuenow="{{ $tables['routes']['count'] }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </a>
                 @if (canUser('routes-assign'))
-                    <a href="{{ routeHelper("routes.assign") }}" class="btn btn-sm btn-success btn-block mt-1">
+                    <a href="{{ routeHelper("routes.assign") }}" class="btn btn-sm btn-{{ $tables['routes']['color'] }} btn-block mt-1">
                         <i class="fa fa-plus"></i> <b> @lang('buttons.assign-roles')</b>
                     </a>
                 @endif
@@ -33,6 +38,26 @@
         </div>
     </div>
     {{-- END CATEGORIES --}}
+
 </div>
+
 <!--/ eCommerce statistic -->
+@endsection
+
+
+@section('script')
+    <script>
+        $(function() {
+            $('#push-email').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr('href'),
+                    type: "get",
+                    success: function (data, textStatus, jqXHR) {
+                        toast(data.message, null, 'success');
+                    },
+                });
+            });
+        });
+    </script>
 @endsection

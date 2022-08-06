@@ -37,6 +37,9 @@ return [
     'select picture' => 'Select Picture',
 
 
+    'unlock' => 'Unlock',
+    'lock' => 'Lock',
+
     // SWAL JS TRANSLATIONS
     'yes delete' => 'Yes, Delete it!',
     'cancel' => 'Cancel',

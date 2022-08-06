@@ -1,5 +1,5 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow menu-dark">
-    <div class="main-menu-content">
+    <div class="main-menu-content ps-container ps-theme-dark ps-active-y">
         <ul class="navigation navigation-main mb-5 pb-5" id="main-menu-navigation">
 
             @if (config('telescope.path'))

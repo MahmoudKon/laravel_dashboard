@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Content;
+use App\Models\Email;
 use App\Models\Post;
 use App\Models\User;
 use App\Traits\UploadFile;
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $truncate_tables = ['menus', 'categories', 'countries', 'operators', 'aggregators', 'content_types', 'departments',
-                            'roles', 'permissions', 'routes', 'users', 'settings', 'notifications', 'contents', 'posts', 'governorates', 'cities'];
+                            'roles', 'permissions', 'routes', 'users', 'emails', 'settings', 'notifications', 'contents', 'posts', 'governorates', 'cities'];
 
         foreach ($truncate_tables as $table) truncateTables($table);
 
@@ -49,5 +50,7 @@ class DatabaseSeeder extends Seeder
                 $user->roles()->attach(Role::where('id', '!=', 1)->inRandomOrder()->first()->id);
             } catch (Exception $e) {}
         });
+
+        Email::factory(30)->create();
     }
 }

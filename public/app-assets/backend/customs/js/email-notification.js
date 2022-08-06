@@ -69,8 +69,8 @@ $(function () {
     });
 
     /********************************************* To Get The Email UnReaded Count *****************************************************/
-    getEmailsCount();
-    setInterval(() => { getEmailsCount(true); page_is_loading = false }, 15000);
+    // getEmailsCount();
+    // setInterval(() => { getEmailsCount(true); page_is_loading = false }, 15000);
     function getEmailsCount(force_lood = false) {
         $.ajax({
             url: `${MAIN_ROUTE}/count`,

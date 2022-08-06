@@ -5,8 +5,6 @@ namespace App\Console\Commands\CRUD;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
 
 class CreateController extends Command
 {
@@ -15,8 +13,12 @@ class CreateController extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:controller {table}';
-    protected $controller = array();
+    protected $signature  = 'crud:controller {table}';
+    protected $controller;
+    protected $model;
+    protected $path;
+    protected $sub_dir = '';
+    protected $namespace  = "App\Http\Controllers";
 
     /**
      * The console command description.
@@ -32,34 +34,45 @@ class CreateController extends Command
      */
     public function handle()
     {
-        self::createController();
+        self::askForSubDir();
+        self::checkClassExistsOrCreate();
         self::createFile();
-
-        $this->info("controller class<options=bold> {$this->controller['name']}.php </>created successfully!");
     }
 
-    protected function createController()
+    /**
+     * askForSubDir
+     *
+     *  ask to create file in sub dir or nain controllers dir
+     *  and set variables
+     *
+     * @return void
+     */
+    protected function askForSubDir()
     {
-        $this->controller['model'] = Str::studly(Str::singular($this->argument('table')));
-        $controller_name = $this->controller['model'].'Controller';
-        $this->controller['name']  = $controller_name;
-        foreach (getFilesInDir(app_path('Http/Controllers/Backend')) as $name => $class) {
-            if (stripos($name, $controller_name) !== false) {
-                $this->controller['namespace'] = str_replace('\\', '/', $class);
-                break;
-            }
-        }
+        $this->model        = getTableModel( $this->argument('table') );
+        $this->controller   = $this->model.'Controller';
+        $this->path         = str_replace(['App', '\\'], ['app', DIRECTORY_SEPARATOR], $this->namespace);
 
-        if (! isset($this->controller['namespace']) ) {
-            $this->controller['namespace'] = "App/Http/Controllers/Backend/{$this->controller['name']}";
-            Artisan::call("make:controller {$this->controller['namespace']}");
+        // $this->sub_dir = $this->ask('The path is app/Http/Controllers/ you want to create sub folder ?  name =', '');
+        $this->sub_dir = "Backend";
+        if ($this->sub_dir) {
+            $this->sub_dir = ucfirst($this->sub_dir);
+            $this->namespace .= "\\$this->sub_dir";
+            $this->controller = ucfirst($this->sub_dir).'/'.$this->controller;
+        }
+    }
+
+    protected function checkClassExistsOrCreate()
+    {
+        if (! checkClassExists($this->path, $this->controller) ) {
+            Artisan::call("make:controller {$this->controller}");
         }
     }
 
     protected function createFile()
     {
-        $file = str_replace('App', 'app', $this->controller['namespace']).".php";
-        File::put($file, trim(self::createContent()));
+        $file = $this->path . DIRECTORY_SEPARATOR . $this->controller . '.php';
+        File::put($file, self::createContent());
     }
 
     protected function createContent()
@@ -75,45 +88,13 @@ class CreateController extends Command
             '{{ appends }}'
         ],[
             'App\\',
-            'App\Models\\'.$this->controller['model'],
-            str_replace(['/', '\\'.$this->controller['name']], ['\\', ''], $this->controller['namespace']),
-            $this->controller['name'],
-            $this->controller['model'],
-            self::createAppends()
+            "App\Models\\{$this->model}",
+            $this->namespace,
+            $this->model.'Controller',
+            $this->model,
+            createAppends($this->argument('table'))
         ], $content);
 
         return $content;
-    }
-
-    protected function createAppends()
-    {
-        $appends = "";
-        foreach (self::getRelatedTables() as $data) {
-            $appends .= "\n\t\t\t'{$data['table']}' => \App\Models\\".ucfirst($data['model'])."::pluck('{$data['related_column']}', 'id'),";
-        }
-        return $appends;
-    }
-
-    protected function getRelatedTables()
-    {
-        $related_columns = [];
-        foreach (Schema::getColumnListing($this->argument('table')) as $column) {
-            if (stripos($column, '_id') !== false && $column !== "id") {
-                $table = Str::plural( str_replace('_id', '', $column) );
-                foreach (Schema::getColumnListing($table) as $related_column) {
-                    if (in_array($related_column, ['created_at', 'updated_at', 'id'])) continue;
-
-                    array_push($related_columns, [
-                        'table' => $table,
-                        'related_column' => $related_column,
-                        'model' => ucfirst( str_replace('_id', '', $column) )
-                    ]);
-                    break;
-                }
-
-            }
-        }
-
-        return $related_columns;
     }
 }

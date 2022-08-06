@@ -35,6 +35,10 @@ return [
     'select picture' => 'إختر صورة',
 
 
+    'unlook' => 'فك القفل',
+    'lock' => 'قفل',
+
+
     // SWAL JS TRANSLATIONS
     'yes delete' => 'أجل, أحذف هذا',
     'cancel' => 'إلغاء',

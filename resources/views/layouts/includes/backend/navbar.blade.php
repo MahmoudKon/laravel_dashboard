@@ -1,6 +1,6 @@
-<nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-shadow">
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-dark navbar-shadow navbar-border">
     <div class="navbar-wrapper">
-        <div class="navbar-header border-bottom-1 border-bottom-white bg-dark">
+        <div class="navbar-header border-bottom-1 border-bottom-white">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mobile-menu d-md-none mr-auto">
                     <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">
@@ -69,12 +69,16 @@
                                 <img src="{{ asset(auth()->user()->image ?? "app-assets/backend/images/portfolio/portfolio-1.jpg") }}" alt="avatar" style="max-height: 36px"><i></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ routeHelper("profile.index") }}" class="dropdown-item btn info"><i class="ft-info"></i> @lang('menu.profile')</a>
+                            <a href="{{ routeHelper("profile.index") }}" class="dropdown-item btn-outline-info"><i class="ft-info"></i> @lang('menu.profile')</a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a href="{{ route("lock") }}" id="lock-screan" class="dropdown-item btn-outline-primary"><i class="ft-lock"></i> @lang('buttons.lock')</a>
 
                             <div class="dropdown-divider"></div>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="dropdown-item btn red">
+                                <button type="submit" class="dropdown-item btn-outline-red cursor-pointer">
                                     <i class="ft-power"></i> @lang('menu.logout')
                                 </button>
                             </form>

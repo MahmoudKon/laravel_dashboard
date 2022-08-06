@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /**
  *  assetHelper
@@ -25,9 +24,9 @@ function routeHelper(string|null $route, object|array|string|int|null $options =
 {
     if (! $route || $route == '#') return '';
     $route = ROUTE_PREFIX.$route;
-    $new_route = str_replace(LaravelLocalization::getCurrentLocale().'/', app()->getLocale().'/', route(trim($route, '.'), $options));
-    return $new_route;
+    return route(trim($route, '.'), $options);
 }
+
 
 /**
  *  getModelSlug
@@ -52,6 +51,7 @@ function getFilesInDir(string $dir):array
 {
     $files = [];
     foreach (File::allFiles($dir) as $file) {
+        // EX => E:\laragon\www\laravel9\app\Http/Requests\AggregatorRequest.php => App\Http\Requests\AggregatorRequest [namespace]
         $file_path = str_replace('/', '\\', strstr($file->getPathname(), 'app'));
         $files[$file->getRelativePathname()] = str_replace(['.php', 'app'], ['', 'App'], $file_path);
     }
@@ -191,7 +191,11 @@ function fileExtensions()
     return ['jpg', 'jpeg' ,'png' ,'gif' ,'tiff' ,'psd' ,'pdf' ,'eps' ,'ai' ,'indd' ,'raw', 'mp4', 'mov', 'wmv', 'avi', 'avchd', 'flv', 'f4v', 'swf', 'mkv', 'webm', 'mpeg', 'm4v'];
 }
 
-function getTableModel(string $table) :string
+function activeLanguages()
 {
-    return Str::studly(Str::singular($table));
+    $array = [];
+    foreach (config('laravellocalization.supportedLocales') as $lang => $info)
+        $array[$lang] = $info['name'];
+
+    file_put_contents(config_path('languages.php'), "<?php \n\nreturn " . var_export($array, true) . ";");
 }

@@ -3,14 +3,14 @@ function playAudio(type = 'success') {
     let audio;
     switch (type) {
         case "success":
-            audio = new Audio(`${URL}/${successAudio}`);
+            audio = new Audio(successAudio);
             break;
         case "error":
         case "warning":
-            audio = new Audio(`${URL}/${warrningAudio}`);
+            audio = new Audio(warrningAudio);
             break;
         default:
-            audio = new Audio(`${URL}/${successAudio}`);
+            audio = new Audio(successAudio);
             break;
     }
     audio.play();
@@ -130,3 +130,4 @@ $('.badge-text-maxlength').maxlength({
 $('body').on('submit', 'form', function() {
     $(this).parent().addClass('load');
 });
+

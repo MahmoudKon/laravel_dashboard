@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Support\Facades\Route;
 
-class SetDefaultLanguage
+class LockScreenMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,13 +17,8 @@ class SetDefaultLanguage
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session('locale') || !auth()->check())
-            return $next($request);
-
-        app()->setLocale(setting('default_lang', app()->getLocale()));
-        session(['locale' => app()->getLocale()]);
-        LaravelLocalization::setLocale(app()->getLocale());
-
-        return redirect(LaravelLocalization::getLocalizedUrl());
+        return session()->get('locked') == true && stripos($request->route()->uri, 'lockscreen') === false
+                ? redirect(route('lock'))
+                : $next($request);
     }
 }
