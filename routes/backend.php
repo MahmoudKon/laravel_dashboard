@@ -134,6 +134,3 @@ Route::get('governorates/{governorate}/cities/create', 'CityController@create')-
 Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.multidelete');
 
 Route::resource('langs', 'LangController');
-
-Route::resource('clients', 'ClientController'); 
-Route::post('clients/multidelete', 'ClientController@multidelete')->name('clients.multidelete'); 
