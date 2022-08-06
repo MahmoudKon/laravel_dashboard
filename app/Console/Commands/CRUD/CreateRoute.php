@@ -130,11 +130,11 @@ class CreateRoute extends Command
 
         Menu::firstOrCreate([
             'name->en' => $menu_name,
-            'route'    => '#',
+            'route'    => $this->argument('table').'.index',
             'parent_id'=> null
         ], [
             'name' => ['en' => $menu_name, 'ar' => $menu_name],
-            'route' => '#',
+            'route' => $this->argument('table').'.index',
             'icon' => "fa fa-gears",
             'parent_id' => null
         ]);
