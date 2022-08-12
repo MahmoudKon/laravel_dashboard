@@ -62,7 +62,6 @@ class UserController extends BackendController
                                 $query->where('id', request('department'));
                             })->pluck('title', 'id'),
             'users' => User::pluck('name', 'id'),
-            'aggregators' => Aggregator::pluck('title', 'id'),
             'roles' => Role::pluck('name', 'id')
         ];
     }

@@ -15,6 +15,8 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('departments');
+
         $departments = [
             ['title' => 'superadmin',    'email' => 'super_admin@ivas.com1', ],
             ['title' => 'RBT',           'email' => 'super_admin@ivas.com2', ],

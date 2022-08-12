@@ -42,8 +42,6 @@ Route::controller('ProfileController')->group(function () {
 Route::resource('departments','DepartmentController');
 Route::post('departments/multidelete', 'DepartmentController@multidelete')->name('departments.multidelete');
 
-Route::resource('aggregators','AggregatorController')->except('show');
-Route::post('aggregators/multidelete', 'AggregatorController@multidelete')->name('aggregators.multidelete');
 
 Route::resource('roles','RoleController');
 Route::controller('RoleController')->group(function () {
@@ -74,33 +72,11 @@ Route::controller('SettingController')->group(function () {
     Route::post('settings/multidelete', 'multidelete')->name('settings.multidelete');
 });
 
-Route::resource('categories','CategoryController')->except('show');
-Route::controller('CategoryController')->group(function () {
-    Route::get('categories/{category}/subs', 'index')->name('categories.subs.index');
-    Route::get('categories/{category}/subs/create', 'create')->name('categories.subs.create');
-    Route::post('categories/multidelete', 'multidelete')->name('categories.multidelete');
-});
 
 
 Route::resource('content_types','ContentTypeController')->except('show');
 Route::post('content_types/multidelete', 'ContentTypeController@multidelete')->name('content_types.multidelete');
 Route::post('content_types/visible/toggle/{content_type}', 'ContentTypeController@toggleVisible')->name('content_types.visible.toggle');
-
-Route::resource('contents','ContentController');
-Route::controller('ContentController')->group(function () {
-    Route::post('contents/type/input', 'getTypeInput')->name('contents.type.input');
-    Route::post('contents/multidelete', 'multidelete')->name('contents.multidelete');
-});
-
-Route::resource('posts','PostController');
-Route::controller('PostController')->group(function () {
-    Route::get('contents/{content}/posts', 'index')->name('contents.posts.index');
-    Route::get('contents/{content}/posts/create', 'create')->name('contents.posts.create');
-    Route::post('posts/multidelete', 'multidelete')->name('posts.multidelete');
-    Route::post('posts/active-toggle', 'activeToggle')->name('posts.active.toggle');
-    Route::get('posts/{post}/short-url', 'shortUrlForm')->name('posts.short.url');
-    Route::post('posts/{post}/short-url', 'shortUrl')->name('posts.short.url');
-});
 
 
 Route::resource('menus', 'MenuController');

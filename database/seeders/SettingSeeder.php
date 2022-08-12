@@ -15,6 +15,8 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('settings');
+
         $rows = [
             [
                 'key' => 'logo',

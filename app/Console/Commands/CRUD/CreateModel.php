@@ -36,10 +36,10 @@ class CreateModel extends Command
      */
     public function handle()
     {
-        self::createFillable();
-        self::createRelations();
-        self::createModel();
-        self::createFile();
+        $this->createFillable();
+        $this->createRelations();
+        $this->createModel();
+        $this->createFile();
 
         $this->info("model class<options=bold> {$this->model['name']}.php </>created successfully!");
     }
@@ -83,7 +83,7 @@ class CreateModel extends Command
     protected function createFile()
     {
         $file = str_replace('App', 'app', $this->model['path']).".php";
-        File::put($file, trim(self::createContent()));
+        File::put($file, trim($this->createContent()));
     }
 
     protected function createContent()

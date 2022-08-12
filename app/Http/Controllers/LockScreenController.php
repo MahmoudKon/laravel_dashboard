@@ -15,7 +15,7 @@ class LockScreenController extends Controller
     public function lock()
     {
         if (stripos(url()->previous(), 'login') !== false) return redirect(ROUTE_PREFIX.'/');
-        session(['locked' => 'true', 'unlook-redirect' => self::previousRoute()]);
+        session(['locked' => 'true', 'unlook-redirect' => $this->previousRoute()]);
         return view('auth.lock');
     }
 
@@ -25,7 +25,7 @@ class LockScreenController extends Controller
 
         if(Hash::check(request()->password, auth()->user()->password)){
             toast('Welcome Back '.auth()->user()->name, 'success');
-            return redirect()->route(self::redirect());
+            return redirect()->route($this->redirect());
         }
 
         return back()->with('failed', 'Password does not match. Please try again.');

@@ -12,12 +12,12 @@ class RegisterController extends BasicApiController
 {
     public function register(UserRequest $request)
     {
-        return $this->sendResponse(trans('flash.row created', ['model' => trans('menu.user')]), self::createToken($request));
+        return $this->sendResponse(trans('flash.row created', ['model' => trans('menu.user')]), $this->createToken($request));
     }
 
     protected function createToken($request)
     {
-        $user = self::createUser($request);
+        $user = $this->createUser($request);
         return [
             'token' => "Bearer ".$user->createToken(env('API_HASH_TOKEN', 'ClubApp'))->accessToken,
             'message' => trans('permissions.account not acctive'),

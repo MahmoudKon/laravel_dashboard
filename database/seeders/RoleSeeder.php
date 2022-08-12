@@ -15,6 +15,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('roles');
+
         $roles = [
             ['guard_name' => PERMISSION_GUARDS, 'name' => 'Super Admin'],
             ['guard_name' => PERMISSION_GUARDS, 'name' => 'RBT'],

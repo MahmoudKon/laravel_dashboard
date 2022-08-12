@@ -14,6 +14,8 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('menus');
+
         $menus = [
             1 => [
                 'name' => ["en" => "Dashboard", "ar" => "لوحة التحكم"],

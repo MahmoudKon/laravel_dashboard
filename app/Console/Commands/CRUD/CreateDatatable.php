@@ -44,7 +44,7 @@ class CreateDatatable extends GeneratorCommand
      */
     public function handle()
     {
-        self::getColumns();
+        $this->getColumns();
 
         $class_name = getTableModel( $this->argument('table') );
         $this->datatable['name'] = "{$class_name}DataTable";
@@ -72,8 +72,8 @@ class CreateDatatable extends GeneratorCommand
             '{{ modelName }}' => last(explode('\\', $this->model_class)),
             '{{ table }}' => $this->argument('table'),
             '{{ singularTable }}' => Str::singular($this->argument('table')),
-            '{{ withRelations }}' => self::getRelatedTables(),
-            '{{ columns }}' => self::getTableColumns()
+            '{{ withRelations }}' => $this->getRelatedTables(),
+            '{{ columns }}' => $this->getTableColumns()
         ];
 
         return $this->getStubContent($this->getStub(), $vars);

@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Setting;
 use App\Models\User;
-use App\Observers\CategoryObserver;
 use App\Observers\SettingObserver;
 use App\Observers\UserObserver;
 use Illuminate\Support\Facades\Blade;
@@ -37,11 +35,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadAllMigrations();
+
         User::observe(UserObserver::class);
-        Category::observe(CategoryObserver::class);
         Setting::observe(SettingObserver::class);
 
-        Cache::forget('list_menus');
         if (! app()->runningInConsole()) {
             $list_menus = Cache::remember('list_menus', 60 * 60 * 24, function () {
                 return Menu::with('visibleSubs')->parent()->getVisible()->get();
@@ -56,5 +54,13 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('superAdmin', function() { return "<?php if (isSuperAdmin()) { ?>"; });
         Blade::directive('endsuperAdmin', function() { return "<?php } ?>"; });
+    }
+
+    protected function loadAllMigrations()
+    {
+        $migrationsPath = database_path('migrations');
+        $directories    = glob($migrationsPath.'/*', GLOB_ONLYDIR);
+        $paths          = array_merge([$migrationsPath], $directories);
+        $this->loadMigrationsFrom($paths);
     }
 }

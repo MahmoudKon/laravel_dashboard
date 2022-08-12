@@ -14,6 +14,8 @@ class ContentTypeSeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('content_types');
+
         $types = [
             ['visible_to_content' => true,  'name' => 'Advanced Text'],
             ['visible_to_content' => true,  'name' => 'Normal Text'],

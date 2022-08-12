@@ -18,7 +18,7 @@ class User extends Authenticatable
 
     protected $guard_name = 'web,api';
 
-    protected $with = ['aggregator', 'department', 'behalf'];
+    protected $with = ['department'];
 
     /**
      * The attributes that are mass assignable.
@@ -31,12 +31,7 @@ class User extends Authenticatable
         'password',
         'behalf_id',
         'image',
-        'aggregator_id',
         'department_id',
-        'annual_credit',
-        'finger_print_id',
-        'salary_per_monthly',
-        'insurance_deduction',
         'email_verified_at',
         'remember_token',
         'mobile_token'
@@ -70,16 +65,6 @@ class User extends Authenticatable
     public function department()
     {
         return $this->belongsTo(Department::class)->select('id', 'title', 'manager_id', 'manager_of_manager_id');
-    }
-
-    public function aggregator()
-    {
-        return $this->belongsTo(Aggregator::class)->select('id', 'title');
-    }
-
-    public function behalf()
-    {
-        return $this->belongsTo(self::class, 'behalf_id')->select('id', 'name');
     }
 
     protected function password(): Attribute

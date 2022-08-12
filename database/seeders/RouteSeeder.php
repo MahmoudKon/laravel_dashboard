@@ -14,6 +14,8 @@ class RouteSeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('routes');
+
         dispatch(new SaveRoutesInDatabase());
     }
 }

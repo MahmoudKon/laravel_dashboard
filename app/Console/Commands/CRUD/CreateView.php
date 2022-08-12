@@ -42,11 +42,11 @@ class CreateView extends Command
      */
     public function handle()
     {
-        self::getColumns();
+        $this->getColumns();
 
-        $path = self::viewPath();
+        $path = $this->viewPath();
 
-        self::createDir($path);
+        $this->createDir($path);
 
         if (File::exists($path))
         {
@@ -54,7 +54,7 @@ class CreateView extends Command
             return;
         }
 
-        File::put($path, self::appendText());
+        File::put($path, $this->appendText());
 
         $this->line('<bg=green;fg=white;options=bold>View</> Created Successfully!');
     }
@@ -91,7 +91,7 @@ class CreateView extends Command
     public function appendText() :string
     {
         $form_content = file_get_contents(base_path("stubs/form.stub"));
-        return str_replace('{{-- HTML Code --}}', self::createFormContent(), $form_content);
+        return str_replace('{{-- HTML Code --}}', $this->createFormContent(), $form_content);
     }
 
     protected function getColumns() :void
@@ -106,7 +106,7 @@ class CreateView extends Command
     {
         $inputs = '';
         foreach ($this->columns as $column) {
-            $inputs .= self::html($column)."\n\n";
+            $inputs .= $this->html($column)."\n\n";
         }
         return $inputs;
     }
@@ -125,7 +125,7 @@ class CreateView extends Command
     protected function html($column) :string
     {
         $related_table = stripos($column->Field, '_id') !== false ? Str::plural( str_replace('_id', '', $column->Field) ) : '';
-        $type = self::getInputType($column);
+        $type = $this->getInputType($column);
         $content = file_get_contents(base_path("stubs/html.$type.stub"));
         return str_replace([
             '{{ table }}',

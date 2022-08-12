@@ -34,9 +34,9 @@ class CreateRequest extends Command
      */
     public function handle()
     {
-        self::createRequest();
-        self::getColumns();
-        self::createFile();
+        $this->createRequest();
+        $this->getColumns();
+        $this->createFile();
         $this->info("model class<options=bold> {$this->request['name']}.php </>created successfully!");
     }
 
@@ -46,7 +46,7 @@ class CreateRequest extends Command
         // SHOW FULL COLUMNS FROM => replace describe
         foreach (DB::select('describe '.$this->argument('table')) as $column) {
             if (in_array($column->Field, ['id', 'created_at', 'updated_at'])) continue;
-            $rows[$column->Field] = self::getValidation($column);
+            $rows[$column->Field] = $this->getValidation($column);
         }
 
         foreach ($rows as $key => $value) {
@@ -105,7 +105,7 @@ class CreateRequest extends Command
     protected function createFile()
     {
         $file = str_replace('App', 'app', $this->request['namespace']).".php";
-        File::put($file, trim(self::createContent()));
+        File::put($file, trim($this->createContent()));
     }
 
     protected function createContent()

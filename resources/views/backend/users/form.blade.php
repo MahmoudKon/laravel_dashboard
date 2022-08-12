@@ -105,36 +105,6 @@
         {{-- END DEPARTMENT --}}
     </div>
 
-    <div class="col-md-4">
-        {{-- START BEHALF --}}
-        <div class="form-group">
-            <label class="required">@lang('inputs.select-data', ['data' => trans('inputs.behalf')])</label>
-            <select class="select2 form-control" name="behalf_id" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('inputs.behalf')]) ---" required>
-                {{-- <option value="">@lang('inputs.please-select')</option> --}}
-                @foreach ($users as $id => $name)
-                    <option value="{{ $id }}" @selected(isset($row) && $row->behalf_id == $id || old('behalf_id') == $id)>{{ $name }}</option>
-                @endforeach
-            </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'behalf_id'])
-        </div>
-        {{-- END BEHALF --}}
-    </div>
-
-    <div class="col-md-4">
-        {{-- START AGGREGATORS --}}
-        <div class="form-group">
-            <label class="required">@lang('inputs.select-data', ['data' => trans('menu.aggregator')])</label>
-            <select class="select2 form-control" name="aggregator_id" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.aggregator')]) ---" required>
-                {{-- <option value="">@lang('inputs.please-select')</option> --}}
-                @foreach ($aggregators as $id => $title)
-                    <option value="{{ $id }}" @selected(isset($row) && $row->aggregator_id == $id || old('aggregator_id') == $id)>{{ $title }}</option>
-                @endforeach
-            </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'aggregator_id'])
-        </div>
-        {{-- END AGGREGATORS --}}
-    </div>
-
     <div class="col-md-12">
         {{-- START ROLES --}}
         <div class="form-group">

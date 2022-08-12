@@ -14,6 +14,8 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('countries');
+
         $countries = [
             ['name' => ['en' => 'Egypt', 'ar' => 'مصر']],
             ['name' => ['en' => 'KSA', 'ar' => 'السعودية']],

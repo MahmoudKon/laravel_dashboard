@@ -84,7 +84,7 @@ class BackendController extends Controller
             $row = $this->query($id);
             if (! $row) return $this->throwException(trans('flash.something is wrong'));
             $row->delete();
-            return response()->json(['message' => $this->getModelName() . ' has been deleted!', 'icon' => 'success', 'count' => $this->modelCount()]);
+            return response()->json(['message' => trans('flash.row deleted', ['model' => trans('menu.'.$this->getModelName(true))]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
@@ -98,7 +98,7 @@ class BackendController extends Controller
             foreach ($rows as $row)
                 $row->delete();
             DB::commit();
-            return response()->json(['message' => $this->getModelName() . ' rows has been deleted! (' . count($rows) . ')', 'icon' => 'success', 'count' => $this->modelCount()]);
+            return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getModelName(true, true)), 'count' => $rows->count()]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }

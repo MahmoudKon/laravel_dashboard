@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Content;
 use App\Models\Email;
-use App\Models\Post;
 use App\Models\User;
 use App\Traits\UploadFile;
 use Exception;
@@ -21,26 +19,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $truncate_tables = ['menus', 'categories', 'countries', 'operators', 'aggregators', 'content_types', 'departments',
-                            'roles', 'permissions', 'routes', 'users', 'emails', 'settings', 'notifications', 'contents', 'posts', 'governorates', 'cities'];
+        $truncate_tables = ['emails'];
 
         foreach ($truncate_tables as $table) truncateTables($table);
 
         $this->call(GovernorateSeeder::class);
         $this->call(CitySeeder::class);
         $this->call(MenuSeeder::class);
-        $this->call(CategorySeeder::class);
         $this->call(CountrySeeder::class);
-        $this->call(OperatorSeeder::class);
         $this->call(RouteSeeder::class);
         $this->call(RoleSeeder::class);
-        $this->call(AggregatorSeeder::class);
         $this->call(DepartmentSeeder::class);
         $this->call(SuperadminSeeder::class);
         $this->call(ContentTypeSeeder::class);
         $this->call(SettingSeeder::class);
-        Content::factory(10)->create();
-        Post::factory(30)->create();
 
         $images = $this->GetApiImage('people');
         User::factory(30)->create()->each(function ($user) use($images) {

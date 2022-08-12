@@ -67,4 +67,10 @@ return [
     'unseen'  => 'الغير مرئي',
     'search'  => 'البحث',
     'compose'  => 'Compose',
+
+
+
+    // GENERAL INPUTS
+    'model name' => 'ال:model إسم',
+    'model image' => 'ال:model إسم',
 ];

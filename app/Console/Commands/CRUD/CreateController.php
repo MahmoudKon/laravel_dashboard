@@ -34,9 +34,9 @@ class CreateController extends Command
      */
     public function handle()
     {
-        self::askForSubDir();
-        self::checkClassExistsOrCreate();
-        self::createFile();
+        $this->askForSubDir();
+        $this->checkClassExistsOrCreate();
+        $this->createFile();
     }
 
     /**
@@ -72,7 +72,7 @@ class CreateController extends Command
     protected function createFile()
     {
         $file = $this->path . DIRECTORY_SEPARATOR . $this->controller . '.php';
-        File::put($file, self::createContent());
+        File::put($file, $this->createContent());
     }
 
     protected function createContent()

@@ -34,11 +34,11 @@ class CreateRoute extends Command
      */
     public function handle()
     {
-        self::createRoutes();
+        $this->createRoutes();
 
-        self::appendRoutes();
+        $this->appendRoutes();
 
-        self::createMenu();
+        $this->createMenu();
     }
 
     protected function createRoutes()

@@ -16,7 +16,7 @@ class LoginController extends BasicApiController
     public function login(Request $request)
     {
         if (auth()->attempt($this->credentials($request))) {
-            return $this->sendResponse('User login successfully.', self::createToken());
+            return $this->sendResponse('User login successfully.', $this->createToken());
         } else {
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
         }
@@ -29,7 +29,7 @@ class LoginController extends BasicApiController
      */
     public function refresh()
     {
-        return $this->sendResponse('Token refreshed successfully.', self::createToken());
+        return $this->sendResponse('Token refreshed successfully.', $this->createToken());
     }
 
     /**
@@ -57,7 +57,7 @@ class LoginController extends BasicApiController
 
     protected function createToken()
     {
-        self::deleteOldTokens();
+        $this->deleteOldTokens();
         return [
             'token' => "Bearer ".auth()->user()->createToken(env('API_HASH_TOKEN', 'ClubApp'))->accessToken,
             'user'  => new UserResource(auth()->user()),

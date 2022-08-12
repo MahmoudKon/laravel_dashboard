@@ -29,12 +29,19 @@ class UserRequest extends FormRequest
             'password'      => 'required_without:id',
             'image'         => 'nullable',
             'department_id' => 'required|exists:departments,id',
-            'aggregator_id' => 'nullable|exists:aggregators,id',
-            'behalf_id'     => 'required|exists:users,id',
             'roles'         => 'nullable|array',
-            'annual_credit' => 'nullable|numeric|min:0',
-            'finger_print_id' => 'nullable|numeric|min:1|unique:users,finger_print_id,'.request()->route('user'),
-            'salary_per_monthly' => 'nullable|numeric|min:1'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name'          => trans('inputs.model name', ['model' => trans('menu.user')]),
+            'email'         => trans('inputs.email'),
+            'password'      => trans('inputs.password'),
+            'image'         => trans('inputs.model image', ['model' => trans('menu.user')]),
+            'department_id' => trans('menu.department'),
+            'roles'         => trans('menu.role')
         ];
     }
 }
