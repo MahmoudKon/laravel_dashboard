@@ -119,9 +119,13 @@ class CreateRoute extends Command
     protected function appendRoutes()
     {
         $append_routes = "\nRoute::resource('{$this->argument('table')}', '{$this->controller}'); \nRoute::post('{$this->argument('table')}/multidelete', '{$this->controller}@multidelete')->name('{$this->argument('table')}.multidelete'); \n";
-        File::append(base_path('routes/backend.php'), $append_routes);
 
-        echo "Routes inserted in database successfully!\n";
+        if (stripos(file_get_contents(base_path('routes/backend.php')), $append_routes) === false) {
+            File::append(base_path('routes/backend.php'), $append_routes);
+            echo "Routes inserted in database successfully!\n";
+        } else {
+            echo "Routes already exists!\n";
+        }
     }
 
     protected function createMenu()

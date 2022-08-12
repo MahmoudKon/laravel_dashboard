@@ -83,7 +83,6 @@ class GenerateClasses extends Command
         }
 
         Artisan::call("crud:routes {$this->argument('table')}");
-        $this->info("View blade<options=bold> {$view_path}.blade.php </>created successfully!");
 
         $this->info("<options=bold>All classes genrated successfully!</>");
     }
