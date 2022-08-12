@@ -37,10 +37,10 @@ function getModelSlug(string $model_name, bool $return_id = false) :string|int
     $row = null;
     $model_name = str_replace(['{', '}'], ['', ''], $model_name);
     $id = request()->route($model_name);
-    if ($return_id && false) return $id;
+    if ($return_id) return $id;
 
     foreach (getFilesInDir(app_path('Models')) as $name => $class) {
-        if (stripos($name, $model_name) === false || app($class)->getTable() !== getModel()) continue;
+        if (stripos($name, $model_name) === false) continue;
         if ($row = app($class)->where('id', $id)->first()) break;
     }
 
