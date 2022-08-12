@@ -4,13 +4,14 @@ namespace App\DataTables;
 
 use App\Traits\DatatableHelper;
 use Spatie\Permission\Models\Permission;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class PermissionDataTable extends DataTable
 {
     use DatatableHelper;
+
+    protected $table = 'permissions';
 
     /**
      * Build DataTable class.
@@ -65,10 +66,9 @@ class PermissionDataTable extends DataTable
         ->pageLength(5)
         ->language($this->translateDatatables())
         ->buttons([
-            $this->setCreateButton('permissions'),
-
-            Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("permissions-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),
-            Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
+            $this->getCreateButton(),
+            $this->getDeleteButton(),
+            $this->getPageLengthButton()
         ])
         ->responsive(true)
         ->parameters([

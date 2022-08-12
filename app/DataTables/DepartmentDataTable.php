@@ -4,13 +4,14 @@ namespace App\DataTables;
 
 use App\Models\Department;
 use App\Traits\DatatableHelper;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class DepartmentDataTable extends DataTable
 {
     use DatatableHelper;
+
+    protected $table = 'departments';
 
     /**
      * Build DataTable class.
@@ -67,10 +68,9 @@ class DepartmentDataTable extends DataTable
         ->pageLength(5)
         ->language($this->translateDatatables())
         ->buttons([
-            $this->setCreateButton('departments'),
-
-            Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("departments-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),
-            Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
+            $this->getCreateButton(),
+            $this->getDeleteButton(),
+            $this->getPageLengthButton()
         ])
         ->responsive(true)
         ->parameters([

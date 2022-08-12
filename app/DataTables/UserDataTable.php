@@ -4,13 +4,14 @@ namespace App\DataTables;
 
 use App\Models\User;
 use App\Traits\DatatableHelper;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class UserDataTable extends DataTable
 {
     use DatatableHelper;
+
+    protected $table = 'users';
 
     /**
      * Build DataTable class.
@@ -65,31 +66,13 @@ class UserDataTable extends DataTable
         ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
         ->pageLength(5)
         ->buttons([
-            $this->setCreateButton('users'),
-
-            Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("users-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),
-
-            Button::make()->text('<i class="fas fa-cloud-download"></i>')
-            ->action("window.location.href = '". routeHelper('users.excel.export') ."'")
-            ->addClass('btn btn-outline-info '. (canUser("users-export") ? "" : "remove-hidden-element"))
-            ->titleAttr(trans('buttons.export-excel')),
-
-            Button::make()
-            ->text('<i class="fa fa-cloud-upload"></i> <span class="hidden" data-yajra-href="'.routeHelper('users.excel.import.form').'"></span>')
-            ->addClass('btn btn-outline-primary show-modal-form'. (canUser("users-import") ? "" : "remove-hidden-element"))
-            ->titleAttr('Import Users'),
-
-            Button::make()
-            ->text('<i class="fa fa-search"></i> <span class="hidden" data-yajra-href="'.routeHelper('users.search.form').'"></span>')
-            ->addClass('btn btn-outline-warning show-search-form '. (request()->has('search') ? 'hidden' : ''))
-            ->titleAttr('Open Search Form'),
-
-            Button::make()
-            ->text('<i class="fa fa-times"></i>')
-            ->addClass('btn btn-outline-warning close-search-button '. (request()->has('search') ? '' : 'hidden'))
-            ->titleAttr('Close Search Form'),
-
-            Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
+            $this->getCreateButton(),
+            $this->getDeleteButton(),
+            $this->getImportButton(),
+            $this->getExportButton(),
+            $this->getSearchButton(),
+            $this->getCloseButton(),
+            $this->getPageLengthButton()
         ])
         ->responsive(true)
         ->language($this->translateDatatables())

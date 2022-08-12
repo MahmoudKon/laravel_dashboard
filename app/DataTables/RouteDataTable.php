@@ -12,6 +12,8 @@ class RouteDataTable extends DataTable
 {
     use DatatableHelper;
 
+    protected $table = 'routes';
+
     /**
      * Build DataTable class.
      *
@@ -61,7 +63,7 @@ class RouteDataTable extends DataTable
         ->pageLength(5)
         ->language($this->translateDatatables())
         ->buttons([
-            $this->setCreateButton('routes'),
+            $this->getDeleteButton(),
 
             Button::make()->text('<i class="fa fa-download"></i>')
             ->addClass('btn btn-outline-primary')->action("window.location.href = " . '"' . routeHelper('routes.download'). '"')
@@ -77,7 +79,7 @@ class RouteDataTable extends DataTable
             ->action("window.location.href = " . '"' . routeHelper('routes.syncPermissions'). '"')
             ->titleAttr(trans('buttons.sync permissions')),
 
-            Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length '. (canUser("aggregators-create") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.page-length')),
+            $this->getPageLengthButton(),
         ])
         ->responsive(true)
         ->parameters([
