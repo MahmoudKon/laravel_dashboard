@@ -88,9 +88,10 @@ class UserDataTable extends DataTable
             Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
         ])
         ->responsive(true)
+        ->language(translateDatatables())
         ->parameters([
             'initComplete' => " function () {
-                this.api().columns([2,3,5,6,7,8,9]).every(function () {
+                this.api().columns([2,3,5]).every(function () {
                     var column = this;
                     var input = document.createElement(\"input\");
                     $(input).appendTo($(column.footer()).empty())
@@ -117,10 +118,6 @@ class UserDataTable extends DataTable
             Column::make('email')->title(trans('inputs.email')),
             Column::make('image')->title(trans('title.avatar'))->footer(trans('title.avatar'))->orderable(false),
             Column::make('department')->title(trans('menu.department'))->footer(trans('menu.department'))->orderable(false),
-            Column::make('annual_credit')->title(trans('inputs.annual-credit')),
-            Column::make('finger_print_id')->title(trans('inputs.finger-print-id')),
-            Column::make('salary_per_monthly')->title(trans('inputs.salary')),
-            Column::make('insurance_deduction')->title(trans('inputs.insurance-deduction')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->footer(trans('inputs.action'))->title(trans('inputs.action')),
         ];
     }

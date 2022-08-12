@@ -56,6 +56,7 @@ class RouteDataTable extends DataTable
         ->dom('Bfrtip')
         ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
         ->pageLength(5)
+        ->language(translateDatatables())
         ->buttons([
             Button::make()->text('<i class="fa fa-link"></i>')
             ->addClass('btn btn-outline-info '. (canUser("routes-create") ? "" : "remove-hidden-element"))

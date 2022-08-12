@@ -56,6 +56,7 @@ class GovernorateDataTable extends DataTable
                     ->dom('Bfrtip')
                     ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
                     ->pageLength(5)
+                    ->language(translateDatatables())
                     ->buttons([
                         Button::make()->text('<i class="fa fa-plus"></i> <span class="hidden" data-yajra-href="'.routeHelper('governorates.create').'"></span>')->addClass('btn btn-outline-info show-modal-form '. (canUser("governorates-create") ? "" : "remove-hidden-element"))->titleAttr(trans('menu.create-row', ['model' => trans('menu.game')])),
                         Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("governorates-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),

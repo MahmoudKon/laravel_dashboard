@@ -54,18 +54,6 @@ Route::resource('permissions','PermissionController')->except('show');
 Route::post('permissions/multidelete', 'PermissionController@multidelete')->name('permissions.multidelete');
 
 
-Route::resource('countries','CountryController')->except('show');
-Route::post('countries/multidelete', 'CountryController@multidelete')->name('countries.multidelete');
-
-
-Route::resource('operators','OperatorController')->except('show');
-Route::controller('OperatorController')->group(function () {
-    Route::post('operators/multidelete', 'multidelete')->name('operators.multidelete');
-    Route::get('countries/{country}/operators','index')->name('countries.operators.index');
-    Route::get('countries/{country}/operators/create','create')->name('countries.operators.create');
-});
-
-
 Route::resource('settings','SettingController')->except('show');
 Route::controller('SettingController')->group(function () {
     Route::post('settings/type/input', 'getTypeInput')->name('settings.type.input');

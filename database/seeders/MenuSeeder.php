@@ -114,97 +114,37 @@ class MenuSeeder extends Seeder
                 'parent_id' => 14
             ],
             17 => [
-                'name' => ["en" => "Categories", "ar" => "التصنيفات"],
-                'route' => "categories.index",
-                'icon' => "fa fa-list",
-                'parent_id' => null
-            ],
-            18 => [
-                'name' => ["en" => "Countries", "ar" => "البلدان"],
-                'route' => "countries.index",
-                'icon' => "fa fa-globe",
-                'parent_id' => null
-            ],
-            19 => [
-                'name' => ["en" => "Operators", "ar" => "المشغلين"],
-                'route' => "operators.index",
-                'icon' => "fa fa-phone",
-                'parent_id' => null
-            ],
-            20 => [
-                'name' => ["en" => "Aggregators", "ar" =>"المجمعين"],
-                'route' => "aggregators.index",
-                'icon' => "fa fa-certificate",
-                'parent_id' => null
-            ],
-            21 => [
-                'name' => ["en" => "Contents", "ar" => "المحتوي"],
-                'route' => null,
-                'icon' => "fa fa-building-user",
-                'parent_id' => null
-            ],
-            22 => [
                 'name' => ["en" => "Content Types", "ar" =>"أنواع المحتوي"],
                 'route' => "content_types.index",
                 'icon' => "fa fa-folder",
                 'parent_id' => 2
             ],
-            23 => [
-                'name' => ["en" => "List Contents", "ar" => "عرض المحتوي"],
-                'route' => "contents.index",
-                'icon' => "fa fa-list",
-                'parent_id' => 21
-            ],
-            24 => [
-                'name' => ["en" => "Create Content", "ar" => "إنشاء محتوي"],
-                'route' => "contents.create",
-                'icon' => "fa fa-plus",
-                'parent_id' => 21
-            ],
-            25 => [
-                'name' => ["en" => "Posts", "ar" => "المنشورات"],
-                'route' => null,
-                'icon' => "fa fa-share",
-                'parent_id' => null
-            ],
-            26 => [
-                'name' => ["en" => "List Posts", "ar" => "عرض المنشورات"],
-                'route' => "posts.index",
-                'icon' => "fa fa-list",
-                'parent_id' => 25
-            ],
-            27 => [
-                'name' => ["en" => "Create Post", "ar" => "إنشاء منشور"],
-                'route' => "posts.create",
-                'icon' => "fa fa-plus",
-                'parent_id' => 25
-            ],
-            28 => [
+            18 => [
                 'name' => ["en" => "File Manager", "ar" => "مدير الملفات"],
                 'route' => "file.manager",
                 'icon' => "fa fa-folder",
                 'parent_id' => 2
             ],
-            29 => [
+            19 => [
                 'name' => ["en" => "Image Quality", "ar" => "جودة الصورة"],
                 'route' => "image.cropper",
                 'route' => "image.quality",
                 'icon' => "fa fa-paint-brush",
                 'parent_id' => 5
             ],
-            30 => [
+            20 => [
                 'name' => ["en" => "image-cropper", "ar" => "إقتصاص الصور"],
                 'route' => "image.cropper",
                 'icon' => "fa fa-crop",
                 'parent_id' => 5
             ],
-            31 => [
+            21 => [
                 'name' => ["en" => "Governorates", "ar" => "المحافظات"],
                 'route' => "governorates.index",
                 'icon' => "fa fa-list",
                 'parent_id' => null
             ],
-            32 => [
+            22 => [
                 'name' => ["en" => "Cities", "ar" => "المدن"],
                 'route' => "cities.index",
                 'icon' => "fa fa-list",

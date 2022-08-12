@@ -61,6 +61,7 @@ class SettingDataTable extends DataTable
                     ->dom('Bfrtip')
                     ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
                     ->pageLength(10)
+                    ->language(translateDatatables())
                     ->fixedHeader(true)
                     ->buttons([
                         Button::make()->text('<i class="fa fa-plus"></i>')->addClass('btn btn-outline-info '. (canUser("settings-create") ? "" : "remove-hidden-element"))->action("window.location.href = " . '"' . routeHelper('settings.create'). '"')->titleAttr(trans('menu.create-row', ['model' => trans('menu.setting')])),
