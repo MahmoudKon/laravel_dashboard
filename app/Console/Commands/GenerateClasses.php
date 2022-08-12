@@ -20,7 +20,7 @@ class GenerateClasses extends Command
      *
      * @var string
      */
-    protected $signature = 'make:crud {table} {routes?}'; // EX => php artisan generate:classes Client routes
+    protected $signature = 'make:crud {table}'; // EX => php artisan make:crud clients
     protected $model;
 
     /**
@@ -82,10 +82,8 @@ class GenerateClasses extends Command
             $this->info("View blade<options=bold> {$view_path}.blade.php </>created successfully!");
         }
 
-        if ($this->argument('routes')){
-            Artisan::call("crud:routes {$this->argument('table')}");
-            $this->info("View blade<options=bold> {$view_path}.blade.php </>created successfully!");
-        }
+        Artisan::call("crud:routes {$this->argument('table')}");
+        $this->info("View blade<options=bold> {$view_path}.blade.php </>created successfully!");
 
         $this->info("<options=bold>All classes genrated successfully!</>");
     }
