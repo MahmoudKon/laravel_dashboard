@@ -40,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Setting::observe(SettingObserver::class);
 
+        // Cache::forget('list_menus');
         if (! app()->runningInConsole()) {
             $list_menus = Cache::remember('list_menus', 60 * 60 * 24, function () {
                 return Menu::with('visibleSubs')->parent()->getVisible()->get();

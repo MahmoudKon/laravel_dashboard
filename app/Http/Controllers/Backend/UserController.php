@@ -18,7 +18,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends BackendController
 {
     public $use_form_ajax = true;
-    public $use_button_ajax = true;
+    public $use_button_ajax = false;
 
     public function __construct(UserDataTable $dataTable, User $user)
     {

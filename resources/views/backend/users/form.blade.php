@@ -27,6 +27,18 @@
         </div>
         {{-- END  EMAIL --}}
 
+    </div>
+
+    <div class="col-md-3">
+        {{-- START USER IMAGE --}}
+        @include('backend.includes.forms.input-file', ['image' => isset($row) && $row->image ? url($row->image) : null, 'alt' => $row->name ?? null])
+        {{-- START USER IMAGE --}}
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6">
         {{-- START PASSWORD --}}
         <div class="form-group">
             <label class="{{ isset($row) ? '' : 'required' }}">@lang('inputs.password')</label>
@@ -39,58 +51,9 @@
             @include('layouts.includes.backend.validation_error', ['input' => 'password'])
         </div>
         {{-- END PASSWORD --}}
-
     </div>
 
-    <div class="col-md-3">
-        {{-- START USER IMAGE --}}
-        @include('backend.includes.forms.input-file', ['image' => isset($row) && $row->image ? url($row->image) : null, 'alt' => $row->name ?? null])
-        {{-- START USER IMAGE --}}
-    </div>
-
-    <div class="col-md-4">
-        {{-- START ANNUAL CREDIT --}}
-        <div class="form-group">
-            <label>@lang('inputs.annual-credit')</label>
-            <div class="input-group">
-                <input type="number" min="0" name="annual_credit" class="touchspin-color" value="{{ $row->annual_credit ?? old('annual_credit') }}" placeholder="@lang('inputs.annual-credit')">
-            </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'annual_credit'])
-        </div>
-        {{-- END ANNUAL CREDIT --}}
-    </div>
-
-    <div class="col-md-4">
-        {{-- START FINGER PRINT ID --}}
-        <div class="form-group">
-            <label>@lang('inputs.finger-print-id')</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa-solid fa-fingerprint"></i> </span>
-                </div>
-                <input type="number" min="1" class="touchspin-color" name="finger_print_id" value="{{ $row->finger_print_id ?? old('finger_print_id') }}" placeholder="@lang('inputs.finger-print-id')">
-            </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'finger_print_id'])
-        </div>
-        {{-- END FINGER PRINT ID --}}
-    </div>
-
-    <div class="col-md-4">
-        {{-- START SALARY PER MONTHLY --}}
-        <div class="form-group">
-            <label>@lang('inputs.salary')</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa-solid fa-money-bill-1"></i> </span>
-                </div>
-                <input type="number" min="0" class="touchspin-color" name="salary_per_monthly" value="{{ $row->salary_per_monthly ?? old('salary_per_monthly') }}"  placeholder="@lang('inputs.salary')">
-            </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'salary_per_monthly'])
-        </div>
-        {{-- END SALARY PER MONTHLY --}}
-    </div>
-
-    <div class="col-md-4">
+    <div class="col-md-6">
         {{-- START DEPARTMENT --}}
         <div class="form-group">
             <label class="required">@lang('inputs.select-data', ['data' => trans('menu.department')])</label>
@@ -104,22 +67,20 @@
         </div>
         {{-- END DEPARTMENT --}}
     </div>
-
-    <div class="col-md-12">
-        {{-- START ROLES --}}
-        <div class="form-group">
-            <label>@lang('inputs.select-data', ['data' => trans('menu.roles')])</label>
-            <select class="select2 form-control" id="roles" name="roles[]" multiple data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.roles')]) ---">
-                {{-- <option value="">@lang('inputs.please-select')</option> --}}
-                @foreach ($roles as $id => $name)
-                    <option value="{{ $id }}" @selected((isset($row) && $row->hasRole($name)) || (is_array(old('roles')) && in_array($id, old('roles'))))>{{ $name }}</option>
-                @endforeach
-            </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'roles'])
-        </div>
-        {{-- END ROLES --}}
-    </div>
 </div>
+
+{{-- START ROLES --}}
+<div class="form-group">
+    <label>@lang('inputs.select-data', ['data' => trans('menu.roles')])</label>
+    <select class="select2 form-control" id="roles" name="roles[]" multiple data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.roles')]) ---">
+        {{-- <option value="">@lang('inputs.please-select')</option> --}}
+        @foreach ($roles as $id => $name)
+            <option value="{{ $id }}" @selected((isset($row) && $row->hasRole($name)) || (is_array(old('roles')) && in_array($id, old('roles'))))>{{ $name }}</option>
+        @endforeach
+    </select>
+    @include('layouts.includes.backend.validation_error', ['input' => 'roles'])
+</div>
+{{-- END ROLES --}}
 
 @push('script')
 <script type="text/javascript" src="{{ assetHelper('customs/js/show-password.js') }}"></script>
