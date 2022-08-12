@@ -3,12 +3,15 @@
 namespace App\DataTables;
 
 use App\Models\Department;
+use App\Traits\DatatableHelper;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class DepartmentDataTable extends DataTable
 {
+    use DatatableHelper;
+
     /**
      * Build DataTable class.
      *
@@ -62,9 +65,10 @@ class DepartmentDataTable extends DataTable
         ->dom('Bfrtip')
         ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
         ->pageLength(5)
-        ->language(translateDatatables())
+        ->language($this->translateDatatables())
         ->buttons([
-            Button::make()->text('<i class="fa fa-plus"></i>')->addClass('btn btn-outline-info '. (canUser("departments-create") ? "" : "remove-hidden-element"))->action("window.location.href = " . '"' . routeHelper('departments.create') . '"')->titleAttr(trans('menu.create-row', ['model' => trans('menu.department')])),
+            $this->setCreateButton('departments'),
+
             Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("departments-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),
             Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
         ])

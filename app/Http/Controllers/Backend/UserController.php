@@ -9,7 +9,6 @@ use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
 use App\Imports\UsersImport;
 use App\Jobs\TestJob;
-use App\Models\Aggregator;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,6 +18,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends BackendController
 {
     public $use_form_ajax = true;
+    public $use_button_ajax = true;
 
     public function __construct(UserDataTable $dataTable, User $user)
     {

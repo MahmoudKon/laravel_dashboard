@@ -3,12 +3,15 @@
 namespace App\DataTables;
 
 use App\Models\Route;
+use App\Traits\DatatableHelper;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class RouteDataTable extends DataTable
 {
+    use DatatableHelper;
+
     /**
      * Build DataTable class.
      *
@@ -56,12 +59,9 @@ class RouteDataTable extends DataTable
         ->dom('Bfrtip')
         ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
         ->pageLength(5)
-        ->language(translateDatatables())
+        ->language($this->translateDatatables())
         ->buttons([
-            Button::make()->text('<i class="fa fa-link"></i>')
-            ->addClass('btn btn-outline-info '. (canUser("routes-create") ? "" : "remove-hidden-element"))
-            ->action("window.location.href = " . '"' . routeHelper('routes.assign') . '"')
-            ->titleAttr(trans('menu.assign-roles')),
+            $this->setCreateButton('routes'),
 
             Button::make()->text('<i class="fa fa-download"></i>')
             ->addClass('btn btn-outline-primary')->action("window.location.href = " . '"' . routeHelper('routes.download'). '"')

@@ -3,12 +3,15 @@
 namespace App\DataTables;
 
 use App\Models\User;
+use App\Traits\DatatableHelper;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
 class UserDataTable extends DataTable
 {
+    use DatatableHelper;
+
     /**
      * Build DataTable class.
      *
@@ -62,7 +65,8 @@ class UserDataTable extends DataTable
         ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
         ->pageLength(5)
         ->buttons([
-            Button::make()->text('<i class="fa fa-plus"></i>')->addClass('btn btn-outline-info '. (canUser("users-create") ? "" : "remove-hidden-element"))->action("window.location.href = window.location.href+'/create'")->titleAttr(trans('menu.create-row', ['model' => trans('menu.user')])),
+            $this->setCreateButton('users'),
+
             Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("users-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),
 
             Button::make()->text('<i class="fas fa-cloud-download"></i>')
@@ -88,7 +92,7 @@ class UserDataTable extends DataTable
             Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
         ])
         ->responsive(true)
-        ->language(translateDatatables())
+        ->language($this->translateDatatables())
         ->parameters([
             'initComplete' => " function () {
                 this.api().columns([2,3,5]).every(function () {

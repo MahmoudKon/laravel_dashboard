@@ -25,6 +25,7 @@ class BackendController extends Controller
             $this->index_view  = "backend.includes.pages.crud-index-page";
         }
 
+        session(['use_button_ajax' => $this->use_button_ajax]);
         if ($this->use_button_ajax) {
             $this->create_view = "backend.includes.forms.form-create";
             $this->update_view = "backend.includes.forms.form-update";

@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Traits\DatatableHelper;
 use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Models\Role as ModelsRole;
 use Yajra\DataTables\Html\Button;
@@ -10,6 +11,8 @@ use Yajra\DataTables\Services\DataTable;
 
 class RoleDataTable extends DataTable
 {
+    use DatatableHelper;
+
     /**
      * Build DataTable class.
      *
@@ -52,9 +55,10 @@ class RoleDataTable extends DataTable
         ->dom('Bfrtip')
         ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
         ->pageLength(5)
-        ->language(translateDatatables())
+        ->language($this->translateDatatables())
         ->buttons([
-            Button::make()->text('<i class="fa fa-plus"></i> <span class="hidden" data-yajra-href="'.routeHelper('roles.create').'"></span>')->addClass('btn btn-outline-info show-modal-form '. (canUser("routes.assign") ? "" : "remove-hidden-element"))->titleAttr(trans('menu.create-row', ['model' => trans('menu.role')])),
+            $this->setCreateButton('roles'),
+
             Button::make()->text('<i class="fas fa-trash"></i>')->addClass('btn btn-outline-danger multi-delete '. (canUser("routes-multidelete") ? "" : "remove-hidden-element"))->titleAttr(trans('buttons.multi-delete')),
             Button::make('pageLength')->text('<i class="fa fa-sort-numeric-up"></i>')->addClass('btn btn-outline-light page-length')->titleAttr(trans('buttons.page-length'))
         ])
