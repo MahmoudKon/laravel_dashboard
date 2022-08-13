@@ -20,7 +20,7 @@ class Email extends Model
 
     public function notifier()
     {
-        return $this->belongsTo(User::class, 'notifier_id', 'id')->select('id', 'name', 'image');
+        return $this->belongsTo(User::class, 'notifier_id', 'id')->select('id', 'name', 'image')->withDefault(['name' => 'System', 'image' => null]);
     }
 
     public function isSeen()

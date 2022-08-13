@@ -59,7 +59,7 @@ class CreateModel extends Command
         foreach ($this->related_columns as $column) {
             $relation = str_replace('_id', '', $column);
             $relation_class = ucfirst( $relation );
-            $this->relations .= "\n\tpublic function $relation() { return \$this->belongsTo({$relation_class}::class, '$column'); }\n";
+            $this->relations .= "\n\tpublic function $relation() { return \$this->belongsTo({$relation_class}::class, '$column')->withDefault(); }\n";
         }
     }
 

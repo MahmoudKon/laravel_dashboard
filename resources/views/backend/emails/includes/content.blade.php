@@ -19,7 +19,7 @@
     <h3 class="list-group-item-heading">
         <div class="d-flex">
 
-            @if ($email->notifier->image)
+            @if ($email->notifier?->image)
                 <img src="{{ asset($email->notifier->image) }}" class="rounded-circle" width="100px" height="100px">
             @else
                 <span class="avatar avatar-md" style="width:100px; height: 100px; line-height: 100px">
