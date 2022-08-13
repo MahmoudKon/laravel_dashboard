@@ -81,6 +81,7 @@ class PermissionDataTable extends DataTable
                         column.search($(this).val(), true, true, true).draw();
                     });
                 });
+                document.getElementById('load-data').classList.remove('load');
             }",
         ])
         ->orderBy(0);
