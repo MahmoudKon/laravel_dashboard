@@ -86,6 +86,7 @@ class UserDataTable extends DataTable
                         column.search($(this).val(), false, false, true).draw();
                     });
                 });
+                document.getElementById('load-data').classList.remove('load');
             }",
         ])
         ->orderBy(0);

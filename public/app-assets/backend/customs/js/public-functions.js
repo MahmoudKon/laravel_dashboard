@@ -38,9 +38,9 @@ function rows(form = null) {
         },
         error: function(jqXHR) {
             handleErrors(jqXHR);
-            $('#load-data').removeClass('load');
+            // $('#load-data').removeClass('load');
         },
-        complete: function () { $('#load-data').removeClass('load'); initPluginElements();}
+        complete: function () { $('#load-data').removeClass('loads'); initPluginElements();}
     });
 } // AJAX CODE TO LOAD THE DATA TABLE
 
