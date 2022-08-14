@@ -47,14 +47,15 @@ class {{ class }} extends DataTable
      */
     public function html()
     {
+        $this->overWriteProperties();
         return $this->builder()
         ->setTableId('{{ table }}-table')
         ->columns($this->getColumns())
-        ->setTableAttribute('class', 'table table-bordered table-striped table-sm w-100 dataTable')
         ->minifiedAjax()
         ->dom('Bfrtip')
-        ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
-        ->pageLength(5)
+        ->setTableAttribute('class', $this->tableClass)
+        ->lengthMenu($this->lengthMenu)
+        ->pageLength($this->pageLength)
         ->language($this->translateDatatables())
         ->buttons([
             $this->getCreateButton(),
@@ -105,5 +106,17 @@ class {{ class }} extends DataTable
     protected function filename()
     {
         return '{{ table }}_' . date('YmdHis');
+    }
+
+    /**
+     * Overwrite trait properties.
+     *
+     * @return void
+     */
+    protected function overWriteProperties() :void
+    {
+        // $this->setPageLength(); // number of page length
+        // $this->setLengthMenu(); // array of menu length
+        // $this->setTableClass(); // string of html classes
     }
 }

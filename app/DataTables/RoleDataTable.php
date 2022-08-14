@@ -51,11 +51,11 @@ class RoleDataTable extends DataTable
         return $this->builder()
         ->setTableId('users-table')
         ->columns($this->getColumns())
-        ->setTableAttribute('class', 'table table-bordered table-striped table-sm w-100 dataTable')
         ->minifiedAjax()
         ->dom('Bfrtip')
-        ->lengthMenu([[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']])
-        ->pageLength(5)
+        ->setTableAttribute('class', $this->tableClass)
+        ->lengthMenu($this->lengthMenu)
+        ->pageLength($this->pageLength)
         ->language($this->translateDatatables())
         ->buttons([
             $this->getCreateButton(),

@@ -7,8 +7,26 @@ use Illuminate\Support\Str;
 
 trait DatatableHelper
 {
+    public $pageLength = 10;
+    public $lengthMenu = [[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']];
+    public $tableClass = 'table table-bordered table-striped table-sm w-100 dataTable';
 
-    public function translateDatatables()
+    public function setPageLength(int|null $length = null) :void
+    {
+        $this->pageLength = $length;
+    }
+
+    public function setLengthMenu(array|null $arr = null) :void
+    {
+        $this->lengthMenu = $arr;
+    }
+
+    public function setTableClass(string|null $classes = null) :void
+    {
+        $this->tableClass = $classes;
+    }
+
+    public function translateDatatables() :array
     {
         return [
             "decimal"        => trans('datatable.decimal'),
@@ -36,7 +54,7 @@ trait DatatableHelper
         ];
     }
 
-    public function getCreateButton()
+    public function getCreateButton() :Button
     {
         if (session('use_button_ajax')) {
             return Button::make()
@@ -52,7 +70,7 @@ trait DatatableHelper
         }
     }
 
-    public function getDeleteButton()
+    public function getDeleteButton() :Button
     {
         return Button::make()
                         ->text('<i class="fas fa-trash"></i>')
@@ -61,7 +79,7 @@ trait DatatableHelper
 
     }
 
-    public function getPageLengthButton()
+    public function getPageLengthButton() :Button
     {
         return Button::make('pageLength')
                         ->text('<i class="fa fa-sort-numeric-up"></i>')
@@ -69,7 +87,7 @@ trait DatatableHelper
                         ->titleAttr(trans('buttons.page-length'));
     }
 
-    public function getImportButton()
+    public function getImportButton() :Button
     {
         return Button::make()
                     ->text('<i class="fa fa-cloud-upload"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.excel.import.form').'"></span>')
@@ -77,7 +95,7 @@ trait DatatableHelper
                     ->titleAttr('Import '.$this->table);
     }
 
-    public function getExportButton()
+    public function getExportButton() :Button
     {
         return Button::make()->text('<i class="fas fa-cloud-download"></i>')
                         ->action("window.location.href = '". routeHelper($this->table.'.excel.export') ."'")
@@ -85,7 +103,7 @@ trait DatatableHelper
                         ->titleAttr(trans('buttons.export-excel'));
     }
 
-    public function getSearchButton()
+    public function getSearchButton() :Button
     {
         return Button::make()
                     ->text('<i class="fa fa-search"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.search.form').'"></span>')
@@ -93,7 +111,7 @@ trait DatatableHelper
                     ->titleAttr('Open Search Form');
     }
 
-    public function getCloseButton()
+    public function getCloseButton() :Button
     {
         return Button::make()
                     ->text('<i class="fa fa-times"></i>')
