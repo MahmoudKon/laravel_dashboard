@@ -51,6 +51,9 @@ class AssignPermissionsToRole extends Command
             array_push($permissions, $route->permissionName()); // Push The Route Permission Name In The Empty Array
 
         // Make Sync Between Role And All Permissions
-        $role->permissions()->sync(Permission::whereIn('name', $permissions)->pluck('id')->toArray());
+        if ($sync)
+            $role->permissions()->sync(Permission::whereIn('name', $permissions)->pluck('id')->toArray());
+        else
+            $role->permissions()->attach(Permission::whereIn('name', $permissions)->pluck('id')->toArray());
     }
 }

@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CitySeeder::class);
         $this->call(MenuSeeder::class);
         $this->call(CountrySeeder::class);
-        $this->call(RouteSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(RouteSeeder::class);
         $this->call(DepartmentSeeder::class);
         $this->call(SuperadminSeeder::class);
         $this->call(ContentTypeSeeder::class);
