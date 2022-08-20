@@ -28,6 +28,10 @@ Route::redirect('/', '/dashboard');
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
 Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
 
-Route::post('/broadcasting/auth', function() {
-    return auth()->user();
+Route::post('broadcasting/auth', function() {
+    return json_encode(auth()->user());
+});
+
+Route::post("broadcasting/user-auth", function() {
+    return json_encode(auth()->user());
 });
