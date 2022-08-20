@@ -2,7 +2,9 @@
 
 @section('content')
 
-<a href = "{{ routeHelper('/') }}" class="btn btn-primary d-block w-30 mb-5" id="push-email"> <i class="fa fa-share"></i> Test Push Email</a>
+@if (env('PUSHER_APP_ID'))
+    <a href = "{{ routeHelper('/') }}" class="btn btn-primary d-block w-30 mb-5" id="push-email"> <i class="fa fa-share"></i> Test Push Email</a>
+@endif
 
 <!-- eCommerce statistic -->
 <div class="row">
@@ -42,22 +44,4 @@
 </div>
 
 <!--/ eCommerce statistic -->
-@endsection
-
-
-@section('script')
-    <script>
-        $(function() {
-            $('#push-email').click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: $(this).attr('href'),
-                    type: "get",
-                    success: function (data, textStatus, jqXHR) {
-                        toast(data.message, null, 'success');
-                    },
-                });
-            });
-        });
-    </script>
 @endsection

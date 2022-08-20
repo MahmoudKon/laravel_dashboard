@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewEmail implements ShouldBroadcast
+class NewEmail implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -23,11 +23,9 @@ class NewEmail implements ShouldBroadcast
      * @return void
      */
 
-    protected $email_id;
-
     public function __construct(public Email $email)
     {
-        $this->email_id = $this->email->id;
+        //
     }
 
     /**
@@ -37,7 +35,7 @@ class NewEmail implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel("new-email.$this->email_id");
+        return new PrivateChannel("email.{$this->email->id}");
     }
 
     // public function join(User $user, Email $email)

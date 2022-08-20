@@ -30,7 +30,7 @@
         // window.open("file:///D:/Hello.txt");
     </script>
 
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
     <script type="text/javascript" src="{{ assetHelper('vendors/js/vendors.min.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/select/select2.full.min.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/extended/maxlength/bootstrap-maxlength.js') }}"></script>
@@ -63,8 +63,10 @@
     <script type="text/javascript" src="{{ assetHelper('customs/js/script.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('customs/js/check-offline.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('customs/js/lock-page.js') }}"></script>
-    {{-- <script type="text/javascript" src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
-    {{-- <script type="text/javascript" src="{{ assetHelper('customs/js/pusher.js') }}"></script> --}}
+    @if (env('PUSHER_APP_ID'))
+        <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+        <script type="text/javascript" src="{{ assetHelper('customs/js/pusher.js') }}"></script>
+    @endif
     {{-- ************** END CUSTOM JS ************** --}}
 
     @yield('script')
