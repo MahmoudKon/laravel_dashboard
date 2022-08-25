@@ -46,5 +46,3 @@ window.Echo = new Echo({
         }
     }
 });
-
-

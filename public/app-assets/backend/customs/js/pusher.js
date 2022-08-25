@@ -1,13 +1,9 @@
-Pusher.logToConsole = true;
-
-
-window.Echo.private('email.30')
-            .listen('NewEmail', (email) => {
-                alert(email);
-            })
-
 
 $(function() {
+    window.Echo.channel('email').listen('NewEmail', (email) => {
+                    console.log(email);
+                });
+
     $('#push-email').click(function(e) {
         e.preventDefault();
         $.ajax({

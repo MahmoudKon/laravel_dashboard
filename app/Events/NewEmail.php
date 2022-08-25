@@ -35,19 +35,6 @@ class NewEmail implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel("email.{$this->email->id}");
-    }
-
-    public function broadcastAs()
-    {
-        return 'new.email';
-    }
-
-    public function join(User $user, Email $email)
-    {
-        return true;
-        $emails = "$email->to,$email->cc,$email->do";
-        $emails = array_filter( array_unique( explode(',', $emails) ) );
-        return in_array($user->email, $emails);
+        return new Channel("email");
     }
 }

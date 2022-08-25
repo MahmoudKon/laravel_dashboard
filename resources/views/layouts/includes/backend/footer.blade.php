@@ -63,8 +63,8 @@
     <script type="text/javascript" src="{{ assetHelper('customs/js/script.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('customs/js/check-offline.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('customs/js/lock-page.js') }}"></script>
-    @if (env('PUSHER_APP_ID') && false)
-        <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    @if (env('PUSHER_APP_ID'))
+        {{-- <script src="https://pusherjs.pusher.com/7.2/pusher.min.js"></script> --}}
         <script type="text/javascript" src="{{ assetHelper('customs/js/pusher.js') }}"></script>
     @endif
     {{-- ************** END CUSTOM JS ************** --}}
