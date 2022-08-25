@@ -50,6 +50,12 @@ class BackendController extends Controller
     public function create()
     {
         try {
+            if ($this->doSomethingInCreate()) {
+                $this->full_page_ajax = $this->use_button_ajax = false;
+                $this->use_form_ajax = true;
+                return $this->redirect();
+            }
+
             if (! request()->ajax() && $this->use_form_ajax)
                 $this->create_view = "backend.includes.pages.form-page";
 
@@ -63,6 +69,13 @@ class BackendController extends Controller
     {
         $row = $this->query($id);
         if (! $row) return $this->throwException(trans('flash.something is wrong'));
+
+        if ($this->doSomethingInShow($row)) {
+            $this->full_page_ajax = $this->use_button_ajax = false;
+            $this->use_form_ajax = true;
+            return $this->redirect();
+        }
+
         return view($this->show_view, compact('row'));
     }
 
@@ -71,6 +84,13 @@ class BackendController extends Controller
         try {
             $row = $this->query($id);
             if (! $row) return $this->throwException(trans('flash.something is wrong'));
+
+            if ($this->doSomethingInEdit($row)) {
+                $this->full_page_ajax = $this->use_button_ajax = false;
+                $this->use_form_ajax = true;
+                return $this->redirect();
+            }
+
             if (! request()->ajax() && $this->use_form_ajax)
                 $this->update_view = "backend.includes.pages.form-page";
 
@@ -86,7 +106,9 @@ class BackendController extends Controller
             $row = $this->query($id);
             if (! $row) return $this->throwException(trans('flash.something is wrong'));
             $row->delete();
-            return response()->json(['message' => trans('flash.row deleted', ['model' => trans('menu.'.$this->getModelName(true))]), 'icon' => 'success', 'count' => $this->modelCount()]);
+
+            $this->doSomethingAfterDelete();
+            return response()->json(['message' => trans('flash.row deleted', ['model' => trans('menu.'.$this->getTableName())]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
@@ -97,10 +119,12 @@ class BackendController extends Controller
         try {
             $rows = $this->model::whereIn('id', (array)$request['id'])->get();
             DB::beginTransaction();
-            foreach ($rows as $row)
-                $row->delete();
+                foreach ($rows as $row)
+                    $row->delete();
+
+                $this->doSomethingAfterDelete();
             DB::commit();
-            return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getModelName(true, true)), 'count' => $rows->count()]), 'icon' => 'success', 'count' => $this->modelCount()]);
+            return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getTableName(true)), 'count' => $rows->count()]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
@@ -109,7 +133,7 @@ class BackendController extends Controller
     public function search()
     {
         try {
-            $title = "Search In ".$this->getModelName(false, true)." Table";
+            $title = "Search In ".$this->getTableName(true)." Table";
             return response()->json( view('backend.includes.forms.form-search', $this->append(), compact('title'))->render() );
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);

@@ -83,7 +83,7 @@ function getModel(bool $singular = false) :string
         // usering full namsepace get the controller class
         $controller_class = app($controller);
         // in each controller has method [getModel] to get the model name.
-        $model = $controller_class->getModelName(true, true);
+        $model = $controller_class->getTableName(true);
     } catch (Exception $e) {
         $route = request()->route()->uri;
         $route = str_replace(app()->getLocale().'/', '', $route);

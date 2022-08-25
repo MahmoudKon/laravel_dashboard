@@ -34,8 +34,9 @@ $(function () {
         $.ajax({
             url: url,
             type: "GET",
-            success: function (data, textStatus, jqXHR) {
-                modal.find('.form-body').empty().append(data);
+            success: function (response, textStatus, jqXHR) {
+            if (response.redirect) return window.location = response.redirect;
+                modal.find('.form-body').empty().append(response);
                 modal.removeClass('load').modal('show');
                 initPluginElements();
             },

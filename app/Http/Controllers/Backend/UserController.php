@@ -8,7 +8,6 @@ use App\Http\Controllers\BackendController;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
 use App\Imports\UsersImport;
-use App\Jobs\TestJob;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -69,16 +68,5 @@ class UserController extends BackendController
     public function query($id) :object|null
     {
         return $this->model->hasManager()->find($id);
-    }
-
-    public function TestRunJob()
-    {
-        TestJob::dispatch(request()->message, $this, 9);
-        return "This Message From Controller \n\t ' ".request()->message." '";
-    }
-
-    public function testReturn()
-    {
-        return "Message Controller";
     }
 }

@@ -12,8 +12,8 @@ use App\Http\Requests\{{ model }}Request;
 class {{ class }} extends BackendController
 {
     public $full_page_ajax  = false;
-    public $use_form_ajax   = false;
-    public $use_button_ajax = false;
+    public $use_form_ajax   = true;
+    public $use_button_ajax = true;
 
     public function __construct({{ model }}DataTable $dataTable, {{ model }} ${{ model }})
     {
@@ -45,4 +45,12 @@ class {{ class }} extends BackendController
     {
         return $this->model::find($id);
     }
+
+    public function doSomethingInCreate() { return false; }
+
+    public function doSomethingInShow() { return false; }
+
+    public function doSomethingInEdit() { return false; }
+
+    public function doSomethingAfterDelete() { return false; }
 }

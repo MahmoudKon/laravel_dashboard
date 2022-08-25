@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use Exception;
 use Illuminate\Support\Str;
 
 trait BackendControllerHelper
@@ -81,19 +80,15 @@ trait BackendControllerHelper
     }
 
     /**
-     *  getModelName
-     *  to get the model name from model object
+     *  getTableName
+     *  to get the table name from model object
      * @param  bool $lower_case
      * @param  bool $plural
      * @return string
      */
-    public function getModelName(bool $lower_case = false, bool $plural = false) :string
+    public function getTableName(bool $plural = false) :string
     {
-        $model_name = class_basename($this->model);
-        $model_name = preg_replace('/([^A-Z])([A-Z])/', "$1 $2", $model_name);
-        $model_name = $lower_case ? Str::lower($model_name) : $model_name;
-        $model_name = $plural ? Str::plural($model_name) : $model_name;
-        return $model_name;
+        return $plural ? $this->model->getTable() : Str::singular($this->model->getTable());
     }
 
     /**
@@ -120,9 +115,8 @@ trait BackendControllerHelper
      */
     public function redirect($message = null, $redirect = null) :object
     {
-        toast($message, 'success');
-        $message = $message ?? $this->getModelName()." Created Successfully!";
-        $goto = $redirect ?? routeHelper(str_replace(' ', '_', $this->getModelName(true, true)).'.index');
+        $message ? toast($message, 'success') : '';
+        $goto = $redirect ?? routeHelper($this->getTableName(true).'.index');
 
         if ($this->full_page_ajax || ($this->use_form_ajax && $this->use_button_ajax))
             if ($redirect) {
@@ -158,4 +152,44 @@ trait BackendControllerHelper
             }
         }
     }
+
+    /**
+     * doSomethingInCreate
+     *
+     * This method will do something In Create Page
+     * if return true, then will not contineu
+     *
+     * @return bool
+     */
+    public function doSomethingInCreate() { return false; }
+
+    /**
+     * doSomethingInShow
+     *
+     * This method will do something In Show Page
+     * if return true, then will not contineu
+     *
+     * @return bool
+     */
+    public function doSomethingInShow($row) { return false; }
+
+    /**
+     * doSomethingInEdit
+     *
+     * This method will do something In Edit Page
+     * if return true, then will not contineu
+     *
+     * @return bool
+     */
+    public function doSomethingInEdit($row) { return false; }
+
+    /**
+     * doSomethingAfterDelete
+     *
+     * This method will do something after do delete row
+     * if return true, then will not contineu
+     *
+     * @return bool
+     */
+    public function doSomethingAfterDelete() { return false; }
 }

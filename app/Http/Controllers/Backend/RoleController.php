@@ -31,4 +31,16 @@ class RoleController extends BackendController
         if (is_string($role)) return $this->throwException($role);
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.role')]));
     }
+
+    public function doSomethingInEdit($row)
+    {
+        toast('No For You', 'error');
+        return true;
+    }
+
+    public function doSomethingInShow($row) :bool
+    {
+        toast('No For You', 'error');
+        return true;
+    }
 }
