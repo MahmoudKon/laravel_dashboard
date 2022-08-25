@@ -1,3 +1,11 @@
+$.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+}); // TO SEND THE CSRF TOKEN WITH AJAX REQUEST
+
+$(document).ajaxError(function(response, jqXHR) {
+    if (jqXHR.status === 419) { location.reload(true); }
+}); // WHEN MAKE REQUEST AND THE RESPONSE IS ERROR THEN MAKE REFRESH THE PAGE
+
 function playAudio(type = 'success') {
     if (!RUN_SOUND) return;
     let audio;

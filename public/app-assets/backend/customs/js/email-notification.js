@@ -1,7 +1,3 @@
-$.ajaxSetup({
-    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-}); // TO SEND THE CSRF TOKEN WITH AJAX REQUEST
-
 const MAIN_ROUTE = `${ENDPOINT}/emails`;
 let load_new_email = true; // Check If The Value Is True Then Rerun The Ajax Function To Relisting The Emails
 let limit = 0;
@@ -70,7 +66,7 @@ $(function () {
 
     /********************************************* To Get The Email UnReaded Count *****************************************************/
     // getEmailsCount();
-    // setInterval(() => { getEmailsCount(true); page_is_loading = false }, 15000);
+    setInterval(() => { getEmailsCount(true); page_is_loading = false }, 15000);
     function getEmailsCount(force_lood = false) {
         $.ajax({
             url: `${MAIN_ROUTE}/count`,
