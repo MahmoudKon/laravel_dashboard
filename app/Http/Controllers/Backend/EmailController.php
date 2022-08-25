@@ -16,12 +16,12 @@ class EmailController extends Controller
 {
     public function count() // get count of emails not seen for authentcation user
     {
-        return Email::onTo()->seen(EMAIL_UNSEEN)->count();
+        return Email::onTo()->onCc()->seen(EMAIL_UNSEEN)->count();
     }
 
     public function list() // list emails in notification icon
     {
-        $emails = Email::filter()->with('notifier')->paginate(4);
+        $emails = Email::filter()->with('notifier', 'recipients')->paginate(4);
         $next_page = $emails->currentPage() < $emails->lastPage()
                         ? "{$emails->path()}?page=".($emails->currentPage() + 1)
                         : null;
@@ -34,7 +34,7 @@ class EmailController extends Controller
 
     public function new($limit = 1)
     {
-        $emails = Email::onTo()->onCC()->seen(EMAIL_UNSEEN)->with('notifier')->limit($limit)->get();
+        $emails = Email::onTo()->onCC()->seen(EMAIL_UNSEEN)->with('notifier', 'recipients')->limit($limit)->get();
         return response()->json([
             'emails' => view('backend.emails.includes.single-email', compact('emails'))->render(),
         ]);
@@ -54,7 +54,8 @@ class EmailController extends Controller
 
     public function store(EmailRequest $request)
     {
-        Mail::send(new SendEmail( createEmail($request->validated()) ));
+        createEmail($request->validated());
+        // Mail::send(new SendEmail( createEmail($request->validated()) ));
         return response()->json(['message' => trans('flash.row created', ['model' => trans('menu.email')]), 'icon' => 'success']);
     }
 

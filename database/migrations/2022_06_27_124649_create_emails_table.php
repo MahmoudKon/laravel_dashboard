@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('ids')->nullable();
             $table->string('view')->nullable();
-            $table->text('who_saw')->nullable();
             $table->foreignId('notifier_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
@@ -36,6 +35,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emails');
+        Schema::disableForeignKeyConstraints();
+            Schema::dropIfExists('emails');
+        Schema::enableForeignKeyConstraints();
     }
 };

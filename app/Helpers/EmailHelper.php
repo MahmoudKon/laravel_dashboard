@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Email;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 define('EMAIL_SEEN', 1);
 define('EMAIL_UNSEEN', 0);
@@ -21,9 +23,16 @@ define('EMAIL_UNSEEN', 0);
  * @param  array $email
  * @return Email Class
  */
-function createEmail(array $email) :Email
+function createEmail(array $data) :Email
 {
-    return Email::create($email);
+    DB::beginTransaction();
+        $email = Email::create($data);
+        $users_id = User::select('id')->whereIn('email', explode(',', $email->to))->when($email->cc, function($query) use ($email) {
+            $query->orWhereIn('email', explode(',', $email->cc));
+        })->pluck('id')->toArray();
+        $email->recipients()->sync($users_id);
+    DB::commit();
+    return $email;
 }
 
 /**

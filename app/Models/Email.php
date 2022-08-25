@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Email extends Model
 {
@@ -14,33 +13,26 @@ class Email extends Model
 
     protected $table = 'emails';
 
-    public $fillable = ['subject', 'body', 'to', 'cc', 'model', 'view', 'ids', 'who_saw', 'notifier_id'];
-
-    protected $casts = ['who_saw' => 'array'];
+    public $fillable = ['subject', 'body', 'to', 'cc', 'model', 'view', 'ids', 'notifier_id'];
 
     public function notifier()
     {
         return $this->belongsTo(User::class, 'notifier_id', 'id')->select('id', 'name', 'image')->withDefault(['name' => 'System', 'image' => null]);
     }
 
-    public function isSeen()
+    public function recipients()
     {
-        return in_array(auth()->id(), $this->who_saw);
+        return $this->belongsToMany(User::class, 'email_recipient', 'email_id', 'recipient_id')->withPivot(['seen', 'email_id', 'recipient_id']);
     }
 
-    public function getWhoSawAttribute($value)
+    public function isSeen()
     {
-        return $value ? explode(',', $value) : [];
+        return $this->recipients()->where('recipient_id', auth()->id())->first()->pivot->seen;
     }
 
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->diffForHumans();
-    }
-
-    public function setWhoSawAttribute($value)
-    {
-        $this->attributes['who_saw'] = implode(',', $value);
     }
 
     public function setToAttribute($value)
@@ -55,8 +47,7 @@ class Email extends Model
 
     public function updateSeen()
     {
-        if (! in_array(auth()->id(), $this->who_saw))
-            DB::select("UPDATE `emails` SET who_saw = '".implode(',', getUniqueArray($this->who_saw, auth()->id()))."' WHERE `id` = $this->id");
+        $this->recipients()->updateExistingPivot(auth()->id(), ['seen' => true]);
     }
 
     public function scopeFilter($query)
@@ -74,8 +65,9 @@ class Email extends Model
     public function scopeSeen($query, $seen)
     {
         return $query->when($seen !== null, function ($query) use ($seen) {
-            $condition = $seen ? "" : "NOT";
-            return $query->whereRaw("$condition FIND_IN_SET('".auth()->id()."', `who_saw`)");
+            $query->whereHas('recipients', function($query) use ($seen) {
+                $query->where('email_recipient.seen', (int) $seen);
+            });
         });
     }
 
@@ -113,7 +105,6 @@ class Email extends Model
 
         self::creating(function($model) {
             $model->notifier_id = auth()->id();
-            $model->who_saw     = [auth()->id()];
         });
     }
 }
