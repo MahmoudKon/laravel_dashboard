@@ -9,6 +9,7 @@
 
 <form action="{{ route('unlock') }}" method="POST">
     @csrf
+    <input type="hidden" name="email" value="{{ encrypt(auth()->user()->email) ?? old('email') }}" required>
 
     <!-- BEGIN USER PASSWORD INPUT -->
     <fieldset class="form-group">

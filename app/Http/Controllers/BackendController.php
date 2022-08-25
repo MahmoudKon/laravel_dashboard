@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\CheckMiddleWare;
+use App\Http\Middleware\LockScreenMiddleware;
 use App\Traits\BackendControllerHelper;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +18,7 @@ class BackendController extends Controller
 
     public function __construct(public DataTable $dataTable, public Model $model)
     {
-        $this->middleware(CheckMiddleWare::class);
+        $this->middleware([CheckMiddleWare::class, LockScreenMiddleware::class]);
 
         if ($this->full_page_ajax) {
             $this->use_form_ajax   = true;

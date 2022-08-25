@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\LockScreenMiddleware;
 use App\Http\Middleware\SetDefaultLanguage;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -39,7 +38,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             SetDefaultLanguage::class,
-            LockScreenMiddleware::class,
         ],
 
         'api' => [

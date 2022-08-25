@@ -7,6 +7,6 @@ $(function () {
 
     function lockscreen() {
         if (Date.now() - last_active_time >= 3600000)
-            window.location.href = '/lockscreen';
+            window.location.href = `${main_path}/lockscreen`;
     }
 });

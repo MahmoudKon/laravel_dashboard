@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class LockScreenController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function lock()
     {
-        if (stripos(url()->previous(), 'login') !== false) return redirect(ROUTE_PREFIX.'/');
+        if (!auth()->check()) return redirect('login');
+        if (stripos(url()->previous(), 'login') !== false) return redirect('/');
         session(['locked' => 'true', 'unlook-redirect' => $this->previousRoute()]);
         return view('auth.lock');
     }
@@ -22,8 +18,10 @@ class LockScreenController extends Controller
     public function unlock(Request $request)
     {
         $this->validate($request, ['password' => 'required|string']);
+        auth()->logout();
 
-        if(Hash::check(request()->password, auth()->user()->password)){
+        $cerdintial = ['email' => decrypt($request->email), 'password' => $request->password ];
+        if (auth()->attempt($cerdintial)) {
             toast('Welcome Back '.auth()->user()->name, 'success');
             return redirect()->route($this->redirect());
         }
@@ -35,9 +33,12 @@ class LockScreenController extends Controller
     {
         if (session('unlook-redirect') && stripos(session('unlook-redirect'), 'lockscreen') === false)
             return session('unlook-redirect');
-        $previous_url = str_replace(session('locale').'/', '', url()->previous());
+        $previous_url = str_replace('/'.session('locale').'/', '/', url()->previous());
 
-        return \Illuminate\Support\Facades\Route::getRoutes()->match(request()->create($previous_url))->getName();
+        try {
+            return \Illuminate\Support\Facades\Route::getRoutes()->match(request()->create($previous_url))->getName();
+        } catch (Exception $e) { return '/'; }
+
     }
 
     protected function redirect()
