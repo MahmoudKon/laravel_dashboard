@@ -82,19 +82,9 @@ class RouteDataTable extends DataTable
             $this->getPageLengthButton(),
         ])
         ->responsive(true)
-        ->parameters([
-            'initComplete' => " function () {
-                this.api().columns([0,2,3,4,5,6,7,8]).every(function () {
-                    var column = this;
-                    var input = document.createElement(\"input\");
-                    $(input).appendTo($(column.footer()).empty())
-                    .on('keyup', function () {
-                        column.search($(this).val(), true, true, true).draw();
-                    });
-                });
-                document.getElementById('load-data').classList.remove('load');
-            }",
-        ])
+        ->parameters(
+            $this->initComplete('1,2,3,4,5,6,7,8,9,10')
+        )
         ->orderBy(0);
     }
 

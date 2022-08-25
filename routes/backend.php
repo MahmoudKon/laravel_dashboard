@@ -93,8 +93,11 @@ Route::resource('governorates', 'GovernorateController')->except('show');
 Route::post('governorates/multidelete', 'GovernorateController@multidelete')->name('governorates.multidelete');
 
 Route::resource('cities', 'CityController')->except('show');
-Route::get('governorates/{governorate}/cities', 'CityController@index')->name('governorates.cities.index');
-Route::get('governorates/{governorate}/cities/create', 'CityController@create')->name('governorates.cities.create');
-Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.multidelete');
+Route::controller('CityController')->group(function () {
+    Route::get('governorates/{governorate}/cities', 'index')->name('governorates.cities.index');
+    Route::get('governorates/{governorate}/cities/create', 'create')->name('governorates.cities.create');
+    Route::post('cities/multidelete', 'multidelete')->name('cities.multidelete');
+    Route::post('governorates/{governorate}/cities/multidelete', 'multidelete')->name('governorates.cities.multidelete');
+});
 
 Route::resource('langs', 'LangController');

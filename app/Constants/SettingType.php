@@ -9,7 +9,6 @@ use Carbon\Carbon;
 class SettingType {
     use UploadFile;
 
-
     public static $type_name = null;
     const ADVANCED_TEXT = "Advanced Text";
     const NORMAL_TEXT   = "Normal Text";
@@ -23,8 +22,8 @@ class SettingType {
     const FILE          = "File";
     const DATE          = "Date";
     const LANGUAGES     = "Languages";
-    const PATH  = "uploads/settings/";
-    const VIEW_PATH = "backend.includes.components.";
+    const PATH          = "uploads/settings/";
+    const VIEW_PATH     = "backend.includes.components.";
 
     public static function viewHandler(int $type_id) :string
     {

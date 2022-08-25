@@ -73,19 +73,9 @@ class CityDataTable extends DataTable
                         $this->getPageLengthButton()
                     ])
                     ->responsive(true)
-                    ->parameters([
-                        'initComplete' => " function () {
-                            this.api().columns([1,2]).every(function () {
-                                var column = this;
-                                var input = document.createElement(\"input\");
-                                $(input).appendTo($(column.footer()).empty())
-                                .on('keyup', function () {
-                                    column.search($(this).val(), true, true, true).draw();
-                                });
-                            });
-                            document.getElementById('load-data').classList.remove('load');
-                        }",
-                    ]);
+                    ->parameters(
+                        $this->initComplete('1,2,3')
+                    );
     }
 
     /**
@@ -96,8 +86,8 @@ class CityDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('check')->title('<label class="skin skin-square"><input data-color="red" type="checkbox" class="switchery" id="check-all"></label>')->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(15)->addClass('text-center')->footer(trans('buttons.delete')),
-            Column::make('id')->title('#'),
+            Column::make('check')->title('<label class="skin skin-square p-0 m-0"><input data-color="red" type="checkbox" class="switchery" id="check-all" style="width: 25px"></label>')->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(15)->addClass('text-center')->footer(trans('buttons.delete')),
+            Column::make('id')->title('#')->width('70px'),
             Column::make('name')->title(trans('inputs.name')),
             Column::make('governorate_id')->title(trans('menu.governorate')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->footer(trans('inputs.action'))->title(trans('inputs.action')),

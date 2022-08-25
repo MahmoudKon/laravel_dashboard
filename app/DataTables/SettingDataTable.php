@@ -74,20 +74,10 @@ class SettingDataTable extends DataTable
                         $this->getPageLengthButton()
                     ])
                     ->responsive(true)
-                    ->parameters([
-                        'initComplete' => " function () {
-                            this.api().columns([2,3,4]).every(function () {
-                                var column = this;
-                                var input = document.createElement(\"input\");
-                                $(input).prependTo($(column.footer()).empty())
-                                .on('keyup', function () {
-                                    column.search($(this).val(), true, true, true).draw();
-                                });
-                            });
-                            document.getElementById('load-data').classList.remove('load');
-                        }",
-                    ])
-                    ->orderBy(0);
+                    ->parameters(
+                        $this->initComplete('1,2,3,5')
+                    )
+                    ->orderBy(1);
             }
 
     /**
@@ -98,8 +88,8 @@ class SettingDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id')->hidden(),
             Column::make('check')->title('<label class="skin skin-square"><input data-color="red" type="checkbox" class="switchery" id="check-all"></label>')->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(15)->addClass('text-center')->footer(trans('buttons.delete')),
+            Column::make('id')->title('#')->width('70px'),
             Column::make('key')->title(trans('inputs.key')),
             Column::make('value')->title(trans('inputs.value')),
             Column::make('contentType.name')->title(trans('inputs.content_type')),

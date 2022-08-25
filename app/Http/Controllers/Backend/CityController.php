@@ -24,7 +24,7 @@ class CityController extends BackendController
     {
         $row = $CityService->handle($request->validated());
         if (is_string($row)) return $this->throwException($row);
-        return $this->redirect(trans('flash.row created', ['model' => trans('menu.city')]));
+        return $this->redirect(trans('flash.row created', ['model' => trans('menu.city')]), routeHelper('governorates.cities.index', $request->governorate_id));
     }
 
     public function update(CityRequest $request, CityService $CityService, $id)

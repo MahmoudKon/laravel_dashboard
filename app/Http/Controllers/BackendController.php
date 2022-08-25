@@ -40,7 +40,7 @@ class BackendController extends Controller
             if (request()->ajax())
                 return $this->dataTable->render('backend.includes.tables.table');
 
-            return view($this->index_view, ['count' => $this->modelCount()], $this->append());
+            return view($this->index_view, ['count' => $this->modelCount()]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }

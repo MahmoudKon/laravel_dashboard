@@ -11,16 +11,3 @@
     @include('layouts.includes.backend.validation_error', ['input' => 'name'])
 </div>
 {{-- START PERMISSION NAME --}}
-
-{{-- START ROLES --}}
-<div class="form-group">
-    <label>@lang('inputs.access-data', ['model' => trans('menu.roles')])</label>
-    <select class="select2 form-control w-100" name="roles[]" data-placeholder="--- @lang('inputs.access-data', ['model' => trans('menu.roles')]) ---" multiple>
-        {{-- <option value="">@lang('inputs.please-select')</option> --}}
-        @foreach ($roles as $id => $name)
-        <option value="{{ $id }}" @selected(isset($row) && $row->hasRole($name))>{{ $name }}</option>
-        @endforeach
-    </select>
-    @include('layouts.includes.backend.validation_error', ['input' => 'roles'])
-</div>
-{{-- END ROLES --}}

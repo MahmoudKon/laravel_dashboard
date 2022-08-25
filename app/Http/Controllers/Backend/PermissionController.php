@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Role;
 
 class PermissionController extends BackendController
 {
-    public $full_page_ajax = true;
+    public $full_page_ajax   = true;
 
     public function __construct(PermissionDataTable $dataTable, Permission $permission)
     {
@@ -30,12 +30,5 @@ class PermissionController extends BackendController
         $permission = $PermissionService->handle($request->validated(), $id);
         if (is_string($permission)) return $this->throwException($permission);
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.permission')]));
-    }
-
-    public function append()
-    {
-        return [
-            'roles' => Role::pluck('name', 'id')
-        ];
     }
 }

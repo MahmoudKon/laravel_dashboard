@@ -5,14 +5,14 @@
             <ul class="nav nav-tabs nav-only-icon nav-top-border no-hover-bg nav-justified">
                 @foreach (config('languages') as $name => $lang)
                     <li class="nav-item">
-                        <a class="nav-link {{ $loop->first ? "active" : "" }}" id="{{ $lang }}-name-tab" data-toggle="tab" aria-controls="{{ $lang }}" href="#name-{{ $lang }}" aria-expanded="true">@lang("menu.$name")</a>
+                        <a class="nav-link {{ $loop->first ? "active" : "" }}" id="{{ time().'-'.$lang }}-name-tab" data-toggle="tab" aria-controls="{{ $lang }}" href="#name-{{ time().'-'.$lang }}" aria-expanded="true">@lang("menu.$name")</a>
                     </li>
                 @endforeach
             </ul>
 
             <div class="tab-content px-1">
                 @foreach (config('languages') as $name => $lang)
-                    <div role="tabpanel" class="tab-pane tap- {{ $loop->first ? "active" : "" }}" id="name-{{ $lang }}" aria-expanded="true" aria-labelledby="{{ $lang }}-name-tab">
+                    <div role="tabpanel" class="tab-pane tap- {{ $loop->first ? "active" : "" }}" id="name-{{ time().'-'.$lang }}" aria-expanded="true" aria-labelledby="{{ time().'-'.$lang }}-name-tab">
                         <div class="form-group">
                             <label class="{{ $lang == app()->getLocale() ? "required" : "" }}">@lang('inputs.name') / @lang("menu.$name")</label>
                             <div class="input-group">
