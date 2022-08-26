@@ -61,7 +61,7 @@ class EmailController extends Controller
 
     public function show($id)
     {
-        $email = Email::find($id);
+        $email = Email::with('notifier', 'recipients')->find($id);
         if (!$email) return;
         $email->updateSeen();
 
@@ -88,7 +88,7 @@ class EmailController extends Controller
 
     public function read()
     {
-        foreach (Email::onTo()->seen(EMAIL_UNSEEN)->get() as $email) {
+        foreach (Email::onTo()->onCc()->seen(EMAIL_UNSEEN)->get() as $email) {
             DB::beginTransaction();
                 $email->updateSeen();
             DB::commit();

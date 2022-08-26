@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Email;
-use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -23,19 +22,6 @@ use Illuminate\Support\Facades\Broadcast;
 // });
 
 
-// Broadcast::channel('emails.{email}', function ($user, Email $email) {
-//     $emails = "$email->to,$email->cc";
-//     $emails = array_filter( explode(',', $emails) );
-//     return in_array($user->email, $emails);
-// });
-
-Broadcast::channel('user.{userId}', function ($user, $userId) {
-    return $user->id === $userId;
-});
-
-Broadcast::channel('private-email.{email}', function ($user, Email $email) {
-    return true;
-    $emails = "$email->to,$email->cc";
-    $emails = array_filter( explode(',', $emails) );
-    return in_array($user->email, $emails);
+Broadcast::channel('new-email.{email}', function ($user, Email $email) {
+    return in_array($user->id, $email->recipients()->pluck('id')->to_array());
 });

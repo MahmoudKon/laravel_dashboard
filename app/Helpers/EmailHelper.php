@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewEmail;
 use App\Models\Email;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -27,10 +28,13 @@ function createEmail(array $data) :Email
 {
     DB::beginTransaction();
         $email = Email::create($data);
+
         $users_id = User::select('id')->whereIn('email', explode(',', $email->to))->when($email->cc, function($query) use ($email) {
             $query->orWhereIn('email', explode(',', $email->cc));
         })->pluck('id')->toArray();
+
         $email->recipients()->sync($users_id);
+        broadcast( new NewEmail( $users_id, $email ) );
     DB::commit();
     return $email;
 }
@@ -112,29 +116,3 @@ function getUniqueArray(string|array $value, string|array|null $push_values = nu
     $value = array_merge($value, $push_values);
     return empty($value) ? [] : array_unique(array_filter($value));
 }
-
-
-
-// ****************************************************************************************************************************************************************************************************************** \\
-// ******************************************************************* To Make Clone The Email System To Another Project ******************************************************************************************** \\
-// ****************************************************************************************************************************************************************************************************************** \\
-/**
- *  1- Take copy for Email model from
- *              app\Models\Email
- *  2- Take copy for emails table migration from
- *              database\migrations\
- *  3- Take copy to email page from view path
- *              view/backend/emails
- *  4- Take copy to EmailController From controller path
- *              app\Controllers\Backend\EmailController
- *  5- Take copy to EmailHelper file from app\Helpers\EmailHelper
- *              and put this file in autoload files in composer.json file
- *  6- Take copy to EmailRequest from
- *              app\Http\Requests\EmailRequest
- *  7- Take copy to SendEmail class from
- *              app\Mails\SendEmail, and don't forget to create send-email blade file in view/emails/send-file.blade.php
- *  8- Take copy js and cc files from public/app-assets/backend/customs/emails
- *              and add this constant in first line for js section =>  const ENDPOINT = "{{ routeHelper('/') }}";
- *  9- You shoulde make import for email-notification.js and email.css in master
- *
-**/

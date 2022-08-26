@@ -23,7 +23,7 @@ class NewEmail implements ShouldBroadcast
      * @return void
      */
 
-    public function __construct(public Email $email)
+    public function __construct(public array $recipient_ids, public Email $email)
     {
         //
     }
@@ -35,6 +35,6 @@ class NewEmail implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel("email");
+        return new Channel("new-email");
     }
 }

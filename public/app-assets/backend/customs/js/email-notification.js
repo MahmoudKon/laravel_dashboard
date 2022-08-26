@@ -47,6 +47,15 @@ function activeEmailFromRequest() {
 $(function () {
     let list_notifications  = $('#list-emails');
 
+    getEmailsCount();
+    window.Echo.channel('new-email').listen('NewEmail', (data) => {
+        if (data.recipient_ids.includes(AUTH_USER_ID)) {
+            toast(data.email.subject, 'Have a New Mail', 'success');
+            getEmailsCount();
+        }
+    });
+
+
     $('#get-emails-count').click(function(e) {
         e.preventDefault();
         if (! $(this).closest('li').hasClass('show')) {
@@ -66,7 +75,7 @@ $(function () {
 
     /********************************************* To Get The Email UnReaded Count *****************************************************/
     // getEmailsCount();
-    setInterval(() => { getEmailsCount(true); page_is_loading = false }, 1000);
+    // setInterval(() => { getEmailsCount(true); page_is_loading = false }, 15000);
     function getEmailsCount(force_lood = false) {
         $.ajax({
             url: `${MAIN_ROUTE}/count`,

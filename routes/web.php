@@ -2,7 +2,9 @@
 
 use Illuminate\Broadcasting\BroadcastController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,10 +30,7 @@ Route::redirect('/', '/dashboard');
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
 Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
 
-Route::post('broadcasting/auth', function() {
+Route::post('broadcasting/auth', function(Request $request) {
     return json_encode(auth()->user());
-});
-
-Route::post("broadcasting/user-auth", function() {
-    return json_encode(auth()->user());
+    return Broadcast::auth($request);
 });

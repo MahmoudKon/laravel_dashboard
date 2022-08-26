@@ -26,6 +26,7 @@
         var SWAL_DELETE_BUTTON = "@lang('buttons.yes delete')";
         var SWAL_CANCEL_BUTTON = "@lang('buttons.cancel')";
         var SWAL_FAILED_TITLE = "@lang('title.please select some rows')";
+        const AUTH_USER_ID = {{ auth()->id() }};
 
         // window.open("file:///D:/Hello.txt");
     </script>

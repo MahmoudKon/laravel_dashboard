@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            broadcast(new NewEmail(Email::first()));
+            broadcast(new NewEmail(Email::first()->recipients()->pluck('id')->toArray(), Email::first()));
             return response()->json(['message' => 'email sent'], 200);
         }
 
