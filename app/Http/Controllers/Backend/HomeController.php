@@ -16,11 +16,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (request()->ajax()) {
-            broadcast(new NewEmail(Email::first()->recipients()->pluck('id')->toArray(), Email::first()));
-            return response()->json(['message' => 'email sent'], 200);
-        }
-
         $tables['users']         = ['count' => User::count()      , 'color' => 'info'];
         $tables['departments']   = ['count' => Department::count(), 'color' => 'primary'];
         $tables['roles']         = ['count' => Role::count()      , 'color' => 'warning'];

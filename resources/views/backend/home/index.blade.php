@@ -2,10 +2,6 @@
 
 @section('content')
 
-@if (env('PUSHER_APP_ID'))
-    <a href = "{{ routeHelper('/') }}" class="btn btn-primary d-block w-30 mb-5" id="push-email"> <i class="fa fa-share"></i> Test Push Email</a>
-@endif
-
 <!-- eCommerce statistic -->
 <div class="row">
     @foreach ($tables as $table => $info)

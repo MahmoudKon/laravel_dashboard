@@ -27,7 +27,7 @@ class Email extends Model
 
     public function isSeen()
     {
-        return $this->recipients()->where('recipient_id', auth()->id())->first()->pivot->seen;
+        return $this->notifier_id == auth()->id() || $this->recipients()->where('recipient_id', auth()->id())->first()?->pivot?->seen;
     }
 
     public function getCreatedAtAttribute($value)
@@ -52,23 +52,20 @@ class Email extends Model
 
     public function scopeFilter($query)
     {
-        return $query->sender()
-                    ->search(request()->search)
-                    ->seen(request()->seen)
-                    ->when(request()->type != 'sent', function($query) {
-                        $query->where(function($query) {
-                            $query->onTo()->onCC();
-                        });
+        return $query->search(request()->search)->sender()
+                    ->when((request()->type != 'sent'), function($query) {
+                        $query->seen(request()->seen);
                     });
     }
 
     public function scopeSeen($query, $seen)
     {
-        return $query->when($seen !== null, function ($query) use ($seen) {
-            $query->whereHas('recipients', function($query) use ($seen) {
-                $query->where('email_recipient.seen', (int) $seen);
-            });
-        });
+        return $query->whereHas('recipients', function($query) use($seen) {
+                        $query->where('recipient_id', auth()->id())
+                                ->when($seen !== null, function($query) use($seen) {
+                                    $query->where('seen', $seen);
+                                });
+                    });
     }
 
     public function scopeSearch($query, $search)
@@ -78,21 +75,11 @@ class Email extends Model
         });
     }
 
-    public function scopeOnCC($query)
-    {
-        return $query->orWhereRaw("FIND_IN_SET('".auth()->user()->email."', `cc`)");
-    }
-
-    public function scopeOnTo($query)
-    {
-        return $query->orWhereRaw("FIND_IN_SET('".auth()->user()->email."', `to`)");
-    }
-
     public function scopeSender($query)
     {
-        return $query->when(request()->type == 'sent', function($query) {
-            $query->where('notifier_id', auth()->id());
-        });
+        return $query->when((request()->type == 'sent'), function($query) {
+                    $query->where('notifier_id', auth()->id());
+                });
     }
 
     protected static function boot()

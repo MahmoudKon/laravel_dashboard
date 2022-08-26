@@ -99,20 +99,3 @@ function getFirstChars(string $string) :string
 
     return $chars;
 }
-
-/**
- * getUniqueArray
- *
- *  To make push new value to array and return unique array
- *
- * @param  string|array $value
- * @param  string|array|null $push_values
- * @return array
- */
-function getUniqueArray(string|array $value, string|array|null $push_values = null) :array
-{
-    $value = is_array($value) ? $value : explode(',', $value);
-    $push_values = is_array($push_values) ? $push_values : explode(',', $push_values);
-    $value = array_merge($value, $push_values);
-    return empty($value) ? [] : array_unique(array_filter($value));
-}
