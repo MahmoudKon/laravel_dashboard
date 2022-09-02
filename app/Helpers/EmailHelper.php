@@ -34,6 +34,7 @@ function createEmail(array $data) :Email
         })->pluck('id')->toArray();
 
         $email->recipients()->sync($users_id);
+        $email->recipients()->attach([auth()->id() => ['is_sender' => true]]);
         broadcast( new NewEmail( $users_id, $email ) );
     DB::commit();
     return $email;

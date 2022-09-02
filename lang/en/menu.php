@@ -9,6 +9,10 @@ return [
     'english' => 'English',
     'arabic' => 'Arabic',
 
+    // EMAILS
+    'emails' => 'Emails',
+    'email' => 'Email',
+
     // SETTINGS
     'settings' => 'Settings',
     'setting' => 'Setting',

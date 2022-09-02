@@ -51,7 +51,7 @@ $(function () {
     window.Echo.channel('new-email').listen('NewEmail', (data) => {
         if (data.recipient_ids.includes(AUTH_USER_ID)) {
             toast(data.email.subject, 'Have a New Mail', 'success');
-            getEmailsCount();
+            $('.emails-unread-count').text(parseInt($('#emails-unread-count').text()) + 1);
         }
     });
 

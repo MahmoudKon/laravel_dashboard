@@ -17,7 +17,9 @@ return new class extends Migration
             $table->engine = "InnoDB";
             $table->foreignId('email_id')->constrained('emails')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('recipient_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->boolean('seen')->default(0);
+            $table->boolean('is_sender')->default(false)->comment('if true: then this id is the sender');
+            $table->boolean('seen')->default(false);
+            $table->timestamp('seen_time')->nullable();
             $table->primary(['email_id', 'recipient_id']);
         });
     }

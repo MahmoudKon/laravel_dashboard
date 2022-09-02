@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Traits\UploadFile;
 use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -43,6 +44,6 @@ class DatabaseSeeder extends Seeder
             } catch (Exception $e) {}
         });
 
-        Email::factory(30)->create();
+        Artisan::call('passport:install');
     }
 }

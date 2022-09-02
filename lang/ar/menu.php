@@ -9,6 +9,10 @@ return [
     'english' => 'الإنجليزية',
     'arabic' => 'العربية',
 
+    // EMAILS
+    'emails' => 'الرسائل',
+    'email' => 'رسالة',
+
     // SETTINGS
     'settings' => 'الإعدادات',
     'setting' => 'إعداد',

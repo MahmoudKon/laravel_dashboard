@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
 use App\Models\User;
 use App\Traits\UploadFile;
-use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -34,7 +33,8 @@ class ProfileController extends Controller
     {
         $this->remove(auth()->user()->image);
         auth()->user()->update(['image' => $this->uploadImage($request->image, 'users')]);
-        return response()->json(['message' => trans('flash.change image'), 'icon' => 'success']);
+        toast(trans('flash.change image'), 'success');
+        return response()->json(['reload' => true]);
     }
 
     public function password(ProfileRequest $request)

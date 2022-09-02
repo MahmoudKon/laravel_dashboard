@@ -47,25 +47,26 @@ class Email extends Model
 
     public function updateSeen()
     {
-        $this->recipients()->updateExistingPivot(auth()->id(), ['seen' => true]);
+        $this->recipients()->updateExistingPivot(auth()->id(), ['seen' => true, 'seen_time' => now()]);
     }
 
     public function scopeFilter($query)
     {
         return $query->search(request()->search)->sender()
-                    ->when((request()->type != 'sent'), function($query) {
-                        $query->seen(request()->seen);
-                    });
+                    ->seen(request()->seen);
     }
 
-    public function scopeSeen($query, $seen)
+    public function scopeSeen($query, $seen = null, $is_sender = false)
     {
-        return $query->whereHas('recipients', function($query) use($seen) {
+        return $query->when(request()->type != 'sent', function($query) use($seen, $is_sender) {
+                    $query->whereHas('recipients', function($query) use($seen, $is_sender) {
                         $query->where('recipient_id', auth()->id())
+                                ->where('is_sender', $is_sender)
                                 ->when($seen !== null, function($query) use($seen) {
                                     $query->where('seen', $seen);
                                 });
                     });
+                });
     }
 
     public function scopeSearch($query, $search)
@@ -77,8 +78,10 @@ class Email extends Model
 
     public function scopeSender($query)
     {
-        return $query->when((request()->type == 'sent'), function($query) {
-                    $query->where('notifier_id', auth()->id());
+        return $query->when(request()->type == 'sent', function($query) {
+                    $query->whereHas('recipients', function($query) {
+                        $query->where(['recipient_id' => auth()->id(), 'is_sender' => true]);
+                    });
                 });
     }
 
