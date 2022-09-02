@@ -37,4 +37,13 @@ class NewEmail implements ShouldBroadcast
     {
         return new Channel("new-email");
     }
+
+    public function broadcastWith()
+    {
+        return [
+            'message' => "Have a new email from " . auth()->user()->name,
+            'recipient_ids' => $this->recipient_ids,
+            'email' => $this->email,
+        ];
+    }
 }

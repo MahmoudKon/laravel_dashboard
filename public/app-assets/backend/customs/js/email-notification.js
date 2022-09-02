@@ -57,7 +57,7 @@ $(function () {
     // NOTIFICATION
     window.Echo.channel('new-email').listen('NewEmail', (data) => {
         if (data.recipient_ids.includes(AUTH_USER_ID)) {
-            toast(data.email.subject, 'Have a New Mail', 'success');
+            toast(data.message, null, 'success');
             changeCount('+');
         }
     });
