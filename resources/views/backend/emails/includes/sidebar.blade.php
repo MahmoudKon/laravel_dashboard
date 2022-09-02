@@ -10,7 +10,7 @@
                 <div class="list-group list-group-messages">
                     <a href="#" class="list-group-item active border-0 group-message" data-group="inbox">
                         <i class="fa fa-inbox"></i> @lang('inputs.inbox')
-                        <span class="badge badge-danger badge-pill float-right emails-unread-count">0</span>
+                        <span class="badge badge-danger badge-pill float-right emails-unread-count">{{ $emails_not_seen_count }}</span>
                     </a>
 
                     <a href="#" class="list-group-item list-group-item-action border-0 group-message" data-group="sent">
@@ -24,7 +24,7 @@
                     <a href="#" class="list-group-item active border-0 group-seen-type" data-group="null">@lang('inputs.all')</a>
 
                     <a href="#" class="list-group-item border-0 group-seen-type" data-group="0"> @lang('inputs.unseen')
-                        <span class="badge badge-danger badge-pill float-right emails-unread-count">0</span>
+                        <span class="badge badge-danger badge-pill float-right emails-unread-count">{{ $emails_not_seen_count }}</span>
                     </a>
 
                     <a href="#" class="list-group-item border-0 group-seen-type" data-group="1">@lang('inputs.seen')</a>

@@ -47,13 +47,28 @@ function activeEmailFromRequest() {
 $(function () {
     let list_notifications  = $('#list-emails');
 
-    getEmailsCount();
+    let emails_not_seen_count = parseInt($('#emails-unread-count').text());
+    function changeCount(type = '-') {
+        if (type == '-') emails_not_seen_count --;
+        else emails_not_seen_count ++;
+
+        $('.emails-unread-count').text(emails_not_seen_count);
+    }
+    // NOTIFICATION
     window.Echo.channel('new-email').listen('NewEmail', (data) => {
         if (data.recipient_ids.includes(AUTH_USER_ID)) {
             toast(data.email.subject, 'Have a New Mail', 'success');
-            $('.emails-unread-count').text(parseInt($('#emails-unread-count').text()) + 1);
+            changeCount('+');
         }
     });
+
+    // getEmailsCount();
+    // window.Echo.channel('new-email').listen('NewEmail', (data) => {
+    //     if (data.recipient_ids.includes(AUTH_USER_ID)) {
+    //         toast(data.email.subject, 'Have a New Mail', 'success');
+    //         $('.emails-unread-count').text(parseInt($('#emails-unread-count').text()) + 1);
+    //     }
+    // });
 
 
     $('#get-emails-count').click(function(e) {
