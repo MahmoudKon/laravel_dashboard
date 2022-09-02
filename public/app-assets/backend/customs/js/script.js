@@ -88,14 +88,14 @@ $(function () {
                     url: href,
                     type: "post",
                     data: data,
-                    success: function (data, textStatus, jqXHR) {
-                        if (data.redirect) {
-                            window.location.href = data.redirect;
-                            return true;
-                        }
-                        toast(data.message, null, data.icon)
+                    success: function (response, textStatus, jqXHR) {
+                        if (response.redirect) return window.location.href = response.redirect;
+
+                        if (response.reload) return location.reload(true);
+
+                        toast(response.message, null, response.icon)
                         rows();
-                        $('#recourds-count').text(data.count);
+                        $('#recourds-count').text(response.count);
                     },
                     error: function (jqXHR) {
                         handleErrors(jqXHR);

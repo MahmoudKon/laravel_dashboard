@@ -80,7 +80,8 @@ class EmailController extends Controller
         try {
             $email = Email::find($id);
             $email->recipients()->detach(auth()->id());
-            return response()->json(['message' => trans('flash.row deleted', ['model' => trans('menu.email')])]);
+            toast(trans('flash.row deleted', ['model' => trans('menu.email')]), 'success');
+            return response()->json(['reload' => true]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
