@@ -16,7 +16,7 @@ class SettingType {
     const AUDIO         = "Audio";
     const VIDEO         = "Video";
     const EXTERNAL_LINK = "External Link";
-    const SELECTOR      = "Selector";
+    const SELECT        = "Select";
     const TIME          = "Time";
     const WEEKEND_DAYS  = "Weekend Days";
     const FILE          = "File";
@@ -54,8 +54,8 @@ class SettingType {
                 $view_path = self::VIEW_PATH.'external_link';
                 break;
 
-            case self::SELECTOR:
-                $view_path = self::VIEW_PATH.'selector';
+            case self::SELECT:
+                $view_path = self::VIEW_PATH.'select';
                 break;
 
             case self::TIME:
@@ -113,7 +113,7 @@ class SettingType {
                 $validations['value'] = 'required|url';
                 break;
 
-            case self::SELECTOR:
+            case self::SELECT:
                 $validations['value'] = 'required|boolean';
                 break;
 
@@ -146,7 +146,7 @@ class SettingType {
             case self::EXTERNAL_LINK:
             case self::TIME:
             case self::DATE:
-            case self::SELECTOR:
+            case self::SELECT:
             case self::LANGUAGES:
                 $response = $request['value'];
                 break;
@@ -184,7 +184,7 @@ class SettingType {
                 $view_path = $value;
                 break;
 
-            case self::SELECTOR:
+            case self::SELECT:
                 $view_path = $value ? "TURE" : "FALSE";
                 break;
 

@@ -195,7 +195,7 @@ function activeLanguages()
 {
     $array = [];
     foreach (config('laravellocalization.supportedLocales') as $lang => $info)
-        $array[$lang] = $info['name'];
+        $array[$info['name']] = $lang;
 
     file_put_contents(config_path('languages.php'), "<?php \n\nreturn " . var_export($array, true) . ";");
 }

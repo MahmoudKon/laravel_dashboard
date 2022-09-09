@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Constants\SettingType;
 use App\Models\ContentType;
 use Illuminate\Database\Seeder;
 
@@ -17,17 +18,18 @@ class ContentTypeSeeder extends Seeder
         truncateTables('content_types');
 
         $types = [
-            ['visible_to_content' => true,  'name' => 'Advanced Text'],
-            ['visible_to_content' => true,  'name' => 'Normal Text'],
-            ['visible_to_content' => true,  'name' => 'Image'],
-            ['visible_to_content' => true,  'name' => 'Audio'],
-            ['visible_to_content' => true,  'name' => 'Video'],
-            ['visible_to_content' => true,  'name' => 'external video link'],
-            ['visible_to_content' => false, 'name' => 'selector'],
-            ['visible_to_content' => false, 'name' => 'Time'],
-            ['visible_to_content' => false, 'name' => 'Week Days'],
-            ['visible_to_content' => false, 'name' => 'File'],
-            ['visible_to_content' => false, 'name' => 'Languages'],
+            ['visible_to_content' => true,  'name' => SettingType::ADVANCED_TEXT],
+            ['visible_to_content' => true,  'name' => SettingType::NORMAL_TEXT],
+            ['visible_to_content' => true,  'name' => SettingType::IMAGE],
+            ['visible_to_content' => true,  'name' => SettingType::AUDIO],
+            ['visible_to_content' => true,  'name' => SettingType::VIDEO],
+            ['visible_to_content' => true,  'name' => SettingType::EXTERNAL_LINK],
+            ['visible_to_content' => false, 'name' => SettingType::SELECT],
+            ['visible_to_content' => false, 'name' => SettingType::TIME],
+            ['visible_to_content' => false, 'name' => SettingType::WEEKEND_DAYS],
+            ['visible_to_content' => false, 'name' => SettingType::FILE],
+            ['visible_to_content' => false, 'name' => SettingType::DATE],
+            ['visible_to_content' => false, 'name' => SettingType::LANGUAGES],
         ];
 
         foreach ($types as $type) ContentType::firstOrCreate(['name' => $type['name']], $type);
