@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\SetDefaultLanguage;
+use App\Http\Middleware\UserLastSeen;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -38,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             SetDefaultLanguage::class,
+            UserLastSeen::class,
         ],
 
         'api' => [
