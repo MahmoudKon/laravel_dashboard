@@ -7,9 +7,11 @@ $(document).ajaxError(function(response, jqXHR) {
 }); // WHEN MAKE REQUEST AND THE RESPONSE IS ERROR THEN MAKE REFRESH THE PAGE
 
 function playAudio(type = 'success') {
-    if (!RUN_SOUND) return;
     let audio;
     switch (type) {
+        case "notification":
+            audio = new Audio(notificationAudio);
+            break;
         case "success":
             audio = new Audio(successAudio);
             break;
@@ -76,9 +78,9 @@ function initPluginElements() {
     $('[data-toggle="tooltip"]').tooltip();
 }
 
-function toast(message, title = null, icon = 'error', timer = 5000)
+function toast(message, title = null, icon = 'error', timer = 5000, audioType = 'success')
 {
-    playAudio(icon);
+    playAudio(audioType);
     const Toast = Swal.mixin({
         toast: true,
         position: $('html').attr('lang') == 'ar' ? 'top-start' : 'top-end',

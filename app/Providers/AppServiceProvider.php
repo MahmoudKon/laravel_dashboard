@@ -45,9 +45,10 @@ class AppServiceProvider extends ServiceProvider
                         : [];
             });
 
+            $notificationAudio = Cache::remember('notificationAudio', 60 * 60 * 24, function () { return setting('notification_audio', 'samples/audios/success.mp3'); });
             $successAudio = Cache::remember('successAudio', 60 * 60 * 24, function () { return setting('success_audio', 'samples/audios/success.mp3'); });
             $warrningAudio = Cache::remember('warrningAudio', 60 * 60 * 24, function () { return setting('warrning_audio', 'samples/audios/warrning.mp3'); });
-            View::share(['list_menus' => $list_menus, 'successAudio' => $successAudio, 'warrningAudio' => $warrningAudio]);
+            View::share(['successAudio' => $successAudio, 'warrningAudio' => $warrningAudio, 'notificationAudio' => $notificationAudio, 'list_menus' => $list_menus]);
         } else {
             View::share(['list_menus' => [], 'successAudio' => '', 'warrningAudio' => '']);
         }

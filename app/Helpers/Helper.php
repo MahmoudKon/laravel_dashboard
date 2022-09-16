@@ -143,7 +143,11 @@ function canUser($permission) :bool
 
 function setting(string $key, $default = null)
 {
-    return \App\Models\Setting::where('key', 'LIKE', "%$key%")->first()->value ?? $default;
+    $row = \App\Models\Setting::where('key', 'LIKE', "%$key%")->first();
+
+    return $row->active
+            ? $row->value ?? $default
+            : null;
 }
 
 function timeReFormatting($time, $format = 'H:i:s', $included_date = false)

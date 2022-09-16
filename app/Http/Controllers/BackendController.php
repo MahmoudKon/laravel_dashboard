@@ -139,4 +139,13 @@ class BackendController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+
+    public function columnToggle(int $id, $column)
+    {
+        $row = $this->query($id);
+        if (! $row) return $this->throwException(trans('flash.something is wrong'));
+
+        $row->update([$column => !$row->$column]);
+        return response()->json(['stop' => true, 'message' => trans('flash.row updated', ['model' => trans('menu.'.$this->getTableName())])]);
+    }
 }

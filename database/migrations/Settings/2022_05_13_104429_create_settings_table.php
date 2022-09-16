@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('key')->unique('key');
             $table->text('value');
             $table->foreignId('content_type_id')->nullable()->constrained('content_types')->cascadeOnUpdate()->nullOnDelete();
-            $table->unsignedSmallInteger('system')->default(1)->comment('if the project have multi system and each system has settings, 1 is default');
+            $table->boolean('active')->default(true);
         });
     }
 

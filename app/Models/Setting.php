@@ -13,7 +13,7 @@ class Setting extends Model
 
     protected $table = 'settings';
 
-    protected $fillable = ['key', 'value', 'content_type_id', 'system'];
+    protected $fillable = ['key', 'value', 'content_type_id', 'active'];
 
     public $timestamps = false;
 
@@ -42,5 +42,10 @@ class Setting extends Model
     public function getDataHtml()
     {
         return SettingType::displatHtmlHandler($this->content_type_id, $this->value);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 }

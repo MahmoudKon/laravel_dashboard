@@ -18,6 +18,7 @@
     <script>
         const ENDPOINT = "{{ routeHelper('/') }}"; // Main project url
         const main_path = "{{ url('/') }}"; // Main project url
+        var notificationAudio = "{{ asset($notificationAudio) }}"; // Notification audio from setting or from defualt value
         var successAudio = "{{ asset($successAudio) }}"; // Success audio from setting or from defualt value
         var warrningAudio = "{{ asset($warrningAudio) }}";  // Warring or error audio from setting or from defualt value
         var RUN_SOUND = true;

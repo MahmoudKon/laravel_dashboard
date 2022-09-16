@@ -22,27 +22,32 @@ class SettingSeeder extends Seeder
                 'key' => 'logo',
                 'value' => 'samples/logo/ivas.png',
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Image%')->first()->id,
-                'system' => true,
+                'active' => true,
             ], [
                 'key' => 'site_name',
                 'value' => 'Ivas',
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Normal Text%')->first()->id,
-                'system' => true,
+                'active' => true,
             ], [
                 'key' => 'success_audio',
                 'value' => 'samples/audios/success.mp3',
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Audio%')->first()->id,
-                'system' => true,
+                'active' => true,
             ], [
                 'key' => 'warrning_audio',
                 'value' => 'samples/audios/warrning.mp3',
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Audio%')->first()->id,
-                'system' => true,
+                'active' => true,
+            ], [
+                'key' => 'notification_audio',
+                'value' => 'samples/audios/notification.mp3',
+                'content_type_id' => ContentType::where('name', 'LIKE', '%Audio%')->first()->id,
+                'active' => true,
             ], [
                 'key' => 'default_lang',
                 'value' => 'ar',
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Languages%')->first()->id,
-                'system' => true,
+                'active' => true,
             ]
         ];
 

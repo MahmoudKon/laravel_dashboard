@@ -21,19 +21,19 @@
     </div>
     {{-- END KEY --}}
 
-    {{-- START SYSTEM --}}
+    {{-- START ACTIVE --}}
     <div class="col-md-6">
         <div class="form-group">
-            <label class="required">@lang('inputs.select-data', ['data' => trans('inputs.system')])</label>
-            <select class="select2 form-control" name="system" id="system" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.content_type')]) ---" >
-                @foreach ([1 => 'System 1'] as $index => $name)
-                    <option value="{{ $index }}" @selected(isset($row) && $row->system == $index || old('system') == $index)>{{ $name }}</option>
+            <label class="required">@lang('inputs.select-data', ['data' => trans('inputs.active')])</label>
+            <select class="select2 form-control" name="active" id="active" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.content_type')]) ---" >
+                @foreach ([1 => 'YES', 0 => 'NO'] as $index => $name)
+                    <option value="{{ $index }}" @selected(isset($row) && $row->active === $index || old('active') === $index)>{{ $name }}</option>
                 @endforeach
             </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'system'])
+            @include('layouts.includes.backend.validation_error', ['input' => 'active'])
         </div>
     </div>
-    {{-- END SYSTEM --}}
+    {{-- END ACTIVE --}}
 
     {{-- START CONTENT TYPE --}}
     <div class="col-md-6">

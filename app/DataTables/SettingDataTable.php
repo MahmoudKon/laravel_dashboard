@@ -24,6 +24,14 @@ class SettingDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('active', function(Setting $setting) {
+                return view('backend.includes.tables.checkbox-status', ['column' => 'active', 'row'=> $setting]);
+            })
+            ->filterColumn('active', function ($query, $keywords) {
+                $check = stripos('yes', $keywords) !== false ? true : false;
+                return $query->where('active', $check);
+            })
+
             ->addColumn('value', function(Setting $setting) {
                 return $setting->value();
             })
@@ -92,8 +100,8 @@ class SettingDataTable extends DataTable
             Column::make('id')->title('#')->width('70px'),
             Column::make('key')->title(trans('inputs.key')),
             Column::make('value')->title(trans('inputs.value')),
-            Column::make('contentType.name')->title(trans('inputs.content_type')),
-            Column::make('system')->title(trans('inputs.system')),
+            Column::make('contentType.name')->title(trans('menu.content_type')),
+            Column::make('active')->title(trans('inputs.active')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('inputs.action'))->footer(trans('inputs.action')),
         ];
     }

@@ -28,7 +28,7 @@ return [
     'external-link' => 'External Link',
     'key' => 'Key',
     'value' => 'Value',
-    'system' => 'System',
+    'active' => 'Active',
 
 
     'active' => 'Activation',

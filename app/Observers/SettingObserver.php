@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Constants\SettingType;
 use App\Models\Setting;
 use App\Traits\UploadFile;
+use Illuminate\Support\Facades\Cache;
 
 class SettingObserver
 {
@@ -23,9 +24,10 @@ class SettingObserver
             $this->remove($Setting->getOriginal('value'));
         }
 
-        if ($Setting->key == "default_lang") {
+        if ($Setting->key == "default_lang")
             session()->forget('locale');
-        }
+
+        $this->forgetCahed();
     }
 
     /**
@@ -37,5 +39,12 @@ class SettingObserver
     public function deleted(Setting $Setting)
     {
         $this->remove($Setting->value);
+        $this->forgetCahed();
+    }
+
+    protected function forgetCahed()
+    {
+        $keys = ['successAudio', 'warrningAudio', 'notificationAudio'];
+        foreach ($keys as $key) Cache::forget($key);
     }
 }

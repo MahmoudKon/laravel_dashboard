@@ -58,7 +58,7 @@ $(function () {
 
     // NOTIFICATION
     window.Echo.private(`new-email.${AUTH_USER_ID}`).listen('NewEmail', (data) => {
-        toast(data.message, null, 'success');
+        toast(data.message, null, 'success', 5000, 'notification');
         changeCount('+');
         let email = emailTemplate(data.email);
         $('#get-emails-count').closest('li').find('.media-list').prepend(email);

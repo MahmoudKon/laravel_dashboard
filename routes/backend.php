@@ -58,6 +58,7 @@ Route::resource('settings','SettingController')->except('show');
 Route::controller('SettingController')->group(function () {
     Route::post('settings/type/input', 'getTypeInput')->name('settings.type.input');
     Route::post('settings/multidelete', 'multidelete')->name('settings.multidelete');
+    Route::post('settings/{setting}/column/{column}/toggle', 'columnToggle')->name('settings.column.toggle');
 });
 
 
