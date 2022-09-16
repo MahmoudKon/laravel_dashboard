@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Email;
 use App\Models\User;
 use App\Traits\UploadFile;
 use Exception;
