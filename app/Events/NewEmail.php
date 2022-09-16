@@ -23,7 +23,7 @@ class NewEmail implements ShouldBroadcast
      * @return void
      */
 
-    public function __construct(public array $recipient_ids, public Email $email)
+    public function __construct(public int $user_id, public Email $email)
     {
         //
     }
@@ -35,14 +35,13 @@ class NewEmail implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel("new-email");
+        return new PrivateChannel("new-email.{$this->user_id}");
     }
 
     public function broadcastWith()
     {
         return [
             'message' => "Have a new email from " . auth()->user()->name,
-            'recipient_ids' => $this->recipient_ids,
             'email' => $this->email,
         ];
     }

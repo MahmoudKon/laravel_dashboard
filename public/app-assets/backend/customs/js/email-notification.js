@@ -54,12 +54,11 @@ $(function () {
 
         $('.emails-unread-count').text(emails_not_seen_count);
     }
+
     // NOTIFICATION
-    window.Echo.channel('new-email').listen('NewEmail', (data) => {
-        if (data.recipient_ids.includes(AUTH_USER_ID)) {
-            toast(data.message, null, 'success');
-            changeCount('+');
-        }
+    window.Echo.private(`new-email.${AUTH_USER_ID}`).listen('NewEmail', (data) => {
+        toast(data.message, null, 'success');
+        changeCount('+');
     });
 
     // getEmailsCount();

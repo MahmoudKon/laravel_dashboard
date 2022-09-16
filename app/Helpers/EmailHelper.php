@@ -35,7 +35,10 @@ function createEmail(array $data) :Email
 
         $email->recipients()->sync($users_id);
         $email->recipients()->attach([auth()->id() => ['is_sender' => true, 'seen' => true, 'seen_time' => now()]]);
-        broadcast( new NewEmail( $users_id, $email ) );
+
+        foreach ($users_id as $user_id) {
+            broadcast( new NewEmail( $user_id, $email ) );
+        }
     DB::commit();
     return $email;
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Email;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -14,14 +13,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-// Broadcast::channel('new-email.{email_id}', function (User $user, $email) {
-//         return true;
-//     $emails = "$email->to,$email->cc,$email->do";
-//     $emails = array_filter( explode(',', $emails) );
-//     return in_array($user->email, $emails);
-// });
-
-
-Broadcast::channel('new-email.{email}', function ($user, Email $email) {
-    return in_array($user->id, $email->recipients()->pluck('id')->to_array());
+Broadcast::channel('new-email.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
 });
