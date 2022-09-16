@@ -21,7 +21,7 @@ class EmailController extends Controller
 
     public function list(Request $request) // list emails in notification icon
     {
-        $emails = Email::filter()->with('notifier', 'recipients')->paginate(4);
+        $emails = Email::filter()->with('notifier', 'recipients')->paginate(6);
         $next_page = $emails->currentPage() < $emails->lastPage()
                         ? "{$emails->path()}?page=".($emails->currentPage() + 1)
                         : null;
