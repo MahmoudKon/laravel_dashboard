@@ -11,9 +11,9 @@ use Illuminate\Support\Str;
  *  assetHelper
  *  To return the file path in public folder
  */
-function assetHelper(string $path) :string
+function assetHelper(string $path, string $folder = 'backend') :string
 {
-    return asset("app-assets/backend/$path");
+    return asset("app-assets/$folder/$path");
 }
 
 /**

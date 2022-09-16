@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Messenger\Conversation;
+use App\Models\Messenger\Message;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 // use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 
@@ -34,7 +38,8 @@ class User extends Authenticatable
         'department_id',
         'email_verified_at',
         'remember_token',
-        'mobile_token'
+        'mobile_token',
+        'last_seen'
     ];
 
     /**
@@ -61,6 +66,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = ['avatar'];
+
 
     public function department()
     {
@@ -128,5 +136,48 @@ class User extends Authenticatable
     public function slug()
     {
         return $this->name;
+    }
+
+    protected function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->image ?? 'http://cdn.onlinewebfonts.com/svg/img_568657.png',
+        );
+    }
+
+    protected function lastSeen(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->diffForHumans(),
+        );
+    }
+
+    public function messages()
+    {
+        return $this->belongsToMany(Message::class, 'message_user')->withPivot(['read_at', 'deleted_at']);
+    }
+
+    public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class, 'conversation_user')->latest('last_message_id')->withPivot(['joined_at', 'role'])->with('lastMessage');
+    }
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
+    }
+
+    public function scopeSearch($query)
+    {
+        return $query->when(request('search'), function($query) {
+                        $query->where('name', 'LIKE', '%'.request('search').'%')->orWhere('email', 'LIKE', '%'.request('search').'%');
+                    });
+    }
+
+    public function scopeHasConversationWithAuth($query)
+    {
+        return $query->whereHas('conversations', function($query) {
+                            $query->onlyWithAuth();
+                        });
     }
 }
