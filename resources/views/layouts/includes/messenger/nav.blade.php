@@ -64,7 +64,7 @@
 
         <!-- Profile -->
         <li class="nav-item">
-            <a href="{{ url("user/".auth()->id()."/details") }}" class="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
+            <a href="{{ url("messenger/user/".auth()->id()."/details") }}" class="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
                 <div class="avatar avatar-online mx-auto d-none d-xl-block">
                     <img class="avatar-img" src="{{ auth()->user()->image }}" alt="">
                 </div>

@@ -6,6 +6,12 @@
                 @include('layouts.includes.backend.sections.list-menu', ['menu' => $row])
             @endforeach
 
+            <li class="nav-item">
+                <a href="{{ route('messenger')  }}">
+                    <i class="fa fa-comments"></i> <span class="menu-title">Messenger</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

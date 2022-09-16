@@ -38,7 +38,7 @@ Route::middleware('auth')->prefix('messenger')->group(function() {
     Route::get('update/last-seen', [ConversationController::class, 'updateLastSeen'])->name('conversations.updateLastSeen');
     Route::get('user/{user}/details', [ConversationController::class, 'userDetails'])->name('user.details');
 
-    Route::get('/', [ConversationController::class, 'index'])->name('conversations.index');
+    Route::get('/', [ConversationController::class, 'index'])->name('messenger');
     Route::get('users', [ConversationController::class, 'users'])->name('users');
 
     Route::get('conversation/{user}/messages', [MessageController::class, 'index'])->name('conversation.user.messages');
