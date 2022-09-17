@@ -28,10 +28,14 @@ $(function() {
     });
 
 
-    $('body').delegate('#load-chat .hide-scrollbar', 'scroll', function () {
-        console.log( $(this).scrollTop() + $(this).innerHeight() , $(this)[0].scrollHeight)
-        // if ( $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight && next_page !== null)
-        //     loadUsers(next_page, {search: $('input#users-search').val()});
+    $('body').delegate('#load-chat', 'click', function () {
+        $(this).find('.hide-scrollbar').scroll();
+    });
+
+
+    $('body').on('scroll', '#load-chat .hide-scrollbar', function () {
+        if ( $(this).scrollTop() == 0 && next_messages_page !== null)
+            loadMoreMessages($('#send-message').find('[name="conversation_id"]').val(), conversation_user_id);
     });
 
 
