@@ -1,8 +1,7 @@
 <!-- Navigation -->
 <nav class="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
-    <h3>{{ auth()->user()->name }}</h3>
     <!-- Brand -->
-    <a href="index.html" title="Messenger" class="d-none d-xl-block mb-6">
+    <a href="{{ route('messenger') }}" title="Messenger" class="d-none d-xl-block mb-6">
         <svg version="1.1" width="46px" height="46px" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 46 46"
             enable-background="new 0 0 46 46" xml:space="preserve">
@@ -65,6 +64,7 @@
         <!-- Profile -->
         <li class="nav-item">
             <a href="{{ url("messenger/user/".auth()->id()."/details") }}" class="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
+                {{ auth()->user()->name }}
                 <div class="avatar avatar-online mx-auto d-none d-xl-block">
                     <img class="avatar-img" src="{{ asset(auth()->user()->image) }}" alt="">
                 </div>

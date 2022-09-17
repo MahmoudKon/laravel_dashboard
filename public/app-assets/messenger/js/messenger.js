@@ -28,10 +28,10 @@ $(function() {
     });
 
 
-    $('#load-chat .hide-scrollbar').scroll(function () {
-        console.log('asdasdasd');
-        // if ( $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight && next_messages_page !== null)
-        //     loadMoreMessages(response.conversation.id, conversation_user_id);
+    $('body').delegate('#load-chat .hide-scrollbar', 'scroll', function () {
+        console.log( $(this).scrollTop() + $(this).innerHeight() , $(this)[0].scrollHeight)
+        // if ( $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight && next_page !== null)
+        //     loadUsers(next_page, {search: $('input#users-search').val()});
     });
 
 
@@ -79,7 +79,7 @@ $(function() {
     });
 
     $('#tab-content-chats .hide-scrollbar').scroll(function () {
-        if ( $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight && next_page !== null)
+        if ( $(this).scrollTop() + $(this).innerHeight() + 5 == $(this)[0].scrollHeight && next_page !== null)
             loadConversations(next_page, {search: $('input#search').val()});
     });
 
@@ -89,7 +89,7 @@ $(function() {
     });
 
     $('#tab-content-friends .hide-scrollbar').scroll(function () {
-        if ( $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight && next_page !== null)
+        if ( $(this).scrollTop() + $(this).innerHeight() + 5 >= $(this)[0].scrollHeight && next_page !== null)
             loadUsers(next_page, {search: $('input#users-search').val()});
     });
 

@@ -28,7 +28,6 @@ class MessageController extends Controller
                             }])->first();
 
         if ($conversation) {
-            $messages = $conversation->messages()->paginate(5);
             $this->makeReadMessages($conversation->id);
         } else {
             $messages = [];
@@ -40,7 +39,7 @@ class MessageController extends Controller
 
     public function getMessages($conversation)
     {
-        $messages = Message::where('conversation_id', $conversation)->orderBy('created_at', 'DESC')->paginate(5);
+        $messages = Message::where('conversation_id', $conversation)->orderBy('created_at', 'DESC')->paginate(10);
 
         $next_page = $messages->currentPage() + 1;
         $next_page = $next_page <= $messages->lastPage() ? $next_page : null;

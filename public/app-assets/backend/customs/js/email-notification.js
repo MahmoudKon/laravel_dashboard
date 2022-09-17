@@ -5,7 +5,6 @@ let jqxhr = {abort: function () {}}; // to cancel previous ajax request if still
 let next_page = null;
 let page_is_loading = true;
 let current_element = "notification";
-let load_once_notification_email = true;
 
 /***************************************** Load New Emails In Notification Section *************************************************/
 function loadEmails(page, ele, append = true, data = {}, empty = true) {
@@ -66,10 +65,7 @@ $(function () {
             $('#list-user-emails').prepend(email);
     });
 
-    $('#get-emails-count').click(function(e) {
-        e.preventDefault();
-        if (! load_once_notification_email) return;
-        load_once_notification_email = false;
+    $('#get-emails-count').one('click', function(e) {
         if (! $(this).closest('li').hasClass('show')) {
             list_notifications.empty();
             load_new_email = false;

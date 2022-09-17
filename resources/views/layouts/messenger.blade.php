@@ -13,8 +13,9 @@
 
         <!-- Template CSS -->
         <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/fontawesome-all.min.css') }}">
-        <link rel="stylesheet" href="{{ assetHelper('/', 'messenger') }}/css/template.bundle.dark.css">
-        <link rel="stylesheet" href="{{ assetHelper('/', 'messenger') }}/css/template.dark.bundle.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="{{ assetHelper('/', 'messenger') }}/css/template.dark.bundle.css">
+        {{-- <link rel="stylesheet" href="{{ assetHelper('/', 'messenger') }}/css/template.bundle.css"> --}}
+        {{-- <link rel="stylesheet" href="{{ assetHelper('/', 'messenger') }}/css/template.dark.bundle.css" media="(prefers-color-scheme: dark)"> --}}
 
     <body>
         <!-- Layout -->
