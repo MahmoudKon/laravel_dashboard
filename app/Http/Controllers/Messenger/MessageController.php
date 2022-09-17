@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Messenger\MessageRequest;
 use App\Models\Messenger\Conversation;
 use App\Models\Messenger\Message;
+use App\Models\Messenger\MessageUser;
 use App\Models\User;
 use App\Traits\UploadFile;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +29,7 @@ class MessageController extends Controller
 
         if ($conversation) {
             $messages = $conversation->messages()->paginate(5);
+            $this->makeReadMessages($conversation->id);
         } else {
             $messages = [];
             $conversation = new Conversation();
@@ -55,7 +57,6 @@ class MessageController extends Controller
         try {
             $conversation = $this->getConversation($request->conversation_id, $request->user_id);
 
-
             $message = $conversation->messages()->create([
                 'user_id' => auth()->id(),
                 'type'    => $request->message ? 'text' : $request->file->getMimeType(),
@@ -64,7 +65,7 @@ class MessageController extends Controller
 
             $message->users()->attach([
                 auth()->id() => ['read_at' => now()],
-                $request->user_id => ['read_at' => now()],
+                $request->user_id => ['read_at' => null],
             ]);
 
             $conversation->update(['last_message_id' => $message->id]);
@@ -105,5 +106,12 @@ class MessageController extends Controller
     {
         auth()->user()->messages()->where('message_id', $id)->delete();
         return 'deleted';
+    }
+
+    protected function makeReadMessages($conversation_id)
+    {
+        MessageUser::whereNull('read_at')->where('user_id', auth()->id())->whereHas('message', function($query) use($conversation_id) {
+                        $query->where('conversation_id', $conversation_id);
+                    })->update(['read_at' => now()]);
     }
 }

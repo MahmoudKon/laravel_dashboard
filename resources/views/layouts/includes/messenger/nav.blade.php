@@ -56,7 +56,7 @@
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
                     <div class="badge badge-circle bg-primary">
-                        <span id='conversation-count'>{{ auth()->user()->conversations()->count() }}</span>
+                        <span id='all-unread-messages'>{{ auth()->user()->unreadMessages() }}</span>
                     </div>
                 </div>
             </a>
@@ -66,10 +66,10 @@
         <li class="nav-item">
             <a href="{{ url("messenger/user/".auth()->id()."/details") }}" class="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
                 <div class="avatar avatar-online mx-auto d-none d-xl-block">
-                    <img class="avatar-img" src="{{ auth()->user()->image }}" alt="">
+                    <img class="avatar-img" src="{{ asset(auth()->user()->image) }}" alt="">
                 </div>
                 <div class="avatar avatar-online avatar-xs d-xl-none">
-                    <img class="avatar-img" src="{{ auth()->user()->image }}" alt="">
+                    <img class="avatar-img" src="{{ asset(auth()->user()->image) }}" alt="">
                 </div>
             </a>
         </li>

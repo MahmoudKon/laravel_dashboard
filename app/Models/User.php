@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Messenger\Conversation;
 use App\Models\Messenger\Message;
+use App\Models\Messenger\MessageUser;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -179,5 +180,10 @@ class User extends Authenticatable
         return $query->whereHas('conversations', function($query) {
                             $query->onlyWithAuth();
                         });
+    }
+
+    public function unreadMessages()
+    {
+        return MessageUser::whereNull('read_at')->where('user_id', auth()->id())->count();
     }
 }

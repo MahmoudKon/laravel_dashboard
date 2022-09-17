@@ -4,7 +4,7 @@
             <div class="row gx-5">
                 <div class="col-auto">
                     <div class="avatar {{ $user->isOnline() ? 'avatar-online' : '' }} online-status-{{ $user->id }}">
-                        <img src="{{ $user->image }}" alt="#" class="avatar-img">
+                        <img src="{{ asset($user->image) }}" alt="#" class="avatar-img">
                     </div>
                 </div>
 
@@ -29,6 +29,9 @@
                                     @endif
                                 @endif
                             </span>
+                        </div>
+                        <div class="badge badge-circle bg-primary ms-5 unread-messages unread-messages-user-{{ $user->id }} {{ $user->conversations->first()?->unread ? '' : 'd-none' }}">
+                            {{ $user->conversations->first()?->unread }}
                         </div>
                     </div>
                 </div>

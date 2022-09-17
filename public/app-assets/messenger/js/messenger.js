@@ -15,6 +15,9 @@ $(function() {
                 next_messages_page = response.next_page;
                 conversation_id = response.conversation.id;
 
+                changeCounter(`#all-unread-messages`, btn.find('.unread-messages').text(), '-');
+                btn.find('.unread-messages').text(0).addClass('d-none');
+
                 $.each(response.messages.data, function (key, message) {
                     $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                 });
@@ -128,12 +131,14 @@ $(function() {
 
     // To get message from pusher and append it
     window.Echo.channel(`private-new-message.${AUTH_USER_ID}`)
-        .listen('\\App\\Events\\Messenger\\MessageCreated', (data) => {
+        .listen('MessageCreated', (data) => {
             $('body').find(`[data-conversation-user="${conversation_user_id}"]`).find('.user-typing').remove();
             reOrder(data.message, data.message.user_id);
             let conversation_body = $('body').find(`[data-conversation-user="${data.message.user_id}"]`);
 
             if (conversation_body.length == 0) {
+                changeCounter(`.unread-messages-user-${data.message.user_id}`);
+                changeCounter(`#all-unread-messages`);
                 try { audio.play(); } catch (error) {}
                 return;
             }
@@ -232,7 +237,7 @@ $(function() {
     function messageTemplate(message, new_class = '') {
         return `<div class="message ${new_class}">
                     <a href="${window.location.href}/user/${message.user_id}/details" data-bs-toggle="modal" data-bs-target="#modal-user-profile" class="avatar avatar-responsive">
-                        <img class="avatar-img" src="${message.user.image}" alt="" width='100%'>
+                        <img class="avatar-img" src="${window.location.origin+'/'+message.user.image}" alt="" width='100%'>
                     </a>
 
                     <div class="message-inner">
@@ -320,5 +325,16 @@ $(function() {
         }
 
         return text;
+    }
+
+    function changeCounter(element_selector, step = 1, operator = '+')
+    {
+        ele = $('body').find(`${element_selector}`);
+        counter = Number.parseInt(ele.text());
+
+        if (step == 0 || (counter < step && operator == '-')) return;
+
+        counter = eval(counter +`${operator}`+ Number.parseInt(step));
+        ele.text(counter);
     }
 });

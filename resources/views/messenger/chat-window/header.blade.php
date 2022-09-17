@@ -22,7 +22,7 @@
                     <div class="row align-items-center gx-5">
                         <div class="col-auto">
                             <div class="avatar d-none d-xl-inline-block {{ $user->isOnline() ? 'avatar-online' : '' }} online-status-{{ $user->id ?? '' }}">
-                                <img class="avatar-img" src="{{ $user->image }}" alt="">
+                                <img class="avatar-img" src="{{ asset($user->image) }}" alt="">
                             </div>
                         </div>
 

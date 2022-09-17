@@ -44,6 +44,12 @@ class Conversation extends Model
     {
         return $query->whereHas('users', function($query) {
                     $query->where('user_id', auth()->id());
-                });
+                })->withCount([
+                        'messages as unread' => function($query) {
+                            $query->whereHas('users', function($query) {
+                                $query->whereNull('read_at')->where('user_id', auth()->id());
+                            });
+                        }
+                    ]);
     }
 }

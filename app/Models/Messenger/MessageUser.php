@@ -15,7 +15,7 @@ class MessageUser extends Pivot
 
     public $timestamps = false;
 
-    protected $casts = ['joined_at' => 'datetime'];
+    protected $casts = ['read_at' => 'datetime'];
 
     public function message()
     {

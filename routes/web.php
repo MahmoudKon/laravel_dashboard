@@ -2,12 +2,9 @@
 
 use App\Http\Controllers\Messenger\ConversationController;
 use App\Http\Controllers\Messenger\MessageController;
-use Illuminate\Broadcasting\BroadcastController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +23,12 @@ Auth::routes();
 Route::redirect('/home', '/dashboard');
 Route::redirect('/', '/dashboard');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
 Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
 
 
-Route::middleware('auth')->prefix('messenger')->group(function() {
+Route::middleware('auth')->prefix(LaravelLocalization::setLocale().'/messenger')->group(function() {
 
     Route::get('update/last-seen', [ConversationController::class, 'updateLastSeen'])->name('conversations.updateLastSeen');
     Route::get('user/{user}/details', [ConversationController::class, 'userDetails'])->name('user.details');
