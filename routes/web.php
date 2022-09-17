@@ -29,16 +29,13 @@ Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'un
 
 
 Route::middleware('auth')->prefix(LaravelLocalization::setLocale().'/messenger')->group(function() {
+    Route::get('/', [ConversationController::class, 'index'])->name('messenger');
+    Route::get('users', [ConversationController::class, 'users'])->name('users');
 
     Route::get('update/last-seen', [ConversationController::class, 'updateLastSeen'])->name('conversations.updateLastSeen');
     Route::get('user/{user}/details', [ConversationController::class, 'userDetails'])->name('user.details');
 
-    Route::get('/', [ConversationController::class, 'index'])->name('messenger');
-    Route::get('users', [ConversationController::class, 'users'])->name('users');
-
     Route::get('conversation/{user}/messages', [MessageController::class, 'index'])->name('conversation.user.messages');
     Route::get('conversation/{conversation}/messages/load-more', [MessageController::class, 'getMessages'])->name('conversation.load.messages');
     Route::post('messages', [MessageController::class, 'store'])->name('message.store');
-    Route::delete('messages/{message}', [MessageController::class, 'destroy']);
-
 });

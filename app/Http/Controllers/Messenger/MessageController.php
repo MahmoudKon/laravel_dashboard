@@ -101,12 +101,6 @@ class MessageController extends Controller
         return $conversation;
     }
 
-    protected function destroy($id)
-    {
-        auth()->user()->messages()->where('message_id', $id)->delete();
-        return 'deleted';
-    }
-
     protected function makeReadMessages($conversation_id)
     {
         MessageUser::whereNull('read_at')->where('user_id', auth()->id())->whereHas('message', function($query) use($conversation_id) {
