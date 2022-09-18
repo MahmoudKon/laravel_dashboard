@@ -46,12 +46,9 @@ $(function () {
         });
     }); // PUSH FORM TO THE BOOTSTRAP MODAL
 
-
     $('body').on('change', '.checkbox-change-status', function() {
         $(this).closest('form').submit();
     });
-
-
 
     $('body').on('submit', 'form.submit-form', function(e) {
         e.preventDefault();
@@ -71,10 +68,7 @@ $(function () {
                 if (response.reload) return location.reload(true);
 
                 $('.modal').modal("hide");
-                toast(response.message, null, response.icon ?? 'success');
-
-                if (response.stop) return;
-
+                toast(response.message, null, response.icon);
                 form.trigger("reset");
                 $("select").val('').trigger('change');
                 rows();

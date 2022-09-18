@@ -78,9 +78,9 @@ function initPluginElements() {
     $('[data-toggle="tooltip"]').tooltip();
 }
 
-function toast(message, title = null, icon = 'error', timer = 5000, audioType = 'success')
+function toast(message, title = null, icon = 'error', timer = 5000)
 {
-    playAudio(audioType);
+    playAudio(icon);
     const Toast = Swal.mixin({
         toast: true,
         position: $('html').attr('lang') == 'ar' ? 'top-start' : 'top-end',

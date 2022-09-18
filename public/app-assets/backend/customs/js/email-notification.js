@@ -54,18 +54,25 @@ $(function () {
 
         $('.emails-unread-count').text(emails_not_seen_count);
     }
-
     // NOTIFICATION
-    window.Echo.private(`new-email.${AUTH_USER_ID}`).listen('NewEmail', (data) => {
-        toast(data.message, null, 'success', 5000, 'notification');
-        changeCount('+');
-        let email = emailTemplate(data.email);
-        $('#get-emails-count').closest('li').find('.media-list').prepend(email);
-        if ($('#list-user-emails').length > 0 && $(`[data-group="inbox"]`).hasClass('active'))
-            $('#list-user-emails').prepend(email);
+    window.Echo.channel('new-email').listen('NewEmail', (data) => {
+        if (data.recipient_ids.includes(AUTH_USER_ID)) {
+            toast(data.message, null, 'success');
+            changeCount('+');
+        }
     });
 
-    $('#get-emails-count').one('click', function(e) {
+    // getEmailsCount();
+    // window.Echo.channel('new-email').listen('NewEmail', (data) => {
+    //     if (data.recipient_ids.includes(AUTH_USER_ID)) {
+    //         toast(data.email.subject, 'Have a New Mail', 'success');
+    //         $('.emails-unread-count').text(parseInt($('#emails-unread-count').text()) + 1);
+    //     }
+    // });
+
+
+    $('#get-emails-count').click(function(e) {
+        e.preventDefault();
         if (! $(this).closest('li').hasClass('show')) {
             list_notifications.empty();
             load_new_email = false;
@@ -82,26 +89,33 @@ $(function () {
     });
 
     /********************************************* To Get The Email UnReaded Count *****************************************************/
+    // getEmailsCount();
+    // setInterval(() => { getEmailsCount(true); page_is_loading = false }, 15000);
+    function getEmailsCount(force_lood = false) {
+        $.ajax({
+            url: `${MAIN_ROUTE}/count`,
+            type: 'POST',
+            success: function(result) {
+                limit = result - parseInt($('#emails-unread-count').text());
+                $('.emails-unread-count').text(result);
+                if (limit > 0) {
+                    if (!page_is_loading) {
+                        RUN_SOUND = true;
+                        toast("Have New Email", null, 'success');
+                    }
+                    let ele = '';
+                    if ($('#list-emails').closest('ul').hasClass('show'))
+                        ele = "#list-email,";
 
-    function emailTemplate(email) {
-        return `<a href="emails?email=${email.id}" class="single-email" data-id="${email.id}">
-                    <div class="media unseen-email">
-                        <div class="media-left align-self-center">
-                            <span class="avatar avatar-md">
-                                    <img src="${main_path}/${email.notifier.image}" class="rounded-circle" width="55px">
-                            </span>
-                        </div>
+                    if (force_lood && $('#list-user-emails').length)
+                        ele += "#list-user-emails";
 
-                        <div class="media-body">
-                            <h6 class="media-heading">${email.notifier.name}</h6>
-                            <p class="notification-text font-small-3 text-muted">${email.subject}</p>
-
-                            <small>
-                                <time class="media-meta text-muted">${email.created_at}</time>
-                            </small>
-                        </div>
-                    </div>
-                </a>`;
-    }
+                    if (ele !== '') {
+                        loadEmails(`${MAIN_ROUTE}/new/${limit}`, ele, false);
+                    }
+                }
+            }
+        });
+    } // END GET EMAILS COUNT
 });
 

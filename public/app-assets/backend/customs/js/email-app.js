@@ -83,6 +83,29 @@ $(function () {
     $('body').on('submit', 'form#delete-email', function (e) {
         e.preventDefault();
         let href = $(this).attr('action'), data = $(this).serialize();
+        if( ! confirm('Are you sure to delete email?')) {
+            $('.load').removeClass('load');
+            return;
+        }
+
+        $.ajax({
+            url: href,
+            type: "post",
+            data: data,
+            success: function (response, textStatus, jqXHR) {
+                $('.load').removeClass('load');
+                $(`.single-email[data-id="${response.email_id}"]`).remove();
+                $('#preview-email-body').empty();
+                loadEmails(`${MAIN_ROUTE}/list`, list_emails, true, data_filter);
+                if (window.toast)
+                        toast(response.message, null, 'success');
+            },
+        });
+    });
+
+    $('body').on('submit', 'form#delete-email', function (e) {
+        e.preventDefault();
+        let href = $(this).attr('action'), data = $(this).serialize();
         swal(
             $.ajax({
                 url: href,
