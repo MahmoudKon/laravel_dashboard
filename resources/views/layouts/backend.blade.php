@@ -34,6 +34,10 @@
             {{-- START CONTENT SECTION --}}
             @yield('content')
             {{-- END CONTENT SECTION --}}
+
+            <a href="{{ route('messenger') }}" style="font-size:35px; position: fixed; left: 15px; bottom: 60px; z-index: 10">
+                <i class="fa-brands fa-facebook-messenger"></i>
+            </a>
         </div>
     </div>
 </div>

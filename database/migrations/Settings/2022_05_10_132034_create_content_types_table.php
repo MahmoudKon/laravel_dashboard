@@ -28,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content_types');
+        Schema::disableForeignKeyConstraints();
+            Schema::dropIfExists('content_types');
+        Schema::enableForeignKeyConstraints();
     }
 };

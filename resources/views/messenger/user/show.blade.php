@@ -61,16 +61,12 @@
         <!-- List -->
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
-                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-danger cursor-pointer d-inline">
+                    <button type="submit" class="btn btn-sm btn-danger cursor-pointer">
                         <i class="fa fa-sign-out"></i> Logout
                     </button>
                 </form>
-
-                <a href="{{ routeHelper("/") }}" class="btn btn-sm btn-primary float-end">
-                    <i class="fa fa-home"></i> Dashboard
-                </a>
             </li>
         </ul>
         <!-- List -->

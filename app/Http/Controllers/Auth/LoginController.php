@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class LoginController extends Controller
 {
@@ -46,6 +48,12 @@ class LoginController extends Controller
 
         request()->merge([$field => request()->username]);
         return $field;
+    }
+
+    public function logout(Request $request) {
+        Cache::forget('user-is-online-'.auth()->id());
+        auth()->logout();
+        return redirect('/login');
     }
 
     protected function loggedOut() {

@@ -28,17 +28,6 @@ $(function() {
     });
 
 
-    $('body').delegate('#load-chat', 'click', function () {
-        $(this).find('.hide-scrollbar').scroll();
-    });
-
-
-    $('body').on('scroll', '#load-chat .hide-scrollbar', function () {
-        if ( $(this).scrollTop() == 0 && next_messages_page !== null)
-            loadMoreMessages($('#send-message').find('[name="conversation_id"]').val(), conversation_user_id);
-    });
-
-
     $('body').on('submit', '#send-message', function(e) {
         e.preventDefault();
         $.ajax({
@@ -204,14 +193,18 @@ $(function() {
     }
 
     function loadMoreMessages(conversation, user_id) {
+        let chat_window = $('body').find('#load-chat .hide-scrollbar');
         $.ajax({
             url: window.location.href+`/conversation/${conversation}/messages/load-more?page=${next_messages_page}`,
             type: "GET",
             success: function (response) {
+                let scrollHeight = chat_window[0].scrollHeight;
                 next_messages_page = response.next_page;
                 $.each(response.messages.data, function (key, message) {
-                    $('body').find(`[data-conversation-user=${user_id}]`).prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? '' : 'message-out'));
+                    $('body').find(`[data-conversation-user=${user_id}]`).prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                 });
+
+                chat_window.animate({scrollTop: chat_window[0].scrollHeight - scrollHeight}, 1);
             }
         });
     }
@@ -340,5 +333,21 @@ $(function() {
 
         counter = eval(counter +`${operator}`+ Number.parseInt(step));
         ele.text(counter);
+        ele.removeClass('d-none');
     }
+
+
+    document.addEventListener('play', function (e) {
+        $.each($('body').find('video, audio').not( e.target ), function (indexInArray, valueOfElement) {
+            $(this).trigger('pause');
+        });
+    }, true);
+
+
+    document.addEventListener('scroll', function (e) {
+        let chat_window = $('body').find('#load-chat .hide-scrollbar');
+        if ( chat_window.scrollTop() == 0 && next_messages_page !== null)
+            loadMoreMessages($('#send-message').find('[name="conversation_id"]').val(), conversation_user_id);
+
+    }, true);
 });
