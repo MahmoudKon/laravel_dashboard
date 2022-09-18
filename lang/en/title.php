@@ -33,4 +33,12 @@ return [
 
     // LOCK SCREEN PAGE
     'unlock account' => 'Unlook Your Account',
+
+
+    // FLAT PAGES
+    'we are launching soon' => 'We are launching soon',
+    'our website is under construction' => 'Our website is under construction',
+    'this page is under maintenance' => 'This page is under maintenance.',
+    'we\'re sorry for the inconvenience' => 'We\'re sorry for the inconvenience.',
+    'please check back later' => 'Please check back later.',
 ];

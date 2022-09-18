@@ -35,4 +35,10 @@ return [
     // LOCK SCREEN PAGE
     'unlock account' => 'فك قفل الحساب',
 
+    // FLAT PAGES
+    'we are launching soon' => 'سوف يتم الإطلاق قريبا.',
+    'our website is under construction' => 'موقعنا قيد الانشاء.',
+    'this page is under maintenance' => 'هذه الصفحة تحت الصيانة.',
+    'we\'re sorry for the inconvenience' => 'نحن آسفون للإزعاج.',
+    'please check back later' => 'يرجى التحقق مرة أخرى في وقت لاحق.',
 ];

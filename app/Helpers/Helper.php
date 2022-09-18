@@ -145,7 +145,8 @@ function setting(string $key, $default = null)
 {
     $row = \App\Models\Setting::where('key', 'LIKE', "%$key%")->first();
 
-    return $row->active ?? false
+    if (!$row) return $default;
+    return $row->active
             ? $row->value ?? $default
             : null;
 }

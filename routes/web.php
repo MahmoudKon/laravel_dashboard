@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Messenger\ConversationController;
 use App\Http\Controllers\Messenger\MessageController;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,9 @@ Auth::routes();
 // Auth::routes(['register' => false]);
 
 Route::redirect('/home', '/dashboard');
-Route::redirect('/', '/dashboard');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('maintenance');
 
 
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
