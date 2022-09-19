@@ -90,6 +90,25 @@
         });
     </script>
 
+    <script>
+        $(function() {
+            let new_message_remove_time = null;
+            $('#new-message').fadeIn();
+            window.Echo.private(`new-message.{{ auth()->id() }}`)
+                .listen('MessageCreated', (data) => {
+                    let counter = Number.parseInt($('#all-unread-messages').text());
+                    $('#all-unread-messages').text(counter+1);
+                    $('#new-message').empty().removeClass('d-none').fadeIn(500, function() { $(this).append(`<b>${data.message.user.name}:</b> ${data.message.message}`); });
+                    if (new_message_remove_time) clearTimeout(new_message_remove_time);
+                    new_message_remove_time = setTimeout(() => {
+                        $('#new-message').fadeOut(500, function() { $(this).removeClass('d-none'); });
+                    }, 3000);
+                    sound = true;
+                    playAudio();
+                });
+        });
+    </script>
+
     @php session()->forget(['success', 'failed', 'error', 'info', 'warning']); @endphp
 </body>
 
