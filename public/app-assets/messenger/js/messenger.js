@@ -241,7 +241,7 @@ $(function() {
                         <div class="message-body">
                             <div class="message-content">
                                 <div class="${message.type == 'text' ? 'message-text' : ''}">
-                                    <p>${buildFile (message.type, message.message)} </p>
+                                    ${buildFile (message.type, message.message)}
                                 </div>
                             </div>
                         </div>
@@ -305,7 +305,7 @@ $(function() {
             break;
 
             case 'image':
-                text = `<img src='${src}' width='100%'>`;
+                text = `<img src='${src}' width='100%'> <div class='btn-download-chat-img d-none'> <a href='${src}' class='btn btn-sm btn-dark' download='${src.split('/').pop()}'>Download</a> </div>`;
             break;
 
             case 'audio':
@@ -350,4 +350,12 @@ $(function() {
             loadMoreMessages($('#send-message').find('[name="conversation_id"]').val(), conversation_user_id);
 
     }, true);
+
+    $('body').on('mouseenter', '#load-chat .message .message-content', function (e) {
+        $(this).find('.btn-download-chat-img').removeClass('d-none');
+    });
+
+    $('body').on('mouseleave', '#load-chat .message .message-content', function (e) {
+        $(this).find('.btn-download-chat-img').addClass('d-none');
+    });
 });
