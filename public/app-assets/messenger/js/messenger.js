@@ -99,7 +99,7 @@ $(function() {
 
 
     let time = false;
-    $('body').on('keydown', '[name="message"]', function(){
+    $('body').on('keydown', '#send-message input[name="message"]', function(){
         if (event.keyCode > 90 || event.keyCode < 65) return;
 
         chatChannel.whisper('typing', {

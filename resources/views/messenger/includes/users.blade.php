@@ -38,7 +38,7 @@
                         {{-- user_unread_count = 0 --}}
 
                         <i class="fa-solid fa-check {{ $user_unread_count && !$unread_count ? '' : 'd-none' }} unread-message-icon"></i>
-                        <i class="fa-solid fa-check-double text-success {{ !$user_unread_count && !$unread_count ? '' : 'd-none' }} read-message-icon"></i>
+                        <i class="fa-solid fa-check-double text-success {{ (!$user_unread_count && !$unread_count) && $user->conversations->count() ? '' : 'd-none' }} read-message-icon"></i>
                         <div class="badge badge-circle bg-primary ms-5 unread-messages unread-messages-user-{{ $user->id }} {{ $unread_count ? '' : 'd-none' }}"> {{ $unread_count }} </div>
                     </div>
                 </div>
