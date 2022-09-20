@@ -367,7 +367,7 @@ $(function() {
         ele = $('body').find(`${element_selector}`);
         counter = Number.parseInt(ele.text());
 
-        if (step == 0 || (counter < step && operator == '-')) return;
+        if (step == 0 || counter == 0) return;
 
         counter = eval(counter +`${operator}`+ Number.parseInt(step));
         ele.text(counter);
