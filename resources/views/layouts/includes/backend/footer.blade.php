@@ -106,6 +106,12 @@
                     sound = true;
                     playAudio();
                 });
+
+            window.Echo.join(`chat`).listenForWhisper('unread-count', (e) => {
+                        if ({{ auth()->id() }} != e.auth_id) return;
+                            $('#all-unread-messages').text(e.count)
+                    });
+
         });
     </script>
 

@@ -38,7 +38,7 @@
                         </div>
 
                         <!-- List -->
-                        <div class="card-list users-list"></div>
+                        <div class="card-list conversations-list"></div>
 
                     </div>
                 </div>

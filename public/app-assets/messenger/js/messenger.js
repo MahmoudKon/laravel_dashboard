@@ -132,11 +132,20 @@ $(function() {
             if (conversation_body.length == 0) {
                 changeCounter(`.unread-messages-user-${data.message.user_id}`);
                 changeCounter(`#all-unread-messages`);
+                changeReadMessageIcon(data.message.user_id, false);
                 try { audio.play(); } catch (error) {}
                 return;
             }
 
+            makeReadAll($('body').find('input[name="conversation_id"').val());
+
+            chatChannel.whisper('seen-message', {
+                user_id: AUTH_USER_ID,
+                auth_id: data.message.user_id
+            });
+
             conversation_body.append(messageTemplate(data.message));
+            changeReadMessageIcon(data.message.user_id, true);
             $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
         });
 
@@ -155,6 +164,10 @@ $(function() {
                                 toggleTyping(e.typing, e.auth_id);
                                 toggleTypingInChat(e.typing, e.auth_id);
                                 $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
+                            })
+                            .listenForWhisper('seen-message', (e) => {
+                                if (AUTH_USER_ID != e.auth_id) return;
+                                changeReadMessageIcon(e.user_id, true);
                             });
 
 
@@ -216,6 +229,15 @@ $(function() {
             data: {user_id: id},
             success: function (response, textStatus, jqXHR) {
             }
+        });
+    }
+
+    function makeReadAll(conversation_id) {
+        $.ajax({
+            url: window.location.href+'/update/read-at',
+            type: "get",
+            data: {conversation_id: conversation_id},
+            success: function (response, textStatus, jqXHR) {}
         });
     }
 
@@ -358,4 +380,14 @@ $(function() {
     $('body').on('mouseleave', '#load-chat .message .message-content', function (e) {
         $(this).find('.btn-download-chat-img').addClass('d-none');
     });
+
+    function changeReadMessageIcon(user_id, read = true) {
+        if(read) {
+            $(`[data-user-id="${user_id}"]`).find('.unread-message-icon').addClass('d-none');
+            $(`[data-user-id="${user_id}"]`).find('.read-message-icon').removeClass('d-none');
+        } else {
+            $(`[data-user-id="${user_id}"]`).find('.unread-message-icon').removeClass('d-none');
+            $(`[data-user-id="${user_id}"]`).find('.read-message-icon').addClass('d-none');
+        }
+    }
 });

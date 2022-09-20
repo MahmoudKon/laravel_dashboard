@@ -82,6 +82,12 @@ class MessageController extends Controller
         }
     }
 
+    public function updateReadAt()
+    {
+        $this->makeReadMessages(request('conversation_id'));
+        return 'updated';
+    }
+
     protected function getConversation($conversation_id = null, $user_id = null)
     {
         if ($conversation_id) {

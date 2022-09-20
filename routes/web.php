@@ -41,4 +41,5 @@ Route::middleware('auth')->prefix(LaravelLocalization::setLocale().'/messenger')
     Route::get('conversation/{user}/messages', [MessageController::class, 'index'])->name('conversation.user.messages');
     Route::get('conversation/{conversation}/messages/load-more', [MessageController::class, 'getMessages'])->name('conversation.load.messages');
     Route::post('messages', [MessageController::class, 'store'])->name('message.store');
+    Route::get('update/read-at', [MessageController::class, 'updateReadAt'])->name('messages.updateReadAt');
 });
