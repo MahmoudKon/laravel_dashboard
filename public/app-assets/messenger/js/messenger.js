@@ -18,9 +18,19 @@ $(function() {
                 changeCounter(`#all-unread-messages`, btn.find('.unread-messages').text(), '-');
                 btn.find('.unread-messages').text(0).addClass('d-none');
 
+                chatChannel.whisper('unread-count', {
+                    auth_id: AUTH_USER_ID,
+                    count: Number.parseInt( $('#all-unread-messages').text() )
+                }).whisper('seen-message', {
+                    auth_id: btn.data('user-id'),
+                    user_id: AUTH_USER_ID
+                });
+
                 $.each(response.messages.data, function (key, message) {
                     $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                 });
+
+                changeReadMessageIcon(btn.data('user-id'), true);
 
                 $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .hide-scrollbar').prop("scrollHeight")}, 200);
             }
@@ -40,6 +50,7 @@ $(function() {
             success: function(response, textStatus, jqXHR) {
                 $('[name="message"]').val('');
                 $('[name="file"]').val('');
+                changeReadMessageIcon($('[name="user_id"]').val(), false);
                 reOrder(response.message, response.user_id);
                 $('#load-chat').find(`[data-conversation-user='${response.user_id}']`).append(messageTemplate(response.message, 'message-out'));
                 $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
@@ -140,8 +151,8 @@ $(function() {
             makeReadAll($('body').find('input[name="conversation_id"').val());
 
             chatChannel.whisper('seen-message', {
-                user_id: AUTH_USER_ID,
-                auth_id: data.message.user_id
+                auth_id: $('[name="user_id"]').val(),
+                user_id: AUTH_USER_ID
             });
 
             conversation_body.append(messageTemplate(data.message));
@@ -180,17 +191,22 @@ $(function() {
     let jqXHR = {abort: function () {}}; // init empty object
     let next_page  = 1;
     let next_messages_page = 1;
+    let tabContentType = null;
     loadConversations();
 
     function loadConversations(page = 1, data = {}, empty = false) {
-        loadData('conversations-list', `?page=${page}`, data, empty)
+        tabContentType = $('#tab-content-friends');
+        tabContentType.find('.conversations-list').empty();
+        loadData(`?page=${page}`, data, empty)
     }
 
     function loadUsers(page = 1, data = {}, empty = false) {
-        loadData('users-list', `/users?page=${page}`, data, empty)
+        tabContentType = $('#tab-content-friends');
+        tabContentType.find('.conversations-list').empty();
+        loadData(`/users?page=${page}`, data, empty)
     }
 
-    function loadData(ele, url = '', data = {}, empty = false) {
+    function loadData(url = '', data = {}, empty = false) {
         jqXHR.abort();
         jqXHR = $.ajax({
             url: window.location.href+url,
@@ -198,8 +214,8 @@ $(function() {
             data: data,
             success: function (response) {
                 next_page = response.next_page;
-                if (empty) $(`.${ele}`).empty();
-                $(`.${ele}`).append(response.view);
+                if (empty) $('.conversations-list').empty();
+                $('.conversations-list').append(response.view);
 
             }
         });
@@ -249,7 +265,7 @@ $(function() {
         let msg = message.type == 'text' ? message.message : `Send ${message.type}`;
         ele.find('.last-message').text(sender + ' ' + msg);
         ele.find('.message-time').text(message.created_at);
-        $('.conversations-list').prepend(ele.get(0));
+        tabContentType.find('.conversations-list').prepend(ele.get(0));
     }
 
 

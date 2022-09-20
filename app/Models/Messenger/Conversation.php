@@ -49,6 +49,11 @@ class Conversation extends Model
                             $query->whereHas('users', function($query) {
                                 $query->whereNull('read_at')->where('user_id', auth()->id());
                             });
+                        },
+                        'messages as user_unread' => function($query) {
+                            $query->whereHas('users', function($query) {
+                                $query->whereNull('read_at')->where('user_id', '<>', auth()->id());
+                            });
                         }
                     ]);
     }

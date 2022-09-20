@@ -1,5 +1,7 @@
 @forelse ($users as $user)
     @php $unread_count = $user->conversations->first()?->unread; @endphp
+    @php $user_unread_count = $user->conversations->first()?->user_unread; @endphp
+
     <a href="{{ route('conversation.user.messages', $user) }}" class="card conversation-item border-0 text-reset user-room" data-user-id="{{ $user->id }}">
         <div class="card-body">
             <div class="row gx-5">
@@ -32,8 +34,11 @@
                             </span>
                         </div>
 
-                        <i class="fa-solid fa-check {{ $unread_count ? '' : 'd-none' }} unread-message-icon"></i>
-                        <i class="fa-solid fa-check-double text-success {{ $unread_count ? 'd-none' : '' }} read-message-icon"></i>
+                        {{-- unread_count = 4 --}}
+                        {{-- user_unread_count = 0 --}}
+
+                        <i class="fa-solid fa-check {{ $user_unread_count && !$unread_count ? '' : 'd-none' }} unread-message-icon"></i>
+                        <i class="fa-solid fa-check-double text-success {{ !$user_unread_count && !$unread_count ? '' : 'd-none' }} read-message-icon"></i>
                         <div class="badge badge-circle bg-primary ms-5 unread-messages unread-messages-user-{{ $user->id }} {{ $unread_count ? '' : 'd-none' }}"> {{ $unread_count }} </div>
                     </div>
                 </div>
