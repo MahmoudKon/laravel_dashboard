@@ -28,7 +28,11 @@
                                     @if ($user->conversations->first()->lastMessage->type == 'text')
                                         {{ $user->conversations->first()->lastMessage->message }}
                                     @else
-                                        Send {{ $user->conversations->first()->lastMessage->type }}
+                                        @php
+                                            $type = explode('/', $user->conversations->first()->lastMessage->type)[0];
+                                            $type = $type == 'application' || $type == 'text' ? 'Attachment' : $type;
+                                        @endphp
+                                        Send {{ $type }}
                                     @endif
                                 @endif
                             </span>

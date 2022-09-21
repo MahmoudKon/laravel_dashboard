@@ -262,7 +262,16 @@ $(function() {
     function reOrder(message, user_id) {
         let ele = $('body').find(`.conversations-list .user-room[data-user-id="${user_id}"]`);
         let sender = message.user_id == AUTH_USER_ID ? 'You: ' : `${message.user.name}: `;
-        let msg = message.type == 'text' ? message.message : `Send ${message.type}`;
+
+        let msg = message.message;
+        if (message.type != 'text') {
+            let type = message.type.split('/')[0];
+            type = type == 'application' || type == 'text' ? 'Attachment' : type;
+            msg = `Send ${type}`;
+        }
+
+        ele.find('.last-message').text(sender + ' ' + msg);
+
         ele.find('.last-message').text(sender + ' ' + msg);
         ele.find('.message-time').text(message.created_at);
         tabContentType.find('.conversations-list').prepend(ele.get(0));
