@@ -18,6 +18,6 @@
     transform: translate(-50%, -50%);
 }
 
-.avatar .avatar-online::before {
+.avatar-online::before {
     background: green;
 }
