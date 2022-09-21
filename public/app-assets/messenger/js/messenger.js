@@ -15,22 +15,23 @@ $(function() {
                 next_messages_page = response.next_page;
                 conversation_id = response.conversation.id;
 
-                changeCounter(`#all-unread-messages`, btn.find('.unread-messages').text(), '-');
-                btn.find('.unread-messages').text(0).addClass('d-none');
+                if (parseInt(btn.find('.unread-messages').text()) > 0) {
+                    changeReadMessageIcon(btn.data('user-id'), 'read');
+                    chatChannel.whisper('unread-count', {
+                        auth_id: AUTH_USER_ID,
+                        count: Number.parseInt( $('#all-unread-messages').text() )
+                    }).whisper('seen-message', {
+                        user_id: AUTH_USER_ID,
+                        auth_id: btn.data('user-id')
+                    });
 
-                chatChannel.whisper('unread-count', {
-                    auth_id: AUTH_USER_ID,
-                    count: Number.parseInt( $('#all-unread-messages').text() )
-                }).whisper('seen-message', {
-                    auth_id: btn.data('user-id'),
-                    user_id: AUTH_USER_ID
-                });
+                    btn.find('.unread-messages').text(0).addClass('d-none');
+                    changeCounter(`#all-unread-messages`, btn.find('.unread-messages').text(), '-');
+                }
 
                 $.each(response.messages.data, function (key, message) {
                     $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                 });
-
-                changeReadMessageIcon(btn.data('user-id'), true);
 
                 $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .hide-scrollbar').prop("scrollHeight")}, 200);
             }
@@ -160,26 +161,32 @@ $(function() {
             $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
         });
 
-    let chatChannel = window.Echo.join(`chat`)
-                            .joining((user) => { // This user is join to chat page
-                                $('body').find(`.online-status-${user.id}`).addClass('avatar-online');
-                                $('body').find(`.online-status-${user.id}-text`).text('Online');
-                            })
-                            .leaving((user) => { // This user is leaving to chat page
-                                $('body').find(`.online-status-${user.id}`).removeClass('avatar-online');
-                                $('body').find(`.online-status-${user.id}-text`).text('Offline');
-                                updateLastActive(user.id);
-                            })
-                            .listenForWhisper('typing', (e) => {
-                                if (AUTH_USER_ID != e.user_id) return;
-                                toggleTyping(e.typing, e.auth_id);
-                                toggleTypingInChat(e.typing, e.auth_id);
-                                $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
-                            })
-                            .listenForWhisper('seen-message', (e) => {
-                                if (AUTH_USER_ID != e.auth_id) return;
-                                changeReadMessageIcon(e.user_id, true);
-                            });
+        let chatChannel = window.Echo.join(`chat`)
+                                    .joining((user) => { // This user is join to chat page
+                                        $('body').find(`.online-status-${user.id}`).addClass('avatar-online');
+                                        $('body').find(`.online-status-${user.id}-text`).text('Online');
+                                        changeReadMessageIcon(user.id, 'load');
+                                    })
+                                    .leaving((user) => { // This user is leaving to chat page
+                                        $('body').find(`.online-status-${user.id}`).removeClass('avatar-online');
+                                        $('body').find(`.online-status-${user.id}-text`).text('Offline');
+                                        updateLastActive(user.id);
+                                    })
+                                    .listenForWhisper('typing', (e) => {
+                                        if (AUTH_USER_ID != e.user_id) return;
+                                        toggleTyping(e.typing, e.auth_id);
+                                        toggleTypingInChat(e.typing, e.auth_id);
+                                        $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
+                                    })
+                                    .listenForWhisper('seen-message', (e) => {
+                                        console.log(e);
+                                        if (AUTH_USER_ID != e.auth_id) return;
+                                        changeReadMessageIcon(e.user_id, 'read');
+                                    })
+                                    .listenForWhisper('load-message', (e) => {
+                                        if (AUTH_USER_ID != e.auth_id) return;
+                                        changeReadMessageIcon(e.user_id, 'load');
+                                    });
 
 
 /**********************************************************************************************************************************************************************
@@ -195,15 +202,16 @@ $(function() {
     loadConversations();
 
     function loadConversations(page = 1, data = {}, empty = false) {
-        tabContentType = $('#tab-content-friends');
-        tabContentType.find('.conversations-list').empty();
+        tabContentType = $('#tab-content-chats');
+        $('.conversations-list').empty();
         loadData(`?page=${page}`, data, empty)
     }
 
     function loadUsers(page = 1, data = {}, empty = false) {
+        tabContentType = $('#tab-content-chats');
         tabContentType = $('#tab-content-friends');
-        tabContentType.find('.conversations-list').empty();
-        loadData(`/users?page=${page}`, data, empty)
+        $('.conversations-list').empty();
+        loadData(`users?page=${page}`, data, empty)
     }
 
     function loadData(url = '', data = {}, empty = false) {
@@ -406,13 +414,15 @@ $(function() {
         $(this).find('.btn-download-chat-img').addClass('d-none');
     });
 
-    function changeReadMessageIcon(user_id, read = true) {
-        if(read) {
-            $(`[data-user-id="${user_id}"]`).find('.unread-message-icon').addClass('d-none');
+    function changeReadMessageIcon(user_id, status = 'unread') {
+        $(`[data-user-id="${user_id}"]`).find('.message-status-icons').addClass('d-none');
+
+        if(status == 'load') {
+            $(`[data-user-id="${user_id}"]`).find('.load-message-icon').removeClass('d-none');
+        } else if(status == 'read') {
             $(`[data-user-id="${user_id}"]`).find('.read-message-icon').removeClass('d-none');
-        } else {
+        } else if(status == 'unread') {
             $(`[data-user-id="${user_id}"]`).find('.unread-message-icon').removeClass('d-none');
-            $(`[data-user-id="${user_id}"]`).find('.read-message-icon').addClass('d-none');
         }
     }
 });
