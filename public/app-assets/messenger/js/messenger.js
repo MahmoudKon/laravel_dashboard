@@ -25,8 +25,8 @@ $(function() {
                         auth_id: btn.data('user-id')
                     });
 
-                    btn.find('.unread-messages').text(0).addClass('d-none');
                     changeCounter(`#all-unread-messages`, btn.find('.unread-messages').text(), '-');
+                    btn.find('.unread-messages').text(0).addClass('d-none');
                 }
 
                 $.each(response.messages.data, function (key, message) {
