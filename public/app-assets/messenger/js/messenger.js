@@ -191,7 +191,6 @@ $(function() {
                                         $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
                                     })
                                     .listenForWhisper('seen-message', (e) => {
-                                        console.log(e);
                                         if (AUTH_USER_ID != e.auth_id) return;
                                         changeReadMessageIcon(e.user_id, 'read');
                                     })
@@ -398,7 +397,7 @@ $(function() {
     function changeCounter(element_selector, step = 1, operator = '+')
     {
         ele = $('body').find(`${element_selector}`);
-        counter = Number.parseInt(ele.text());
+        counter = Number.parseInt(ele.first().text());
 
         if (step == 0 || counter == 0) return;
 
