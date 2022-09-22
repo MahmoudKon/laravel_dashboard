@@ -27,17 +27,24 @@ class MessageController extends Controller
                                     $query->where('user_id', '<>', auth()->id());
                             }])->first();
 
+
         if ($conversation) {
+            $unread_messages = $this->getUnreadMessages($conversation);
+            $result = $this->getMessages($conversation->id);
             $this->makeReadMessages($conversation->id);
         } else {
+            $result = ['messages' => [], 'next_page' => null];
+            $unread_messages = [];
             $conversation = new Conversation();
         }
 
         return response()->json([
-                                    'view' => view('messenger.chat-window.index', compact('conversation', 'user'))->render(),
-                                    'conversation' => $conversation,
-                                    'unread_messages' => $this->getUnreadMessages($conversation->id)
-                                ] + $this->getMessages($conversation->id), 200);
+                                'view'            => view('messenger.chat-window.index', compact('conversation', 'user'))->render(),
+                                'conversation'    => $conversation,
+                                'unread_messages' => $unread_messages,
+                                'messages'        => $result['messages'],
+                                'next_page'       => $result['next_page'],
+                        ], 200);
     }
 
     public function getUnreadMessages($conversation)
@@ -53,10 +60,7 @@ class MessageController extends Controller
         $next_page = $messages->currentPage() + 1;
         $next_page = $next_page <= $messages->lastPage() ? $next_page : null;
 
-        return [
-            'messages' => $messages,
-            'next_page' => $next_page
-        ];
+        return ['messages' => $messages, 'next_page' => $next_page];
     }
 
     public function store(MessageRequest $request)

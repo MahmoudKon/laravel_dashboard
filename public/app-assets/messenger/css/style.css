@@ -18,6 +18,13 @@
     transform: translate(-50%, -50%);
 }
 
-.avatar-online::before {
+.avatar.avatar-online::before {
     background: green;
+}
+
+.message-divider .text-muted {
+    padding: 10px 45px;
+    background: #1a1d21;
+    border-radius: 4px;
+    color: #f7f7f7 !important;
 }

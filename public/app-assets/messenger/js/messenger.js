@@ -181,6 +181,8 @@ $(function() {
                                         $('body').find(`.online-status-${user.id}`).removeClass('avatar-online');
                                         $('body').find(`.online-status-${user.id}-text`).text('Offline');
                                         updateLastActive(user.id);
+                                        toggleTyping(false, user.id);
+                                        toggleTypingInChat(false, user.id);
                                     })
                                     .listenForWhisper('typing', (e) => {
                                         if (AUTH_USER_ID != e.user_id) return;
