@@ -33,7 +33,17 @@ $(function() {
                     $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                 });
 
-                $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .hide-scrollbar').prop("scrollHeight")}, 200);
+                let scrollHeight = $('body').find('[data-conversation-user]').find('.message:last').offset().top;
+                $('#load-chat .chat-body').animate({scrollTop: scrollHeight}, 200);
+
+                if (response.unread_messages.length) {
+                    $('body').find('[data-conversation-user]').append(newMessagesTemplate(response.unread_messages.length));
+                    $('#load-chat .chat-body').animate({scrollTop: scrollHeight - 100}, 1);
+
+                    $.each(response.unread_messages, function (key, message) {
+                        $('body').find('[data-conversation-user]').append(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
+                    });
+                }
             }
         });
     });
@@ -308,6 +318,10 @@ $(function() {
                 </div>`;
     }
 
+    function newMessagesTemplate(count) {
+        return `<div class="message-divider"> <small class="text-muted">New ${count} Messages</small> </div>`;
+    }
+
 
     function typing() {
         return `<div class="message user-typing">
@@ -401,8 +415,10 @@ $(function() {
 
     document.addEventListener('scroll', function (e) {
         let chat_window = $('body').find('#load-chat .hide-scrollbar');
-        if ( chat_window.scrollTop() == 0 && next_messages_page !== null)
+        if ( chat_window.scrollTop() == 0 && next_messages_page !== null) {
+            chat_window.find('.message-divider').remove();
             loadMoreMessages($('#send-message').find('[name="conversation_id"]').val(), conversation_user_id);
+        }
 
     }, true);
 

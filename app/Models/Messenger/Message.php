@@ -46,6 +46,20 @@ class Message extends Model
         return $this->belongsToMany(User::class, 'message_user')->withPivot(['read_at', 'deleted_at']);
     }
 
+    public function scopeUnreadMessages($query)
+    {
+        return $query->whereHas('users', function($query) {
+            $query->whereNull('read_at')->where('user_id', auth()->id());
+        });
+    }
+
+    public function scopereadMessages($query)
+    {
+        return $query->whereHas('users', function($query) {
+            $query->whereNotNull('read_at')->where('user_id', auth()->id());
+        });
+    }
+
     protected static function boot()
     {
         parent::boot();

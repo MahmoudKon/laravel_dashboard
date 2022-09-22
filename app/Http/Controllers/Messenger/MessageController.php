@@ -30,16 +30,25 @@ class MessageController extends Controller
         if ($conversation) {
             $this->makeReadMessages($conversation->id);
         } else {
-            $messages = [];
             $conversation = new Conversation();
         }
 
-        return response()->json(['view' => view('messenger.chat-window.index', compact('conversation', 'user'))->render(), 'conversation' => $conversation] + $this->getMessages($conversation->id), 200);
+        return response()->json([
+                                    'view' => view('messenger.chat-window.index', compact('conversation', 'user'))->render(),
+                                    'conversation' => $conversation,
+                                    'unread_messages' => $this->getUnreadMessages($conversation->id)
+                                ] + $this->getMessages($conversation->id), 200);
     }
+
+    public function getUnreadMessages($conversation)
+    {
+        return Message::where('conversation_id', $conversation)->unreadMessages()->orderBy('created_at', 'ASC')->get();
+    }
+
 
     public function getMessages($conversation)
     {
-        $messages = Message::where('conversation_id', $conversation)->orderBy('created_at', 'DESC')->paginate(10);
+        $messages = Message::where('conversation_id', $conversation)->readMessages()->orderBy('created_at', 'DESC')->paginate(10);
 
         $next_page = $messages->currentPage() + 1;
         $next_page = $next_page <= $messages->lastPage() ? $next_page : null;
