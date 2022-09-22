@@ -29,19 +29,22 @@ $(function() {
                     btn.find('.unread-messages').text(0).addClass('d-none');
                 }
 
-                if (response.messages.data && response.messages.data.length) {
+                let scrollTop = 0;
+                if (response.messages.data && response.messages.data.length) { // load latest read messages
                     $.each(response.messages.data, function (key, message) {
                         $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                     });
 
                     $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 200);
+
+                    scrollTop = $('body').find('[data-conversation-user] .message:last').offset().top;
                 } else if (response.unread_messages.length == 0) {
                     $('body').find('[data-conversation-user]').prepend(emptyChatTemplate());
                 }
 
                 if (response.unread_messages.length) {
                     $('body').find('[data-conversation-user]').append(newMessagesTemplate(response.unread_messages.length));
-                    $('#load-chat .chat-body').animate({scrollTop: $('body').find('[data-conversation-user] .message:last').offset().top}, 1);
+                    $('#load-chat .chat-body').animate({scrollTop: scrollTop}, 1);
 
                     $.each(response.unread_messages, function (key, message) {
                         $('body').find('[data-conversation-user]').append(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
@@ -424,6 +427,9 @@ $(function() {
         let chat_window = $('body').find('#load-chat .hide-scrollbar');
         if ( chat_window.scrollTop() == 0 && next_messages_page !== null)
             loadMoreMessages($('#send-message').find('[name="conversation_id"]').val(), conversation_user_id);
+
+        if (chat_window.scrollTop() + chat_window.innerHeight() >= chat_window[0].scrollHeight)
+            chat_window.find('.message-divider').remove();
     }, true);
 
     $('body').on('mouseenter', '#load-chat .message .message-content', function (e) {
