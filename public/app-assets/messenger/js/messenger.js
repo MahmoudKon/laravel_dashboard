@@ -29,12 +29,18 @@ $(function() {
                     btn.find('.unread-messages').text(0).addClass('d-none');
                 }
 
-                $.each(response.messages.data, function (key, message) {
-                    $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
-                });
+                scrollHeight = 0;
+                if (response.messages.data.length) {
+                    $.each(response.messages.data, function (key, message) {
+                        $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
+                    });
 
-                let scrollHeight = $('body').find('[data-conversation-user]').find('.message:last').offset().top;
-                $('#load-chat .chat-body').animate({scrollTop: scrollHeight}, 200);
+                    let scrollHeight = $('body').find('[data-conversation-user]').find('.message:last').offset().top;
+                    $('#load-chat .chat-body').animate({scrollTop: scrollHeight}, 200);
+
+                } else if (response.unread_messages.length == 0) {
+                    $('body').find('[data-conversation-user]').prepend(emptyChatTemplate());
+                }
 
                 if (response.unread_messages.length) {
                     $('body').find('[data-conversation-user]').append(newMessagesTemplate(response.unread_messages.length));
@@ -179,7 +185,8 @@ $(function() {
                                     .joining((user) => { // This user is join to chat page
                                         $('body').find(`.online-status-${user.id}`).addClass('avatar-online');
                                         $('body').find(`.online-status-${user.id}-text`).text('Online');
-                                        changeReadMessageIcon(user.id, 'receive');
+                                        if (parent($('body').find(`.unread-messages-user-${user.id}`).text()) > 0)
+                                            changeReadMessageIcon(user.id, 'receive');
                                     })
                                     .leaving((user) => { // This user is leaving to chat page
                                         $('body').find(`.online-status-${user.id}`).removeClass('avatar-online');
