@@ -16,7 +16,7 @@ $(function() {
                 conversation_id = response.conversation.id;
 
                 if (parseInt(btn.find('.unread-messages').text()) > 0) {
-                    changeReadMessageIcon(btn.data('user-id'), 'read');
+                    changeReadMessageIcon(btn.data('user-id'), 'receive');
                     chatChannel.whisper('unread-count', {
                         auth_id: AUTH_USER_ID,
                         count: Number.parseInt( $('#all-unread-messages').text() )
@@ -51,7 +51,7 @@ $(function() {
             success: function(response, textStatus, jqXHR) {
                 $('[name="message"]').val('');
                 $('[name="file"]').val('');
-                changeReadMessageIcon($('[name="user_id"]').val(), false);
+                changeReadMessageIcon($('[name="user_id"]').val(), 'send');
                 reOrder(response.message, response.user_id);
                 $('#load-chat').find(`[data-conversation-user='${response.user_id}']`).append(messageTemplate(response.message, 'message-out'));
                 $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
@@ -144,7 +144,7 @@ $(function() {
             if (conversation_body.length == 0) {
                 changeCounter(`.unread-messages-user-${data.message.user_id}`);
                 changeCounter(`#all-unread-messages`);
-                changeReadMessageIcon(data.message.user_id, false);
+                changeReadMessageIcon(data.message.user_id, 'receive');
                 try { audio.play(); } catch (error) {}
                 return;
             }
@@ -157,7 +157,7 @@ $(function() {
             });
 
             conversation_body.append(messageTemplate(data.message));
-            changeReadMessageIcon(data.message.user_id, true);
+            changeReadMessageIcon(data.message.user_id, 'read');
             $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
         });
 
@@ -165,7 +165,7 @@ $(function() {
                                     .joining((user) => { // This user is join to chat page
                                         $('body').find(`.online-status-${user.id}`).addClass('avatar-online');
                                         $('body').find(`.online-status-${user.id}-text`).text('Online');
-                                        changeReadMessageIcon(user.id, 'load');
+                                        changeReadMessageIcon(user.id, 'receive');
                                     })
                                     .leaving((user) => { // This user is leaving to chat page
                                         $('body').find(`.online-status-${user.id}`).removeClass('avatar-online');
@@ -185,7 +185,7 @@ $(function() {
                                     })
                                     .listenForWhisper('load-message', (e) => {
                                         if (AUTH_USER_ID != e.auth_id) return;
-                                        changeReadMessageIcon(e.user_id, 'load');
+                                        changeReadMessageIcon(e.user_id, 'receive');
                                     });
 
 
@@ -414,15 +414,15 @@ $(function() {
         $(this).find('.btn-download-chat-img').addClass('d-none');
     });
 
-    function changeReadMessageIcon(user_id, status = 'unread') {
+    function changeReadMessageIcon(user_id, status = 'send') {
         $(`[data-user-id="${user_id}"]`).find('.message-status-icons').addClass('d-none');
 
-        if(status == 'load') {
-            $(`[data-user-id="${user_id}"]`).find('.load-message-icon').removeClass('d-none');
+        if(status == 'receive') {
+            $(`[data-user-id="${user_id}"]`).find('.receive-message-icon').removeClass('d-none');
         } else if(status == 'read') {
             $(`[data-user-id="${user_id}"]`).find('.read-message-icon').removeClass('d-none');
-        } else if(status == 'unread') {
-            $(`[data-user-id="${user_id}"]`).find('.unread-message-icon').removeClass('d-none');
+        } else if(status == 'send') {
+            $(`[data-user-id="${user_id}"]`).find('.send-message-icon').removeClass('d-none');
         }
     }
 });
