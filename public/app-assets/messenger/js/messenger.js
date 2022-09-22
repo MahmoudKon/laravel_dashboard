@@ -59,6 +59,7 @@ $(function() {
             processData: false,
             contentType: false,
             success: function(response, textStatus, jqXHR) {
+                $('#empty-chat, #empty-conversations').remove();
                 $('[name="message"]').val('');
                 $('[name="file"]').val('');
                 changeReadMessageIcon($('[name="user_id"]').val(), 'send');
@@ -148,6 +149,7 @@ $(function() {
     window.Echo.channel(`private-new-message.${AUTH_USER_ID}`)
         .listen('MessageCreated', (data) => {
             $('body').find(`[data-conversation-user="${conversation_user_id}"]`).find('.user-typing').remove();
+            $('#empty-conversations').remove();
             reOrder(data.message, data.message.user_id);
             let conversation_body = $('body').find(`[data-conversation-user="${data.message.user_id}"]`);
 
@@ -159,7 +161,9 @@ $(function() {
                 return;
             }
 
-            makeReadAll($('body').find('input[name="conversation_id"').val());
+            $('#empty-chat').remove();
+            if ($('body').find('input[name="conversation_id"').val())
+                makeReadAll($('body').find('input[name="conversation_id"').val());
 
             chatChannel.whisper('seen-message', {
                 auth_id: $('[name="user_id"]').val(),
@@ -214,14 +218,11 @@ $(function() {
 
     function loadConversations(page = 1, data = {}, empty = false) {
         tabContentType = $('#tab-content-chats');
-        $('.conversations-list').empty();
         loadData(`?page=${page}`, data, empty)
     }
 
     function loadUsers(page = 1, data = {}, empty = false) {
-        tabContentType = $('#tab-content-chats');
         tabContentType = $('#tab-content-friends');
-        $('.conversations-list').empty();
         loadData(`users?page=${page}`, data, empty)
     }
 
@@ -233,8 +234,8 @@ $(function() {
             data: data,
             success: function (response) {
                 next_page = response.next_page;
-                if (empty) $('.conversations-list').empty();
-                $('.conversations-list').append(response.view);
+                if (empty) tabContentType.find('.conversations-list').empty();
+                tabContentType.find('.conversations-list').append(response.view);
 
             }
         });
@@ -288,8 +289,6 @@ $(function() {
             type = type == 'application' || type == 'text' ? 'Attachment' : type;
             msg = `Send ${type}`;
         }
-
-        ele.find('.last-message').text(sender + ' ' + msg);
 
         ele.find('.last-message').text(sender + ' ' + msg);
         ele.find('.message-time').text(message.created_at);
