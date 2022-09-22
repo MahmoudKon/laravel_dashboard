@@ -185,7 +185,7 @@ $(function() {
                                     .joining((user) => { // This user is join to chat page
                                         $('body').find(`.online-status-${user.id}`).addClass('avatar-online');
                                         $('body').find(`.online-status-${user.id}-text`).text('Online');
-                                        if (parent($('body').find(`.unread-messages-user-${user.id}`).text()) > 0)
+                                        if (parseInt($('body').find(`.unread-messages-user-${user.id}`).text()) > 0)
                                             changeReadMessageIcon(user.id, 'receive');
                                     })
                                     .leaving((user) => { // This user is leaving to chat page
