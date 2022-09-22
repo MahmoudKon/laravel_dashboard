@@ -29,22 +29,19 @@ $(function() {
                     btn.find('.unread-messages').text(0).addClass('d-none');
                 }
 
-                scrollHeight = 0;
                 if (response.messages.data && response.messages.data.length) {
                     $.each(response.messages.data, function (key, message) {
                         $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                     });
 
-                    let scrollHeight = $('body').find('[data-conversation-user]').find('.message:last').offset().top;
-                    $('#load-chat .chat-body').animate({scrollTop: scrollHeight}, 200);
-
+                    $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 200);
                 } else if (response.unread_messages.length == 0) {
                     $('body').find('[data-conversation-user]').prepend(emptyChatTemplate());
                 }
 
                 if (response.unread_messages.length) {
                     $('body').find('[data-conversation-user]').append(newMessagesTemplate(response.unread_messages.length));
-                    $('#load-chat .chat-body').animate({scrollTop: scrollHeight - 100}, 1);
+                    $('#load-chat .chat-body').animate({scrollTop: $('body').find('[data-conversation-user] .message-divider').offset().top}, 1);
 
                     $.each(response.unread_messages, function (key, message) {
                         $('body').find('[data-conversation-user]').append(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
@@ -66,6 +63,7 @@ $(function() {
             contentType: false,
             success: function(response, textStatus, jqXHR) {
                 $('#empty-chat, #empty-conversations').remove();
+                $('#load-chat').find('.message-divider').remove();
                 $('[name="message"]').val('');
                 $('[name="file"]').val('');
                 changeReadMessageIcon($('[name="user_id"]').val(), 'send');
@@ -166,6 +164,8 @@ $(function() {
                 try { audio.play(); } catch (error) {}
                 return;
             }
+
+            $('#load-chat').find('.message-divider').remove();
 
             $('#empty-chat').remove();
             if ($('body').find('input[name="conversation_id"').val())
@@ -422,11 +422,8 @@ $(function() {
 
     document.addEventListener('scroll', function (e) {
         let chat_window = $('body').find('#load-chat .hide-scrollbar');
-        if ( chat_window.scrollTop() == 0 && next_messages_page !== null) {
-            chat_window.find('.message-divider').remove();
+        if ( chat_window.scrollTop() == 0 && next_messages_page !== null)
             loadMoreMessages($('#send-message').find('[name="conversation_id"]').val(), conversation_user_id);
-        }
-
     }, true);
 
     $('body').on('mouseenter', '#load-chat .message .message-content', function (e) {
