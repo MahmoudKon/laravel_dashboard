@@ -30,7 +30,7 @@ $(function() {
                 }
 
                 scrollHeight = 0;
-                if (response.messages.data.length) {
+                if (response.messages.data && response.messages.data.length) {
                     $.each(response.messages.data, function (key, message) {
                         $('body').find('[data-conversation-user]').prepend(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                     });
