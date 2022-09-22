@@ -41,7 +41,7 @@ $(function() {
 
                 if (response.unread_messages.length) {
                     $('body').find('[data-conversation-user]').append(newMessagesTemplate(response.unread_messages.length));
-                    $('#load-chat .chat-body').animate({scrollTop: $('body').find('[data-conversation-user] .message-divider').offset().top}, 1);
+                    $('#load-chat .chat-body').animate({scrollTop: $('body').find('[data-conversation-user] .message:last').offset().top}, 1);
 
                     $.each(response.unread_messages, function (key, message) {
                         $('body').find('[data-conversation-user]').append(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
