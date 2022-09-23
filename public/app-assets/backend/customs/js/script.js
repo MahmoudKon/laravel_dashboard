@@ -67,8 +67,11 @@ $(function () {
 
                 if (response.reload) return location.reload(true);
 
-                $('.modal').modal("hide");
                 toast(response.message, null, response.icon);
+
+                if (response.stop) return;
+
+                $('.modal').modal("hide");
                 form.trigger("reset");
                 $("select").val('').trigger('change');
                 rows();

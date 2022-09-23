@@ -239,7 +239,7 @@ $(function() {
     function loadData(url = '', data = {}, empty = false) {
         jqXHR.abort();
         jqXHR = $.ajax({
-            url: window.location.href+url,
+            url: window.location.href+'/'+url,
             type: "GET",
             data: data,
             success: function (response) {
