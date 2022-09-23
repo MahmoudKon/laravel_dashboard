@@ -11,7 +11,7 @@
 
         <div class="profile-body">
             <div class="avatar avatar-xl">
-                <img class="avatar-img" src="{{ asset($user->image) }}" alt="#" width="100%">
+                <img class="avatar-img" src="{{ asset($user->avatar) }}" alt="#" width="100%">
             </div>
 
             <h4 class="mb-1">{{ $user->name }}</h4>
@@ -61,10 +61,10 @@
         <!-- List -->
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
-                <form action="{{ route('logout') }}" method="POST">
+                <form action="{{ route('logout') }}" method="POST" class="text-center">
                     @csrf
                     <button type="submit" class="btn btn-sm btn-danger cursor-pointer">
-                        <i class="fa fa-sign-out"></i> Logout
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
                     </button>
                 </form>
             </li>

@@ -16,10 +16,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
+use Messenger\Chat\Traits\UserHelper8;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, UserHelper8;
 
     protected $guard_name = 'web,api';
 
@@ -137,53 +138,5 @@ class User extends Authenticatable
     public function slug()
     {
         return $this->name;
-    }
-
-    protected function avatar(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => $this->image ?? 'http://cdn.onlinewebfonts.com/svg/img_568657.png',
-        );
-    }
-
-    protected function lastSeen(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => Carbon::parse($value)->diffForHumans(),
-        );
-    }
-
-    public function messages()
-    {
-        return $this->belongsToMany(Message::class, 'message_user')->withPivot(['read_at', 'deleted_at']);
-    }
-
-    public function conversations()
-    {
-        return $this->belongsToMany(Conversation::class, 'conversation_user')->latest('last_message_id')->withPivot(['joined_at', 'role'])->with('lastMessage');
-    }
-
-    public function isOnline()
-    {
-        return Cache::has('user-is-online-' . $this->id);
-    }
-
-    public function scopeSearch($query)
-    {
-        return $query->when(request('search'), function($query) {
-                        $query->where('name', 'LIKE', '%'.request('search').'%')->orWhere('email', 'LIKE', '%'.request('search').'%');
-                    });
-    }
-
-    public function scopeHasConversationWithAuth($query)
-    {
-        return $query->whereHas('conversations', function($query) {
-                            $query->onlyWithAuth();
-                        });
-    }
-
-    public function unreadMessages()
-    {
-        return MessageUser::whereNull('read_at')->where('user_id', auth()->id())->count();
     }
 }

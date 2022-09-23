@@ -1,16 +1,16 @@
 <!-- Navigation -->
 <nav class="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
     <!-- Brand -->
-    <a href="{{ routeHelper('/') }}" title="Dashboard" class="d-none d-xl-block mb-6" style="font-size: 25px">
+    <a href="{{ url('/') }}" title="Dashboard" class="d-none d-xl-block mb-6" style="font-size: 30px">
         <i class="fa fa-house"></i>
     </a>
 
     <a href="{{ route('user.details', auth()->id()) }}" class="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
         <div class="avatar avatar-online mx-auto d-none d-xl-block">
-            <img class="avatar-img" src="{{ asset(auth()->user()->avatar) }}" alt="" style='height:44px; width:44px'>
+            <img class="avatar-img" src="{{ asset(auth()->user()->avatar) }}" alt="">
         </div>
         <div class="avatar avatar-online avatar-xs d-xl-none">
-            <img class="avatar-img" src="{{ asset(auth()->user()->avatar) }}" alt="" style='height:44px; width:44px'>
+            <img class="avatar-img" src="{{ asset(auth()->user()->avatar) }}" alt="">
         </div>
         <small>{{ auth()->user()->name }}</small>
     </a>
@@ -19,24 +19,9 @@
     <ul class="d-flex nav navbar-nav flex-row flex-xl-column flex-grow-1 justify-content-between justify-content-xl-center align-items-center w-100 py-4 py-lg-2 px-lg-3"
         role="tablist">
 
-        <!-- New chat -->
-        <li class="nav-item d-none">
-            <a class="nav-link py-0 py-lg-8" id="tab-create-chat" href="#tab-content-create-chat" title="Create chat"
-                data-bs-toggle="tab" role="tab">
-                <div class="icon icon-xl" id="create-conversation">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-edit-3">
-                        <path d="M12 20h9"></path>
-                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                    </svg>
-                </div>
-            </a>
-        </li>
-
         <!-- Chats -->
         <li class="nav-item">
-            <a class="nav-link py-0 py-lg-8" id="tab-friends" href="#tab-content-friends" title="Friends" data-bs-toggle="tab" role="tab">
+            <a class="nav-link active py-0 py-lg-8" id="tab-friends" href="#tab-content-friends" title="Friends" data-bs-toggle="tab" role="tab">
                 <div class="icon icon-xl">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                 </div>
@@ -45,7 +30,7 @@
 
         <!-- Chats -->
         <li class="nav-item">
-            <a class="nav-link active py-0 py-lg-8" id="tab-chats" href="#tab-content-chats" title="Chats"
+            <a class="nav-link py-0 py-lg-8" id="tab-chats" href="#tab-content-chats" title="Chats"
                 data-bs-toggle="tab" role="tab">
                 <div class="icon icon-xl icon-badged" id="open-list-chat">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

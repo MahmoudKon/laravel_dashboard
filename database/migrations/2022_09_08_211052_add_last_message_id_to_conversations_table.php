@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::table('conversations', function (Blueprint $table) {
             $table->foreignId('last_message_id')->nullable()->constrained('messages')->cascadeOnUpdate()->nullOnDelete();
         });
+
+        if (! Schema::hasColumn('users', 'last_seen')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->timestamp('last_seen')->nullable();
+            });
+        }
     }
 
     /**

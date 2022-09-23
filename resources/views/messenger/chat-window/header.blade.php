@@ -22,7 +22,7 @@
                     <div class="row align-items-center gx-5">
                         <div class="col-auto">
                             <a href="{{ route('user.details', $user) }}" data-bs-toggle="modal" data-bs-target="#modal-user-profile" class="avatar d-none d-xl-inline-block {{ $user->isOnline() ? 'avatar-online' : '' }} online-status-{{ $user->id ?? '' }}">
-                                <img class="avatar-img" src="{{ asset($user->avatar) }}" alt="" width="100%" style="max-height: 44px;">
+                                <img class="avatar-img" src="{{ asset($user->avatar) }}" alt="" style="height: 44px;">
                             </a>
                         </div>
 

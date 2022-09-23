@@ -1,11 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Messenger\ConversationController;
-use App\Http\Controllers\Messenger\MessageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +26,4 @@ Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('mainte
 
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
 Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
-
-
-Route::middleware('auth')->prefix(LaravelLocalization::setLocale().'/messenger')->group(function() {
-    Route::get('/', [ConversationController::class, 'index'])->name('messenger');
-    Route::get('users', [ConversationController::class, 'users'])->name('users');
-
-    Route::get('update/last-seen', [ConversationController::class, 'updateLastSeen'])->name('conversations.updateLastSeen');
-    Route::get('user/{user}/details', [ConversationController::class, 'userDetails'])->name('user.details');
-
-    Route::get('conversation/{user}/messages', [MessageController::class, 'index'])->name('conversation.user.messages');
-    Route::get('conversation/{conversation}/messages/load-more', [MessageController::class, 'getMessages'])->name('conversation.load.messages');
-    Route::post('messages', [MessageController::class, 'store'])->name('message.store');
-    Route::get('update/read-at', [MessageController::class, 'updateReadAt'])->name('messages.updateReadAt');
-});
+Messenger\Chat\MessengerRoutes::routes();

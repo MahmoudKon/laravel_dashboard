@@ -1,6 +1,7 @@
 @forelse ($users as $user)
     @php $unread_count = $user->conversations->first()?->unread; @endphp
     @php $user_unread_count = $user->conversations->first()?->user_unread; @endphp
+    @php $is_seen = $user->isOnline() || $user->getAttributes()['last_seen'] >= $user->conversations->first()?->lastMessage->getAttributes()['created_at']; @endphp
 
     <a href="{{ route('conversation.user.messages', $user) }}" class="card conversation-item border-0 text-reset user-room" data-user-id="{{ $user->id }}">
         <div class="card-body">
@@ -38,9 +39,9 @@
                             </span>
                         </div>
 
-                        <i class="fa-solid fa-check message-status-icons d-none send-message-icon"></i>
-                        <i class="fa-solid fa-check-double message-status-icons {{ ($user_unread_count !== $unread_count) && $user->conversations->count() ? '' : 'd-none' }} receive-message-icon"></i>
-                        <i class="fa-solid fa-check-double message-status-icons text-success {{ $user_unread_count == 0 && $unread_count == 0 && $user->conversations->count() ? '' : 'd-none' }} read-message-icon"></i>
+                        <i class="fa-solid fa-check message-status-icons {{ $is_seen ? 'd-none' : '' }} send-message-icon"></i>
+                        <i class="fa-solid fa-check-double message-status-icons {{ ($user_unread_count !== $unread_count) && $is_seen && $user->conversations->count() ? '' : 'd-none' }} receive-message-icon"></i>
+                        <i class="fa-solid fa-check-double message-status-icons text-success {{ $user_unread_count == 0 && $is_seen && $unread_count == 0 && $user->conversations->count() ? '' : 'd-none' }} read-message-icon"></i>
                         <div class="badge badge-circle bg-primary ms-5 unread-messages unread-messages-user-{{ $user->id }} {{ $unread_count ? '' : 'd-none' }}"> {{ $unread_count ?? 0 }} </div>
                     </div>
                 </div>

@@ -1,0 +1,30 @@
+.message .message-content {
+    position: relative;
+}
+
+.btn-download-chat-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #16191c8a;
+}
+
+.btn-download-chat-img a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.avatar-online::before {
+    background: green;
+}
+
+.message-divider .text-muted {
+    padding: 10px 45px;
+    background: #1a1d21;
+    border-radius: 4px;
+    color: #f7f7f7 !important;
+}

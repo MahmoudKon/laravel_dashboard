@@ -1,6 +1,9 @@
-$(function() {
+let jqXHR = {abort: function () {}}; // init empty object
+let next_page  = 1;
+let next_messages_page = 1;
+let conversation_user_id = null;
 
-    let conversation_user_id = null;
+$(function() {
     $('body').on('click', '.user-room', function(e) {
         e.preventDefault();
         let btn = $(this);
@@ -16,7 +19,8 @@ $(function() {
                 conversation_id = response.conversation.id;
 
                 if (parseInt(btn.find('.unread-messages').text()) > 0) {
-                    changeReadMessageIcon(btn.data('user-id'), 'receive');
+                    changeReadMessageIcon(btn.data('user-id'), 'read');
+                    // make event [ unread-count ] on the fly to make sync between unread count messages in chat with dashboard
                     chatChannel.whisper('unread-count', {
                         auth_id: AUTH_USER_ID,
                         count: Number.parseInt( $('#all-unread-messages').text() )
@@ -50,11 +54,9 @@ $(function() {
                         $('body').find('[data-conversation-user]').append(messageTemplate(message, message.user_id == AUTH_USER_ID ? 'message-out' : ''));
                     });
                 }
-
             }
         });
     });
-
 
     $('body').on('submit', '#send-message', function(e) {
         e.preventDefault();
@@ -103,7 +105,7 @@ $(function() {
     });
 
     $('#tab-content-chats .hide-scrollbar').scroll(function () {
-        if ( $(this).scrollTop() + $(this).innerHeight() + 5 == $(this)[0].scrollHeight && next_page !== null)
+        if ( $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight && next_page !== null)
             loadConversations(next_page, {search: $('input#search').val()});
     });
 
@@ -113,13 +115,13 @@ $(function() {
     });
 
     $('#tab-content-friends .hide-scrollbar').scroll(function () {
-        if ( $(this).scrollTop() + $(this).innerHeight() + 5 >= $(this)[0].scrollHeight && next_page !== null)
+        if ( $(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight && next_page !== null)
             loadUsers(next_page, {search: $('input#users-search').val()});
     });
 
 
     let time = false;
-    $('body').on('keydown', '#send-message input[name="message"]', function(){
+    $('body').on('keydown', '[name="message"]', function(){
         if (event.keyCode > 90 || event.keyCode < 65) return;
 
         chatChannel.whisper('typing', {
@@ -135,7 +137,7 @@ $(function() {
                 auth_id: AUTH_USER_ID,
                 user_id: $('input[name="user_id"]').val()
             });
-        }, 600);
+        }, 500);
     });
 
 
@@ -152,81 +154,82 @@ $(function() {
 /**********************************************************************************************************************************************************************
 //! SECTION **************************************************************** PUSHER Functions *************************************************************************
 **********************************************************************************************************************************************************************/
-
     // To get message from pusher and append it
-    window.Echo.channel(`private-new-message.${AUTH_USER_ID}`)
-        .listen('MessageCreated', (data) => {
-            $('body').find(`[data-conversation-user="${conversation_user_id}"]`).find('.user-typing').remove();
-            $('#empty-conversations').remove();
-            reOrder(data.message, data.message.user_id);
-            let conversation_body = $('body').find(`[data-conversation-user="${data.message.user_id}"]`);
+    window.Echo.private(`new-message.${AUTH_USER_ID}`)
+                .listen('\\Messenger\\Chat\\Events\\MessageCreated', (data) => {
+                    $('body').find(`[data-conversation-user="${conversation_user_id}"]`).find('.user-typing').remove();
+                    $('#empty-conversations').remove();
+                    reOrder(data.message, data.message.user_id);
+                    let conversation_body = $('body').find(`[data-conversation-user="${data.message.user_id}"]`);
 
-            if (conversation_body.length == 0) {
-                changeCounter(`.unread-messages-user-${data.message.user_id}`);
-                changeCounter(`#all-unread-messages`);
-                changeReadMessageIcon(data.message.user_id, 'receive');
-                try { audio.play(); } catch (error) {}
-                return;
-            }
+                    if (conversation_body.length == 0) {
+                        changeCounter(`.unread-messages-user-${data.message.user_id}`);
+                        changeCounter(`#all-unread-messages`);
+                        changeReadMessageIcon(data.message.user_id, 'receive');
 
-            $('#load-chat').find('.message-divider').remove();
+                        chatChannel.whisper('load-message', {
+                            user_id: AUTH_USER_ID,
+                            auth_id: data.message.user_id
+                        });
 
-            $('#empty-chat').remove();
-            if ($('body').find('input[name="conversation_id"').val())
-                makeReadAll($('body').find('input[name="conversation_id"').val());
+                        try { audio.play(); } catch (error) {}
+                        return;
+                    }
 
-            chatChannel.whisper('seen-message', {
-                auth_id: $('[name="user_id"]').val(),
-                user_id: AUTH_USER_ID
-            });
+                    $('#load-chat').find('.message-divider').remove();
 
-            conversation_body.append(messageTemplate(data.message));
-            changeReadMessageIcon(data.message.user_id, 'read');
-            $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
-        });
+                    $('#empty-chat').remove();
+                    if ($('body').find('input[name="conversation_id"').val())
+                        makeReadAll($('body').find('input[name="conversation_id"').val());
 
-        let chatChannel = window.Echo.join(`chat`)
-                                    .joining((user) => { // This user is join to chat page
-                                        $('body').find(`.online-status-${user.id}`).addClass('avatar-online');
-                                        $('body').find(`.online-status-${user.id}-text`).text('Online');
-                                        if (parseInt($('body').find(`.unread-messages-user-${user.id}`).text()) > 0)
-                                            changeReadMessageIcon(user.id, 'receive');
-                                    })
-                                    .leaving((user) => { // This user is leaving to chat page
-                                        $('body').find(`.online-status-${user.id}`).removeClass('avatar-online');
-                                        $('body').find(`.online-status-${user.id}-text`).text('Offline');
-                                        updateLastActive(user.id);
-                                        toggleTyping(false, user.id);
-                                        toggleTypingInChat(false, user.id);
-                                    })
-                                    .listenForWhisper('typing', (e) => {
-                                        if (AUTH_USER_ID != e.user_id) return;
-                                        toggleTyping(e.typing, e.auth_id);
-                                        toggleTypingInChat(e.typing, e.auth_id);
-                                        $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
-                                    })
-                                    .listenForWhisper('seen-message', (e) => {
-                                        if (AUTH_USER_ID != e.auth_id) return;
-                                        changeReadMessageIcon(e.user_id, 'read');
-                                    })
-                                    .listenForWhisper('load-message', (e) => {
-                                        if (AUTH_USER_ID != e.auth_id) return;
-                                        changeReadMessageIcon(e.user_id, 'receive');
-                                    });
+                    chatChannel.whisper('seen-message', {
+                        user_id: AUTH_USER_ID,
+                        auth_id: data.message.user_id
+                    });
+
+                    conversation_body.append(messageTemplate(data.message));
+                    changeReadMessageIcon(data.message.user_id, 'read');
+
+                    $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
+                });
+
+    let chatChannel = window.Echo.join(`chat`)
+                            .joining((user) => { // This user is join to chat page
+                                $('body').find(`.online-status-${user.id}`).addClass('avatar-online');
+                                $('body').find(`.online-status-${user.id}-text`).text('Online');
+
+                                if ($(`[data-user-id="${user.id}"]`).find('.d-none.send-message-icon').length == 0) {
+                                    changeReadMessageIcon(user.id, 'receive');
+                                }
+                            })
+                            .leaving((user) => { // This user is leaving to chat page
+                                $('body').find(`.online-status-${user.id}`).removeClass('avatar-online');
+                                $('body').find(`.online-status-${user.id}-text`).text('Offline');
+                                toggleTyping(false, user.id);
+                                toggleTypingInChat(false, user.id);
+                                updateLastActive(user.id);
+                            })
+                            .listenForWhisper('typing', (e) => {
+                                if (AUTH_USER_ID != e.user_id) return;
+                                toggleTyping(e.typing, e.auth_id);
+                                toggleTypingInChat(e.typing, e.auth_id);
+                                $('#load-chat .chat-body').animate({scrollTop: $('#load-chat .chat-body').prop("scrollHeight")}, 100);
+                            })
+                            .listenForWhisper('seen-message', (e) => {
+                                if (AUTH_USER_ID != e.auth_id) return;
+                                changeReadMessageIcon(e.user_id, 'read');
+                            })
+                            .listenForWhisper('load-message', (e) => {
+                                if (AUTH_USER_ID != e.auth_id) return;
+                                changeReadMessageIcon(e.user_id, 'receive');
+                            });
 
 
 /**********************************************************************************************************************************************************************
 //? LINK **************************************************************** Helper Functions ****************************************************************************
 **********************************************************************************************************************************************************************/
 
-
-    // Load Conversations list
-    let jqXHR = {abort: function () {}}; // init empty object
-    let next_page  = 1;
-    let next_messages_page = 1;
     let tabContentType = null;
-    loadConversations();
-
     function loadConversations(page = 1, data = {}, empty = false) {
         tabContentType = $('#tab-content-chats');
         loadData(`?page=${page}`, data, empty)
@@ -247,7 +250,6 @@ $(function() {
                 next_page = response.next_page;
                 if (empty) tabContentType.find('.conversations-list').empty();
                 tabContentType.find('.conversations-list').append(response.view);
-
             }
         });
     }
@@ -274,8 +276,7 @@ $(function() {
             url: window.location.href+'/update/last-seen',
             type: "get",
             data: {user_id: id},
-            success: function (response, textStatus, jqXHR) {
-            }
+            success: function (response, textStatus, jqXHR) {}
         });
     }
 
@@ -303,17 +304,19 @@ $(function() {
 
         ele.find('.last-message').text(sender + ' ' + msg);
         ele.find('.message-time').text(message.created_at);
+        tabContentType.find(`.conversations-list .user-room[data-user-id="${user_id}"]`).remove();
         tabContentType.find('.conversations-list').prepend(ele.get(0));
     }
 
-
     function messageTemplate(message, new_class = '') {
+        let img = message.user.image ? '/'+message.user.image : message.user.avatar;
         return `<div class="message ${new_class}">
                     <a href="${window.location.href}/user/${message.user_id}/details" data-bs-toggle="modal" data-bs-target="#modal-user-profile" class="avatar avatar-responsive">
-                        <img class="avatar-img" src="${window.location.origin+'/'+message.user.image}" alt="" width='100%'>
+                        <img class="avatar-img" src="${img}" alt="" width='100%'>
                     </a>
 
                     <div class="message-inner">
+                        <div class='layout-download d-none'></div>
                         <div class="message-body">
                             <div class="message-content">
                                 <div class="${message.type == 'text' ? 'message-text' : ''}">
@@ -362,7 +365,6 @@ $(function() {
 
                 </div>`;
     }
-
 
 
     function toggleTyping(check, user_id)
@@ -424,10 +426,9 @@ $(function() {
     {
         ele = $('body').find(`${element_selector}`);
         counter = Number.parseInt(ele.first().text());
+        if (step == 0 || (counter < step && operator == '-')) return;
 
-        if (step == 0 || counter == 0) return;
-
-        counter = eval(counter +`${operator}`+ Number.parseInt(step));
+        counter = eval(parseInt(counter) +`${operator}`+ Number.parseInt(step));
         ele.text(counter);
         ele.removeClass('d-none');
     }
@@ -447,7 +448,11 @@ $(function() {
 
         if (chat_window.scrollTop() + chat_window.innerHeight() >= chat_window[0].scrollHeight)
             chat_window.find('.message-divider').remove();
+
     }, true);
+
+    $('#tab-friends').click();
+
 
     $('body').on('mouseenter', '#load-chat .message .message-content', function (e) {
         $(this).find('.btn-download-chat-img').removeClass('d-none');
