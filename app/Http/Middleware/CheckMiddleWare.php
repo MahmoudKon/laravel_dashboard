@@ -24,6 +24,8 @@ class CheckMiddleWare
         // To check auth user is has specific roles, this roles can access to this page without conditions.
         if (!auth()->check() || isSuperAdmin()) return $next($request);
 
+        if (auth()->user()->permissions()->count() == 0 && ! isSuperAdmin()) return redirect('/');
+
         // get the route object
         $route = request()->route();
 
