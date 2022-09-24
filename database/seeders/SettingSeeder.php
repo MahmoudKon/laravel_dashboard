@@ -20,12 +20,12 @@ class SettingSeeder extends Seeder
         $rows = [
             [
                 'key' => 'logo',
-                'value' => 'samples/logo/ivas.png',
+                'value' => 'samples/images/logo.png',
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Image%')->first()->id,
                 'active' => true,
             ], [
                 'key' => 'site_name',
-                'value' => 'Ivas',
+                'value' => env('APP_NAME', 'Laravel'),
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Normal Text%')->first()->id,
                 'active' => true,
             ], [

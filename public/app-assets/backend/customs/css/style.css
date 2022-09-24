@@ -98,3 +98,20 @@ input:disabled {
     left: unset;
     right: 0;
 }
+
+#messenger-icon {
+    position: fixed;
+    right: 25px;
+    bottom: 60px;
+    z-index: 10
+}
+
+#messenger-icon #all-unread-messages {
+    top: 0 !important;
+    left: -5px !important;
+    right: unset !important;
+}
+
+#messenger-icon a {
+    font-size:35px;
+}

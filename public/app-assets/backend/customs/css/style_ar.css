@@ -35,3 +35,13 @@
 .dt-button-collection {
     right: unset;
 }
+
+#messenger-icon {
+    left: 25px;
+    right: unset;
+}
+
+#messenger-icon #all-unread-messages{
+    right: -5px !important;
+    left: unset !important
+}

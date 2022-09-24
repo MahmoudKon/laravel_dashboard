@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        session()->flush();
+        cache()->flush();
         $truncate_tables = ['emails'];
 
         foreach ($truncate_tables as $table) truncateTables($table);
