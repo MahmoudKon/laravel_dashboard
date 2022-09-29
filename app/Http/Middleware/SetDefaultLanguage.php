@@ -21,7 +21,7 @@ class SetDefaultLanguage
     {
         View::share(['emails_not_seen_count' => (new EmailController)->count()]);
 
-        if (session('locale') || !auth()->check())
+        if (session('locale') || !auth()->check() || app()->runningInConsole())
             return $next($request);
 
         app()->setLocale(setting('default_lang', app()->getLocale()));
