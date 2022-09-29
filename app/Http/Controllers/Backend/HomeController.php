@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Events\NewEmail;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
-use App\Models\Email;
 use App\Models\Menu;
 use App\Models\Route;
 use App\Models\Setting;

@@ -137,7 +137,7 @@ $(function() {
                 auth_id: AUTH_USER_ID,
                 user_id: $('input[name="user_id"]').val()
             });
-        }, 500);
+        }, 5500);
     });
 
 
@@ -150,6 +150,17 @@ $(function() {
         loadConversations(1, {}, true);
     });
 
+
+    $('body').on('click', '[data-toggle-chat]', function(e) {
+        e.preventDefault();
+        $('#load-chat').css('visibility', 'hidden').addClass('is-visible');
+    });
+
+
+    $('body').on('click', '.user-room', function(e) {
+        e.preventDefault();
+        $('#load-chat').css('visibility', 'visible').addClass('is-visible');
+    });
 
 /**********************************************************************************************************************************************************************
 //! SECTION **************************************************************** PUSHER Functions *************************************************************************
