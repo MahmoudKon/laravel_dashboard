@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('conversations', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->id();
-            $table->string('label')->nullable();
-            $table->string('image')->nullable();
-            $table->enum('type', ['peer', 'group'])->default('peer');
-            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
-            $table->timestamps();
+            $table->foreignId('email_id')->constrained('emails')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('attachment');
+            $table->json('info');
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conversations');
+        Schema::dropIfExists('attachments');
     }
 };

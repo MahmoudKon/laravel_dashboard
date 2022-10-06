@@ -27,6 +27,8 @@ class EmailRequest extends FormRequest
             'to' => 'required|array|min:1',
             'cc' => 'nullable|array|min:1',
             'subject' => 'required|string',
+            'attachments' => 'array',
+            'attachments.*' => 'required|file',
             'body' => 'nullable|string',
         ];
     }

@@ -60,7 +60,7 @@ class EmailController extends Controller
 
     public function show($id)
     {
-        $email = Email::with('notifier', 'recipients')->find($id);
+        $email = Email::with('notifier', 'recipients', 'attachments')->find($id);
         if (!$email) return;
         $email->updateSeen();
 

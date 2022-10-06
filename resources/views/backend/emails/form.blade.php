@@ -32,4 +32,17 @@
     @include('layouts.includes.backend.validation_error', ['input' => "subject"])
 </div>
 
+
+<div class="form-group">
+    <label class="required">@lang("inputs.attachments")</label>
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" name="attachments[]" multiple class="custom-file-input cursor-pointer form-control">
+            <label class="custom-file-label" for="upload-image"><i class="fa fa-upload"></i> Choose file</label>
+        </div>
+    </div>
+    @include('layouts.includes.backend.validation_error', ['input' => 'attachments'])
+</div>
+
+
 @include('backend.includes.components.advanced_text', ['required' => 'required', 'name' => 'body'])

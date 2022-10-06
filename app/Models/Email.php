@@ -15,6 +15,11 @@ class Email extends Model
 
     public $fillable = ['subject', 'body', 'to', 'cc', 'model', 'view', 'ids', 'notifier_id'];
 
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class);
+    }
+
     public function notifier()
     {
         return $this->belongsTo(User::class, 'notifier_id', 'id')->select('id', 'name', 'image')->withDefault(['name' => 'System', 'image' => null]);

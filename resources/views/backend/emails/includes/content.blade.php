@@ -45,6 +45,23 @@
         @endif
     </p>
 </div>
+
+
+@if ($email->attachments->count())
+    <div class="d-flex mt-2">
+        @foreach ($email->attachments as $attachment)
+            <div class="input-group mx-1">
+                <div class="input-group-prepend">
+                    <a class="btn btn-secondary input-group-text" href="{{ asset($attachment->attachment) }}" download="{{ $attachment->info->name }}"> <i class="fa fa-download"></i> </a>
+                </div>
+                <input type="text" class="form-control" value="{{ $attachment->info->name }}" readonly>
+            </div>
+        @endforeach
+    </div>
+    <hr>
+@endif
+
+
 <div class="media-list">
     <div class="email-app-text-action card-body">
         {!! $email->body !!}

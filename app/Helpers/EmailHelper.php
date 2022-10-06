@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\NewEmail;
+use App\Models\Attachment;
 use App\Models\Email;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,8 @@ function createEmail(array $data) :Email
     DB::beginTransaction();
         $email = Email::create($data);
 
+        insertAttachments($email, $data['attachments']);
+
         $users_id = User::select('id')->whereIn('email', explode(',', $email->to))->when($email->cc, function($query) use ($email) {
             $query->orWhereIn('email', explode(',', $email->cc));
         })->pluck('id')->toArray();
@@ -42,6 +45,21 @@ function createEmail(array $data) :Email
         }
     DB::commit();
     return $email;
+}
+
+function insertAttachments($email, $attachments = null)
+{
+    if (! $attachments) return;
+
+    foreach ($attachments as $attachment) {
+        $info = [
+            'name' => $attachment->getClientOriginalName(),
+            'extension' => $attachment->extension(),
+            'size' => $attachment->getSize(),
+            'mime' => $attachment->getMimeType(),
+        ];
+        $email->attachments()->create(['attachment' => (new Attachment)->upload($attachment), 'info' => $info]);
+    }
 }
 
 /**
