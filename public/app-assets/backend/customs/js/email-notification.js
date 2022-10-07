@@ -46,7 +46,7 @@ function activeEmailFromRequest() {
 
 $(function () {
     let list_notifications  = $('#list-emails');
-    Pusher.logToConsole = true;
+
     window.Echo.private(`new-email.${AUTH_USER_ID}`).listen('.new-email', (data) => {
         toast(data.message, null, 'success');
         let count = parseInt($('#emails-unread-count').text());
