@@ -63,9 +63,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['avatar'];
-
-
     public function department()
     {
         return $this->belongsTo(Department::class)->select('id', 'title', 'manager_id', 'manager_of_manager_id');

@@ -17,4 +17,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('details', 'Auth\LoginController@authenticatedUserDetails');
     Route::post('refresh_token', 'Auth\LoginController@refresh');
     Route::post('logout', 'Auth\LogoutController@logout');
+
+
+    Route::resource('users', 'UserController');
 });
