@@ -33,10 +33,5 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    authEndpoint: process.env.MIX_PUSHER_ENDPOINT ?? '/broadcasting/auth',
-    auth: {
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-    },
+    authEndpoint: process.env.MIX_PUSHER_ENDPOINT ?? '/broadcasting/auth'
 });

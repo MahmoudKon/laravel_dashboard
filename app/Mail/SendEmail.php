@@ -29,9 +29,11 @@ class SendEmail extends Mailable
      */
     public function build()
     {
+        $to = $this->email->to ? explode(',', $this->email->to) : '';
+        $cc = $this->email->cc ? explode(',', $this->email->cc) : '';
         return $this->subject($this->email->subject)
-                            ->to(explode(',', $this->email->to))
-                            ->cc(explode(',', $this->email->cc))
+                            ->to($to)
+                            ->cc($cc)
                             ->attachMany($this->email->attachments->pluck('attachment'))
                             ->view('emails.send-email', ['body' => $this->email->body]);
     }

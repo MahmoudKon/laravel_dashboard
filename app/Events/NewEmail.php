@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewEmail implements ShouldBroadcast
+class NewEmail implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -36,6 +36,11 @@ class NewEmail implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PrivateChannel("new-email.{$this->user_id}");
+    }
+
+    public function broadcastAs()
+    {
+        return "new-email";
     }
 
     public function broadcastWith()

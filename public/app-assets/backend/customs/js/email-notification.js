@@ -46,38 +46,19 @@ function activeEmailFromRequest() {
 
 $(function () {
     let list_notifications  = $('#list-emails');
-
-    let emails_not_seen_count = parseInt($('#emails-unread-count').text());
-    function changeCount(type = '-') {
-        if (type == '-') emails_not_seen_count --;
-        else emails_not_seen_count ++;
-
-        $('.emails-unread-count').text(emails_not_seen_count);
-    }
-    // NOTIFICATION
-    window.Echo.channel('new-email').listen('NewEmail', (data) => {
-        if (data.recipient_ids.includes(AUTH_USER_ID)) {
-            toast(data.message, null, 'success');
-            changeCount('+');
-        }
+    Pusher.logToConsole = true;
+    window.Echo.private(`new-email.${AUTH_USER_ID}`).listen('.new-email', (data) => {
+        toast(data.message, null, 'success');
+        let count = parseInt($('#emails-unread-count').text());
+        $('.emails-unread-count').text(count + 1);
+        list_notifications.prepend(EmailTemplate(data.email));
+        $('#list-user-emails').prepend(EmailTemplate(data.email));
     });
 
-    // getEmailsCount();
-    // window.Echo.channel('new-email').listen('NewEmail', (data) => {
-    //     if (data.recipient_ids.includes(AUTH_USER_ID)) {
-    //         toast(data.email.subject, 'Have a New Mail', 'success');
-    //         $('.emails-unread-count').text(parseInt($('#emails-unread-count').text()) + 1);
-    //     }
-    // });
-
-
-    $('#get-emails-count').click(function(e) {
+    $('#get-emails-count').one('click', function(e) {
         e.preventDefault();
-        if (! $(this).closest('li').hasClass('show')) {
-            list_notifications.empty();
-            load_new_email = false;
-            loadEmails(`${MAIN_ROUTE}/list`, list_notifications);
-        }
+        list_notifications.empty();
+        loadEmails(`${MAIN_ROUTE}/list`, list_notifications);
     });
 
     // Load Email When Make Scroll
@@ -88,34 +69,25 @@ $(function () {
             loadEmails(next_page, $(this));
     });
 
-    /********************************************* To Get The Email UnReaded Count *****************************************************/
-    // getEmailsCount();
-    // setInterval(() => { getEmailsCount(true); page_is_loading = false }, 15000);
-    function getEmailsCount(force_lood = false) {
-        $.ajax({
-            url: `${MAIN_ROUTE}/count`,
-            type: 'POST',
-            success: function(result) {
-                limit = result - parseInt($('#emails-unread-count').text());
-                $('.emails-unread-count').text(result);
-                if (limit > 0) {
-                    if (!page_is_loading) {
-                        RUN_SOUND = true;
-                        toast("Have New Email", null, 'success');
-                    }
-                    let ele = '';
-                    if ($('#list-emails').closest('ul').hasClass('show'))
-                        ele = "#list-email,";
+    function EmailTemplate (email) {
+        return `<a href="${MAIN_ROUTE}?email=${email.id}" class="single-email" data-id="${email.id}">
+                    <div class="media unseen-email">
+                        <div class="media-left align-self-center">
+                            <span class="avatar avatar-md">
+                                    <img src="${email.notifier.image}" class="rounded-circle" width="55px">
+                            </span>
+                        </div>
 
-                    if (force_lood && $('#list-user-emails').length)
-                        ele += "#list-user-emails";
+                        <div class="media-body">
+                            <h6 class="media-heading">${email.notifier.name}</h6>
+                            <p class="notification-text font-small-3 text-muted">${email.subject}</p>
 
-                    if (ele !== '') {
-                        loadEmails(`${MAIN_ROUTE}/new/${limit}`, ele, false);
-                    }
-                }
-            }
-        });
-    } // END GET EMAILS COUNT
+                            <small>
+                                <time class="media-meta text-muted">${email.created_at}</time>
+                            </small>
+                        </div>
+                    </div>
+                </a>`;
+    }
 });
 
