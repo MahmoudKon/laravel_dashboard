@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,19 +36,25 @@ class Email extends Model
         return $this->notifier_id == auth()->id() || $this->recipients()->where('recipient_id', auth()->id())->first()?->pivot?->seen;
     }
 
-    public function getCreatedAtAttribute($value)
+    public function createdAt(): Attribute
     {
-        return Carbon::parse($value)->diffForHumans();
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->diffForHumans(),
+        );
     }
 
-    public function setToAttribute($value)
+    public function to(): Attribute
     {
-        $this->attributes['to'] = is_array($value) ? implode(',', $value) : $value;
+        return Attribute::make(
+            set: fn ($value) => is_array($value) ? implode(',', $value) : $value
+        );
     }
 
-    public function setCcAttribute($value)
+    public function cc(): Attribute
     {
-        $this->attributes['cc'] = is_array($value) ? implode(',', $value) : $value;
+        return Attribute::make(
+            set: fn ($value) => is_array($value) ? implode(',', $value) : $value
+        );
     }
 
     public function updateSeen()

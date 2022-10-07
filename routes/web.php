@@ -26,4 +26,3 @@ Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('mainte
 
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
 Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
-Messenger\Chat\MessengerRoutes::routes();

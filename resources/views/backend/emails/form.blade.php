@@ -4,7 +4,7 @@
     <div class="controls">
         <select class="form-control select2" data-placeholder="Choose a Send To" id="to_select" name="to[]" multiple required>
         @foreach ($users as $email)
-            <option value="{{ $email }}"> {{ $email }} </option>
+            <option value="{{ $email }}" @selected($email == env('TEST_EAMIL'))> {{ $email }} </option>
         @endforeach
         </select>
     </div>
@@ -27,7 +27,7 @@
 <div class="form-group">
     <label class="control-label required">@lang('inputs.subject')</label><br>
     <div class="controls">
-        <input type="text" class="form-control" minlength="3" name="subject" placeholder="Email Subject">
+        <input type="text" class="form-control" minlength="3" name="subject" placeholder="Email Subject" value="{{ env('TEST_SUBJECT') }}">
     </div>
     @include('layouts.includes.backend.validation_error', ['input' => "subject"])
 </div>
@@ -45,4 +45,4 @@
 </div>
 
 
-@include('backend.includes.components.advanced_text', ['required' => 'required', 'name' => 'body'])
+@include('backend.includes.components.advanced_text', ['required' => 'required', 'name' => 'body', 'value' => env('Test_BODY')])

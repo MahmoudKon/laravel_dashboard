@@ -28,8 +28,6 @@
         var SWAL_CANCEL_BUTTON = "@lang('buttons.cancel')";
         var SWAL_FAILED_TITLE = "@lang('title.please select some rows')";
         const AUTH_USER_ID = {{ auth()->id() }};
-
-        // window.open("file:///D:/Hello.txt");
     </script>
 
     <script type="text/javascript" src="{{ asset('/js/app.js') }}" defer></script>
@@ -51,6 +49,7 @@
     <script type="text/javascript" src="{{ assetHelper('js/core/app.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('js/scripts/customizer.js') }}"></script>
     <script type="text/javascript" src="{{ assetHelper('js/scripts/forms/switch.js') }}"></script>
+    <script type="text/javascript" src="{{ assetHelper('js/scripts/popover/popover.js') }}"></script>
     {{-- ************** END MODERN JS ************** --}}
 
     {{-- ************** START SWEETALERT JS ************** --}}
@@ -83,7 +82,6 @@
                 if ($.trim($(this).find('.menu-content').text()).length == 0) $(this).remove();
             });
 
-
             setInterval(function() { $('body').find('.remove-hidden-element').remove(); }, 1000);
 
             $(`li[data-route="{{ request()->route()->action['as'] }}"]`).addClass('active').closest('.has-sub').addClass('active open');
@@ -93,16 +91,20 @@
     <script>
         $(function() {
             let new_message_remove_time = null;
-            $('#new-message').fadeIn();
+            let new_message_element = $('#all-unread-messages');
+
             window.Echo.private(`new-message.{{ auth()->id() }}`)
-                .listen('MessageCreated', (data) => {
-                    let counter = Number.parseInt($('#all-unread-messages').text());
-                    $('#all-unread-messages').text(counter+1);
-                    $('#new-message').empty().removeClass('d-none').fadeIn(500, function() { $(this).append(`<b>${data.message.user.name}:</b> ${data.message.message}`); });
+                .listen('{{ config("messenger.event-name") }}', (data) => {
+                    let counter = Number.parseInt(new_message_element.text());
+
+                    new_message_element.text(counter+1).attr('data-original-title', data.message.user.name).attr('data-content', data.message.message).click();
                     if (new_message_remove_time) clearTimeout(new_message_remove_time);
+
                     new_message_remove_time = setTimeout(() => {
-                        $('#new-message').fadeOut(500, function() { $(this).removeClass('d-none'); });
+                        $('body').find(`#${new_message_element.attr('aria-describedby')}`).remove();
+                        new_message_element.click().removeAttr('data-original-title').removeAttr('data-content').removeAttr('aria-describedby');
                     }, 3000);
+
                     sound = true;
                     playAudio();
                 });

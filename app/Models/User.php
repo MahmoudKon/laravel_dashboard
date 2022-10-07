@@ -2,10 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Messenger\Conversation;
-use App\Models\Messenger\Message;
-use App\Models\Messenger\MessageUser;
-use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,14 +9,12 @@ use Illuminate\Notifications\Notifiable;
 // use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
-use Messenger\Chat\Traits\UserHelper8;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, UserHelper8;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $guard_name = 'web,api';
 

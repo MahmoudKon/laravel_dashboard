@@ -30,7 +30,8 @@ function createEmail(array $data) :Email
     DB::beginTransaction();
         $email = Email::create($data);
 
-        insertAttachments($email, $data['attachments']);
+        if (isset($data['attachments']))
+            insertAttachments($email, $data['attachments']);
 
         $users_id = User::select('id')->whereIn('email', explode(',', $email->to))->when($email->cc, function($query) use ($email) {
             $query->orWhereIn('email', explode(',', $email->cc));
@@ -44,13 +45,12 @@ function createEmail(array $data) :Email
             broadcast( new NewEmail( $user_id, $email ) );
         }
     DB::commit();
+
     return $email;
 }
 
-function insertAttachments($email, $attachments = null)
+function insertAttachments(object $email, array $attachments)
 {
-    if (! $attachments) return;
-
     foreach ($attachments as $attachment) {
         $info = [
             'name' => $attachment->getClientOriginalName(),

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmailRequest;
+use App\Jobs\SendEmail as JobsSendEmail;
 use App\Mail\SendEmail;
 use App\Models\Email;
 use App\Models\User;
@@ -55,6 +56,7 @@ class EmailController extends Controller
     public function store(EmailRequest $request)
     {
         Mail::send(new SendEmail( createEmail($request->validated()) ));
+        // dispatch( new JobsSendEmail($request->validated()) );
         return response()->json(['message' => trans('flash.row created', ['model' => trans('menu.email')]), 'icon' => 'success']);
     }
 
