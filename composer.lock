@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6cbf22cb74369954c78dfcb1d088127",
+    "content-hash": "8baf72676ec7c31e7aef19405e9219b2",
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -3232,51 +3232,6 @@
                 }
             ],
             "time": "2022-05-18T15:52:06+00:00"
-        },
-        {
-            "name": "mahmoudkon/messenger",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MahmoudKon/new-package.git",
-                "reference": "8aeffccf5a9bd6a48c197217f5e72e074d65d52b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MahmoudKon/new-package/zipball/8aeffccf5a9bd6a48c197217f5e72e074d65d52b",
-                "reference": "8aeffccf5a9bd6a48c197217f5e72e074d65d52b",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Messenger\\Chat\\MessengerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Messenger\\Chat\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "mahmoud mohammed",
-                    "email": "mahmoud.mohammed@ivas.com.eg"
-                }
-            ],
-            "description": "messenger chat",
-            "support": {
-                "issues": "https://github.com/MahmoudKon/new-package/issues",
-                "source": "https://github.com/MahmoudKon/new-package/tree/master"
-            },
-            "time": "2022-09-23T09:11:51+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -11397,9 +11352,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "mahmoudkon/messenger": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
