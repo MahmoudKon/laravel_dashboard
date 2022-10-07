@@ -3,7 +3,6 @@
 namespace App\Events;
 
 use App\Models\Email;
-use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -46,7 +45,7 @@ class NewEmail implements ShouldBroadcastNow
     public function broadcastWith()
     {
         return [
-            'message' => "Have a new email from " . auth()->user()->name,
+            'message' => "Have a new email from " . $this->email->notifier->name,
             'email' => $this->email,
         ];
     }

@@ -1,0 +1,59 @@
+.message .message-content {
+    position: relative;
+}
+
+.btn-download-chat-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #16191c8a;
+}
+
+.btn-download-chat-img a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.avatar-online::before {
+    background: green;
+}
+
+.message-divider .text-muted {
+    padding: 10px 45px;
+    background: #1a1d21;
+    border-radius: 4px;
+    color: #f7f7f7 !important;
+}
+
+.conversation-item .remove-conversation {
+    display: inline;
+    cursor: pointer;
+    padding: 4px 11px;
+    position: absolute;
+    right: 0;
+    border-radius: 50%;
+    z-index: 5;
+    color: #dc3545;
+    transition: all .3s ease-in-out;
+}
+
+.conversation-item .remove-conversation button {
+    padding: 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.conversation-item .remove-conversation:hover {
+    background-color: #dc35458f;
+    color: #fff !important;
+    transform: rotate(90deg);
+}
+
+.conversation-item .remove-conversation:hover i {
+    color: #fff !important;
+}

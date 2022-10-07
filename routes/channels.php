@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('new-email.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Messenger\Chat\MessengerRoutes::channels();
+

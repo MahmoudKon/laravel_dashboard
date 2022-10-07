@@ -74,7 +74,7 @@ $(function () {
                     <div class="media unseen-email">
                         <div class="media-left align-self-center">
                             <span class="avatar avatar-md">
-                                    <img src="${email.notifier.image}" class="rounded-circle" width="55px">
+                                    <img src="${main_path}/${email.notifier.image}" class="rounded-circle" width="55px">
                             </span>
                         </div>
 

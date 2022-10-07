@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\NewEmail;
+use App\Jobs\SendEmail;
 use App\Models\Attachment;
 use App\Models\Email;
 use App\Models\User;
@@ -41,10 +42,9 @@ function createEmail(array $data) :Email
         $email->recipients()->attach([auth()->id() => ['is_sender' => true, 'seen' => true, 'seen_time' => now()]]);
         $email->load('notifier');
 
-        foreach ($users_id as $user_id) {
-            broadcast( new NewEmail( $user_id, $email ) );
-        }
     DB::commit();
+
+    dispatch( new SendEmail($email, $users_id) );
 
     return $email;
 }
