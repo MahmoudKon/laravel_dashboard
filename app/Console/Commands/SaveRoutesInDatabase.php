@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Jobs\AssignPermissionsToRole;
 use App\Models\Route;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Route as FacadesRoute;
 use Spatie\Permission\Models\Permission;
 
 class SaveRoutesInDatabase extends Command
@@ -35,7 +34,7 @@ class SaveRoutesInDatabase extends Command
      */
     public function handle()
     {
-        foreach (FacadesRoute::getRoutes()->getRoutes() as $route)
+        foreach (\Illuminate\Support\Facades\Route::getRoutes()->getRoutes() as $route)
         {
             $action = $route->getAction();
             if ( !isset($action['controller']) || !in_array($action['namespace'], $this->namespaces))

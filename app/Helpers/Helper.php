@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Route;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -102,32 +101,10 @@ function getModel(bool $singular = false) :string
  */
 function activeMenu(string|null $menu_route, $func = null, string $active_class = 'active') :bool|string // ! NOT WORKING
 {
-    return false;
-    // remove ROUTE_PREFIX from comming route name [ROUTE_PREFIX = 'dashboard.'] => ex [dashboard.users.index => users.index]
+    if (! $menu_route) return '';
     $menu_route = str_replace(ROUTE_PREFIX, '', $menu_route);
-
-    // add prefix again because all menu_route not has this perfix
-    $menu_route = ROUTE_PREFIX.$menu_route;
-
-    // check if current request route is the same of menu route to make active menue
-    if (request()->route()->action['as'] == $menu_route)  return $active_class;
-
-    // else => get the comming route form database
-    $route = Route::where('route', $menu_route)->first();
-
-    // if route not exists  in database or the request route not has controller in his action return false
-    if (! $route || ! isset(request()->route()->action['controller']))  return false;
-
-    // get controller namespace for coming route
-    $menu_route_controller = "$route->namespace\\$route->controller";
-
-    // get controller namespace for request route
-    $request_route_controller = explode('@', request()->route()->action['controller']);
-
-    // check of the coming controller is the same for request controller
-    return $menu_route_controller == $request_route_controller[0] && $request_route_controller[1] == $func
-                ? $active_class
-                : false;
+    return request()->route()->getAction('controller') == \Illuminate\Support\Facades\Route::getRoutes()->getByName(ROUTE_PREFIX.$menu_route)->getAction('controller')
+                ? $active_class : '';
 }
 
 /**

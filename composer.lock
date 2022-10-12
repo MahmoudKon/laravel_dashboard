@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bcce58b46c073ae4f2faa5ccd8d17b8f",
+    "content-hash": "8baf72676ec7c31e7aef19405e9219b2",
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -3232,55 +3232,6 @@
                 }
             ],
             "time": "2022-05-18T15:52:06+00:00"
-        },
-        {
-            "name": "mahmoudkon/messenger",
-            "version": "v8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MahmoudKon/messenger.git",
-                "reference": "0da2e3eff2c1fd867afe0648c2a9dad81f2ac034"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MahmoudKon/messenger/zipball/0da2e3eff2c1fd867afe0648c2a9dad81f2ac034",
-                "reference": "0da2e3eff2c1fd867afe0648c2a9dad81f2ac034",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^9.0",
-                "php": "^8.0",
-                "pusher/pusher-php-server": "^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Messenger\\Chat\\MessengerServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Messenger\\Chat\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mahmoud Mohammed",
-                    "email": "mahmoud.mohammed050684@gmail.com"
-                }
-            ],
-            "description": "messenger chat",
-            "support": {
-                "issues": "https://github.com/MahmoudKon/messenger/issues",
-                "source": "https://github.com/MahmoudKon/messenger/tree/v8"
-            },
-            "time": "2022-10-08T08:28:22+00:00"
         },
         {
             "name": "markbaker/complex",

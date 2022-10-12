@@ -15,7 +15,7 @@ use Messenger\Chat\Traits\Messageable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, Messageable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $guard_name = 'web,api';
 
