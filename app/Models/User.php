@@ -69,11 +69,6 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class)->select('id', 'title', 'manager_id', 'manager_of_manager_id');
     }
 
-    public function asddasd()
-    {
-        return $this->belongsTo(\App\Models\RBT\EmployeeAttachmentType::class)->select('id', 'title', 'manager_id', 'manager_of_manager_id');
-    }
-
     protected function password(): Attribute
     {
         return Attribute::make(

@@ -3,7 +3,7 @@
 namespace App\Console\Commands\CRUD;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
 class CreateController extends Command
@@ -13,7 +13,7 @@ class CreateController extends Command
      *
      * @var string
      */
-    protected $signature  = 'crud:controller {table}';
+    protected $signature  = 'crud:controller {model}';
     protected $controller;
     protected $model;
     protected $path;
@@ -49,7 +49,7 @@ class CreateController extends Command
      */
     protected function askForSubDir()
     {
-        $this->model        = getTableModel( $this->argument('table') );
+        $this->model        = $this->argument('model');
         $this->controller   = $this->model.'Controller';
         $this->path         = str_replace(['App', '\\'], ['app', DIRECTORY_SEPARATOR], $this->namespace);
 
@@ -78,21 +78,24 @@ class CreateController extends Command
     protected function createContent()
     {
         $content = file_get_contents(base_path('stubs/custom/controller.stub'));
+        $model = str_replace('/', '\\', $this->model);
+        $model_name = last( explode('/', $this->model) );
+        $table = app('App\Models\\'.$model)->getTable();
 
         $content = str_replace([
-            '{{ rootNamespace }}',
-            '{{ namespacedModel }}',
             '{{ namespace }}',
-            '{{ class }}',
             '{{ model }}',
+            '{{ model_name }}',
+            '{{ class }}',
+            '{{ single_table }}',
             '{{ appends }}'
         ],[
-            'App\\',
-            "App\Models\\{$this->model}",
-            $this->namespace,
-            $this->model.'Controller',
-            $this->model,
-            createAppends($this->argument('table'))
+            $this->namespace.'\\'.str_replace(["/{$model_name}Controller", '/'], ['', '\\'], $this->controller),
+            $model,
+            $model_name,
+            "{$model_name}Controller",
+            Str::singular($table),
+            createAppends($table)
         ], $content);
 
         return $content;

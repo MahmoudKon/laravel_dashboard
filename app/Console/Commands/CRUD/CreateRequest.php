@@ -15,10 +15,10 @@ class CreateRequest extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:request {table}';
+    protected $signature = 'crud:request {model} {table}';
 
     protected $validations = '';
-    protected $request = array();
+    protected $request;
 
     /**
      * The console command description.
@@ -37,14 +37,14 @@ class CreateRequest extends Command
         $this->createRequest();
         $this->getColumns();
         $this->createFile();
-        $this->info("model class<options=bold> {$this->request['name']}.php </>created successfully!");
+        $this->info("model class<options=bold> {$this->request}.php </>created successfully!");
     }
 
     protected function getColumns()
     {
         $rows = [];
-        // SHOW FULL COLUMNS FROM => replace describe
-        foreach (DB::select('describe '.$this->argument('table')) as $column) {
+
+        foreach (DB::select('SHOW FULL COLUMNS FROM '.$this->argument('table')) as $column) {
             if (in_array($column->Field, ['id', 'created_at', 'updated_at'])) continue;
             $rows[$column->Field] = $this->getValidation($column);
         }
@@ -69,8 +69,10 @@ class CreateRequest extends Command
 
         else if (stripos($column->Type, "timestamp") !== false || stripos($column->Type, "date") !== false)
             array_push($validate, 'date');
-        else
-            array_push($validate, 'string');
+
+        else {
+            $this->getFileValidation($column, $validate);
+        }
 
         if (stripos($column->Field, "_id") !== false) {
             $related_table = Str::plural( str_replace('_id', '', $column->Field) );
@@ -78,33 +80,41 @@ class CreateRequest extends Command
         }
 
         if (stripos($column->Key, "UNI") !== false) // is unique
-            array_push($validate, "unique:{$this->argument('table')},$column->Field,'" . ".request()->route('".Str::singular($this->argument('table'))."').'" );
+            array_push($validate, "unique:{$this->argument('table')},$column->Field,'.request()->".Str::singular($this->argument("table"))."" . ".'" );
 
         return implode('|', $validate);
     }
 
+    protected function getFileValidation($column, &$validate)
+    {
+        if (stripos($column->Comment, 'image') !== false)
+            array_push($validate, 'image|mimes:png,jpg,jpeg');
+
+        else if (stripos($column->Comment, 'audio') !== false)
+            array_push($validate, 'file|mimes:mp3');
+
+        else if (stripos($column->Comment, 'video') !== false)
+            array_push($validate, 'file|mimes:mp4');
+
+        else if (stripos($column->Comment, 'file') !== false)
+            array_push($validate, 'file|mimes:pdf,docx,xsl');
+        else
+            array_push($validate, 'string');
+    }
+
     protected function createRequest()
     {
-        $model_name = Str::studly(Str::singular($this->argument('table'))).'Request';
-        $this->request['name'] = $model_name;
+        $this->request = getFilesInDir(app_path('Http/Requests'), "{$this->argument('model')}Request");
 
-        foreach (getFilesInDir(app_path('Http/Requests')) as $name => $class) {
-            // ["AggregatorRequest.php" => "App\Http\Requests\AggregatorRequest"]
-            if (stripos($name, $model_name) !== false) {
-                $this->request['namespace'] = str_replace('\\', '/', $class);
-                break;
-            }
-        }
-
-        if ( !isset($this->request['namespace']) ) {
-            $this->request['namespace'] = "App/Http/Requests/$model_name";
-            Artisan::call("make:request $model_name");
+        if ( ! $this->request) {
+            Artisan::call("make:request {$this->argument('model')}Request");
+            $this->request = "{$this->argument('model')}Request";
         }
     }
 
     protected function createFile()
     {
-        $file = str_replace('App', 'app', $this->request['namespace']).".php";
+        $file = "app\Http\Requests\\".str_replace('/', '\\', $this->request).".php";
         File::put($file, trim($this->createContent()));
     }
 
@@ -117,8 +127,8 @@ class CreateRequest extends Command
             'return false',
             '//'
         ],[
-            str_replace(['/', "\\{$this->request['name']}"], ['\\', ''], $this->request['namespace']),
-            $this->request['name'],
+            explode('/', $this->request)[0],
+            last( explode('/', $this->request) ),
             'return true',
             $this->validations,
         ], $content);

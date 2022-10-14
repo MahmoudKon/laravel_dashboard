@@ -26,7 +26,7 @@ class DepartmentDataTable extends DataTable
             ->addColumn('check', 'backend.includes.tables.checkbox')
             ->editColumn('manager', function(Department $department) {return $department->manager?->name;})
             ->editColumn('managerOfManager', function(Department $department) {return $department->managerOfManager?->name;})
-            ->editColumn('action', function(Department $department) {return view('backend.departments.actions', ['id' => $department->id])->render();})
+            ->editColumn('action', function(Department $department) {return view('backend.'.getModel(view:true).'.actions', ['id' => $department->id])->render();})
             ->filterColumn('manager', function ($query, $keywords) {
                 return $query->whereHas('manager', function($query) use($keywords) {
                     return $query->where('name', 'LIKE', "%$keywords%");

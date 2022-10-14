@@ -77,7 +77,7 @@ function convertUrlToArray() :array
  *  getModel
  *  Get the model from url like [users => user] and the parameter for make it singular or plural
  */
-function getModel(bool $singular = false) :string
+function getModel(bool $singular = false, $view = false) :string
 {
     try {
         // get the full controller namespace form route.
@@ -97,6 +97,7 @@ function getModel(bool $singular = false) :string
     }
     $model = str_replace(' ', '_', $model);
 
+    if ($view) session('model_view_path').Str::singular($model);
     return $singular ? Str::singular($model) : $model;
 }
 

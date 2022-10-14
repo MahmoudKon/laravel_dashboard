@@ -109,3 +109,6 @@ Route::controller('CityController')->group(function () {
 });
 
 Route::resource('langs', 'LangController');
+
+Route::resource('employee_attachment_types', 'EmployeeAttachmentTypeController'); 
+Route::post('employee_attachment_types/multidelete', 'EmployeeAttachmentTypeController@multidelete')->name('employee_attachment_types.multidelete'); 

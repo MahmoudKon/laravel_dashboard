@@ -1,12 +1,12 @@
     <div class="col-md-12">
         {{-- START {{ column }} --}}
         <div class="form-group">
-            <label>@lang('inputs.{{ column }}')</label>
+            <label>@lang('inputs.{{ trans_column }}')</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-pencil"></i> </span>
                 </div>
-                <input type="{{ type }}" class="form-control" name="{{ column }}" {{ required }} value="{{ $row->{{ column }} ?? old('{{ column }}') }}"  placeholder="@lang('inputs.{{ column }}')">
+                <input type="{{ type }}" class="form-control" name="{{ column }}" {{ required }} value="{{ $row->{{ column }} ?? old('{{ column }}') }}"  placeholder="@lang('inputs.{{ trans_column }}')">
             </div>
             @include('layouts.includes.backend.validation_error', ['input' => '{{ column }}'])
         </div>

@@ -26,7 +26,7 @@ class RoleDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('check', 'backend.includes.tables.checkbox')
             ->addColumn('action', 'backend.includes.buttons.table-buttons')
-            ->editColumn('action', function(Role $role) {return view('backend.roles.actions', ['id' => $role->id])->render();})
+            ->editColumn('action', function(Role $role) {return view('backend.'.getModel(view:true).'.actions', ['id' => $role->id])->render();})
             ->rawColumns(['action', 'check']);
     }
 

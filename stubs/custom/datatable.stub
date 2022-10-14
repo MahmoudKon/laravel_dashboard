@@ -12,7 +12,7 @@ class {{ class }} extends DataTable
 {
     use DatatableHelper;
 
-    protected $table = {{ table }};
+    protected $table = '{{ table }}';
 
     /**
      * Build DataTable class.
@@ -91,7 +91,7 @@ class {{ class }} extends DataTable
     /**
      * Get filename for export.
      *
-     * @return string
+     * @return stringwithRelations
      */
     protected function filename()
     {

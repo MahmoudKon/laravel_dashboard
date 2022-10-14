@@ -35,7 +35,7 @@ class UserDataTable extends DataTable
                 });
             })
             ->editColumn('image', function(User $user) {return view('backend.includes.tables.image', ['image' => $user->image, 'alt' => $user->name])->render();})
-            ->editColumn('action', function(User $user) {return view('backend.users.actions', ['id' => $user->id])->render();})
+            ->editColumn('action', function(User $user) {return view('backend.'.getModel(view:true).'.actions', ['id' => $user->id])->render();})
             ->rawColumns(['action', 'check', 'image', 'department']);
     }
 

@@ -8,7 +8,7 @@
 
     <div class="card-content collpase show">
         <div class="card-body">
-            @include('backend.'.getModel().'.show')
+            @include('backend.'.getModel(view:true).'.show')
         </div>
     </div>
 </div>

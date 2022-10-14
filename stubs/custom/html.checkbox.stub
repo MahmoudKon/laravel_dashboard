@@ -2,7 +2,7 @@
         {{-- START {{ column }} --}}
         <div class="form-group">
             <div>
-                <label class="required">@lang('inputs.{{ column }}')</label>
+                <label class="">@lang('inputs.{{ trans_column }}')</label>
                 <input type="checkbox" name="{{ column }}" value="1" class="switchery" @checked($row->{{ column }} ?? (old('{{ column }}')))>
             </div>
             @include('layouts.includes.backend.validation_error', ['input' => '{{ column }}'])

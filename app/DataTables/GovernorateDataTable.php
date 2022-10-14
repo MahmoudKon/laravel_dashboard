@@ -30,7 +30,7 @@ class GovernorateDataTable extends DataTable
                 return "$text </ul>";
             })
             ->addColumn('check', 'backend.includes.tables.checkbox')
-            ->editColumn('cities', 'backend.governorates.cities')
+            ->editColumn('cities', 'backend.'.getModel(view:true).'.cities')
             ->addColumn('action', 'backend.includes.buttons.table-buttons')
             ->rawColumns(['action', 'check', 'name', 'cities']);
     }

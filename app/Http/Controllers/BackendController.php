@@ -31,6 +31,7 @@ class BackendController extends Controller
             $this->create_view = "backend.includes.forms.form-create";
             $this->update_view = "backend.includes.forms.form-update";
         }
+        View::share('model_view_path', $this->model::VIEW ?? '');
         View::share('use_form_ajax', $this->use_form_ajax);
         View::share('use_button_ajax', $this->use_button_ajax);
     }

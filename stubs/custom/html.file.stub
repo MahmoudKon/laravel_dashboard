@@ -1,0 +1,5 @@
+<div class="form-group">
+    <label class="{{ required }}">@lang('inputs.{{ trans_column }}')</label>
+    <input type="file" class="form-control" name="{{ column }}" {{ required }}>
+    @include('layouts.includes.backend.validation_error', ['input' => '{{ column }}'])
+</div>

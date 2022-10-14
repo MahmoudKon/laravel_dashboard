@@ -3,7 +3,6 @@
 namespace App\Console\Commands\CRUD;
 
 use Illuminate\Console\GeneratorCommand;
-use Symfony\Component\Console\Input\InputArgument;
 
 class CreateService extends GeneratorCommand
 {
@@ -12,8 +11,8 @@ class CreateService extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'crud:service {table}';
-    protected $service_class = array();
+    protected $signature = 'crud:service {model}';
+    protected $service_class;
     protected $model_class;
 
     /**
@@ -41,33 +40,34 @@ class CreateService extends GeneratorCommand
 
     public function handle()
     {
-        if ($this->isReservedName($this->argument('table'))) {
+        if ($this->isReservedName($this->argument('model'))) {
             $this->error('The name "'.$this->argument('table').'" is reserved by PHP.');
             return false;
         }
 
-        $class_name = getTableModel( $this->argument('table') );
-        $this->service_class['name'] = "{$class_name}Service";
-        $this->service_class['namespace'] = $this->qualifyClass( $this->service_class['name'] );
-        $this->model_class = $this->qualifyModel($class_name);
+        $this->service_class = $this->qualifyClass( $this->argument('model').'Service' );
+        $this->model_class = $this->qualifyModel( $this->argument('model') );
 
-        $path = $this->getPath($this->service_class['namespace']);
+        $path = $this->getPath($this->service_class);
 
-        if ($this->alreadyExists($this->service_class['name'])) {
-            $this->error($this->type.' already exists!');
+        if ($this->alreadyExists($this->service_class)) {
+            $this->error("$this->type $this->service_class already exists!");
             return false;
         }
 
         $this->makeDirectory($path);
         $this->files->put($path, $this->getSourceFile());
-        $this->info("request class<options=bold> {$this->service_class['name']}.php </>created successfully!");
+        $this->info("request class<options=bold> {$this->service_class}.php </>created successfully!");
     }
 
     private function getSourceFile()
     {
+        $class = last( explode('\\', $this->service_class) );
+        $namespace = str_replace($class, '', $this->service_class);
+
         $vars = [
-            '{{ namespace }}' => str_replace("\\{$this->service_class['name']}", '', $this->service_class['namespace']),
-            '{{ class }}' => $this->service_class['name'],
+            '{{ namespace }}' => rtrim($namespace, '\\'),
+            '{{ class }}' => $class,
             '{{ modelNamespace }}' => $this->model_class,
             '{{ model }}' => last(explode('\\', $this->model_class)),
         ];

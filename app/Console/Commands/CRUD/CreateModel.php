@@ -21,7 +21,7 @@ class CreateModel extends Command
     protected $fillable = '';
     protected $related_columns = array();
     protected $relations = '';
-    protected $timestamps = "\n\tprotected \$timestamps = false;\n";
+    protected $timestamps = "\n\tpublic \$timestamps = false;\n";
 
     /**
      * The console command description.
@@ -48,7 +48,7 @@ class CreateModel extends Command
     protected function createFillable()
     {
         $columns = Schema::getColumnListing($this->argument('table'));
-        if (in_array('created_at', $columns) && in_array('updated_at', $columns)) $this->timestamps = '';
+        if (in_array('created_at', $columns)) $this->timestamps = '';
         foreach ($columns as $column) {
             if (in_array($column, ['id', 'created_at', 'updated_at'])) continue;
             if (stripos($column, '_id') !== false) array_push($this->related_columns, $column);
@@ -86,6 +86,8 @@ class CreateModel extends Command
     protected function createContent()
     {
         $content = file_get_contents(base_path('stubs/custom/model.stub'));
+        $name = last( explode('/', $this->model) );
+        $namespace = substr_replace($this->model, '', -strlen($name));
 
         $content = str_replace([
             '{{ namespace }}',
@@ -93,14 +95,16 @@ class CreateModel extends Command
             '{{ table }}',
             '{{ fillable }}',
             '{{ relations }}',
-            '{{ timestamps }}'
+            '{{ timestamps }}',
+            '{{ view }}',
         ],[
-            explode('/', $this->model)[0],
-            last( explode('/', $this->model) ),
+            '\\'.trim( str_replace('/', '\\', $namespace) , '\\'),
+            $name,
             $this->argument('table'),
             $this->fillable,
             $this->relations,
-            $this->timestamps
+            $this->timestamps,
+            str_replace('/', '.', $namespace)
         ], $content);
 
         return $content;

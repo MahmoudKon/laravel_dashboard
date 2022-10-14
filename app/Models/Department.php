@@ -16,6 +16,8 @@ class Department extends Model
      */
     protected $fillable = ['title', 'email', 'manager_id', 'manager_of_manager_id'];
 
+    const VIEW = '';
+
     public function manager()
     {
         return $this->belongsTo(User::class, 'manager_id')->select('id', 'name');

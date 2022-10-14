@@ -31,7 +31,7 @@ class RouteDataTable extends DataTable
                 return str_replace(',', ' <br> ', $route->method);
             })
             ->editColumn('roles', function(Route $route) {return "$route->roles_count Role(s)";})
-            ->editColumn('action', function(Route $route) {return view('backend.routes.actions', ['id' => $route->id])->render();})
+            ->editColumn('action', function(Route $route) {return view('backend.'.getModel(view:true).'.actions', ['id' => $route->id])->render();})
             ->rawColumns(['middleware', 'action', 'method']);
     }
 

@@ -3,9 +3,8 @@
 namespace {{ namespace }};
 
 use App\DataTables\{{ model }}DataTable;
-use {{ rootNamespace }}Http\Controllers\BackendController;
-use Illuminate\Http\Request;
-use {{ namespacedModel }};
+use App\Http\Controllers\BackendController;
+use App\Models\{{ model }};
 use App\Http\Services\{{ model }}Service;
 use App\Http\Requests\{{ model }}Request;
 
@@ -15,23 +14,22 @@ class {{ class }} extends BackendController
     public $use_form_ajax   = true;
     public $use_button_ajax = true;
 
-    public function __construct({{ model }}DataTable $dataTable, {{ model }} ${{ model }})
+    public function __construct({{ model_name }}DataTable $dataTable, {{ model_name }} ${{ model_name }})
     {
-        parent::__construct($dataTable, ${{ model }});
+        parent::__construct($dataTable, ${{ model_name }});
     }
 
-    public function store({{ model }}Request $request, {{ model }}Service ${{ model }}Service)
+    public function store({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service)
     {
-        $row = ${{ model }}Service->handle($request->validated());
+        $row = ${{ model_name }}Service->handle($request->validated());
         if (is_string($row)) return $this->throwException($row);
-        return $this->redirect("Row Created Successfully!");
+        return $this->redirect(trans('flash.row created', ['model' => trans('menu.{{ single_table }}')]));
     }
 
-    public function update({{ model }}Request $request, {{ model }}Service ${{ model }}Service, $id)
+    public function update({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service, $id)
     {
-        $row = ${{ model }}Service->handle($request->validated(), $id);
-        if (is_string($row)) return $this->throwException($row);
-        return $this->redirect("Row Updated Successfully!");
+        $row = ${{ model_name }}Service->handle($request->validated(), $id);
+        return $this->redirect(trans('flash.row updated', ['model' => trans('menu.{{ single_table }}')]));
     }
 
     public function append(): array
@@ -48,9 +46,9 @@ class {{ class }} extends BackendController
 
     public function doSomethingInCreate() { return false; }
 
-    public function doSomethingInShow() { return false; }
+    public function doSomethingInShow($row) { return false; }
 
-    public function doSomethingInEdit() { return false; }
+    public function doSomethingInEdit($row) { return false; }
 
     public function doSomethingAfterDelete() { return false; }
 }

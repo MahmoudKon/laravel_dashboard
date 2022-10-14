@@ -14,7 +14,7 @@ class CreateView extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:view {table}';
+    protected $signature = 'crud:view {view} {table}';
     protected $columns = array();
     protected $inputs;
 
@@ -70,7 +70,7 @@ class CreateView extends Command
      */
     public function viewPath()
     {
-        return "resources/views/backend/{$this->argument('table')}/form.blade.php";
+        return "resources/views/{$this->argument('view')}";
     }
 
     /**
@@ -96,7 +96,7 @@ class CreateView extends Command
 
     protected function getColumns() :void
     {
-        foreach (DB::select('describe '.$this->argument('table')) as $column) {
+        foreach (DB::select('SHOW FULL COLUMNS FROM '.$this->argument('table')) as $column) {
             if (in_array($column->Field, ['id', 'created_at', 'updated_at'])) continue;
             array_push($this->columns, $column);
         }
@@ -119,6 +119,21 @@ class CreateView extends Command
         if (stripos($column->Field, '_id') !== false)
             return 'select';
 
+        if (stripos($column->Type, 'date') !== false)
+            return 'date';
+
+        if (stripos($column->Comment, 'attachment') !== false)
+            return 'file';
+
+        if (stripos($column->Comment, 'image') !== false)
+            return 'file';
+
+        if (stripos($column->Comment, 'video') !== false)
+            return 'file';
+
+        if (stripos($column->Comment, 'audio') !== false)
+            return 'file';
+
         return "input";
     }
 
@@ -126,15 +141,17 @@ class CreateView extends Command
     {
         $related_table = stripos($column->Field, '_id') !== false ? Str::plural( str_replace('_id', '', $column->Field) ) : '';
         $type = $this->getInputType($column);
-        $content = file_get_contents(base_path("stubs/html.$type.stub"));
+        $content = file_get_contents(base_path("stubs/custom/html.$type.stub"));
         return str_replace([
             '{{ table }}',
+            '{{ trans_column }}',
             '{{ column }}',
             '{{ required }}',
             '{{ type }}',
             '{{ related }}'
         ], [
             $related_table,
+            "{$this->argument('table')}.$column->Field",
             $column->Field,
             stripos($column->Null, 'NO') !== false ? 'required' : '',
             stripos($column->Type, 'varchar') !== false || stripos($column->Type, 'text') !== false

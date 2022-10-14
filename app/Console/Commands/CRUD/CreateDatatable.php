@@ -12,9 +12,10 @@ class CreateDatatable extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'crud:datatable {table}';
-    protected $datatable = array();
+    protected $signature = 'crud:datatable {model}';
+    protected $datatable;
     protected $model_class;
+    protected $table;
     protected $table_details = array();
 
     /**
@@ -43,34 +44,31 @@ class CreateDatatable extends GeneratorCommand
      */
     public function handle()
     {
-        $this->getColumns();
+        $this->datatable   = $this->qualifyClass( $this->argument('model').'Datatable' );
+        $this->model_class = $this->qualifyModel($this->argument('model'));
+        $this->table       = app($this->model_class)->getTable();
+        $path              = $this->getPath($this->datatable);
 
-        $class_name = getTableModel( $this->argument('table') );
-        $this->datatable['name'] = "{$class_name}DataTable";
-        $this->datatable['namespace'] = $this->qualifyClass( $this->datatable['name'] );
-        $this->model_class = $this->qualifyModel($class_name);
-
-        $path = $this->getPath($this->datatable['namespace']);
-
-        if ($this->alreadyExists($this->datatable['name'])) {
-            $this->error($this->type.' already exists!');
+        if ($this->alreadyExists($this->datatable)) {
+            $this->error("$this->type $this->datatable already exists!");
             return false;
         }
 
+        $this->addTranslations();
+        $this->getColumns();
         $this->makeDirectory($path);
         $this->files->put($path, $this->getSourceFile());
-        $this->info("request class<options=bold> {$this->datatable['name']}.php </>created successfully!");
+        $this->info("request class<options=bold> {$this->datatable}.php </>created successfully!");
     }
 
     private function getSourceFile()
     {
         $vars = [
-            '{{ namespace }}' => str_replace("\\{$this->datatable['name']}", '', $this->datatable['namespace']),
-            '{{ class }}' => $this->datatable['name'],
+            '{{ namespace }}' => $this->datatable,
+            '{{ class }}' => last( explode('\\', $this->datatable) ),
             '{{ modelNamespace }}' => $this->model_class,
             '{{ modelName }}' => last(explode('\\', $this->model_class)),
-            '{{ table }}' => $this->argument('table'),
-            '{{ singularTable }}' => Str::singular($this->argument('table')),
+            '{{ table }}' => $this->table,
             '{{ withRelations }}' => $this->getRelatedTables(),
             '{{ columns }}' => $this->getTableColumns()
         ];
@@ -92,12 +90,13 @@ class CreateDatatable extends GeneratorCommand
 
     protected function getColumns()
     {
-        $this->table_details = getTableDetails($this->argument('table'));
+        $this->table_details = getTableDetails($this->table);
     }
 
     protected function getRelatedTables()
     {
         $relations = '';
+
         foreach ($this->table_details['relations'] as $table => $columns) {
             $relations .= "'".getRelationName($table)."', ";
         }
@@ -111,7 +110,7 @@ class CreateDatatable extends GeneratorCommand
     {
         $rows = '';
         foreach ($this->table_details['columns'] as $column) {
-            $translate = "inputs.$column->Field";
+            $translate = "inputs.$this->table.$column->Field";
             $name = $column->Field;
 
             if (stripos($column->Field, "_id") !== false) {
@@ -123,5 +122,25 @@ class CreateDatatable extends GeneratorCommand
         }
 
         return $rows;
+    }
+
+    protected function addTranslations()
+    {
+        $trans = "\n\t'employees' => [";
+
+        foreach(app($this->model_class)->getFillable() as $column) {
+            if (stripos($column, '_id') !== false) continue;
+            $trans .= "\n\t\t'$column' => '". ucwords( str_replace('_', ' ', $column) ) ."',";
+        }
+        $trans .= "\n\t],\n";
+
+        foreach (config('languages') as $key => $lang) {
+            $file = base_path("lang/$lang/inputs.php");
+            if (!file_exists($file)) continue;
+            $contents = file($file);
+            $size = count($contents);
+            $contents[$size -1] = $trans.$contents[$size-1];
+            file_put_contents($file, $contents);
+        }
     }
 }

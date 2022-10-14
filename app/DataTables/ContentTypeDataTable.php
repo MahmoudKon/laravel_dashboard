@@ -37,7 +37,7 @@ class ContentTypeDataTable extends DataTable
                 return $query->where('visible_to_content', $check);
             })
             ->addColumn('check', 'backend.includes.tables.checkbox')
-            ->editColumn('action', function(ContentType $contentType) {return view('backend.includes.buttons.table-buttons', ['id' => $contentType->id])->render();})
+            ->editColumn('action', 'backend.includes.buttons.table-buttons')
             ->rawColumns(['action', 'check', 'visible_to_content']);
     }
 

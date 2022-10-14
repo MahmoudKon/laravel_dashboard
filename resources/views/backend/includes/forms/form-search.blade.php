@@ -9,7 +9,7 @@
             <form action="{{ routeHelper(getModel().".index") }}" method="get" id="search-form">
                 <input type="hidden" name="search" value="1">
             {{-- END FORM INPUTS --}}
-            @include('backend.' . getModel() . '.search')
+            @include('backend.' . getModel(view:true) . '.search')
             {{-- END FORM INPUTS --}}
 
             {{-- END FORM BUTTONS --}}

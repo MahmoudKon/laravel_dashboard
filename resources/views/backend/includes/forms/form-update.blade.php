@@ -13,7 +13,7 @@
             <input type="hidden" name="id" value="{{ $row->id ?? '' }}">
 
             {{-- END FORM INPUTS --}}
-            @include('backend.' . getModel() . '.form')
+            @include('backend.' . getModel(view:true) . '.form')
             {{-- END FORM INPUTS --}}
 
             {{-- END FORM BUTTONS --}}
