@@ -54,7 +54,6 @@ class GenerateClasses extends Command
             $this->info("request class<options=bold> {$this->model}Request.php </>created successfully!");
         }
 
-        Artisan::call("crud:service {$this->model}");
         if (file_exists("app/Http/Services/{$this->model}Service.php")) {
             $this->error("service class {$this->model}Service already exists!");
         } else {
