@@ -110,7 +110,7 @@ class CreateRequest extends Command
 
     protected function createContent()
     {
-        $content = file_get_contents(base_path('stubs/request.stub'));
+        $content = file_get_contents(base_path('stubs/custom/request.stub'));
         $content = str_replace([
             '{{ namespace }}',
             '{{ class }}',

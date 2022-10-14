@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
 
 class CreateModel extends Command
 {
@@ -15,12 +14,14 @@ class CreateModel extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:model {table}';
+    protected $signature = 'crud:model {model} {table}';
 
-    protected $model = array();
+    protected $model;
+    protected $class;
     protected $fillable = '';
     protected $related_columns = array();
     protected $relations = '';
+    protected $timestamps = "\n\tprotected \$timestamps = false;\n";
 
     /**
      * The console command description.
@@ -41,12 +42,14 @@ class CreateModel extends Command
         $this->createModel();
         $this->createFile();
 
-        $this->info("model class<options=bold> {$this->model['name']}.php </>created successfully!");
+        $this->info("model class<options=bold> {$this->model}.php </>created successfully!");
     }
 
     protected function createFillable()
     {
-        foreach (Schema::getColumnListing($this->argument('table')) as $column) {
+        $columns = Schema::getColumnListing($this->argument('table'));
+        if (in_array('created_at', $columns) && in_array('updated_at', $columns)) $this->timestamps = '';
+        foreach ($columns as $column) {
             if (in_array($column, ['id', 'created_at', 'updated_at'])) continue;
             if (stripos($column, '_id') !== false) array_push($this->related_columns, $column);
             $this->fillable .= "'$column', ";
@@ -59,49 +62,45 @@ class CreateModel extends Command
         foreach ($this->related_columns as $column) {
             $relation = str_replace('_id', '', $column);
             $relation_class = ucfirst( $relation );
-            $this->relations .= "\n\tpublic function $relation() { return \$this->belongsTo({$relation_class}::class, '$column')->withDefault(); }\n";
+            $class_namespace = getFilesInDir(app_path('Models'), $relation_class);
+            $this->relations .= "\n\tpublic function $relation() { \n\t\treturn \$this->belongsTo({$class_namespace}::class)->withDefault(['id' => null]); \n\t}\n";
         }
     }
 
     protected function createModel()
     {
-        $model_name = Str::studly(Str::singular($this->argument('table')));
-        $this->model['name']  = $model_name;
-        foreach (getFilesInDir(app_path('Models')) as $name => $class) {
-            if (stripos($name, $model_name) !== false) {
-                $this->model['path'] = str_replace('\\', '/', $class);
-                break;
-            }
-        }
+        $this->model = getFilesInDir(app_path('Models'), $this->argument('model'));
 
-        if (! isset($this->model['path']) ) {
-            $this->model['path'] = "App/Models/{$this->model['name']}";
-            Artisan::call("make:model {$this->model['path']}");
+        if (! $this->model) {
+            Artisan::call("make:model {$this->argument('model')}");
+            $this->model = $this->argument('model');
         }
     }
 
     protected function createFile()
     {
-        $file = str_replace('App', 'app', $this->model['path']).".php";
+        $file = "app\models\\".str_replace('/', '\\', $this->model).".php";
         File::put($file, trim($this->createContent()));
     }
 
     protected function createContent()
     {
-        $content = file_get_contents(base_path('stubs/model.custom.stub'));
+        $content = file_get_contents(base_path('stubs/custom/model.stub'));
 
         $content = str_replace([
             '{{ namespace }}',
             '{{ class }}',
             '{{ table }}',
             '{{ fillable }}',
-            '{{ relations }}'
+            '{{ relations }}',
+            '{{ timestamps }}'
         ],[
-            str_replace(['/', "\\{$this->model['name']}"], ['\\', ''], $this->model['path']),
-            $this->model['name'],
+            explode('/', $this->model)[0],
+            last( explode('/', $this->model) ),
             $this->argument('table'),
             $this->fillable,
-            $this->relations
+            $this->relations,
+            $this->timestamps
         ], $content);
 
         return $content;

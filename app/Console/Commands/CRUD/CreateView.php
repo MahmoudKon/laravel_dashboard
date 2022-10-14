@@ -90,7 +90,7 @@ class CreateView extends Command
 
     public function appendText() :string
     {
-        $form_content = file_get_contents(base_path("stubs/form.stub"));
+        $form_content = file_get_contents(base_path("stubs/custom/form.stub"));
         return str_replace('{{-- HTML Code --}}', $this->createFormContent(), $form_content);
     }
 

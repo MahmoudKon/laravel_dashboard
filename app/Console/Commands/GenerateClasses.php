@@ -20,7 +20,8 @@ class GenerateClasses extends Command
      *
      * @var string
      */
-    protected $signature = 'make:crud {table}'; // EX => php artisan make:crud clients
+    protected $signature = 'make:crud {table} {--namespace=}'; // EX => php artisan make:crud clients
+    protected $table;
     protected $model;
 
     /**
@@ -37,20 +38,28 @@ class GenerateClasses extends Command
      */
     public function handle()
     {
-        $this->model = getTableModel($this->argument('table'));
+        $this->init();
+
+
+        Artisan::call("crud:model {$this->model} {$this->table}");
+        if (file_exists("app/Models/{$this->model}.php")) {
+            $this->error("model class app/Models/{$this->model} already exists!");
+        } else {
+            Artisan::call("crud:model {$this->model} {$this->table}");
+            $this->info("model class<options=bold> app/Models/{$this->model}.php </>created successfully!");
+        }
+
+
+        dd('asdasd');
+
+
+
 
         if (file_exists("app/Http/Requests/{$this->model}Request.php")) {
             $this->error("request class {$this->model}Request already exists!");
         } else {
             Artisan::call("crud:request {$this->argument('table')}");
             $this->info("request class<options=bold> {$this->model}Request.php </>created successfully!");
-        }
-
-        if (file_exists("app/Models/{$this->model}.php")) {
-            $this->error("model class {$this->model} already exists!");
-        } else {
-            Artisan::call("crud:model {$this->argument('table')}");
-            $this->info("model class<options=bold> {$this->model}.php </>created successfully!");
         }
 
         if (file_exists("app/Http/Controllers/Backend/{$this->model}Controller.php")) {
@@ -85,5 +94,11 @@ class GenerateClasses extends Command
         Artisan::call("crud:routes {$this->argument('table')}");
 
         $this->info("<options=bold>All classes genrated successfully!</>");
+    }
+
+    protected function init()
+    {
+        $this->table = $this->argument('table');
+        if ($this->option('namespace')) $this->model = $this->option('namespace').'/'.getTableModel($this->table);
     }
 }

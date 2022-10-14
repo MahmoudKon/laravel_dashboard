@@ -46,15 +46,20 @@ function getModelSlug(string $model_name, bool $return_id = false) :string|int
     return $row && method_exists($row, 'slug') ? $row->slug() : $id;
 }
 
-function getFilesInDir(string $dir):array
+function getFilesInDir(string $dir, $specific_class = null) :array|string
 {
     $files = [];
     foreach (File::allFiles($dir) as $file) {
-        // EX => E:\laragon\www\laravel9\app\Http/Requests\AggregatorRequest.php => App\Http\Requests\AggregatorRequest [namespace]
         $file_path = str_replace('/', '\\', strstr($file->getPathname(), 'app'));
-        $files[$file->getRelativePathname()] = str_replace(['.php', 'app'], ['', 'App'], $file_path);
+        $file_path = str_replace(['.php', 'app'], ['', 'App'], $file_path);
+
+        if ($specific_class && stripos($file->getRelativePathname(), "$specific_class.php") !== false)
+            return $file_path;
+
+        $files[$file->getRelativePathname()] = $file_path;
     }
-    return $files;
+
+    return $specific_class ? '' : $files;
 }
 
 /**

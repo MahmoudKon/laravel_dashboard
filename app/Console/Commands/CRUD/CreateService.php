@@ -27,7 +27,7 @@ class CreateService extends GeneratorCommand
 
     protected function getStub()
     {
-        return  base_path() . '/stubs/service.stub';
+        return  base_path() . '/stubs/custom/service.stub';
     }
 
     /**

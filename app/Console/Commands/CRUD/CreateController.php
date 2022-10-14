@@ -77,7 +77,7 @@ class CreateController extends Command
 
     protected function createContent()
     {
-        $content = file_get_contents(base_path('stubs/controller.custom.stub'));
+        $content = file_get_contents(base_path('stubs/custom/controller.stub'));
 
         $content = str_replace([
             '{{ rootNamespace }}',

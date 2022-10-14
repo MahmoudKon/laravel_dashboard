@@ -3,7 +3,6 @@
 namespace App\Console\Commands\CRUD;
 
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class CreateDatatable extends GeneratorCommand
@@ -29,7 +28,7 @@ class CreateDatatable extends GeneratorCommand
 
     protected function getStub()
     {
-        return  base_path() . '/stubs/datatable.custom.stub';
+        return  base_path() . '/stubs/custom/datatable.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)

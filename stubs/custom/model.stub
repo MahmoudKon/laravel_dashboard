@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Models\{{ namespace }};
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +13,7 @@ class {{ class }} extends Model
     protected $table = '{{ table }}';
 
     protected $fillable = [{{ fillable }}];
-
+    {{ timestamps }}
     public function slug()
     {
         return $this->id;
