@@ -17,8 +17,9 @@ class CreateRoute extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:routes {table}';
+    protected $signature = 'crud:routes {model}';
     protected $controller;
+    protected $table;
 
     /**
      * The console command description.
@@ -43,9 +44,10 @@ class CreateRoute extends Command
 
     protected function createRoutes()
     {
-        $model        = getTableModel($this->argument('table'));
+        $model        = str_replace('/', '\\', $this->argument('model'));
+        $this->table  = app("App\Models\\". $model)->getTable();
         $this->controller = "{$model}Controller";
-        $model_pram   = Str::singular($this->argument('table'));
+        $model_pram   = Str::singular( last( explode('\\', $model) ) );
         $namespace    = "App".DIRECTORY_SEPARATOR."Http".DIRECTORY_SEPARATOR."Controllers".DIRECTORY_SEPARATOR."Backend";
         $middleware   = "web,localeSessionRedirect,localizationRedirect,localeViewPath,auth";
         $ROUTE_PREFIX = URL_PREFIX."/";
@@ -53,43 +55,43 @@ class CreateRoute extends Command
 
         $routes = [
             [
-                'route'  => "{$this->argument('table')}.index",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}",
+                'route'  => "{$this->table}.index",
+                'uri'    => $ROUTE_PREFIX."{$this->table}",
                 'method' => 'GET,HEAD',
                 'func'   => 'index'
             ], [
-                'route'  => "{$this->argument('table')}.create",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}", // dashboard/users
+                'route'  => "{$this->table}.create",
+                'uri'    => $ROUTE_PREFIX."{$this->table}", // dashboard/users
                 'method' => 'GET,HEAD',
                 'func'   => 'create'
             ], [
-                'route'  => "{$this->argument('table')}.store",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}",
+                'route'  => "{$this->table}.store",
+                'uri'    => $ROUTE_PREFIX."{$this->table}",
                 'method' => 'POST',
                 'func'   => 'store'
             ], [
-                'route'  => "{$this->argument('table')}.show",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}/{$model_pram}",
+                'route'  => "{$this->table}.show",
+                'uri'    => $ROUTE_PREFIX."{$this->table}/{$model_pram}",
                 'method' => 'GET,HEAD',
                 'func'   => 'show'
             ], [
-                'route'  => "{$this->argument('table')}.edit",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}/{$model_pram}/edit",
+                'route'  => "{$this->table}.edit",
+                'uri'    => $ROUTE_PREFIX."{$this->table}/{$model_pram}/edit",
                 'method' => 'GET,HEAD',
                 'func'   => 'edit'
             ], [
-                'route'  => "{$this->argument('table')}.update",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}/{$model_pram}",
+                'route'  => "{$this->table}.update",
+                'uri'    => $ROUTE_PREFIX."{$this->table}/{$model_pram}",
                 'method' => 'PUT,PATCH',
                 'func'   => 'update'
             ], [
-                'route'  => "{$this->argument('table')}.destroy",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}/{$model_pram}",
+                'route'  => "{$this->table}.destroy",
+                'uri'    => $ROUTE_PREFIX."{$this->table}/{$model_pram}",
                 'method' => 'DELETE',
                 'func'   => 'destroy'
             ], [
-                'route'  => "{$this->argument('table')}.multidelete",
-                'uri'    => $ROUTE_PREFIX."{$this->argument('table')}/multidelete",
+                'route'  => "{$this->table}.multidelete",
+                'uri'    => $ROUTE_PREFIX."{$this->table}/multidelete",
                 'method' => 'POST',
                 'func'   => 'multidelete'
             ],
@@ -118,7 +120,7 @@ class CreateRoute extends Command
 
     protected function appendRoutes()
     {
-        $append_routes = "\nRoute::resource('{$this->argument('table')}', '{$this->controller}'); \nRoute::post('{$this->argument('table')}/multidelete', '{$this->controller}@multidelete')->name('{$this->argument('table')}.multidelete'); \n";
+        $append_routes = "\nRoute::resource('{$this->table}', '{$this->controller}'); \nRoute::post('{$this->table}/multidelete', '{$this->controller}@multidelete')->name('{$this->table}.multidelete'); \n";
 
         if (stripos(file_get_contents(base_path('routes/backend.php')), $append_routes) === false) {
             File::append(base_path('routes/backend.php'), $append_routes);
@@ -130,15 +132,15 @@ class CreateRoute extends Command
 
     protected function createMenu()
     {
-        $menu_name  = ucwords( str_replace('_', ' ', $this->argument('table')) );
+        $menu_name  = ucwords( str_replace('_', ' ', $this->table) );
 
         Menu::firstOrCreate([
             'name->en' => $menu_name,
-            'route'    => $this->argument('table').'.index',
+            'route'    => $this->table.'.index',
             'parent_id'=> null
         ], [
             'name' => ['en' => $menu_name, 'ar' => $menu_name],
-            'route' => $this->argument('table').'.index',
+            'route' => $this->table.'.index',
             'icon' => "fa fa-gears",
             'parent_id' => null
         ]);

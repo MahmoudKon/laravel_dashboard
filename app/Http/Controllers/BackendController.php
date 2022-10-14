@@ -26,12 +26,11 @@ class BackendController extends Controller
             $this->index_view  = "backend.includes.pages.crud-index-page";
         }
 
-        session(['use_button_ajax' => $this->use_button_ajax]);
+        session(['use_button_ajax' => $this->use_button_ajax, 'model_view_path' => $this->model::VIEW ?? '']);
         if ($this->use_button_ajax) {
             $this->create_view = "backend.includes.forms.form-create";
             $this->update_view = "backend.includes.forms.form-update";
         }
-        View::share('model_view_path', $this->model::VIEW ?? '');
         View::share('use_form_ajax', $this->use_form_ajax);
         View::share('use_button_ajax', $this->use_button_ajax);
     }

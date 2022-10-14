@@ -63,9 +63,11 @@ class CreateDatatable extends GeneratorCommand
 
     private function getSourceFile()
     {
+        $name = last( explode('\\', $this->datatable) );
+        $namespace = str_replace([$name, '/'], ['', '\\'], $this->datatable);
         $vars = [
-            '{{ namespace }}' => $this->datatable,
-            '{{ class }}' => last( explode('\\', $this->datatable) ),
+            '{{ namespace }}' => rtrim($namespace, '\\'),
+            '{{ class }}' => $name,
             '{{ modelNamespace }}' => $this->model_class,
             '{{ modelName }}' => last(explode('\\', $this->model_class)),
             '{{ table }}' => $this->table,
@@ -126,7 +128,7 @@ class CreateDatatable extends GeneratorCommand
 
     protected function addTranslations()
     {
-        $trans = "\n\t'employees' => [";
+        $trans = "\n\t'".app($this->model_class)->getTable()."' => [";
 
         foreach(app($this->model_class)->getFillable() as $column) {
             if (stripos($column, '_id') !== false) continue;

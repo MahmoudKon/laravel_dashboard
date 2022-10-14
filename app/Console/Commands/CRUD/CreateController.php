@@ -58,7 +58,6 @@ class CreateController extends Command
         $this->sub_dir = "Backend";
         if ($this->sub_dir) {
             $this->sub_dir = ucfirst($this->sub_dir);
-            $this->namespace .= "\\$this->sub_dir";
             $this->controller = ucfirst($this->sub_dir).'/'.$this->controller;
         }
     }
