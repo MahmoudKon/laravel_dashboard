@@ -3,6 +3,7 @@
 namespace App\Console\Commands\CRUD;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
