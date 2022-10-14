@@ -19,22 +19,8 @@ class RoleSeeder extends Seeder
 
         $roles = [
             ['guard_name' => PERMISSION_GUARDS, 'name' => 'Super Admin'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'RBT'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Subscriptions'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Digital Media'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Social Media'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Multimedia'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Development'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'IT'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Legal'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'CEO Assistant'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Content'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Quality'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'RBT Upload'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Reports'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Finance'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Ceo'],
-            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Acount'],
+            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Manager'],
+            ['guard_name' => PERMISSION_GUARDS, 'name' => 'Normal'],
         ];
 
         foreach ($roles as $role) Role::firstOrCreate($role, $role);

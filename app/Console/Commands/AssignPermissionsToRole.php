@@ -32,6 +32,9 @@ class AssignPermissionsToRole extends Command
     {
         // Super Admin Sync Permissions
         $this->syncPermissions("Super Admin");
+
+
+        // $this->syncPermissions("Normal", ['Profile']);
     }
 
     protected function syncPermissions(string $role_name, array $controllers = [], array $funcs = [], bool $sync = true) :void

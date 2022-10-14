@@ -17,6 +17,9 @@ return [
     'settings' => 'Settings',
     'setting' => 'Setting',
 
+    // SIMULATE
+    'simulate' => 'Simulate',
+
     // IMAGE CROPPER
     'image-cropper' => 'Image Cropper',
     'image-quality' => 'Image Quality',

@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             try {
                 $index = array_rand($images);
                 $user->update(['image' => $this->uploadApiImage($images[$index]['src']['medium'], 'users')]);
-                $user->roles()->attach(Role::where('id', '!=', 1)->inRandomOrder()->first()->id);
+                $user->roles()->attach(Role::whereNotIn('name', SUPERADMIN_ROLES)->inRandomOrder()->first()->id);
             } catch (Exception $e) {}
         });
 

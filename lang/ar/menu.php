@@ -17,6 +17,9 @@ return [
     'settings' => 'الإعدادات',
     'setting' => 'إعداد',
 
+    // SIMULATE
+    'simulate' => 'محاكاة',
+
     // IMAGE CROPPER
     'image-cropper' => 'إقتصاص الصور',
     'image-quality' => 'جودة الصورة',
