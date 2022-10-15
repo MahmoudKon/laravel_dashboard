@@ -105,7 +105,7 @@ function getModel(bool $singular = false, $view = false) :string
  *  active
  *  Check if the current url have the value of model parameter to make the link in menu active or not
  */
-function activeMenu(string|null $menu_route, $func = null, string $active_class = 'active') :bool|string
+function activeMenu(string|null $menu_route, string $active_class = 'active') :bool|string
 {
     if (! $menu_route) return '';
     $menu_route = str_replace(ROUTE_PREFIX, '', $menu_route);
