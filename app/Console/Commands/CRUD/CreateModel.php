@@ -63,7 +63,7 @@ class CreateModel extends Command
             $relation = str_replace('_id', '', $column);
             $relation_class = ucfirst( $relation );
             $class_namespace = getFilesInDir(app_path('Models'), $relation_class);
-            $this->relations .= "\n\tpublic function $relation() { \n\t\treturn \$this->belongsTo({$class_namespace}::class)->withDefault(['id' => null]); \n\t}\n";
+            $this->relations .= "\n\tpublic function $relation() { \n\t\treturn \$this->belongsTo(\\{$class_namespace}::class)->withDefault(['id' => null]); \n\t}\n";
         }
     }
 
@@ -96,7 +96,6 @@ class CreateModel extends Command
             '{{ fillable }}',
             '{{ relations }}',
             '{{ timestamps }}',
-            '{{ view }}',
         ],[
             '\\'.trim( str_replace('/', '\\', $namespace) , '\\'),
             $name,
@@ -104,7 +103,6 @@ class CreateModel extends Command
             $this->fillable,
             $this->relations,
             $this->timestamps,
-            str_replace('/', '.', $namespace)
         ], $content);
 
         return $content;

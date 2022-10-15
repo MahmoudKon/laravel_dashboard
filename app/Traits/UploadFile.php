@@ -20,6 +20,14 @@ trait UploadFile
         return $get_full_path ? $this->getPath($folder, $name) : $name;
     }
 
+    public function uploadFile(UploadedFile $file, $folder, $get_full_path = false)
+    {
+        $path = $this->checkFolderIsExists($folder);
+        $name = $file->hashName();
+        $file->move($path, $name);
+        return $get_full_path ? $this->getPath($folder, $name) : $name;
+    }
+
     /**
      *  EXAMPLE url:
      *   https://images.pexels.com/photos/45170/kittens-cat-cat-puppy-rush-45170.jpeg?auto=compress&cs=tinysrgb&h=130

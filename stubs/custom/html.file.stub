@@ -2,6 +2,11 @@
     <div class="form-group">
         <label class="{{ required }}">@lang('inputs.{{ trans_column }}')</label>
         <div class="input-group">
+            @if ($row->{{ column }})
+                <div class="input-group-prepend">
+                    <a href="{{ asset($row->{{ column }}) }}" class="input-group-text btn btn-primary" target="_blank" data-toggle="tooltip" title='Preview File'> <i class="fas fa-arrows-alt"></i> </a>
+                </div>
+            @endif
             <div class="custom-file">
                 <input type="file" name="{{ column }}" class="custom-file-input cursor-pointer form-control" accept="image/*,audio/*,video/*,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.csv, application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                 <label class="custom-file-label" for="upload-image"><i class="fa fa-upload"></i> Choose file</label>

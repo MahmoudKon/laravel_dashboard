@@ -12,8 +12,6 @@ class {{ class }} extends Model
 
     protected $table = '{{ table }}';
 
-    const VIEW = '{{ view }}';
-
     protected $fillable = [{{ fillable }}];
     {{ timestamps }}
     public function slug()

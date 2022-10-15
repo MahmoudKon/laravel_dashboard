@@ -97,7 +97,7 @@ function getModel(bool $singular = false, $view = false) :string
     }
     $model = str_replace(' ', '_', $model);
 
-    if ($view) return session('model_view_path').$model;
+    if ($view) return session('view_sub_path').$model;
     return $singular ? Str::singular($model) : $model;
 }
 

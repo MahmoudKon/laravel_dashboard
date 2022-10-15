@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 trait BackendControllerHelper
 {
+    public $view_sub_path = '';
+
     /**
      * index_view
      * the main index page for larg data.

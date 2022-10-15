@@ -122,16 +122,7 @@ class CreateView extends Command
         if (stripos($column->Type, 'date') !== false)
             return 'date';
 
-        if (stripos($column->Comment, 'attachment') !== false)
-            return 'file';
-
-        if (stripos($column->Comment, 'image') !== false)
-            return 'file';
-
-        if (stripos($column->Comment, 'video') !== false)
-            return 'file';
-
-        if (stripos($column->Comment, 'audio') !== false)
+        if (stripos($column->Comment, 'file') !== false)
             return 'file';
 
         return "input";

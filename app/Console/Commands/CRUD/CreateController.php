@@ -88,14 +88,16 @@ class CreateController extends Command
             '{{ model_name }}',
             '{{ class }}',
             '{{ single_table }}',
-            '{{ appends }}'
+            '{{ appends }}',
+            '{{ view_sub_path }}'
         ],[
             $this->namespace.'\\'.str_replace(["/{$model_name}Controller", '/'], ['', '\\'], $this->controller),
             $model,
             $model_name,
             "{$model_name}Controller",
             Str::singular($table),
-            createAppends($table)
+            createAppends($table),
+            str_replace([$model_name, '\\'], ['', '.'], $model)
         ], $content);
 
         return $content;

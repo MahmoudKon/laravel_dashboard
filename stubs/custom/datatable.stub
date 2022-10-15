@@ -4,7 +4,6 @@ namespace {{ namespace }};
 
 use {{ modelNamespace }};
 use Yajra\DataTables\Services\DataTable;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use App\Traits\DatatableHelper;
 
