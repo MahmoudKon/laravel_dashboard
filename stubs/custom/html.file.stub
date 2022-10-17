@@ -2,7 +2,7 @@
     <div class="form-group">
         <label class="{{ required }}">@lang('inputs.{{ trans_column }}')</label>
         <div class="input-group">
-            @if ($row->{{ column }})
+            @if (isset($row) && $row->{{ column }})
                 <div class="input-group-prepend">
                     <a href="{{ asset($row->{{ column }}) }}" class="input-group-text btn btn-primary" target="_blank" data-toggle="tooltip" title='Preview File'> <i class="fas fa-arrows-alt"></i> </a>
                 </div>
