@@ -97,7 +97,7 @@ class CreateController extends Command
             "{$model_name}Controller",
             Str::singular($table),
             createAppends($table),
-            str_replace([$model_name, '\\'], ['', '.'], $model)
+            convertCamelCaseTo(str_replace([$model_name, '\\'], ['', '.'], $model))
         ], $content);
 
         return $content;

@@ -188,3 +188,8 @@ function activeLanguages()
 
     file_put_contents(config_path('languages.php'), "<?php \n\nreturn " . var_export($array, true) . ";");
 }
+
+function convertCamelCaseTo(string $string, string $us = '_') :string
+{
+    return strtolower( preg_replace('/([a-z]+)([A-Z]+)/', '$1'.$us.'$2', $string) );
+}

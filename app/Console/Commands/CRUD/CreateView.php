@@ -70,7 +70,8 @@ class CreateView extends Command
      */
     public function viewPath()
     {
-        return "resources/views/{$this->argument('view')}";
+        $view = convertCamelCaseTo($this->argument('view'));
+        return "resources/views/{$view}";
     }
 
     /**
