@@ -12,11 +12,9 @@
 
                     @if($loop->last || stripos($link, '{') !== false)
                         <li class="breadcrumb-item active">
-                            @if ($link == "")
-                                @lang('menu.dashboard')
-                            @elseif (stripos($link, "{") !== false)
-                            @php $full_url = str_replace($link, getModelSlug($link, true), $full_url); @endphp
-                                {{ getModelSlug($link) }}
+                            @if (stripos($link, "{") !== false)
+                                @php $full_url = str_replace($link, getModelSlug($link, true), $full_url); @endphp
+                                {!! getModelSlug($link) !!}
                             @else
                                 @lang("menu.$link")
                             @endif

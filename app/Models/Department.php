@@ -30,6 +30,6 @@ class Department extends Model
 
     public function slug()
     {
-        return $this->title;
+        return "<a href='".routeHelper('departments.show', $this)."'>$this->title</a>";
     }
 }
