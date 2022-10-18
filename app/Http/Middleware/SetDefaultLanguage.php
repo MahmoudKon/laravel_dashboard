@@ -28,6 +28,9 @@ class SetDefaultLanguage
         session(['locale' => app()->getLocale()]);
         LaravelLocalization::setLocale(app()->getLocale());
 
+        if ($request->route()->uri() == '/')
+            return redirect($request->route()->uri());
+
         return redirect(LaravelLocalization::getLocalizedUrl());
     }
 }
