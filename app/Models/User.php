@@ -129,6 +129,6 @@ class User extends Authenticatable
 
     public function slug()
     {
-        return $this->name;
+        return "<a href='".routeHelper('users.show', $this)."'>$this->name</a>";
     }
 }
