@@ -112,10 +112,11 @@ function getModel(bool $singular = false, $view = false) :string
  */
 function activeMenu(string|null $menu_route, string $active_class = 'active') :bool|string
 {
-    if (! $menu_route) return '';
+    $route = \Illuminate\Support\Facades\Route::getRoutes()->getByName(ROUTE_PREFIX.$menu_route);
+    if (! $menu_route || ! $route) return '';
     $menu_route = str_replace(ROUTE_PREFIX, '', $menu_route);
 
-    return request()->route()->getAction('controller') == \Illuminate\Support\Facades\Route::getRoutes()->getByName(ROUTE_PREFIX.$menu_route)->getAction('controller')
+    return request()->route()->getAction('controller') == $route->getAction('controller')
                 ? $active_class : '';
 }
 

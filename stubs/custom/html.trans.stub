@@ -1,0 +1,28 @@
+<div class="col-md-12">
+    <div class="nav-vertical">
+        <ul class="nav nav-tabs nav-only-icon nav-top-border no-hover-bg nav-justified">
+            @foreach (config('languages') as $name => $lang)
+                <li class="nav-item">
+                    <a class="nav-link {{ $loop->first ? "active" : "" }}" id="{{ $lang }}-{{ column }}-tab" data-toggle="tab" aria-controls="{{ $lang }}" href="#{{ column }}-{{ $lang }}" aria-expanded="true">@lang("menu.$name")</a>
+                </li>
+            @endforeach
+        </ul>
+
+        <div class="tab-content px-1 my-2">
+            @foreach (config('languages') as $name => $lang)
+                <div role="tabpanel" class="tab-pane tap- {{ $loop->first ? "active" : "" }}" id="{{ column }}-{{ $lang }}" aria-expanded="true" aria-labelledby="{{ $lang }}-{{ column }}-tab">
+                    <div class="form-group">
+                        <label class="required">@lang('inputs.{{ column }}') / @lang("menu.$name")</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input type="text" class="form-control" name="{{ column }}[{{ $lang }}]" value="{{ isset($row) ? $row->getName($lang) : old("{{ column }}.$lang") }}" placeholder="@lang('inputs.{{ column }}') / @lang("menu.$name")">
+                        </div>
+                        @include('layouts.includes.backend.validation_error', ['input' => "{{ column }}-$lang"])
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>

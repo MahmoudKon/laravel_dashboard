@@ -49,7 +49,7 @@ class City extends Model
     {
         return $this->belongsTo(Governorate::class, 'governorate_id', 'id')->select('id', 'name');
     }
-    
+
     protected static function boot()
     {
         parent::boot();

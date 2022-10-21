@@ -46,10 +46,10 @@ class CreateView extends GeneratorCommand
 
         $this->getColumns();
 
-        $path = $this->viewPath();
+        $path = $this->view();
 
         if (File::exists($path)) {
-            $this->error("File {$path} already exists!");
+            echo "File {$path} already exists! \n";
             return;
         }
 
@@ -70,14 +70,14 @@ class CreateView extends GeneratorCommand
     protected function checkModelExists() :bool
     {
         if ($this->isReservedName($this->argument('model'))) {
-            $this->error('The name "'.$this->argument('model').'" is reserved by PHP.');
+            echo 'The name "'.$this->argument('model').'" is reserved by PHP.'."\n";
             return true;
         }
 
         $this->model = $this->qualifyModel( $this->argument('model') );
 
         if (! $this->alreadyExists($this->model)) {
-            $this->error("model class {$this->model}.php not exists!");
+            echo "model class {$this->model}.php not exists! \n";
             return true;
         }
 
@@ -142,6 +142,9 @@ class CreateView extends GeneratorCommand
     {
         if (stripos($column->Type, 'tinyint') !== false)
             return 'checkbox';
+
+        if ($column->Type == 'json' && stripos($column->Comment, 'translations') !== false)
+            return 'trans';
 
         if (stripos($column->Field, '_id') !== false)
             return 'select';
