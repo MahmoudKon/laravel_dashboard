@@ -15,9 +15,12 @@ class CreateRequest extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:request {model} {table}';
-
+    protected $signature = 'crud:request {model}';
+    protected $model;
+    protected $table;
     protected $validations = '';
+    protected $translations = '';
+    protected $content;
     protected $request;
 
     /**
@@ -34,27 +37,66 @@ class CreateRequest extends Command
      */
     public function handle()
     {
-        $this->createRequest();
+        if ($this->checkModelExists()) return;
+
         $this->getColumns();
+        $this->createContent();
         $this->createFile();
-        $this->info("model class<options=bold> {$this->request}.php </>created successfully!");
+        $this->info("model class<options=bold> app/Requests/{$this->request}.php </>created successfully!");
+    }
+
+    /**
+     * checkModelExists
+     *
+     *  This method to check is model is alleady exists
+     *
+     * @return bool
+     */
+    protected function checkModelExists() :bool
+    {
+        $this->request = $this->argument('model').'Request';
+        $this->model   = 'app/Models/'.$this->argument('model');
+
+        if (! File::exists($this->model.'.php')) {
+            $this->error("model class {$this->model}.php already exists!");
+            return true;
+        }
+
+        if (getFilesInDir(app_path('Http/Requests'), $this->request)) {
+            $this->error("request class app/Http/Requests/{$this->request}.php already exists!");
+            return true;
+        }
+
+        $this->model = app(str_replace('/', '\\', $this->model));
+        $this->table = $this->model->getTable();
+        return false;
     }
 
     protected function getColumns()
     {
         $rows = [];
+        $fk_columns = getRelationsDetails($this->table);
+        foreach (DB::select('SHOW FULL COLUMNS FROM '.$this->table) as $column) {
+            if (! in_array($column->Field, $this->model->getFillable())) continue;
 
-        foreach (DB::select('SHOW FULL COLUMNS FROM '.$this->argument('table')) as $column) {
-            if (in_array($column->Field, ['id', 'created_at', 'updated_at'])) continue;
-            $rows[$column->Field] = $this->getValidation($column);
+            $trans = "trans('inputs.{$column->Field}')";
+            $fk_column = false;
+
+            if (isset($fk_columns[$column->Field])) {
+                $fk_column = $fk_columns[$column->Field];
+                $trans = "trans('menu.{$fk_column->fk_table}')";
+            }
+
+            $this->validations  .= "'$column->Field' => '". $this->getValidation($column, $fk_column) ."',\n\t\t\t";
+            $this->translations .= "'$column->Field' => $trans,\n\t\t\t";
         }
 
         foreach ($rows as $key => $value) {
-            $this->validations .= "'$key' => '$value',\n\t\t\t";
+            $this->validations .= "'$key' => $value',\n\t\t\t";
         }
     }
 
-    protected function getValidation($column)
+    protected function getValidation($column, $fk_column)
     {
         $validate = [];
 
@@ -74,13 +116,11 @@ class CreateRequest extends Command
             $this->getFileValidation($column, $validate);
         }
 
-        if (stripos($column->Field, "_id") !== false) {
-            $related_table = Str::plural( str_replace('_id', '', $column->Field) );
-            array_push($validate, "exists:$related_table,id");
-        }
+        if ($fk_column)
+            array_push($validate, "exists:$fk_column->fk_table,$fk_column->fk_column");
 
         if (stripos($column->Key, "UNI") !== false) // is unique
-            array_push($validate, "unique:{$this->argument('table')},$column->Field,'.request()->".Str::singular($this->argument("table"))."" . ".'" );
+            array_push($validate, "unique:{$this->table},$column->Field,'.request()->".Str::singular($this->table)."" .".'" );
 
         return implode('|', $validate);
     }
@@ -102,37 +142,28 @@ class CreateRequest extends Command
             array_push($validate, 'string');
     }
 
-    protected function createRequest()
-    {
-        $this->request = getFilesInDir(app_path('Http/Requests'), "{$this->argument('model')}Request");
-
-        if ( ! $this->request) {
-            Artisan::call("make:request {$this->argument('model')}Request");
-            $this->request = "{$this->argument('model')}Request";
-        }
-    }
-
     protected function createFile()
     {
+        Artisan::call("make:request {$this->argument('model')}Request");
         $file = "app\Http\Requests\\".str_replace('/', '\\', $this->request).".php";
-        File::put($file, trim($this->createContent()));
+        File::put($file, trim($this->content));
     }
 
     protected function createContent()
     {
         $content = file_get_contents(base_path('stubs/custom/request.stub'));
-        $content = str_replace([
+        $this->content = str_replace([
             '{{ namespace }}',
             '{{ class }}',
             'return false',
-            '//'
+            '{{ validation }}',
+            '{{ translation }}'
         ],[
             explode('/', $this->request)[0],
             last( explode('/', $this->request) ),
             'return true',
             $this->validations,
+            $this->translations,
         ], $content);
-
-        return $content;
     }
 }

@@ -46,11 +46,10 @@ class GenerateClasses extends Command
             $this->info("model class<options=bold> app/Models/{$this->model}.php </>created successfully!");
         }
 
-        return '';
         if (file_exists("app/Http/Requests/{$this->model}Request.php")) {
             $this->error("request class app/Http/Requests/{$this->model}Request.php already exists!");
         } else {
-            Artisan::call("crud:request {$this->model} {$this->argument('table')}");
+            Artisan::call("crud:request {$this->model}");
             $this->info("request class<options=bold> app/Http/Requests/{$this->model}Request.php </>created successfully!");
         }
 

@@ -109,10 +109,12 @@ function getFirstStringColumn(array $columns) :string
  */
 function getRelationsDetails($table) :array
 {
-    return DB::select("SELECT `column_name`, `referenced_table_name` AS fk_table, `referenced_column_name`  AS fk_column
+    $data = DB::select("SELECT `column_name`, `referenced_table_name` AS fk_table, `referenced_column_name`  AS fk_column
                             FROM `information_schema`.`KEY_COLUMN_USAGE` WHERE `constraint_schema` = SCHEMA()
                             AND `table_name` = '$table' AND `referenced_column_name` IS NOT NULL"
                     );
+
+    return array_combine(collect($data)->pluck('column_name')->toArray(), $data);
 }
 
 /**

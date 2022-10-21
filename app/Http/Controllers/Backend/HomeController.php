@@ -9,19 +9,16 @@ use App\Models\Route;
 use App\Models\Setting;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // dd( (new User)->getFillable() );
-
         if (auth()->user()->permissions()->count() == 0 && ! isSuperAdmin())
             return redirect('/');
 
         $tables['users']         = ['count' => User::count()      , 'color' => 'info'];
-        // $tables['departments']   = ['count' => Department::count(), 'color' => 'primary'];
+        $tables['departments']   = ['count' => Department::count(), 'color' => 'primary'];
         $tables['roles']         = ['count' => Role::count()      , 'color' => 'warning'];
         $tables['routes']        = ['count' => Route::count()     , 'color' => 'success'];
         $tables['settings']      = ['count' => Setting::count()   , 'color' => 'primary'];

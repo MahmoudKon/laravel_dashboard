@@ -24,7 +24,14 @@ class {{ class }} extends FormRequest
     public function rules()
     {
         return [
-            //
+            {{ validation }}
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            {{ translation }}
         ];
     }
 }
