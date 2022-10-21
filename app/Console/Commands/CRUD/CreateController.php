@@ -17,9 +17,9 @@ class CreateController extends Command
     protected $signature  = 'crud:controller {model}';
     protected $controller;
     protected $model;
-    protected $path;
+    protected $path = 'app/Http/Controllers/Backend/';
     protected $sub_dir = '';
-    protected $namespace  = "App\Http\Controllers";
+    protected $namespace  = "App\Http\Controllers\Backend\\";
 
     /**
      * The console command description.
@@ -35,52 +35,53 @@ class CreateController extends Command
      */
     public function handle()
     {
-        $this->askForSubDir();
-        $this->checkClassExistsOrCreate();
+        if ($this->checkModelExists()) return ;
+
         $this->createFile();
+
+        $this->info("controller class<options=bold> {$this->path}{$this->controller}.php </>created successfully!");
     }
 
     /**
-     * askForSubDir
+     * checkModelExists
      *
-     *  ask to create file in sub dir or nain controllers dir
-     *  and set variables
+     *  This method to check is model is alleady exists
      *
-     * @return void
+     * @return bool
      */
-    protected function askForSubDir()
+    protected function checkModelExists() :bool
     {
-        $this->model        = $this->argument('model');
-        $this->controller   = $this->model.'Controller';
-        $this->path         = str_replace(['App', '\\'], ['app', DIRECTORY_SEPARATOR], $this->namespace);
+        $this->controller = $this->argument('model').'Controller';
+        $this->model      = "App\Models\\".str_replace('/', '\\', $this->argument('model'));
 
-        // $this->sub_dir = $this->ask('The path is app/Http/Controllers/ you want to create sub folder ?  name =', '');
-        $this->sub_dir = "Backend";
-        if ($this->sub_dir) {
-            $this->sub_dir = ucfirst($this->sub_dir);
-            $this->controller = ucfirst($this->sub_dir).'/'.$this->controller;
+        if (! class_exists($this->model)) {
+            $this->error("model class {$this->model}.php not exists!");
+            return true;
         }
-    }
 
-    protected function checkClassExistsOrCreate()
-    {
-        if (! checkClassExists($this->path, $this->controller) ) {
-            Artisan::call("make:controller {$this->controller}");
+        if (getFilesInDir(app_path('Http/Controllers/Backend'), $this->controller)) {
+            $this->error("controller class app/Http/Controllers/Backend/{$this->controller}.php already exists!");
+            return true;
         }
+
+        Artisan::call("make:controller Backend/{$this->controller}");
+        $this->model = app($this->model);
+        return false;
     }
 
     protected function createFile()
     {
-        $file = $this->path . DIRECTORY_SEPARATOR . $this->controller . '.php';
+        $file = $this->path . $this->controller . '.php';
         File::put($file, $this->createContent());
     }
 
     protected function createContent()
     {
         $content = file_get_contents(base_path('stubs/custom/controller.stub'));
-        $model = str_replace('/', '\\', $this->model);
-        $model_name = last( explode('/', $this->model) );
-        $table = app('App\Models\\'.$model)->getTable();
+        $model_name = class_basename($this->model);
+        $sub_folder = trim( str_replace([$model_name, '/'], ['', '\\'], $this->argument('model')), '\\');
+        $namespace = $this->namespace.$sub_folder;
+        $table = $this->model->getTable();
 
         $content = str_replace([
             '{{ namespace }}',
@@ -91,13 +92,13 @@ class CreateController extends Command
             '{{ appends }}',
             '{{ view_sub_path }}'
         ],[
-            $this->namespace.'\\'.str_replace(["/{$model_name}Controller", '/'], ['', '\\'], $this->controller),
-            $model,
+            trim($namespace, '\\'),
+            str_replace('/', '\\', $this->argument('model')),
             $model_name,
             "{$model_name}Controller",
             Str::singular($table),
             createAppends($table),
-            convertCamelCaseTo(str_replace([$model_name, '\\'], ['', '.'], $model))
+            convertCamelCaseTo(str_replace('\\', '.', $sub_folder)).'.'
         ], $content);
 
         return $content;

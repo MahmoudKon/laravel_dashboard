@@ -49,14 +49,16 @@ function getModelSlug(string $model_name, bool $return_id = false) :string|int
 function getFilesInDir(string $dir, $specific_class = null) :array|string
 {
     $files = [];
-    $specific_class = str_replace('/', DIRECTORY_SEPARATOR, $specific_class);
-    $specific_class = $dir.DIRECTORY_SEPARATOR.$specific_class.'.php';
+
+    if ($specific_class) {
+        $specific_class = $dir.'/'.$specific_class;
+        $specific_class = str_replace(['app', '/'], ['App', '\\'], strstr($specific_class, 'app'));
+    }
 
     foreach (File::allFiles($dir) as $file) {
-        $file_path = str_replace('/', '\\', strstr($file->getPathname(), 'app'));
-        $file_path = str_replace(['.php', 'app'], ['', 'App'], $file_path);
+        $file_path = str_replace(['/', '.php', 'app'], ['\\', '', 'App'], strstr($file->getPathname(), 'app'));
 
-        if ($specific_class && $specific_class == $file->getPathname())
+        if ($specific_class && $specific_class == $file_path)
             return $file_path;
 
         $files[$file->getRelativePathname()] = $file_path;

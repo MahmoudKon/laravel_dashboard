@@ -2,13 +2,13 @@
 
 namespace App\Console\Commands\CRUD;
 
-use Illuminate\Console\Command;
+use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class CreateRequest extends Command
+class CreateRequest extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
@@ -30,6 +30,18 @@ class CreateRequest extends Command
      */
     protected $description = 'create request file from table migration';
 
+    protected $type = 'request';
+
+    protected function getStub()
+    {
+        return  base_path() . '/stubs/custom/request.stub';
+    }
+
+    protected function getDefaultNamespace($rootNamespace)
+    {
+        return $rootNamespace . '\Http\Requests';
+    }
+
     /**
      * Execute the console command.
      *
@@ -42,7 +54,7 @@ class CreateRequest extends Command
         $this->getColumns();
         $this->createContent();
         $this->createFile();
-        $this->info("model class<options=bold> app/Requests/{$this->request}.php </>created successfully!");
+        $this->info("model class<options=bold> {$this->request}.php </>created successfully!");
     }
 
     /**
@@ -54,20 +66,25 @@ class CreateRequest extends Command
      */
     protected function checkModelExists() :bool
     {
-        $this->request = $this->argument('model').'Request';
-        $this->model   = 'app/Models/'.$this->argument('model');
-
-        if (! File::exists($this->model.'.php')) {
-            $this->error("model class {$this->model}.php already exists!");
+        if ($this->isReservedName($this->argument('model'))) {
+            $this->error('The name "'.$this->argument('model').'" is reserved by PHP.');
             return true;
         }
 
-        if (getFilesInDir(app_path('Http/Requests'), $this->request)) {
-            $this->error("request class app/Http/Requests/{$this->request}.php already exists!");
+        $this->request = $this->qualifyClass( $this->argument('model').'Request' );
+        $this->model = $this->qualifyModel( $this->argument('model') );
+
+        if (! $this->alreadyExists($this->model)) {
+            $this->error("model class {$this->model}.php not exists!");
             return true;
         }
 
-        $this->model = app(str_replace('/', '\\', $this->model));
+        if ($this->alreadyExists($this->request)) {
+            $this->error("request $this->request already exists!");
+            return true;
+        }
+
+        $this->model = app($this->model);
         $this->table = $this->model->getTable();
         return false;
     }
@@ -145,13 +162,15 @@ class CreateRequest extends Command
     protected function createFile()
     {
         Artisan::call("make:request {$this->argument('model')}Request");
-        $file = "app\Http\Requests\\".str_replace('/', '\\', $this->request).".php";
+        $file = str_replace('App', 'app', $this->request).'.php';
         File::put($file, trim($this->content));
     }
 
     protected function createContent()
     {
         $content = file_get_contents(base_path('stubs/custom/request.stub'));
+        $name = class_basename($this->request);
+
         $this->content = str_replace([
             '{{ namespace }}',
             '{{ class }}',
@@ -159,8 +178,8 @@ class CreateRequest extends Command
             '{{ validation }}',
             '{{ translation }}'
         ],[
-            explode('/', $this->request)[0],
-            last( explode('/', $this->request) ),
+            str_replace("\\$name", '', $this->request),
+            $name,
             'return true',
             $this->validations,
             $this->translations,

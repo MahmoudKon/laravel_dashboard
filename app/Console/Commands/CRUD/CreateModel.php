@@ -93,7 +93,7 @@ class CreateModel extends Command
         foreach (getRelationsDetails($this->argument('table')) as $column) {
             $relation_name = getRelationMethodName($column->column_name);
             $class_namespace = getFilesInDir(app_path('Models'), getTableModel($column->fk_table));
-            $this->relations .= "\n\tpublic function $relation_name() \n\t{ \n\t\treturn \$this->belongsTo(\\{$class_namespace}::class, '{$column->fk_column}', '{$column->column_name}')->withDefault(['{$column->column_name}' => 'null']); \n\t}\n";
+            $this->relations .= "\n\tpublic function $relation_name() \n\t{ \n\t\treturn \$this->belongsTo(\\{$class_namespace}::class, '{$column->column_name}', '{$column->fk_column}')->withDefault(['{$column->fk_column}' => 'null']); \n\t}\n";
         }
     }
 

@@ -38,8 +38,12 @@ function checkClassExists(string $path, string $specific_name) :bool|string
 function createAppends($table)
 {
     $appends = "";
-    foreach (getRelatedTables($table) as $data) {
-        $appends .= "\n\t\t\t'{$data['table']}' => \App\Models\\".ucfirst($data['model'])."::pluck('{$data['related_column']}', 'id'),";
+
+    foreach (getRelationsDetails($table) as $column) {
+        $model = getFilesInDir(base_path('app/Models'), getTableModel($column->fk_table));
+        if (! $model) continue;
+        $model_Class = app($model);
+        $appends .= "\n\t\t\t'{$column->fk_table}' => \\{$model}::pluck('{$model_Class->getFillable()[0]}', 'id'),";
     }
     return $appends;
 }

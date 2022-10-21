@@ -44,10 +44,10 @@ class CreateRoute extends Command
 
     protected function createRoutes()
     {
-        $model        = str_replace('/', '\\', $this->argument('model'));
-        $this->table  = app("App\Models\\". $model)->getTable();
-        $this->controller = "{$model}Controller";
-        $model_pram   = Str::singular( last( explode('\\', $model) ) );
+        $model        = app(str_replace('/', '\\', "App\Models\\".$this->argument('model')));
+        $this->table  = $model->getTable();
+        $this->controller = class_basename($model)."Controller";
+        $model_pram   = Str::singular( Str::lower(class_basename($model)) );
         $namespace    = "App".DIRECTORY_SEPARATOR."Http".DIRECTORY_SEPARATOR."Controllers".DIRECTORY_SEPARATOR."Backend";
         $middleware   = "web,localeSessionRedirect,localizationRedirect,localeViewPath,auth";
         $ROUTE_PREFIX = URL_PREFIX."/";

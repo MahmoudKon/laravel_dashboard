@@ -12,8 +12,8 @@ class CreateService extends GeneratorCommand
      * @var string
      */
     protected $signature = 'crud:service {model}';
-    protected $service_class;
-    protected $model_class;
+    protected $service;
+    protected $model;
 
     /**
      * The console command description.
@@ -40,36 +40,57 @@ class CreateService extends GeneratorCommand
 
     public function handle()
     {
-        if ($this->isReservedName($this->argument('model'))) {
-            $this->error('The name "'.$this->argument('table').'" is reserved by PHP.');
-            return false;
-        }
+        if ($this->checkModelExists()) return;
 
-        $this->service_class = $this->qualifyClass( $this->argument('model').'Service' );
-        $this->model_class = $this->qualifyModel( $this->argument('model') );
-
-        $path = $this->getPath($this->service_class);
-
-        if ($this->alreadyExists($this->service_class)) {
-            $this->error("$this->type $this->service_class already exists!");
-            return false;
-        }
+        $path = $this->getPath($this->service);
 
         $this->makeDirectory($path);
         $this->files->put($path, $this->getSourceFile());
-        $this->info("request class<options=bold> {$this->service_class}.php </>created successfully!");
+        $this->info("request class<options=bold> {$this->service}.php </>created successfully!");
+    }
+
+    /**
+     * checkModelExists
+     *
+     *  This method to check is model is alleady exists
+     *
+     * @return bool
+     */
+    protected function checkModelExists() :bool
+    {
+        if ($this->isReservedName($this->argument('model'))) {
+            $this->error('The name "'.$this->argument('model').'" is reserved by PHP.');
+            return true;
+        }
+
+        $this->service = $this->qualifyClass( $this->argument('model').'Service' );
+        $this->model = $this->qualifyModel( $this->argument('model') );
+
+        if (! class_exists($this->model)) {
+            $this->error("model class {$this->model}.php not exists!");
+            return true;
+        }
+
+        if ($this->alreadyExists($this->service)) {
+            $this->error("$this->type $this->service already exists!");
+            return true;
+        }
+
+        $this->model = app($this->model);
+
+        return false;
     }
 
     private function getSourceFile()
     {
-        $class = last( explode('\\', $this->service_class) );
-        $namespace = str_replace($class, '', $this->service_class);
+        $name = class_basename($this->service);
+        $namespace = str_replace("\\{$name}", '', $this->service);
 
         $vars = [
-            '{{ namespace }}' => rtrim($namespace, '\\'),
-            '{{ class }}' => $class,
-            '{{ modelNamespace }}' => $this->model_class,
-            '{{ model }}' => last(explode('\\', $this->model_class)),
+            '{{ namespace }}' => $namespace,
+            '{{ class }}' => $name,
+            '{{ modelNamespace }}' => get_class($this->model),
+            '{{ model }}' => class_basename($this->model),
         ];
 
         return $this->getStubContent($this->getStub(), $vars);

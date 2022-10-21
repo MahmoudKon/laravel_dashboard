@@ -3,7 +3,7 @@
 namespace App\Console\Commands\CRUD;
 
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CreateDatatable extends GeneratorCommand
 {
@@ -14,7 +14,7 @@ class CreateDatatable extends GeneratorCommand
      */
     protected $signature = 'crud:datatable {model}';
     protected $datatable;
-    protected $model_class;
+    protected $model;
     protected $table;
     protected $table_details = array();
 
@@ -44,32 +44,56 @@ class CreateDatatable extends GeneratorCommand
      */
     public function handle()
     {
-        $this->datatable   = $this->qualifyClass( $this->argument('model').'Datatable' );
-        $this->model_class = $this->qualifyModel($this->argument('model'));
-        $this->table       = app($this->model_class)->getTable();
-        $path              = $this->getPath($this->datatable);
-
-        if ($this->alreadyExists($this->datatable)) {
-            $this->error("$this->type $this->datatable already exists!");
-            return false;
-        }
+        if($this->checkModelExists()) return;
+        $path = $this->getPath($this->datatable);
 
         $this->addTranslations();
-        $this->getColumns();
         $this->makeDirectory($path);
         $this->files->put($path, $this->getSourceFile());
         $this->info("request class<options=bold> {$this->datatable}.php </>created successfully!");
     }
 
+    /**
+     * checkModelExists
+     *
+     *  This method to check is model is alleady exists
+     *
+     * @return bool
+     */
+    protected function checkModelExists() :bool
+    {
+        if ($this->isReservedName($this->argument('model'))) {
+            $this->error('The name "'.$this->argument('model').'" is reserved by PHP.');
+            return true;
+        }
+
+        $this->datatable = $this->qualifyClass( $this->argument('model').'Datatable' );
+        $this->model = $this->qualifyModel( $this->argument('model') );
+
+        if (! $this->alreadyExists($this->model)) {
+            $this->error("model class {$this->model}.php not exists!");
+            return true;
+        }
+
+        if ($this->alreadyExists($this->datatable)) {
+            $this->error("$this->type $this->datatable already exists!");
+            return true;
+        }
+        $this->model = app($this->model);
+        $this->table = $this->model->getTable();
+        return false;
+    }
+
     private function getSourceFile()
     {
-        $name = last( explode('\\', $this->datatable) );
-        $namespace = str_replace([$name, '/'], ['', '\\'], $this->datatable);
+        $name = class_basename($this->datatable);
+        $namespace = str_replace("\\$name", '', $this->datatable);
+
         $vars = [
-            '{{ namespace }}' => rtrim($namespace, '\\'),
+            '{{ namespace }}' => $namespace,
             '{{ class }}' => $name,
-            '{{ modelNamespace }}' => $this->model_class,
-            '{{ modelName }}' => last(explode('\\', $this->model_class)),
+            '{{ modelNamespace }}' => get_class($this->model),
+            '{{ modelName }}' => class_basename($this->model),
             '{{ table }}' => $this->table,
             '{{ withRelations }}' => $this->getRelatedTables(),
             '{{ columns }}' => $this->getTableColumns()
@@ -83,43 +107,34 @@ class CreateDatatable extends GeneratorCommand
         $content  = file_get_contents($stub);
 
         foreach ($stub_vars as $name => $value)
-        {
             $content = str_replace($name, $value, $content);
-        }
 
         return $content;
-    }
-
-    protected function getColumns()
-    {
-        $this->table_details = getTableDetails($this->table);
     }
 
     protected function getRelatedTables()
     {
         $relations = '';
+        foreach (getRelationsDetails($this->table) as $column)
+            $relations .= "'".getRelationName($column->fk_table)."', ";
 
-        foreach ($this->table_details['relations'] as $table => $columns) {
-            $relations .= "'".getRelationName($table)."', ";
-        }
-
-        return $relations !== ''
-                ? "->with([". trim($relations, ', ') ."])"
-                : '';
+        return $relations !== '' ? "->with([". trim($relations, ', ') ."])" : '';
     }
 
     protected function getTableColumns()
     {
+        $fk_columns = getRelationsDetails($this->table);
         $rows = '';
-        foreach ($this->table_details['columns'] as $column) {
-            $translate = "inputs.$this->table.$column->Field";
-            $name = $column->Field;
+        foreach ($this->model->getFillable() as $column) {
+            $translate = "inputs.$this->table.$column";
+            $name = $column;
 
-            if (stripos($column->Field, "_id") !== false) {
-                $related_table = Str::plural(str_replace("_id", '', $column->Field));
+            if( isset( $fk_columns[$column] ) ) {
+                $related_table = $fk_columns[$column]->fk_table;
                 $translate = "menu.$related_table";
-                $name = getRelationName($related_table) . '.' . getFirstStringColumn( $this->table_details['relations'][$related_table]['columns']);
+                $name = getRelationName($related_table) . '.' . getFirstStringColumn( DB::select("SHOW FULL COLUMNS FROM $related_table") );
             }
+
             $rows .= "\n\t\t\tColumn::make('$name')->title(trans('$translate')),";
         }
 
@@ -128,9 +143,9 @@ class CreateDatatable extends GeneratorCommand
 
     protected function addTranslations()
     {
-        $trans = "\n\t'".app($this->model_class)->getTable()."' => [";
+        $trans = "\n\t'$this->table' => [";
 
-        foreach(app($this->model_class)->getFillable() as $column) {
+        foreach($this->model->getFillable() as $column) {
             if (stripos($column, '_id') !== false) continue;
             $trans .= "\n\t\t'$column' => '". ucwords( str_replace('_', ' ', $column) ) ."',";
         }

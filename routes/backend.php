@@ -109,3 +109,4 @@ Route::controller('CityController')->group(function () {
 });
 
 Route::resource('langs', 'LangController');
+
