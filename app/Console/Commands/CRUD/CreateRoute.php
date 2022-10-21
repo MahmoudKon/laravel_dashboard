@@ -19,6 +19,7 @@ class CreateRoute extends Command
      */
     protected $signature = 'crud:routes {model}';
     protected $controller;
+    protected $route_controller_namespace;
     protected $table;
 
     /**
@@ -44,7 +45,9 @@ class CreateRoute extends Command
 
     protected function createRoutes()
     {
-        $model        = app(str_replace('/', '\\', "App\Models\\".$this->argument('model')));
+        $model        = str_replace('/', '\\', $this->argument('model'));
+        $this->route_controller_namespace = $model.'Controller';
+        $model        = app( "App\Models\\".$model);
         $this->table  = $model->getTable();
         $this->controller = class_basename($model)."Controller";
         $model_pram   = Str::singular( Str::lower(class_basename($model)) );
@@ -120,7 +123,7 @@ class CreateRoute extends Command
 
     protected function appendRoutes()
     {
-        $append_routes = "\nRoute::resource('{$this->table}', '{$this->controller}'); \nRoute::post('{$this->table}/multidelete', '{$this->controller}@multidelete')->name('{$this->table}.multidelete'); \n";
+        $append_routes = "\nRoute::resource('{$this->table}', '{$this->route_controller_namespace}'); \nRoute::post('{$this->table}/multidelete', '{$this->route_controller_namespace}@multidelete')->name('{$this->table}.multidelete'); \n";
 
         if (stripos(file_get_contents(base_path('routes/backend.php')), $append_routes) === false) {
             File::append(base_path('routes/backend.php'), $append_routes);

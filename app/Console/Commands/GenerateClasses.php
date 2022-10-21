@@ -78,7 +78,7 @@ class GenerateClasses extends Command
         if (file_exists(resource_path("views/$view_path"))) {
             $this->error("view blade {$view_path} already exists!");
         } else {
-            Artisan::call("crud:view {$view_path} {$this->argument('table')}");
+            Artisan::call("crud:view {$view_path} {$this->model}");
             $this->info("View blade<options=bold> {$view_path} </>created successfully!");
         }
 

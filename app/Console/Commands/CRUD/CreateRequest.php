@@ -104,8 +104,16 @@ class CreateRequest extends GeneratorCommand
                 $trans = "trans('menu.{$fk_column->fk_table}')";
             }
 
-            $this->validations  .= "'$column->Field' => '". $this->getValidation($column, $fk_column) ."',\n\t\t\t";
-            $this->translations .= "'$column->Field' => $trans,\n\t\t\t";
+            if ($column->Type == "json" && stripos($column->Comment, 'translations') !== false) {
+                foreach (config('languages') as $key => $lang) {
+                    $this->validations  .= "'$column->Field.{$lang}' => '". $this->getValidation($column, $fk_column) ."',\n\t\t\t";
+                    $this->translations .= "'$column->Field.{$lang}' => $trans,\n\t\t\t";
+                }
+            } else {
+                $this->validations  .= "'$column->Field' => '". $this->getValidation($column, $fk_column) ."',\n\t\t\t";
+                $this->translations .= "'$column->Field' => $trans,\n\t\t\t";
+            }
+
         }
 
         foreach ($rows as $key => $value) {

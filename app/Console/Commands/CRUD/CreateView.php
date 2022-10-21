@@ -2,20 +2,23 @@
 
 namespace App\Console\Commands\CRUD;
 
-use Illuminate\Console\Command;
+use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class CreateView extends Command
+class CreateView extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'crud:view {view} {table}';
+    protected $signature = 'crud:view {view} {model}';
     protected $columns = array();
+    protected $relations = array();
+    protected $model;
+    protected $table;
     protected $inputs;
 
     /**
@@ -25,14 +28,11 @@ class CreateView extends Command
      */
     protected $description = 'Create a new blade template.';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $type = 'view';
+
+    protected function getStub()
     {
-        parent::__construct();
+        return  base_path() . '/stubs/custom/form.stub';
     }
 
     /**
@@ -42,21 +42,48 @@ class CreateView extends Command
      */
     public function handle()
     {
+        if ($this->checkModelExists()) return;
+
         $this->getColumns();
 
         $path = $this->viewPath();
 
-        $this->createDir($path);
-
-        if (File::exists($path))
-        {
+        if (File::exists($path)) {
             $this->error("File {$path} already exists!");
             return;
         }
 
+        $this->createDir($path);
+
         File::put($path, $this->appendText());
 
         $this->line('<bg=green;fg=white;options=bold>View</> Created Successfully!');
+    }
+
+    /**
+     * checkModelExists
+     *
+     *  This method to check is model is alleady exists
+     *
+     * @return bool
+     */
+    protected function checkModelExists() :bool
+    {
+        if ($this->isReservedName($this->argument('model'))) {
+            $this->error('The name "'.$this->argument('model').'" is reserved by PHP.');
+            return true;
+        }
+
+        $this->model = $this->qualifyModel( $this->argument('model') );
+
+        if (! $this->alreadyExists($this->model)) {
+            $this->error("model class {$this->model}.php not exists!");
+            return true;
+        }
+
+        $this->model = app($this->model);
+        $this->table = $this->model->getTable();
+        return false;
     }
 
     /**
@@ -68,7 +95,7 @@ class CreateView extends Command
      *
      * @return string
      */
-    public function viewPath()
+    public function view()
     {
         $view = convertCamelCaseTo($this->argument('view'));
         return "resources/views/{$view}";
@@ -91,13 +118,12 @@ class CreateView extends Command
 
     public function appendText() :string
     {
-        $form_content = file_get_contents(base_path("stubs/custom/form.stub"));
-        return str_replace('{{-- HTML Code --}}', $this->createFormContent(), $form_content);
+        return str_replace('{{-- HTML Code --}}', $this->createFormContent(), file_get_contents($this->getStub()));
     }
 
     protected function getColumns() :void
     {
-        foreach (DB::select('SHOW FULL COLUMNS FROM '.$this->argument('table')) as $column) {
+        foreach (DB::select('SHOW FULL COLUMNS FROM '.$this->table) as $column) {
             if (in_array($column->Field, ['id', 'created_at', 'updated_at'])) continue;
             array_push($this->columns, $column);
         }
@@ -126,6 +152,15 @@ class CreateView extends Command
         if (stripos($column->Comment, 'file') !== false)
             return 'file';
 
+        if (stripos($column->Comment, 'image') !== false)
+            return 'image';
+
+        if (stripos($column->Comment, 'audio') !== false)
+            return 'audio';
+
+        if (stripos($column->Comment, 'video') !== false)
+            return 'video';
+
         return "input";
     }
 
@@ -143,7 +178,7 @@ class CreateView extends Command
             '{{ related }}'
         ], [
             $related_table,
-            "{$this->argument('table')}.$column->Field",
+            "{$this->table}.$column->Field",
             $column->Field,
             stripos($column->Null, 'NO') !== false ? 'required' : '',
             stripos($column->Type, 'varchar') !== false || stripos($column->Type, 'text') !== false
