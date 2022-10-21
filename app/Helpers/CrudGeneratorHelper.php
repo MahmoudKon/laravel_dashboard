@@ -23,7 +23,7 @@ function getRelationName(string $table) :string
 }
 
 
-function checkClassExists(string $path, string $specific_name) :bool
+function checkClassExists(string $path, string $specific_name) :bool|string
 {
     if (stripos('.php', $specific_name) === false) $specific_name .= '.php';
     $path = str_replace(['App', '\\'], ['app', DIRECTORY_SEPARATOR], $path);
@@ -79,7 +79,16 @@ function getTableDetails(string $table, bool $with_relations = true)
     return $data;
 }
 
-function getFirstStringColumn($columns)
+/**
+ * getFirstStringColumn
+ *
+ *  get first column his type is string from table
+ *  EX => [id, date, name, email]  return name
+ *
+ * @param  array $columns
+ * @return string
+ */
+function getFirstStringColumn(array $columns) :string
 {
     foreach ($columns as $column) {
         if (stripos($column->Type, 'varchar') !== false)
@@ -87,4 +96,49 @@ function getFirstStringColumn($columns)
     }
 
     return $columns[0]->Field;
+}
+
+
+/**
+ * getRelationsDetails
+ *
+ *  This query to get all fk columns with table name
+ *
+ * @param  string $table
+ * @return array
+ */
+function getRelationsDetails($table) :array
+{
+    return DB::select("SELECT `column_name`, `referenced_table_name` AS fk_table, `referenced_column_name`  AS fk_column
+                            FROM `information_schema`.`KEY_COLUMN_USAGE` WHERE `constraint_schema` = SCHEMA()
+                            AND `table_name` = '$table' AND `referenced_column_name` IS NOT NULL"
+                    );
+}
+
+/**
+ * getRelationMethodName
+ *  this function to change fk column to relation method name
+ *  EX => user_id => user   |   manger_of_manager_id  => managerOfManager
+ * @param  string $column
+ * @return string
+ */
+function getRelationMethodName(string $column) :string
+{
+    $column = str_replace('_id', '', $column);
+    return Str::camel($column);
+}
+
+/**
+ * getClassNamespace
+ *  this function to get name of class and his part of namespace
+ * @param  string $class    // Backend/User        ||  User
+ * @return array            // [User, \Backend]    ||  [User , '']
+ */
+function getClassNamespace(string $class) :array
+{
+    $name = last( explode('/', $class) );
+    $namespace = trim( str_replace("$name", '', $class) , '/');
+    if ($namespace) $namespace = "\\$namespace";
+
+    return [$name, $namespace];
 }

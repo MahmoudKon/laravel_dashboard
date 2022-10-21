@@ -17,10 +17,9 @@ class CreateModel extends Command
     protected $signature = 'crud:model {model} {table}';
 
     protected $model;
-    protected $class;
     protected $fillable = '';
-    protected $related_columns = array();
     protected $relations = '';
+    protected $content = '';
     protected $timestamps = "\n\tpublic \$timestamps = false;\n";
 
     /**
@@ -37,59 +36,80 @@ class CreateModel extends Command
      */
     public function handle()
     {
+        if($this->checkModelExists()) return;
+
         $this->createFillable();
         $this->createRelations();
-        $this->createModel();
+        $this->createContent();
         $this->createFile();
 
-        $this->info("model class<options=bold> {$this->model}.php </>created successfully!");
+        $this->info("model class<options=bold> app/Models/{$this->model}.php </>created successfully!");
     }
 
-    protected function createFillable()
+    /**
+     * checkModelExists
+     *
+     *  This method to check is model is alleady exists
+     *
+     * @return bool
+     */
+    protected function checkModelExists() :bool
+    {
+        $this->model = $this->argument('model');
+        if (getFilesInDir(app_path('Models'), $this->model)) {
+            $this->error("model class app/Models/{$this->model}.php already exists!");
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * createFillable
+     *
+     * This method to create fillable columns in model class
+     *
+     * @return void
+     */
+    protected function createFillable() :void
     {
         $columns = Schema::getColumnListing($this->argument('table'));
         if (in_array('created_at', $columns)) $this->timestamps = '';
         foreach ($columns as $column) {
             if (in_array($column, ['id', 'created_at', 'updated_at'])) continue;
-            if (stripos($column, '_id') !== false) array_push($this->related_columns, $column);
             $this->fillable .= "'$column', ";
         }
         $this->fillable = rtrim($this->fillable, ', ');
     }
 
-    protected function createRelations()
+    /**
+     * createRelations
+     *
+     * This method to generate relations methods
+     *
+     * @return void
+     */
+    protected function createRelations() :void
     {
-        foreach ($this->related_columns as $column) {
-            $relation = str_replace('_id', '', $column);
-            $relation_class = ucfirst( $relation );
-            $class_namespace = getFilesInDir(app_path('Models'), $relation_class);
-            $this->relations .= "\n\tpublic function $relation() { \n\t\treturn \$this->belongsTo(\\{$class_namespace}::class)->withDefault(['id' => null]); \n\t}\n";
+        foreach (getRelationsDetails($this->argument('table')) as $column) {
+            $relation_name = getRelationMethodName($column->column_name);
+            $class_namespace = getFilesInDir(app_path('Models'), getTableModel($column->fk_table));
+            $this->relations .= "\n\tpublic function $relation_name() \n\t{ \n\t\treturn \$this->belongsTo(\\{$class_namespace}::class, '{$column->fk_column}', '{$column->column_name}')->withDefault(['{$column->column_name}' => 'null']); \n\t}\n";
         }
     }
 
-    protected function createModel()
-    {
-        $this->model = getFilesInDir(app_path('Models'), $this->argument('model'));
-
-        if (! $this->model) {
-            Artisan::call("make:model {$this->argument('model')}");
-            $this->model = $this->argument('model');
-        }
-    }
-
-    protected function createFile()
-    {
-        $file = "app\models\\".str_replace('/', '\\', $this->model).".php";
-        File::put($file, trim($this->createContent()));
-    }
-
-    protected function createContent()
+    /**
+     * createContent
+     *
+     * this method to make replase data in stub file
+     *
+     * @return void
+     */
+    protected function createContent() :void
     {
         $content = file_get_contents(base_path('stubs/custom/model.stub'));
-        $name = last( explode('/', $this->model) );
-        $namespace = substr_replace($this->model, '', -strlen($name));
+        [$name, $namespace] = getClassNamespace($this->model);
 
-        $content = str_replace([
+        $this->content = str_replace([
             '{{ namespace }}',
             '{{ class }}',
             '{{ table }}',
@@ -97,14 +117,26 @@ class CreateModel extends Command
             '{{ relations }}',
             '{{ timestamps }}',
         ],[
-            '\\'.trim( str_replace('/', '\\', $namespace) , '\\'),
+            $namespace,
             $name,
             $this->argument('table'),
             $this->fillable,
             $this->relations,
             $this->timestamps,
         ], $content);
+    }
 
-        return $content;
+    /**
+     * createFile
+     *
+     * This method to get model file and put file content
+     *
+     * @return void
+     */
+    protected function createFile() :void
+    {
+        Artisan::call("make:model {$this->model}");
+        $file = "app\Models\\".str_replace('/', '\\', $this->model).".php";
+        File::put($file, trim($this->content));
     }
 }
