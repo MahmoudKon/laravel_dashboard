@@ -51,15 +51,10 @@ function getFilesInDir(string $dir, $specific_class = null) :array|string
 {
     $files = [];
 
-    if ($specific_class) {
-        $specific_class = $dir.'/'.$specific_class;
-        $specific_class = str_replace(['app', '/'], ['App', '\\'], strstr($specific_class, 'app'));
-    }
-
     foreach (File::allFiles($dir) as $file) {
         $file_path = str_replace(['/', '.php', 'app'], ['\\', '', 'App'], strstr($file->getPathname(), 'app'));
 
-        if ($specific_class && $specific_class == $file_path)
+        if ($specific_class && "$specific_class.php" == $file->getFilename())
             return $file_path;
 
         $files[$file->getRelativePathname()] = $file_path;
