@@ -43,9 +43,16 @@ function createAppends($table)
         $model = getFilesInDir(base_path('app/Models'), getTableModel($column->fk_table));
         if (! $model) continue;
         $model_Class = app($model);
-        $appends .= "\n\t\t\t'{$column->fk_table}' => \\{$model}::pluck('{$model_Class->getFillable()[0]}', 'id'),";
+
+        $fk_column_name = $model_Class->getFillable()[0] ?? getFirstStringColumn( getTableColumns( $column->fk_table ) );
+        $appends .= "\n\t\t\t'{$column->fk_table}' => \\{$model}::pluck('{$fk_column_name}', 'id'),";
     }
     return $appends;
+}
+
+function getTableColumns($table)
+{
+    return DB::select("SHOW FULL COLUMNS FROM $table");
 }
 
 function getRelatedTables($table)
