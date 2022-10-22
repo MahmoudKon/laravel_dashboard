@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('value');
             $table->foreignId('content_type_id')->nullable()->constrained('content_types')->cascadeOnUpdate()->nullOnDelete();
             $table->boolean('active')->default(true);
+            $table->boolean('autoload')->default(false);
         });
     }
 

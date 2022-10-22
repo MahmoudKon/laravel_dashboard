@@ -28,8 +28,8 @@ return [
     'external-link' => 'رابط خارجي',
     'key' => 'المفتاح',
     'value' => 'القيمة',
-    'active' => 'نشط',
 
+    'autoload' => 'تحميل تلقائي',
 
     'active' => 'الحالة النشطة',
     'published_date' => 'تاريخ النشر',

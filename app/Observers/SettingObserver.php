@@ -27,7 +27,7 @@ class SettingObserver
         if ($Setting->key == "default_lang")
             session()->forget('locale');
 
-        $this->forgetCahed();
+        $this->updateCache($Setting);
     }
 
     /**
@@ -39,12 +39,25 @@ class SettingObserver
     public function deleted(Setting $Setting)
     {
         $this->remove($Setting->value);
-        $this->forgetCahed();
+        $this->updateCache($Setting, true);
     }
 
-    protected function forgetCahed()
+    protected function updateCache($setting, $force_remove = false)
     {
-        $keys = ['successAudio', 'warrningAudio', 'notificationAudio'];
-        foreach ($keys as $key) Cache::forget($key);
+        $website_settings = Cache::get('website_settings');
+        Cache::forget('website_settings');
+
+        if ($setting->autoload && !$force_remove)
+            $website_settings[$setting->key] = $setting->value;
+        else
+            $this->unsetKey($website_settings, $setting);
+
+        Cache::remember('website_settings', 60 * 60 * 24, function() use($website_settings) { return $website_settings; });
+    }
+
+    protected function unsetKey(&$website_settings, $setting)
+    {
+        if(isset($website_settings[$setting->key]))
+            unset($website_settings[$setting->key]);
     }
 }

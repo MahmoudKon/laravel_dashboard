@@ -24,6 +24,9 @@ class SettingDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('autoload', function(Setting $setting) {
+                return view('backend.includes.tables.checkbox-status', ['column' => 'autoload', 'row'=> $setting]);
+            })
             ->editColumn('active', function(Setting $setting) {
                 return view('backend.includes.tables.checkbox-status', ['column' => 'active', 'row'=> $setting]);
             })
@@ -45,7 +48,7 @@ class SettingDataTable extends DataTable
             })
             ->addColumn('check', 'backend.includes.tables.checkbox')
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
-            ->rawColumns(['action', 'check', 'value']);
+            ->rawColumns(['action', 'check', 'value', 'autoload']);
     }
 
     /**
@@ -102,6 +105,7 @@ class SettingDataTable extends DataTable
             Column::make('value')->title(trans('inputs.value')),
             Column::make('contentType.name')->title(trans('menu.content_type')),
             Column::make('active')->title(trans('inputs.active')),
+            Column::make('autoload')->title(trans('inputs.autoload')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('inputs.action'))->footer(trans('inputs.action')),
         ];
     }

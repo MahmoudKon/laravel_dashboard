@@ -30,19 +30,20 @@ $(function () {
 
         let url = btn.find('[data-yajra-href]').length ? btn.find(`[data-yajra-href]`).data('yajra-href') : btn.attr('href');
 
-        modal.addClass('load');
+        modal.modal('show').addClass('load');
+
         $.ajax({
             url: url,
             type: "GET",
             success: function (response, textStatus, jqXHR) {
-            if (response.redirect) return window.location = response.redirect;
+                if (response.redirect) return window.location = response.redirect;
                 modal.find('.form-body').empty().append(response);
-                modal.removeClass('load').modal('show');
                 initPluginElements();
             },
             error: function(jqXHR) {
                 handleErrors(jqXHR);
             },
+            complete: function() { modal.removeClass('load'); }
         });
     }); // PUSH FORM TO THE BOOTSTRAP MODAL
 
@@ -57,8 +58,8 @@ $(function () {
 
         $.ajax({
             url: form.attr('action'),
-            type: "POST",
-            data: new FormData($(this)[0]),
+            type: form.attr('method'),
+            data: new FormData(form[0]),
             dataType: 'JSON',
             processData: false,
             contentType: false,
@@ -67,7 +68,7 @@ $(function () {
 
                 if (response.reload) return location.reload(true);
 
-                toast(response.message, null, response.icon);
+                toast(response.message, null, (response.icon ?? 'success'));
 
                 if (response.stop) return;
 

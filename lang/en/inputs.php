@@ -28,8 +28,8 @@ return [
     'external-link' => 'External Link',
     'key' => 'Key',
     'value' => 'Value',
-    'active' => 'Active',
 
+    'autoload' => 'Auto Load',
 
     'active' => 'Activation',
     'published_date' => 'Published Date',

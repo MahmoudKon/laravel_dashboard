@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
@@ -133,6 +134,10 @@ function canUser($permission) :bool
 
 function setting(string $key, $default = null)
 {
+    $website_settings = Cache::get('website_settings');
+    if(isset($website_settings[$key]))
+        return $website_settings[$key];
+
     $row = \App\Models\Setting::where('key', 'LIKE', "%$key%")->first();
 
     if (!$row) return $default;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Menu;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -16,6 +17,10 @@ function setSettingCache()
                     : [];
         });
 
+        $website_settings = Cache::remember('website_settings', 60 * 60 * 24, function () {
+                                return Setting::autoload()->pluck('value', 'key')->toArray();
+                            });
+
         $settingLogo = Cache::remember('logo', 60 * 60 * 24, function () { return setting('logo', env('APP_NAME')); });
         $notificationAudio = Cache::remember('notification_audio', 60 * 60 * 24, function () { return setting('notification_audio', 'samples/audios/success.mp3'); });
         $successAudio = Cache::remember('success_audio', 60 * 60 * 24, function () { return setting('success_audio', 'samples/audios/success.mp3'); });
@@ -23,6 +28,7 @@ function setSettingCache()
     }
 
     View::share([
+                    'website_settings'  => $website_settings,
                     'successAudio'      => $successAudio,
                     'warrningAudio'     => $warrningAudio,
                     'notificationAudio' => $notificationAudio,
