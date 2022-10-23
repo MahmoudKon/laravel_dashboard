@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\View;
 function setSettingCache()
 {
     $successAudio = $warrningAudio = $notificationAudio = $list_menus = $settingLogo = '';
+    $website_settings = [];
 
     if (! app()->runningInConsole()) {
         $list_menus = Cache::remember('list_menus', 60 * 60 * 24, function () {
