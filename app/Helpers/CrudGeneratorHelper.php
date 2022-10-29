@@ -155,3 +155,19 @@ function getClassNamespace(string $class) :array
 
     return [$name, $namespace];
 }
+
+/**
+ * getClassFile
+ *  this function to get file path of class
+ * @param  string $namespace
+ * @return string
+ */
+function getClassFile(string $namespace) :string
+{
+    $namespace = str_replace('/', '\\', $namespace);
+    if (class_exists($namespace)) {
+        $reflector = new ReflectionClass( $namespace );
+        return $reflector->getFileName();
+    }
+    return '';
+}
