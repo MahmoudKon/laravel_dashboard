@@ -32,7 +32,7 @@ class CreateView extends GeneratorCommand
 
     protected function getStub()
     {
-        return  base_path() . '/stubs/custom/form.stub';
+        return  base_path() .DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.'form.stub';
     }
 
     /**
@@ -98,7 +98,9 @@ class CreateView extends GeneratorCommand
     public function view()
     {
         $view = convertCamelCaseTo($this->argument('view'));
-        return "resources/views/{$view}";
+        $view =  'resources/views/'.$view;
+        $view = str_replace(['/', '\\'], [DIRECTORY_SEPARATOR], $view);
+        return $view;
     }
 
     /**

@@ -26,7 +26,7 @@ class CreateService extends GeneratorCommand
 
     protected function getStub()
     {
-        return  base_path() . '/stubs/custom/service.stub';
+        return  base_path() .DIRECTORY_SEPARATOR. 'stubs'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.'service.stub';
     }
 
     /**
@@ -93,12 +93,12 @@ class CreateService extends GeneratorCommand
             '{{ model }}' => class_basename($this->model),
         ];
 
-        return $this->getStubContent($this->getStub(), $vars);
+        return $this->getStubContent($vars);
     }
 
-    private function getStubContent($stub, $stub_vars = [])
+    private function getStubContent($stub_vars = [])
     {
-        $content  = file_get_contents($stub);
+        $content  = file_get_contents($this->getStub());
 
         foreach ($stub_vars as $name => $value)
         {

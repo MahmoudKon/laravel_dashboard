@@ -51,7 +51,7 @@ class CreateRoute extends Command
         $this->table  = $model->getTable();
         $this->controller = class_basename($model)."Controller";
         $model_pram   = Str::singular( Str::lower(class_basename($model)) );
-        $namespace    = "App".DIRECTORY_SEPARATOR."Http".DIRECTORY_SEPARATOR."Controllers".DIRECTORY_SEPARATOR."Backend";
+        $namespace    = "App\\Http\\Controllers\\Backend";
         $middleware   = "web,localeSessionRedirect,localizationRedirect,localeViewPath,auth";
         $ROUTE_PREFIX = URL_PREFIX."/";
         $prefix       = "/".URL_PREFIX;
@@ -126,7 +126,7 @@ class CreateRoute extends Command
         $append_routes = "\nRoute::resource('{$this->table}', '{$this->route_controller_namespace}'); \nRoute::post('{$this->table}/multidelete', '{$this->route_controller_namespace}@multidelete')->name('{$this->table}.multidelete'); \n";
 
         if (stripos(file_get_contents(base_path('routes/backend.php')), $append_routes) === false) {
-            File::append(base_path('routes/backend.php'), $append_routes);
+            File::append(base_path('routes'.DIRECTORY_SEPARATOR.'backend.php'), $append_routes);
             echo "Routes inserted in database successfully!\n";
         } else {
             echo "Routes already exists!\n";

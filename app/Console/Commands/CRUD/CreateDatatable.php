@@ -29,7 +29,7 @@ class CreateDatatable extends GeneratorCommand
 
     protected function getStub()
     {
-        return  base_path() . '/stubs/custom/datatable.stub';
+        return  base_path() . DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.'datatable.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
@@ -67,7 +67,7 @@ class CreateDatatable extends GeneratorCommand
             return true;
         }
 
-        $this->datatable = $this->qualifyClass( $this->argument('model').'Datatable' );
+        $this->datatable = $this->qualifyClass( $this->argument('model').'DataTables' );
         $this->model = $this->qualifyModel( $this->argument('model') );
 
         if (! $this->alreadyExists($this->model)) {

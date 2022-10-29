@@ -71,15 +71,15 @@ class CreateController extends Command
 
     protected function createFile()
     {
-        $file = $this->path . $this->controller . '.php';
+        $file = getClassFile($this->namespace . $this->controller);
         File::put($file, $this->createContent());
     }
 
     protected function createContent()
     {
-        $content = file_get_contents(base_path('stubs/custom/controller.stub'));
+        $content = file_get_contents(base_path('stubs'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.'controller.stub'));
         $model_name = class_basename($this->model);
-        $sub_folder = trim( str_replace([$model_name, '/'], ['', '\\'], $this->argument('model')), '\\');
+        $sub_folder = trim( str_replace([$model_name, '/'], ['', '.'], $this->argument('model')), '.');
         $namespace = $this->namespace.$sub_folder;
         $table = $this->model->getTable();
 
@@ -98,7 +98,7 @@ class CreateController extends Command
             "{$model_name}Controller",
             Str::singular($table),
             createAppends($table),
-            convertCamelCaseTo(str_replace('\\', '.', $sub_folder)).'.'
+            strtolower($sub_folder).'.'
         ], $content);
 
         return $content;

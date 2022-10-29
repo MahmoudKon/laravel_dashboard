@@ -170,7 +170,7 @@ class CreateRequest extends GeneratorCommand
     protected function createFile()
     {
         Artisan::call("make:request {$this->argument('model')}Request");
-        $file = getClassFile("App\Models\\$this->request");
+        $file = getClassFile($this->request);
         File::put($file, trim($this->content));
     }
 
