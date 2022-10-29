@@ -67,7 +67,7 @@ class CreateDatatable extends GeneratorCommand
             return true;
         }
 
-        $this->datatable = $this->qualifyClass( $this->argument('model').'DataTables' );
+        $this->datatable = $this->qualifyClass( $this->argument('model').'DataTable' );
         $this->model = $this->qualifyModel( $this->argument('model') );
 
         if (! $this->alreadyExists($this->model)) {
