@@ -34,7 +34,7 @@ class CreateRequest extends GeneratorCommand
 
     protected function getStub()
     {
-        return  base_path() . '/stubs/custom/request.stub';
+        return  base_path() . DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.'request.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
@@ -170,7 +170,7 @@ class CreateRequest extends GeneratorCommand
     protected function createFile()
     {
         Artisan::call("make:request {$this->argument('model')}Request");
-        $file = str_replace('App', 'app', $this->request).'.php';
+        $file = getClassFile("App\Models\\$this->request");
         File::put($file, trim($this->content));
     }
 
