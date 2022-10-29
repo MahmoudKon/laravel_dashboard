@@ -136,7 +136,7 @@ class CreateModel extends Command
     protected function createFile() :void
     {
         Artisan::call("make:model {$this->model}");
-        $file = "app\Models\\".str_replace('/', '\\', $this->model).".php";
+        $file = getClassFile("App\Models\\$this->model");
         File::put($file, trim($this->content));
     }
 }
