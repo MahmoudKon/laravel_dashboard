@@ -149,7 +149,7 @@ class CreateDatatable extends GeneratorCommand
             if (stripos($column, '_id') !== false) continue;
             $trans .= "\n\t\t'$column' => '". ucwords( str_replace('_', ' ', $column) ) ."',";
         }
-        $trans .= "\n\t],\n";
+        $trans .= "\n\t],\n\n";
 
         foreach (config('languages') as $key => $lang) {
             $file = base_path("lang/$lang/inputs.php");
