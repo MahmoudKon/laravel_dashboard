@@ -97,12 +97,12 @@ class CreateModel extends GeneratorCommand
             '{{ fillable }}' => $this->fillable()
         ];
 
-        return $this->getStubContent($this->getStub(), $vars);
+        return $this->getStubContent($vars);
     }
 
-    private function getStubContent($stub, $stub_vars = [])
+    private function getStubContent($stub_vars = [])
     {
-        $content  = file_get_contents($stub);
+        $content  = file_get_contents($this->getStub());
 
         foreach ($stub_vars as $name => $value)
             $content = str_replace($name, $value, $content);
