@@ -93,8 +93,8 @@ class CreateModel extends GeneratorCommand
             '{{ namespaces }}' => $this->namespaces,
             '{{ class }}' => $name,
             '{{ table }}' => $this->table,
+            '{{ fillable }}' => $this->fillable(),
             '{{ timestamps }}' => $this->timestamps,
-            '{{ fillable }}' => $this->fillable()
         ];
 
         return $this->getStubContent($vars);
