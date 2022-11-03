@@ -140,4 +140,3 @@ $('.badge-text-maxlength').maxlength({
 $('body').on('submit', 'form', function() {
     $(this).parent().addClass('load');
 });
-

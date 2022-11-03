@@ -1,4 +1,4 @@
-<nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-dark navbar-shadow navbar-border">
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light bg-gradient-striped-grey-blue navbar-shadow navbar-border">
     <div class="navbar-wrapper">
         <div class="navbar-header border-bottom-1 border-bottom-white">
             <ul class="nav navbar-nav flex-row">

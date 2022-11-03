@@ -1,7 +1,7 @@
 {{-- START DASHBOARD LINK --}}
 @if (!$menu->route || canUser( str_replace('.', '-', $menu->route) ))
 <li class="nav-item {{ $menu->visibleSubs->Count() ? "has-sub" : "" }} {{ activeMenu($menu->route) }}" data-route="{{ ROUTE_PREFIX.$menu->route }}">
-    <a href="{{ $menu->route && Route::has($menu->route) ? routeHelper($menu->route) : "#"  }}">
+    <a href="{{ $menu->route && Route::has(ROUTE_PREFIX.$menu->route) ? routeHelper($menu->route) : "#"  }}">
         <i class="{{ $menu->icon }}"></i> <span class="menu-title">{{ $menu->name }}</span>
     </a>
 
