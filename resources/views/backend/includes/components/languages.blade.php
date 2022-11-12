@@ -7,7 +7,7 @@
                 <option value="{{ $lang }}" @selected(isset($value) && $value == $lang || old($lang) === $lang)>{{ ucfirst($name) }}</option>
             @endforeach
         </select>
-        @include('layouts.includes.backend.validation_error', ['input' => $name])
+        <x-validation-error input='{{ $name }}' />
     </div>
 </div>
 {{-- END SELECTOR --}}

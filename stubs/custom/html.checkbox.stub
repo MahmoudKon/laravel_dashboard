@@ -5,7 +5,7 @@
                 <label class="">@lang('inputs.{{ trans_column }}')</label>
                 <input type="checkbox" name="{{ column }}" value="1" class="switchery" @checked($row->{{ column }} ?? (old('{{ column }}')))>
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => '{{ column }}'])
+            <x-validation-error input='{{ column }}' />
         </div>
         {{-- END {{ column }} --}}
     </div>

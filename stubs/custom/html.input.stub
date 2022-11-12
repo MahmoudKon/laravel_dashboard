@@ -8,7 +8,7 @@
                 </div>
                 <input type="{{ type }}" class="form-control" name="{{ column }}" {{ required }} value="{{ $row->{{ column }} ?? old('{{ column }}') }}"  placeholder="@lang('inputs.{{ trans_column }}')">
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => '{{ column }}'])
+            <x-validation-error input='{{ column }}' />
         </div>
         {{-- END {{ column }} --}}
     </div>

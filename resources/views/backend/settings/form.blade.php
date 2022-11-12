@@ -16,7 +16,7 @@
                 <input type="text" class="form-control badge-text-maxlength" maxlength="30" name="key"
                     value="{{ $row->key ?? old('key') }}" placeholder="@lang('inputs.key')" autocomplete="off" required>
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => "key"])
+            <x-validation-error input='key' />
         </div>
     </div>
     {{-- END KEY --}}
@@ -30,7 +30,7 @@
                     <option value="{{ $index }}" @selected(isset($row) && $row->active === $index || old('active') === $index)>{{ $name }}</option>
                 @endforeach
             </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'active'])
+            <x-validation-error input='active' />
         </div>
     </div>
     {{-- END ACTIVE --}}
@@ -45,7 +45,7 @@
                     <option value="{{ $id }}" @selected(isset($row) && $row->content_type_id == $id || old('content_type_id') == $id)>{{ $name }}</option>
                 @endforeach
             </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'content_type_id'])
+            <x-validation-error input='content_type_id' />
         </div>
     </div>
     {{-- END CONTENT TYPE --}}

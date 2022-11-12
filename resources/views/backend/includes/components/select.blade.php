@@ -7,7 +7,7 @@
                 <option value="{{ $index }}" @selected(isset($value) && $value == $index || old($name) === $index)>{{ $val }}</option>
             @endforeach
         </select>
-        @include('layouts.includes.backend.validation_error', ['input' => $name])
+        <x-validation-error input='{{ $name }}' />
     </div>
 </div>
 {{-- END SELECTOR --}}

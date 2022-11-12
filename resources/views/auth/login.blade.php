@@ -18,7 +18,7 @@
                     autofocus placeholder="Type your email or phone..." required>
         </div>
         @foreach ($errors->getMessages() as $input_name => $values)
-            @include('layouts.includes.backend.validation_error', ['input' => $input_name])
+            <x-validation-error input='{{ $input_name }}' />
         @endforeach
     </fieldset>
     <!-- END USER NAME INPUT -->
@@ -35,7 +35,7 @@
             <input type="password" id="password" name="password" value="{{ old('password') ?? env('LOGIN_PASSWORD', '') }}"
                 autocomplete="current-password" placeholder="Type your password..." class="form-control" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'password'])
+        <x-validation-error input='password' />
     </fieldset>
     <!-- END USER PASSWORD INPUT -->
 

@@ -10,7 +10,7 @@
                 </div>
                 <input type="text" class="form-control" name="name" value="{{ $row->name ?? old('name') }}" placeholder="@lang('inputs.name')" required>
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'name'])
+            <x-validation-error input='name' />
         </div>
         {{-- START USER NAME --}}
 
@@ -23,7 +23,7 @@
                 </div>
                 <input type="email" class="form-control" name="email" value="{{ $row->email ?? old('email') }}" placeholder="@lang('inputs.email')" required>
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'email'])
+            <x-validation-error input='email' />
         </div>
         {{-- END  EMAIL --}}
 
@@ -48,7 +48,7 @@
                 </div>
                 <input type="password" class="form-control" name="password" placeholder=" @lang('inputs.password')" {{ isset($row) ? '' : 'required' }}>
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'password'])
+            <x-validation-error input='password' />
         </div>
         {{-- END PASSWORD --}}
     </div>
@@ -63,7 +63,7 @@
                     <option value="{{ $id }}" @selected(isset($row) && $row->department_id == $id || old('department_id') == $id)>{{ $title }}</option>
                 @endforeach
             </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'department_id'])
+            <x-validation-error input='department_id' />
         </div>
         {{-- END DEPARTMENT --}}
     </div>
@@ -78,7 +78,7 @@
             <option value="{{ $id }}" @selected((isset($row) && $row->hasRole($name)) || (is_array(old('roles')) && in_array($id, old('roles'))))>{{ $name }}</option>
         @endforeach
     </select>
-    @include('layouts.includes.backend.validation_error', ['input' => 'roles'])
+    <x-validation-error input='roles' />
 </div>
 {{-- END ROLES --}}
 

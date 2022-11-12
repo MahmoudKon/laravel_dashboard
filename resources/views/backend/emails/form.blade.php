@@ -8,7 +8,7 @@
         @endforeach
         </select>
     </div>
-    @include('layouts.includes.backend.validation_error', ['input' => "to"])
+    <x-validation-error input='to' />
 </div>
 
 <div class="form-group">
@@ -21,7 +21,7 @@
         @endforeach
         </select>
     </div>
-    @include('layouts.includes.backend.validation_error', ['input' => "cc"])
+    <x-validation-error input='cc' />
 </div>
 
 <div class="form-group">
@@ -29,7 +29,7 @@
     <div class="controls">
         <input type="text" class="form-control" minlength="3" name="subject" placeholder="Email Subject" value="{{ env('TEST_SUBJECT') }}">
     </div>
-    @include('layouts.includes.backend.validation_error', ['input' => "subject"])
+    <x-validation-error input='subject' />
 </div>
 
 
@@ -41,7 +41,7 @@
             <label class="custom-file-label" for="upload-image"><i class="fa fa-upload"></i> Choose file</label>
         </div>
     </div>
-    @include('layouts.includes.backend.validation_error', ['input' => 'attachments'])
+    <x-validation-error input='attachments' />
 </div>
 
 

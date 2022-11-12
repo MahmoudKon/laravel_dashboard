@@ -11,6 +11,6 @@
                 <label class="custom-file-label" for="upload-image"><i class="fa fa-upload"></i> Choose file</label>
             </div>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => $name])
+        <x-validation-error input='{{ $name }}' />
     </div>
 </div>

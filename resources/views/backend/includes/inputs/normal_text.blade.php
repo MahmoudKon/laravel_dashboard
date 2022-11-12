@@ -2,7 +2,7 @@
     <div class="form-group">
         <label class="required">@lang('inputs.value')</label>
         <input type="text" class="form-control" name="value" value="{{ $row->value ?? old("value") }}" placeholder="@lang('inputs.value')">
-        @include('layouts.includes.backend.validation_error', ['input' => "value"])
+        <x-validation-error input='value' />
     </div>
 @else
     <div class="nav-vertical">
@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label class="{{ $lang == app()->getLocale() ? "required" : "" }}">@lang('inputs.content') / @lang("menu.$name")</label>
                         <input type="text" class="form-control" name="data[{{ $lang }}]" value="{{ isset($row) ? $row->getData($lang) : old("data.$lang") }}" placeholder="@lang('inputs.content') / @lang("menu.$name")" {{ $lang == app()->getLocale() ? "" : "" }}>
-                        @include('layouts.includes.backend.validation_error', ['input' => "data-$lang"])
+                        <x-validation-error input='data-{{ $lang }}' />
                     </div>
                 </div>
             @endforeach

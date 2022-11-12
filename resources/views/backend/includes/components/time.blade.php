@@ -8,7 +8,7 @@
             </div>
             <input type="text" name="{{ $name }}" class="form-control select-time" placeholder="Select Time" value="{{ $value ?? old($name) }}">
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => $name])
+        <x-validation-error input='{{ $name }}' />
     </div>
 </div>
 {{-- END WEEKEND DAYS --}}

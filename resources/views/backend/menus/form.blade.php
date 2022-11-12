@@ -26,7 +26,7 @@
                         <input type="text" class="form-control badge-text-maxlength" maxlength="30" name="name[{{ $lang }}]"
                             value="{{ isset($row) ? $row->getName($lang) : old("name.$lang") }}" placeholder="@lang('inputs.name') / {{ $lang }}" autocomplete="off" {{ $lang == app()->getLocale() ? "" : "" }}>
                     </div>
-                    @include('layouts.includes.backend.validation_error', ['input' => "name-$lang"])
+                    <x-validation-error input='name-{{ $lang }}' />
                 </div>
                 {{-- START NAME --}}
             @endforeach
@@ -43,7 +43,7 @@
                             </div>
                             <input type="text" class="form-control" name="route" value="{{ $row->route ?? old('route') }}"  placeholder="users.index">
                         </div>
-                        @include('layouts.includes.backend.validation_error', ['input' => 'route'])
+                        <x-validation-error input='route' />
                     </div>
                     {{-- END ROUTE --}}
                 </div>
@@ -58,7 +58,7 @@
                             </div>
                             <input type="text" class="form-control" name="icon" value="{{ $row->icon ?? old('icon', 'fa fa-icons') }}"  placeholder="fa fa-user">
                         </div>
-                        @include('layouts.includes.backend.validation_error', ['input' => 'icon'])
+                        <x-validation-error input='icon' />
                     </div>
                     {{-- END ICON --}}
                 </div>
@@ -74,7 +74,7 @@
                         <option value="{{ $menu->id }}" @selected((isset($row) && $row->parent_id == $menu->id) || ($check ?? false))>{{ $menu->name }}</option>
                     @endforeach
                 </select>
-                @include('layouts.includes.backend.validation_error', ['input' => 'parent_id'])
+                <x-validation-error input='parent_id' />
             </div>
             {{-- END AGGREGATORS --}}
 

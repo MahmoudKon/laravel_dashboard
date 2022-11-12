@@ -23,7 +23,7 @@
             <input type="password" id="password" name="password" value="{{ old('password') ?? env('LOGIN_PASSWORD', '') }}"
                 autocomplete="current-password" placeholder="Type your password..." class="form-control" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'password'])
+        <x-validation-error input='password' />
     </fieldset>
     <!-- END USER PASSWORD INPUT -->
 

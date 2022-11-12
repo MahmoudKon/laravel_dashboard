@@ -8,7 +8,7 @@
 <div class="form-group">
     <label>@lang('inputs.value')</label>
     <textarea name="value" cols="30" rows="15" class="ckeditor" placeholder="@lang('inputs.value')">{{ $row->value ?? old("value") }}</textarea>
-    @include('layouts.includes.backend.validation_error', ['input' => "value"])
+    <x-validation-error input='value' />
 </div>
 
 @else
@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label>@lang('inputs.content') / @lang("menu.$name")</label>
                         <textarea name="data[{{ $lang }}]" cols="30" rows="15" class="ckeditor" placeholder="@lang('inputs.content') / @lang("menu.$name")" {{ $lang == app()->getLocale() ? "" : "" }}>{{ isset($row) ? $row->getData($lang) : old("data.$lang") }}</textarea>
-                        @include('layouts.includes.backend.validation_error', ['input' => "data-$lang"])
+                        <x-validation-error input='data-{{ $lang }}' />
                     </div>
                 </div>
             @endforeach

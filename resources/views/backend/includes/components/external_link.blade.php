@@ -6,7 +6,7 @@
         </div>
         <input type="url" class="form-control" name="{{ $name }}" placeholder="EX: www.google.com" value="{{ $value ?? old($name) }}">
     </div>
-    @include('layouts.includes.backend.validation_error', ['input' => $name])
+    <x-validation-error input='{{ $name }}' />
 </div>
 
 

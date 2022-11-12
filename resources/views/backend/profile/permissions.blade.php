@@ -11,7 +11,7 @@
                 <option value="{{ $id }}" @selected((isset($user) && $user->haspermission($name)))>{{ $name }}</option>
             @endforeach
         </select>
-        @include('layouts.includes.backend.validation_error', ['input' => 'permissions'])
+        <x-validation-error input='permissions' />
     </div>
 </div>
 {{-- END PERMISSIONS --}}

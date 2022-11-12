@@ -8,7 +8,7 @@
                 <option value="{{ $id }}" @selected(isset($row) && $row->{{ column }} == $id)>{{ $name }}</option>
             @endforeach
         </select>
-        @include('layouts.includes.backend.validation_error', ['input' => '{{ column }}'])
+        <x-validation-error input='{{ column }}' />
     </div>
     {{-- END {{ table }} --}}
 </div>

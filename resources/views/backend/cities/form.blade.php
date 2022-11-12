@@ -21,7 +21,7 @@
                                 </div>
                                 <input type="text" class="form-control" name="name[{{ $lang }}]" value="{{ isset($row) ? $row->getName($lang) : old("name.$lang") }}" placeholder="@lang('inputs.name') / @lang("menu.$name")" {{ $lang == app()->getLocale() ? "" : "" }}>
                             </div>
-                            @include('layouts.includes.backend.validation_error', ['input' => "name-$lang"])
+                            <x-validation-error input="name-{{ $lang }}" />
                         </div>
                     </div>
                 @endforeach
@@ -39,7 +39,7 @@
                     <option value="{{ $id }}" @selected( (isset($row) && $row->governorate_id == $id) || count($governorates) == 1 )>{{ $name }}</option>
                 @endforeach
             </select>
-            @include('layouts.includes.backend.validation_error', ['input' => 'governorate_id'])
+            <x-validation-error input="governorate_id" />
         </div>
         {{-- END GOVERNORATE --}}
     </div>

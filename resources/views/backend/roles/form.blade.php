@@ -8,6 +8,6 @@
         <input type="text" class="form-control badge-text-maxlength" maxlength="40" name="name"
             value="{{ $row->name ?? old('name') }}" placeholder="@lang('inputs.name')" autocomplete="off" >
     </div>
-    @include('layouts.includes.backend.validation_error', ['input' => 'name'])
+    <x-validation-error input='name' />
 </div>
 {{-- START ROLE NAME --}}

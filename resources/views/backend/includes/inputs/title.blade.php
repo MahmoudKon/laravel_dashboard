@@ -18,7 +18,7 @@
                         </div>
                         <input type="text" class="form-control" name="title[{{ $lang }}]" value="{{ isset($row) ? $row->getTitle($lang) : old("title.$lang") }}" placeholder="@lang('inputs.title') / @lang("menu.$name")" {{ $lang == app()->getLocale() ? "" : "" }}>
                     </div>
-                    @include('layouts.includes.backend.validation_error', ['input' => "title-$lang"])
+                    <x-validation-error input='title-{{ $lang }}' />
                 </div>
             </div>
         @endforeach

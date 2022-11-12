@@ -23,7 +23,7 @@
             <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}"
                     autofocus placeholder="Type your email..." autocomplete="email" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'email'])
+        <x-validation-error input='email' />
     </fieldset>
     <!-- END USER NAME INPUT -->
 

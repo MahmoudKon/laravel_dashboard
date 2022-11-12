@@ -25,7 +25,13 @@ class ContentTypeRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:content_types,name,'.request()->route('content_type'),
-            'visible_to_content' => 'required|boolean',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => trans('inputs.name')
         ];
     }
 }

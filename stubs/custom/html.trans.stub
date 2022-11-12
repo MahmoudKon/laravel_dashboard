@@ -19,7 +19,7 @@
                             </div>
                             <input type="text" class="form-control" name="{{ column }}[{{ $lang }}]" value="{{ isset($row) ? $row->getName($lang) : old("{{ column }}.$lang") }}" placeholder="@lang('inputs.{{ column }}') / @lang("menu.$name")">
                         </div>
-                        @include('layouts.includes.backend.validation_error', ['input' => "{{ column }}-$lang"])
+                        <x-validation-error input="{{ column }}-{{ $lang }}" />
                     </div>
                 </div>
             @endforeach

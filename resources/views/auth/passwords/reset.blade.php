@@ -11,7 +11,7 @@
 
     <!-- BEGIN USER NAME INPUT -->
     <fieldset class="form-group">
-        <label for="email" class="required">Email</label>
+        <label for="email" class="required">@lang('inputs.email')</label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
@@ -19,13 +19,13 @@
             <input type="email" id="email" name="email" class="form-control" value="{{ $email ?? old('email') }}"
                     autofocus placeholder="Type your email..." autocomplete="email" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'email'])
+        <x-validation-error input='email' />
     </fieldset>
     <!-- END USER NAME INPUT -->
 
     <!-- BEGIN USER PASSWORD INPUT -->
     <fieldset class="form-group">
-        <label for="password" class="required">Password</label>
+        <label for="password" class="required">@lang('inputs.password')</label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text show-password" data-toggle="tooltip" data-original-title="Show Password">
@@ -35,13 +35,13 @@
             <input type="password" id="password" name="password" value="{{ old('password') }}"
                 autocomplete="current-password" placeholder="Type your password..." class="form-control" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'password'])
+        <x-validation-error input='password' />
     </fieldset>
     <!-- END USER PASSWORD INPUT -->
 
     <!-- BEGIN USER PASSWORD INPUT -->
     <fieldset class="form-group">
-        <label for="password" class="required">Confirm Password</label>
+        <label for="password" class="required">@lang('inputs.password_confirmation')</label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text show-password" data-toggle="tooltip" data-original-title="Show Password">
@@ -51,7 +51,7 @@
             <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}"
                 autocomplete="new_confirmation" placeholder="Type your password confirmation..." class="form-control" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'password_confirmation'])
+        <x-validation-error input='password_confirmation' />
     </fieldset>
     <!-- END USER PASSWORD INPUT -->
 

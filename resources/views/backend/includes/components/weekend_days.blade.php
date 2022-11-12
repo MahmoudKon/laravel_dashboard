@@ -7,7 +7,7 @@
                 <option value="{{ $index }}" {{ isset($value) && in_array($index, explode(',', $value)) ? "selected" : '' }}>{{ $day }}</option>
             @endforeach
         </select>
-        @include('layouts.includes.backend.validation_error', ['input' => $name])
+        <x-validation-error input='{{ $name }}' />
     </div>
 </div>
 {{-- END WEEKEND DAYS --}}

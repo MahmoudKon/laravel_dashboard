@@ -32,4 +32,14 @@ class CountryRequest extends FormRequest
 
         return $validations;
     }
+
+    public function attributes()
+    {
+        $attributes["name"] = trans('inputs.name');
+        $attributes["governorate_id"] = trans('menu.governorate');
+        foreach (config('languages') as $lang)
+            $attributes["name.$lang"] = trans('inputs.name').' / '.trans("title.$lang");
+
+        return $attributes;
+    }
 }

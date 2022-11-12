@@ -7,5 +7,5 @@
                 class="img-border img-thumbnail" id="show-file" alt="{{ $alt ?? "Image" }}">
         </div>
     </div>
-    @include('layouts.includes.backend.validation_error', ['input' => 'image'])
+    <x-validation-error input='image' />
 </div>

@@ -11,7 +11,7 @@
                 <option value="{{ $id }}" @selected((isset($user) && $user->hasRole($name)))>{{ $name }}</option>
             @endforeach
         </select>
-        @include('layouts.includes.backend.validation_error', ['input' => 'roles'])
+        <x-validation-error input='roles' />
     </div>
 </div>
 {{-- END ROLES --}}

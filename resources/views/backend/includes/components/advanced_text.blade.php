@@ -6,6 +6,5 @@
 <div class="form-group">
     <label>@lang("inputs.$name")</label>
     <textarea name="{{ $name }}" cols="{{ $cols ?? 15 }}" rows="{{ $rows ?? 10 }}" class="ckeditor" placeholder='@lang("inputs.$name")' {{ $required ?? '' }}>{{ $value ?? old("$name") }}</textarea>
-    @include('layouts.includes.backend.validation_error', ['input' => $name])
+    <x-validation-error input='{{ $name }}' />
 </div>
-

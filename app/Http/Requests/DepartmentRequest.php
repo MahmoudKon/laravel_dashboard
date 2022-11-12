@@ -30,4 +30,14 @@ class DepartmentRequest extends FormRequest
             'manager_of_manager_id' => 'nullable|numeric|exists:users,id',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'title' => trans('inputs.title'),
+            'email' => trans('inputs.email'),
+            'manager_id' => trans('inputs.manager'),
+            'manager_of_manager_id' => trans('inputs.manager-of-manager'),
+        ];
+    }
 }

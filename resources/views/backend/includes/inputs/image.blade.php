@@ -11,7 +11,7 @@
                     class="img-border img-thumbnail" id="show-file" alt="{{ $row->value ?? "Image" }}">
             </div>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => "value"])
+        <x-validation-error input='value' />
     </div>
     {{-- START CONTENT IMAGE --}}
 </div>
@@ -29,7 +29,7 @@
                         class="img-border img-thumbnail" id="show-file" alt="{{ $row->title ?? "Image" }}">
                 </div>
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => "data"])
+            <x-validation-error input='data' />
         </div>
         {{-- START CONTENT IMAGE --}}
     </div>

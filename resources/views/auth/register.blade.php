@@ -17,7 +17,7 @@
             <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}"
                     autofocus placeholder="Type your name..." autocomplete="name" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'name'])
+        <x-validation-error input='name' />
     </fieldset>
     <!-- END USER NAME INPUT -->
 
@@ -31,7 +31,7 @@
             <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}"
                     autofocus placeholder="Type your email..." autocomplete="email" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'email'])
+        <x-validation-error input='email' />
     </fieldset>
     <!-- END USER EMAIL INPUT -->
 
@@ -47,7 +47,7 @@
             <input type="password" id="password" name="password" value="{{ old('password') }}"
                 autocomplete="new-password" placeholder="Type your password..." class="form-control" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'password'])
+        <x-validation-error input='password' />
     </fieldset>
     <!-- END USER PASSWORD INPUT -->
 
@@ -63,7 +63,7 @@
             <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}"
                 autocomplete="new-password" placeholder="Password Confirmation..." class="form-control" required>
         </div>
-        @include('layouts.includes.backend.validation_error', ['input' => 'password'])
+        <x-validation-error input='password' />
     </fieldset>
     <!-- END USER PASSWORD CONFIRMATION INPUT -->
 

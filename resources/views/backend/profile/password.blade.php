@@ -9,7 +9,7 @@
                 </div>
                 <input type="password" class="form-control" name="password" placeholder=" @lang('inputs.password')" >
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'password'])
+            <x-validation-error input='password' />
         </div>
     </div>
     {{-- END PASSWORD --}}
@@ -24,7 +24,7 @@
                 </div>
                 <input type="password" class="form-control" name="new_password" placeholder=" @lang('inputs.new_password')" >
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'new_password'])
+            <x-validation-error input='new_password' />
         </div>
     </div>
     {{-- END NEW PASSWORD --}}
@@ -39,7 +39,7 @@
                 </div>
                 <input type="password" class="form-control" name="password_confirmation" placeholder=" @lang('inputs.password_confirmation')" >
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'password_confirmation'])
+            <x-validation-error input='password_confirmation' />
         </div>
     </div>
     {{-- END PASSWORD CONFIRMATION --}}

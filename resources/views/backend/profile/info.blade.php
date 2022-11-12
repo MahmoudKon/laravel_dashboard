@@ -23,7 +23,7 @@
                 </div>
                 <input type="text" name="name" class="form-control" value="{{ auth()->user()->name }}">
             </div>
-            @include('layouts.includes.backend.validation_error', ['input' => 'name'])
+            <x-validation-error input='name' />
         </div>
     </div>
     {{-- END USERNAME --}}
