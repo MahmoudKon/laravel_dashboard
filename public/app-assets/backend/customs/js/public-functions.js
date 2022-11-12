@@ -74,7 +74,9 @@ function handleErrors(jqXHR, form = null)
 }
 
 function initPluginElements() {
-    $(".select2").select2();
+    $(".select2").select2({
+        dropdownParent: $("#load-form")
+    });
     $('[data-toggle="tooltip"]').tooltip();
 }
 

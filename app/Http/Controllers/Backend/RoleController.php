@@ -6,8 +6,7 @@ use App\DataTables\RoleDataTable;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\RoleRequest;
 use App\Http\Services\RoleService;
-use App\Models\Role as ModelsRole;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 
 class RoleController extends BackendController
 {

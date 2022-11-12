@@ -47,7 +47,7 @@
                                     <div class="card-title text-center">
                                         <div class="pb-1">
                                             @auth
-                                            <img alt="{{ auth()->user()->name }}" src="{{ auth()->user()->image }}" class="rounded-circle img-fluid center-block">
+                                            <img alt="{{ auth()->user()->name }}" src="{{ auth()->user()->image }}" class="rounded-circle img-fluid center-block" style="width: 100px; height: 100px;">
                                             <h5 class="card-title mt-1">{{ auth()->user()->name }}</h5>
                                             @else
                                             <img alt="@lang('menu.logo')" src="{{ asset(setting('logo', 'samples/logo/ivas.png')) }}" style="max-width: 100px;">

@@ -11,7 +11,8 @@ use App\Models\User;
 
 class DepartmentController extends BackendController
 {
-    public $use_form_ajax = true;
+    public $use_form_ajax   = true;
+    public $use_button_ajax = true;
 
     public function __construct(DepartmentDataTable $dataTable, Department $department)
     {
