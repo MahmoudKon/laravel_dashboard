@@ -11,7 +11,7 @@
 
     <div class="card-content collpase show">
         <div class="card-body">
-            <form action="{{ routeHelper('routes.assign-roles') }}" method="post">
+            <form action="{{ routeHelper('routes.assign-roles') }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}">
                 @csrf
 
                 {{-- START ROLES --}}

@@ -63,7 +63,7 @@
     <label>
         @lang('inputs.access-data', ['model' => trans('menu.roles')])
     </label>
-    <button type="button" class="btn btn-sm btn-primary select-all-options float-right" }}">un/select all</button>
+    <button type="button" class="btn btn-sm btn-success select-all-options float-right">un/select all</button>
     <select class="select2 form-control w-100" name="roles[]" data-placeholder="--- @lang('inputs.access-data', ['model' => trans('menu.roles')]) --- " multiple>
         @foreach ($roles as $id => $name)
         <option value="{{ $id }}" @selected(isset($row) && $row->hasRole($id))>{{ $name }}</option>

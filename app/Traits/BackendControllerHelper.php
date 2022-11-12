@@ -106,6 +106,23 @@ trait BackendControllerHelper
     }
 
     /**
+     *  getModelName
+     *  to get the model name from model object
+     * @param  bool $lower_case
+     * @param  bool $plural
+     * @return string
+     */
+    public function getModelName(bool $lower_case = false, bool $plural = false) :string
+    {
+        $model_name = class_basename($this->model);
+        $model_name = preg_replace('/([^A-Z])([A-Z])/', "$1_$2", $model_name);
+        $model_name = $lower_case ? Str::lower($model_name) : $model_name;
+        $model_name = $plural ? Str::plural($model_name) : $model_name;
+        return $model_name;
+    }
+
+
+    /**
      * redirect
      * handler return type
      * 1) use single page for crud [modal for create and update] not use redirect, just display flash message after any action.
@@ -115,22 +132,25 @@ trait BackendControllerHelper
      *
      * @return object
      */
-    public function redirect($message = null, $redirect = null) :object
+    public function redirect($message = null, $redirect = null, $stop = false) :object
     {
-        $message ? toast($message, 'success') : '';
-        $goto = $redirect ?? routeHelper($this->getTableName(true).'.index');
+        $message = $message ?? $this->getModelName()." Created Successfully!";
+        $goto = $redirect ?? routeHelper(str_replace(' ', '_', $this->getModelName(true, true)).'.index');
 
         if ($this->full_page_ajax || ($this->use_form_ajax && $this->use_button_ajax))
-            if ($redirect) {
-                return response()->json(['redirect' => $goto]);
-            } else
-                return response()->json(['message' => $message, 'icon' => 'success', 'count' => $this->modelCount()]);
+                if ($redirect) {
+                    toast($message, 'success');
+                    return response()->json(['redirect' => $goto]);
+                } else if($stop)
+                    return response()->json(['stop' => $stop, 'message' => $message, 'icon' => 'success']);
+                else
+                    return response()->json(['message' => $message, 'icon' => 'success', 'count' => $this->modelCount()]);
         else {
-            if ($this->use_form_ajax)
-                return response()->json(['redirect' => $goto]);
-            else {
-                return redirect($goto);
-            }
+                toast($message, 'success');
+                if ($this->use_form_ajax)
+                    return response()->json(['redirect' => $goto]);
+                else
+                    return redirect($goto);
         }
     }
 

@@ -16,21 +16,12 @@ use Spatie\Permission\Models\Permission;
 
 class RouteController extends BackendController
 {
+    public $use_form_ajax   = true;
+    public $use_button_ajax = true;
+
     public function __construct(RouteDataTable $dataTable, Route $route)
     {
         parent::__construct($dataTable, $route);
-    }
-
-    public function edit($id)
-    {
-        try {
-            $row = Route::findOrFail($id);
-            $roles = Role::pluck('name', 'id');
-            $title = "Assign Roles";
-            return view('backend.includes.forms.form-update', compact('roles', 'row', 'title'));
-        } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
-        }
     }
 
     public function update(Request $request, $id)
@@ -40,11 +31,9 @@ class RouteController extends BackendController
                 $route = Route::findOrFail($id);
                 $route->roles()->sync($request->roles);
             DB::commit();
-            return response()->json(['message' => "New roles has been assigned to this route '$route->uri'!", 'icon' => 'success', 'count' => Route::count()]);
-
-            return view('backend.includes.forms.form-update', compact('roles', 'row'));
+            return $this->redirect("New roles has been assigned to this route '$route->uri'!");
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            return $this->throwException($e->getMessage());
         }
     }
 
@@ -78,8 +67,7 @@ class RouteController extends BackendController
             }
         }
 
-        toast('Assigned Roles Successfully!', 'success');
-        return back()->withInput(['controller']);
+        return $this->redirect('Assigned Roles Successfully!', stop: true);
     }
 
     protected function createPermission($controller, $func, $roles_id = [])
@@ -146,5 +134,13 @@ class RouteController extends BackendController
         toast("Assign permissions will be synchronized with the database in the background!<br> NOTE: please run queue:work", 'success');
         session(['success' => "<span class='form-control copy'>php artisan queue:work</span>"]);
         return back();
+    }
+
+    public function append()
+    {
+        return [
+            'roles' => Role::pluck('name', 'id'),
+            'title' => "Assign Roles"
+        ];
     }
 }
