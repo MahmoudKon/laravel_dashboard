@@ -75,12 +75,13 @@ Route::post('content_types/multidelete', 'ContentTypeController@multidelete')->n
 Route::post('content_types/visible/toggle/{content_type}', 'ContentTypeController@toggleVisible')->name('content_types.visible.toggle');
 
 
-Route::resource('menus', 'MenuController');
-Route::controller('MenuController')->group(function () {
-    Route::get('menus/{menu}/subs/create', 'create')->name('menus.subs.create');
-    Route::post('menus/{menu}/toggle/visible', 'toggleVisible')->name('menus.toggle.visible');
-    Route::post('menus/reorder', 'reorder')->name('menus.reorder');
+Route::controller('MenuController')->prefix('menus')->as('menus.')->group(function () {
+    Route::get('{menu}/subs/create', 'create')->name('subs.create');
+    Route::post('{menu}/toggle/visible', 'toggleVisible')->name('toggle.visible');
+    Route::post('reorder', 'reorder')->name('reorder');
+    Route::get('sync', 'sync')->name('sync');
 });
+Route::resource('menus', 'MenuController')->except('show');
 
 
 Route::controller('ImageToolController')->group(function () {

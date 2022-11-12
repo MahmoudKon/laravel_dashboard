@@ -11,11 +11,19 @@
     @include('backend.includes.cards.table-header')
     {{-- START INCLUDE TABLE HEADER --}}
 
-    <div id="search-form-body"></div>
-    <a href="{{ routeHelper('menus.create') }}" class="btn btn-primary btn-sm show-modal-form"> <i class="fa fa-plus"></i> @lang('menu.create-row', ['model' => trans('menu.menu')])</a>
-
     <div class="card-content collpase show">
         <div class="card-body">
+
+            <div class="d-flex justify-content-between mb-1">
+                @if(canUser('menus.create'))
+                    <a href="{{ routeHelper('menus.create') }}" class="btn btn-primary btn-sm show-modal-form"> <i class="fa fa-plus"></i> @lang('menu.create-row', ['model' => trans('menu.menu')])</a>
+                @endif
+
+                @if(canUser('menus.syncMenus'))
+                    <a href="{{ routeHelper('menus.sync') }}" class="btn btn-dark btn-sm"> <i class="fas fa-sync-alt"></i> @lang('buttons.sync menus')</a>
+                @endif
+            </div>
+
             <ul class="list-group drag-drop nested-sortable" id="list-group-tags" data-url="{{ routeHelper('menus.reorder') }}" data-parent-id='null'>
                 @foreach ($menus as $menu)
                     @include('backend.menus.list-menus', ['menu' => $menu])

@@ -85,6 +85,8 @@
             setInterval(function() { $('body').find('.remove-hidden-element').remove(); }, 1000);
 
             $(`li[data-route="{{ request()->route()->action['as'] }}"]`).addClass('active').closest('.has-sub').addClass('active open');
+
+            $('.body-loading').fadeOut(250, function() { $(this).remove(); });
         });
     </script>
 

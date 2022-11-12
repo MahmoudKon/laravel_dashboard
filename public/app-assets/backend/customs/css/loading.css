@@ -3,7 +3,19 @@
     position: relative;
 }
 
-.load::before {
+.body-loading {
+    cursor: wait;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    z-index: 1000000;
+    scroll-behavior: smooth;
+}
+
+.body-loading::before, .load::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f110";
@@ -18,7 +30,11 @@
     animation: load 1s linear infinite;
 }
 
-.load::after {
+.body-loading::before {
+    color: #fff;
+}
+
+.body-loading::after, .load::after {
     content: "";
     display: block;
     position: absolute;

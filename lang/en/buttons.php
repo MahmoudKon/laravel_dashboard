@@ -28,6 +28,7 @@ return [
     'download' => 'Download',
     'sync routes'     => 'Sync Routes',
     'sync permissions' => 'Sync Permissions',
+    'sync menus' => 'Sync Menus',
 
 
     'return home' => 'الرجوع للصفحة الرئيسية',

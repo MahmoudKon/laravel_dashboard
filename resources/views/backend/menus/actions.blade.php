@@ -1,5 +1,5 @@
 <div class="float-right overflow-hidden">
-    @if (! empty($menu->route))
+    @if (Route::has($menu->route))
         <a href="{{ routeHelper($menu->route) }}" class="btn btn-sm btn-outline-purple" data-toggle="tooltip" title="Show Page">
             <i class="fa fa-eye"></i>
         </a>

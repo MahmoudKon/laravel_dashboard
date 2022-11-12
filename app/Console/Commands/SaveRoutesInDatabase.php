@@ -34,10 +34,9 @@ class SaveRoutesInDatabase extends Command
      */
     public function handle()
     {
-        foreach (\Illuminate\Support\Facades\Route::getRoutes()->getRoutes() as $route)
-        {
+        foreach (\Illuminate\Support\Facades\Route::getRoutes()->getRoutes() as $route) {
             $action = $route->getAction();
-            if ( !isset($action['controller']) || !in_array($action['namespace'], $this->namespaces))
+            if ( !isset($action['controller']) || ! isset($action['as']) || stripos($action['as'], URL_PREFIX) === false)
                 continue;
 
             /**

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuRequest;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class MenuController extends Controller
 {
@@ -74,6 +75,13 @@ class MenuController extends Controller
         $this->resetOrders();
         toast(trans('flash.row deleted', ['model' => trans('menu.menu')]), 'success');
         return response()->json(['redirect' => routeHelper('menus.index')]);
+    }
+
+    public function sync()
+    {
+        Artisan::call('db:seed --class=\\\Database\\\Seeders\\\MenuSeeder');
+        toast('Menu Are Synced!', 'success');
+        return back();
     }
 
     public function toggleVisible(Menu $menu)

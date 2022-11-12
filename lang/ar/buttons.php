@@ -28,7 +28,7 @@ return [
     'download' => 'تحميل',
     'sync routes'     => 'مزامنة المسارات',
     'sync permissions' => 'مزامنةالأذونات',
-
+    'sync menus' => 'مزامنة القوائم',
 
     'download cropped image' => 'تحميل الصورة',
     'image quality' => 'جودة الصورة',

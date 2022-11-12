@@ -54,9 +54,9 @@
                         <label>@lang('inputs.icon')</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="{{ $row->icon ?? '' }}"></i> </span>
+                                <span class="input-group-text"> <i class="{{ $row->icon ?? old('icon', 'fa fa-icons') }}"></i> </span>
                             </div>
-                            <input type="text" class="form-control" name="icon" value="{{ $row->icon ?? old('icon') }}"  placeholder="users.index">
+                            <input type="text" class="form-control" name="icon" value="{{ $row->icon ?? old('icon', 'fa fa-icons') }}"  placeholder="fa fa-user">
                         </div>
                         @include('layouts.includes.backend.validation_error', ['input' => 'icon'])
                     </div>
