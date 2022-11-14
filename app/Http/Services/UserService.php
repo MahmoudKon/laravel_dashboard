@@ -19,8 +19,7 @@ class UserService {
                     $request['image'] = $image;
                 }
 
-                if ($request['password'] == null)
-                    unset($request['password']);
+                if (is_null($request['password'])) unset($request['password']);
 
                 $user = User::updateOrCreate(['id' => $id],$request);
 

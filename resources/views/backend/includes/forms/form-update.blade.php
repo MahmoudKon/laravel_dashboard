@@ -17,7 +17,7 @@
             {{-- END FORM INPUTS --}}
 
             {{-- END FORM BUTTONS --}}
-            @include('backend.includes.buttons.form-buttons')
+            <x-form-buttons submit='save' />
             {{-- END FORM BUTTONS --}}
         </form>
     </div>
