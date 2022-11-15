@@ -84,7 +84,7 @@ class CreateService extends GeneratorCommand
     private function getSourceFile()
     {
         $name = class_basename($this->service);
-        $namespace = str_replace("\\{$name}", '', $this->service);
+        $namespace = substr($this->service, 0, -strlen("\\$name"));
 
         $vars = [
             '{{ namespace }}' => $namespace,

@@ -186,7 +186,7 @@ class CreateRequest extends GeneratorCommand
             '{{ validation }}',
             '{{ translation }}'
         ],[
-            str_replace("\\$name", '', $this->request),
+            substr($this->request, 0, -strlen("\\$name")),
             $name,
             'return true',
             $this->validations,

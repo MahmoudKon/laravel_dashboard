@@ -39,11 +39,12 @@ $(function () {
                 if (response.redirect) return window.location = response.redirect;
                 modal.find('.form-body').empty().append(response);
                 initPluginElements();
+                modal.removeClass('load');
             },
             error: function(jqXHR) {
                 handleErrors(jqXHR);
+                modal.removeClass('load');
             },
-            complete: function() { modal.removeClass('load'); }
         });
     }); // PUSH FORM TO THE BOOTSTRAP MODAL
 
@@ -77,12 +78,12 @@ $(function () {
                 $("select").val('').trigger('change');
                 rows();
                 $('#recourds-count').text(response.count);
+                form.parent().removeClass('load');
             },
             error: function (jqXHR, textStatus, errorMessage) {
                 handleErrors(jqXHR, form);
                 form.parent().removeClass('load');
             },
-            complete: function() { form.parent().removeClass('load'); }
         });
     }); // WHEN SUBMIT THE FORM SEND DATA TO CONTROLLER
 
@@ -187,6 +188,7 @@ $(function() {
         multi_delete_rows_id.forEach(row_id => {
             $(`input[type=checkbox].check-box-id[value=${row_id}]`).prop('checked', true);
         });
+        $('body').find('#check-all').prop('checked', false);
     });
 
     // HELPER FUNCTION TO CHECK THIS ACTION WILL PUSH ID OR REMOVE IT FROM ARRAY

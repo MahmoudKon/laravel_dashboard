@@ -85,7 +85,7 @@ class CreateModel extends GeneratorCommand
     private function getSourceFile()
     {
         $name = class_basename($this->model);
-        $namespace = str_replace("\\$name", '', $this->model);
+        $namespace = substr($this->model, 0, -strlen("\\$name"));
 
         $vars = [
             '{{ namespace }}' => $namespace,

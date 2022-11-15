@@ -79,7 +79,8 @@ class CreateController extends Command
     {
         $content = file_get_contents(base_path('stubs'.DIRECTORY_SEPARATOR.'custom'.DIRECTORY_SEPARATOR.'controller.stub'));
         $model_name = class_basename($this->model);
-        $sub_folder = trim( str_replace([$model_name, '/'], ['', '.'], $this->argument('model')), '.');
+        $model = str_replace('/', '\\', $this->argument('model'));
+        $sub_folder = substr($model, 0, -strlen("\\$model_name"));
         $namespace = $this->namespace.$sub_folder;
         $table = $this->model->getTable();
 
@@ -92,13 +93,13 @@ class CreateController extends Command
             '{{ appends }}',
             '{{ view_sub_path }}'
         ],[
-            trim($namespace, '\\'),
-            str_replace('/', '\\', $this->argument('model')),
+            $namespace,
+            $model,
             $model_name,
             "{$model_name}Controller",
             Str::singular($table),
             createAppends($table),
-            strtolower($sub_folder).'.'
+            str_replace('\\', '.', convertCamelCaseTo($sub_folder)).'.'
         ], $content);
 
         return $content;

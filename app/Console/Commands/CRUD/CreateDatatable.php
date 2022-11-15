@@ -87,7 +87,7 @@ class CreateDatatable extends GeneratorCommand
     private function getSourceFile()
     {
         $name = class_basename($this->datatable);
-        $namespace = str_replace("\\$name", '', $this->datatable);
+        $namespace = substr($this->datatable, 0, -strlen("\\$name"));
 
         $vars = [
             '{{ namespace }}' => $namespace,
@@ -143,13 +143,15 @@ class CreateDatatable extends GeneratorCommand
 
     protected function addTranslations()
     {
-        $trans = "\n\t'$this->table' => [";
+        $trans = "";
+        // $trans = "\n\t'$this->table' => [";
 
         foreach($this->model->getFillable() as $column) {
             if (stripos($column, '_id') !== false) continue;
-            $trans .= "\n\t\t'$column' => '". ucwords( str_replace('_', ' ', $column) ) ."',";
+            $trans .= "\n\t'$column' => '". ucwords( str_replace('_', ' ', $column) ) ."',";
         }
-        $trans .= "\n\t],\n\n";
+        $trans .= "\n";
+        // $trans .= "\n\t],\n\n";
 
         foreach (config('languages') as $key => $lang) {
             $file = base_path("lang/$lang/inputs.php");
