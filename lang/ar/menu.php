@@ -37,8 +37,8 @@ return [
     'assign-roles' => 'تمكين صلاحيات',
 
     // ROLES
-    'roles' => 'الأدوار',
-    'role' => 'دور',
+    'roles' => 'الصلاحيات',
+    'role' => 'صلاحية',
 
     // PERMISSIONS
     'permissions' => 'الأذونات',

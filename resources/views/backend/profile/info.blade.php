@@ -1,6 +1,6 @@
 <div class="row">
     {{-- START EMAIL --}}
-    <div class="col-md-7">
+    <div class="col-md-4">
         <div class="form-group">
             <label>@lang('inputs.email')</label>
             <div class="input-group">
@@ -14,7 +14,7 @@
     {{-- END EMAIL --}}
 
     {{-- START USERNAME --}}
-    <div class="col-md-5">
+    <div class="col-md-4">
         <div class="form-group">
             <label class="required">@lang('inputs.name')</label>
             <div class="input-group">
@@ -29,7 +29,7 @@
     {{-- END USERNAME --}}
 
     {{-- START DEPARTMENT --}}
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="form-group">
             <label>@lang('menu.department')</label>
             <div class="input-group">

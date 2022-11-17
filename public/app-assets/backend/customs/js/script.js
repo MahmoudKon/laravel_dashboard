@@ -71,6 +71,8 @@ $(function () {
 
                 toast(response.message, null, (response.icon ?? 'success'));
 
+                form.parent().removeClass('load');
+
                 if (response.stop) return;
 
                 $('.modal').modal("hide");
@@ -78,7 +80,6 @@ $(function () {
                 $("select").val('').trigger('change');
                 rows();
                 $('#recourds-count').text(response.count);
-                form.parent().removeClass('load');
             },
             error: function (jqXHR, textStatus, errorMessage) {
                 handleErrors(jqXHR, form);

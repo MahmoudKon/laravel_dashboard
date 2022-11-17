@@ -21,8 +21,8 @@ return [
     // PROFILE TITLES
     'change info' => 'تغيير بيانات الحساب',
     'change avatar' => 'تغيير الصورة الشخصية',
-    'change roles' => 'تغيير الأدوار',
-    'change permissions' => 'تغيير الصلاحيات',
+    'change roles' => 'تغيير الصلاحيات',
+    'change permissions' => 'تغيير الأذونات',
     'change password' => 'تغيير كلمة المرور',
 
     // SWAL JS TRANSLATIONS
