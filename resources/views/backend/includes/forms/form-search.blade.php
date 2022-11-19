@@ -13,7 +13,8 @@
             {{-- END FORM INPUTS --}}
 
             {{-- END FORM BUTTONS --}}
-            <x-form-buttons submit='search' />
+            {{-- <x-form-buttons submit='search' /> --}}
+            @include('backend.includes.buttons.form-buttons')
             {{-- END FORM BUTTONS --}}
         </form>
     </div>

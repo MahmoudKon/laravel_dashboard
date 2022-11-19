@@ -4,6 +4,8 @@ namespace App\DataTables;
 
 use App\Models\User;
 use App\Traits\DatatableHelper;
+use App\View\Components\LinkTag;
+use App\View\Components\PreviewImage;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -24,19 +26,31 @@ class UserDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('check', 'backend.includes.tables.checkbox')
-            ->editColumn('department', function(User $user) {
+            ->orderColumn('department_id', function($query, $order) {
+                return $query->whereHas('department', function($query) use($order) {
+                    return $query->orderBy('title', strtoupper($order));
+                });
+            })
+            ->editColumn('department_id', function(User $user) {
                 return $user->department_id
                         ? "<a href='".routeHelper('departments.edit', $user->department_id)."' title='Edit Department' target='_blank'>".($user->department->title ?? "")."</a>"
                         : "";
             })
-            ->filterColumn('department', function ($query, $keywords) {
+            ->filterColumn('department_id', function ($query, $keywords) {
                 return $query->whereHas('department', function($query) use($keywords) {
                     return $query->where('title', 'LIKE', "%$keywords%");
                 });
             })
-            ->editColumn('image', function(User $user) {return view('backend.includes.tables.image', ['image' => $user->image, 'alt' => $user->name])->render();})
-            ->editColumn('action', function(User $user) {return view('backend.'.getModel(view:true).'.actions', ['id' => $user->id])->render();})
-            ->rawColumns(['action', 'check', 'image', 'department']);
+            ->editColumn('image', function(User $user) {
+                $view = new PreviewImage($user->image, $user->name);
+                return $view->render()->with($view->data());
+            })
+            ->editColumn('name', function(User $user) {
+                $view = new LinkTag(routeHelper('users.show', $user), $user->name, trans('buttons.cover'), 'btn-link');
+                return $view->render()->with($view->data());
+            })
+            ->editColumn('action', 'backend.includes.buttons.table-buttons')
+            ->rawColumns(['action', 'check', 'image', 'department_id']);
     }
 
     /**
@@ -95,7 +109,7 @@ class UserDataTable extends DataTable
             Column::make('name')->title(trans('inputs.name')),
             Column::make('email')->title(trans('inputs.email')),
             Column::make('image')->title(trans('title.avatar'))->footer(trans('title.avatar'))->orderable(false),
-            Column::make('department')->title(trans('menu.department'))->footer(trans('menu.department'))->orderable(false),
+            Column::make('department_id')->title(trans('menu.department'))->footer(trans('menu.department')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->footer(trans('inputs.action'))->title(trans('inputs.action')),
         ];
     }

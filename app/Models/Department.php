@@ -26,6 +26,11 @@ class Department extends Model
         return $this->belongsTo(User::class, 'manager_of_manager_id')->select('id', 'name');
     }
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function slug()
     {
         return $this->title;

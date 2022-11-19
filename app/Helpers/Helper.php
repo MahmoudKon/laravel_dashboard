@@ -27,6 +27,18 @@ function routeHelper(string|null $route, object|array|string|int|null $options =
     return route(trim($route, '.'), $options);
 }
 
+/**
+ * getUrlQuery
+ *
+ *  This method to return the query parameters
+ *
+ * @return string
+ */
+function getUrlQuery() :string
+{
+    $arr = explode('?', request()->getRequestUri());
+    return isset($arr[1]) && ! empty($arr[1]) ? $arr[1] : '';
+}
 
 /**
  *  getModelSlug
@@ -198,4 +210,10 @@ function activeLanguages()
 function convertCamelCaseTo(string $string, string $us = '_') :string
 {
     return strtolower( preg_replace('/([a-z]+)([A-Z]+)/', '$1'.$us.'$2', $string) );
+}
+
+
+function transListRows($model = 'menu.users')
+{
+    return trans('menu.list-rows', ['model' => trans($model)]);
 }

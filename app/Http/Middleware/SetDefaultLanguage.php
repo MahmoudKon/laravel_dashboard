@@ -24,7 +24,7 @@ class SetDefaultLanguage
         if (session('locale') || !auth()->check() || app()->runningInConsole())
             return $next($request);
 
-        app()->setLocale(setting('default_lang', app()->getLocale()));
+        app()->setLocale(setting('default_lang') ?? app()->getLocale());
         session(['locale' => app()->getLocale()]);
         LaravelLocalization::setLocale(app()->getLocale());
 

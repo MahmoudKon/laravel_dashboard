@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Setting;
 use App\Traits\DatatableHelper;
+use App\View\Components\ToggleColumn;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -25,10 +26,12 @@ class SettingDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('autoload', function(Setting $setting) {
-                return view('backend.includes.tables.checkbox-status', ['column' => 'autoload', 'row'=> $setting]);
+                $view = new ToggleColumn($setting->id, 'autoload', $setting->autoload);
+                return $view->render()->with($view->data());
             })
             ->editColumn('active', function(Setting $setting) {
-                return view('backend.includes.tables.checkbox-status', ['column' => 'active', 'row'=> $setting]);
+                $view = new ToggleColumn($setting->id, 'active', $setting->active);
+                return $view->render()->with($view->data());
             })
             ->filterColumn('active', function ($query, $keywords) {
                 $check = stripos('yes', $keywords) !== false ? true : false;

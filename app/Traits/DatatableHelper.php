@@ -56,16 +56,17 @@ trait DatatableHelper
 
     public function getCreateButton() :Button
     {
+        $route = routeHelper($this->table.'.create', getUrlQuery());
         if (session('use_button_ajax')) {
             return Button::make()
-                    ->text('<i class="fa fa-plus"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.create').'"></span>')
+                    ->text('<i class="fa fa-plus"></i> <span class="hidden" data-yajra-href="'.$route.'"></span>')
                     ->addClass('btn btn-outline-info show-modal-form '. (canUser("$this->table-create") ? "" : "remove-hidden-element"))
                     ->titleAttr(trans('menu.create-row', ['model' => trans('menu.'.Str::singular($this->table))]));
 
         } else {
             return Button::make()->text('<i class="fa fa-plus"></i>')
                     ->addClass('btn btn-outline-info '. (canUser("$this->table-create") ? "" : "remove-hidden-element"))
-                    ->action("window.location.href = window.location.href+'/create'")
+                    ->action("window.location.href = '$route'")
                     ->titleAttr(trans('menu.create-row', ['model' => trans('menu.'.Str::singular($this->table))]));
         }
     }

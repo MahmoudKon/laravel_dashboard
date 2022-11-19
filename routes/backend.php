@@ -31,8 +31,6 @@ Route::controller('UserController')->group(function () {
     Route::get('users/excel/import', 'import')->name('users.excel.import.form');
     Route::post('users/excel/import', 'saveImport')->name('users.excel.import');
     Route::get('users/search/form', 'search')->name('users.search.form');
-    Route::get('departments/{department}/users','index')->name('departments.users.index');
-    Route::get('departments/{department}/users/create','create')->name('departments.users.create');
 });
 
 
@@ -102,11 +100,6 @@ Route::resource('governorates', 'GovernorateController')->except('show');
 Route::post('governorates/multidelete', 'GovernorateController@multidelete')->name('governorates.multidelete');
 
 Route::resource('cities', 'CityController')->except('show');
-Route::controller('CityController')->group(function () {
-    Route::get('governorates/{governorate}/cities', 'index')->name('governorates.cities.index');
-    Route::get('governorates/{governorate}/cities/create', 'create')->name('governorates.cities.create');
-    Route::post('cities/multidelete', 'multidelete')->name('cities.multidelete');
-    Route::post('governorates/{governorate}/cities/multidelete', 'multidelete')->name('governorates.cities.multidelete');
-});
+Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.multidelete');
 
 Route::resource('langs', 'LangController');

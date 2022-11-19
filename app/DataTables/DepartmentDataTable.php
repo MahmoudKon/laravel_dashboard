@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Department;
 use App\Traits\DatatableHelper;
+use App\View\Components\LinkTag;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -24,9 +25,13 @@ class DepartmentDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('check', 'backend.includes.tables.checkbox')
+            ->addColumn('users', function(Department $department) {
+                $view = new LinkTag(routeHelper('users.index', ['department' => $department->id]), "( $department->users_count )", transListRows('menu.users'), 'btn-info', 'fa fa-list', visible: canUser('users.index'));
+                return $view->render()->with($view->data());
+            })
             ->editColumn('manager', function(Department $department) {return $department->manager?->name;})
             ->editColumn('managerOfManager', function(Department $department) {return $department->managerOfManager?->name;})
-            ->editColumn('action', function(Department $department) {return view('backend.'.getModel(view:true).'.actions', ['id' => $department->id])->render();})
+            ->editColumn('action', 'backend.includes.buttons.table-buttons')
             ->filterColumn('manager', function ($query, $keywords) {
                 return $query->whereHas('manager', function($query) use($keywords) {
                     return $query->where('name', 'LIKE', "%$keywords%");
@@ -37,7 +42,7 @@ class DepartmentDataTable extends DataTable
                     return $query->where('name', 'LIKE', "%$keywords%");
                 });
             })
-            ->rawColumns(['action', 'check', 'image']);
+            ->rawColumns(['action', 'users', 'check', 'image']);
     }
 
     /**
@@ -48,7 +53,7 @@ class DepartmentDataTable extends DataTable
      */
     public function query(Department $model)
     {
-        return $model->with('manager:id,name', 'managerOfManager:id,name')->newQuery();
+        return $model->with('manager:id,name', 'managerOfManager:id,name')->withCount('users')->newQuery();
     }
 
     /**
@@ -93,6 +98,7 @@ class DepartmentDataTable extends DataTable
             Column::make('email')->title(trans('inputs.email')),
             Column::make('manager')->title(trans('inputs.manager'))->footer(trans('inputs.manager'))->orderable(false),
             Column::make('managerOfManager')->title(trans('inputs.manager-of-manager'))->footer(trans('inputs.manager-of-manager'))->orderable(false),
+            Column::computed('users')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('menu.users'))->footer(trans('menu.users')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('inputs.action'))->footer(trans('inputs.action')),
         ];
     }
