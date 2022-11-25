@@ -55,30 +55,18 @@
 
     <div class="col-md-6">
         {{-- START DEPARTMENT --}}
-        <div class="form-group">
-            <label class="required">@lang('inputs.select-data', ['data' => trans('menu.department')])</label>
-            <select class="select2 form-control" name="department_id" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.department')]) ---" required>
-                {{-- <option value="">@lang('inputs.please-select')</option> --}}
-                @foreach ($departments as $id => $title)
-                    <option value="{{ $id }}" @selected(isset($row) && $row->department_id == $id || old('department_id') == $id)>{{ $title }}</option>
-                @endforeach
-            </select>
-            <x-validation-error input='department_id' />
-        </div>
+        <x-html.select name='department_id' :list="$departments"
+                        :selected="old('department_id', ($row->department_id ?? null))" required="required"
+                        :label="trans('inputs.select-data', ['data' => trans('menu.department')])" />
         {{-- END DEPARTMENT --}}
     </div>
 </div>
 
 {{-- START ROLES --}}
 <div class="form-group">
-    <label>@lang('inputs.select-data', ['data' => trans('menu.roles')])</label>
-    <select class="select2 form-control" id="roles" name="roles[]" multiple data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.roles')]) ---">
-        {{-- <option value="">@lang('inputs.please-select')</option> --}}
-        @foreach ($roles as $id => $name)
-            <option value="{{ $id }}" @selected((isset($row) && $row->hasRole($name)) || (is_array(old('roles')) && in_array($id, old('roles'))))>{{ $name }}</option>
-        @endforeach
-    </select>
-    <x-validation-error input='roles' />
+    <x-html.select name='roles[]' :list="$roles"
+                :selected="old('roles[]', ($row ? $row->roles()->pluck('id')->toArray() : []))"
+                :label="trans('inputs.select-data', ['data' => trans('menu.roles')])" multiple />
 </div>
 {{-- END ROLES --}}
 

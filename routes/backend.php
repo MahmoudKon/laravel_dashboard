@@ -63,14 +63,14 @@ Route::resource('settings','SettingController')->except('show');
 Route::controller('SettingController')->group(function () {
     Route::post('settings/type/input', 'getTypeInput')->name('settings.type.input');
     Route::post('settings/multidelete', 'multidelete')->name('settings.multidelete');
-    Route::post('settings/{setting}/column/{column}/toggle', 'columnToggle')->name('settings.column.toggle');
+    Route::any('settings/{setting}/column/{column}/toggle', 'columnToggle')->name('settings.column.toggle');
 });
 
 
 
 Route::resource('content_types','ContentTypeController')->except('show');
 Route::post('content_types/multidelete', 'ContentTypeController@multidelete')->name('content_types.multidelete');
-Route::post('content_types/visible/toggle/{content_type}', 'ContentTypeController@toggleVisible')->name('content_types.visible.toggle');
+Route::any('content_types/{setting}/column/{column}/toggle', 'ContentTypeController@columnToggle')->name('content_types.column.toggle');
 
 
 Route::controller('MenuController')->prefix('menus')->as('menus.')->group(function () {

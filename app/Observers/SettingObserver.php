@@ -20,7 +20,9 @@ class SettingObserver
     public function updated(Setting $Setting)
     {
         $Setting->refresh();
-        if ($Setting->isDirty('value') && in_array($Setting->content_type_id, [SettingType::AUDIO, SettingType::VIDEO, SettingType::IMAGE])) {
+        $Setting->load('contentType');
+
+        if ($Setting->isDirty('value') && in_array($Setting->contentType->name, [SettingType::AUDIO, SettingType::VIDEO, SettingType::IMAGE])) {
             $this->remove($Setting->getOriginal('value'));
         }
 
@@ -47,7 +49,7 @@ class SettingObserver
         $website_settings = Cache::get('website_settings');
         Cache::forget('website_settings');
 
-        if ($setting->autoload && !$force_remove)
+        if ($setting->autoload && $setting->active && !$force_remove)
             $website_settings[$setting->key] = $setting->value;
         else
             $this->unsetKey($website_settings, $setting);

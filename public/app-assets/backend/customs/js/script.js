@@ -117,8 +117,8 @@ $(function () {
     $('body').on("click", "button[type='reset']", function(e) {
         let form = $(this).closest('form');
         form.find('input:not([type=hidden])').val('');
-        form.find('.chosen').val('').trigger('chosen:updated');
         form.find('.select2').val('').trigger('change');
+        form.find('input.form-control, select').val('').trigger('change');
         if ($('.email-body, #email-body').length > 0) CKEDITOR.instances['email-body'].setData('');
     });
 

@@ -23,6 +23,7 @@ class DepartmentRequest extends FormRequest
      */
     public function rules()
     {
+        dd($this->all());
         return [
             'title' => 'required|string|unique:departments,title,'.request()->route('department'),
             'email' => 'required|email|unique:departments,email,'.request()->route('department'),

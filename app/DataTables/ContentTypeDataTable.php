@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\ContentType;
 use App\Traits\DatatableHelper;
+use App\View\Components\ToggleColumn;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
@@ -24,13 +25,8 @@ class ContentTypeDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->editColumn('visible_to_content', function(ContentType $contentType) {
-                $text = "<form method='post' action='".routeHelper('content_types.visible.toggle', $contentType->id)."' class='submit-form'> <input type='hidden' name='_token' value='".csrf_token()."'>";
-                if ($contentType->visible_to_content) {
-                    $text .= "<button type='submit' class='btn btn-sm btn-primary'><i class='fa fa-eye'></i> Visible</button>";
-                } else {
-                    $text .= "<button type='submit' class='btn btn-sm btn-warning'><i class='fa fa-eye-slash'></i> Hidden</button>";
-                }
-                return "$text </form>";
+                $view = new ToggleColumn($contentType->id, 'visible_to_content', $contentType->visible_to_content);
+                return $view->render()->with($view->data());
             })
             ->filterColumn('visible_to_content', function ($query, $keywords) {
                 $check = stripos('visible', $keywords) !== false ? true : false;

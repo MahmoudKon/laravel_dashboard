@@ -89,9 +89,8 @@ class SettingDataTable extends DataTable
                     ])
                     ->responsive(true)
                     ->parameters(
-                        $this->initComplete('1,2,3,5')
-                    )
-                    ->orderBy(1);
+                        $this->initComplete('1,2,4')
+                    );
             }
 
     /**

@@ -24,28 +24,20 @@
 </div>
 {{-- END  EMAIL --}}
 
-{{-- START MANAGER --}}
-<div class="form-group">
-    <label class="required">@lang('inputs.select-data', ['data' => trans('inputs.manager')])</label>
-    <select class="select2 form-control w-100" name="manager_id" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('inputs.manager')]) ---" required>
-        <option value="">@lang('inputs.please-select')</option>
-        @foreach ($users as $id => $name)
-            <option value="{{ $id }}" @selected(isset($row) && $row->manager_id == $id || old('manager_id') == $id)>{{ $name }}</option>
-        @endforeach
-    </select>
-    <x-validation-error input='manager_id' />
-</div>
-{{-- END MANAGER --}}
+<div class="row">
+    <div class="col-md-6">
+        {{-- START MANAGER --}}
+        <x-html.select name='manager_id' :list="$users"
+        :selected="old('manager_id', ($row->manager_id ?? null))"
+        :label="trans('inputs.select-data', ['data' => trans('inputs.manager')])" />
+        {{-- END MANAGER --}}
+    </div>
 
-{{-- START MANAGER OF MANAGER --}}
-<div class="form-group">
-    <label>@lang('inputs.select-data', ['data' => trans('inputs.manager-of-manager')])</label>
-    <select class="select2 form-control w-100" name="manager_of_manager_id" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('inputs.manager-of-manager')]) ---">
-        <option value="">@lang('inputs.please-select')</option>
-        @foreach ($users as $id => $name)
-            <option value="{{ $id }}" @selected(isset($row) && $row->manager_of_manager_id == $id || old('manager_of_manager_id') == $id)>{{ $name }}</option>
-        @endforeach
-    </select>
-    <x-validation-error input='manager_of_manager_id' />
+    <div class="col-md-6">
+        {{-- START MANAGER OF MANAGER --}}
+        <x-html.select name='manager_of_manager_id' :list="$users"
+        :selected="old('manager_of_manager_id', ($row->manager_of_manager_id ?? null))"
+        :label="trans('inputs.select-data', ['data' => trans('inputs.manager-of-manager')])" />
+        {{-- END MANAGER OF MANAGER --}}
+    </div>
 </div>
-{{-- END MANAGER OF MANAGER --}}
