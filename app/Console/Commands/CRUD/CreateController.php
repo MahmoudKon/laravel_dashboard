@@ -81,7 +81,7 @@ class CreateController extends Command
         $model_name = class_basename($this->model);
         $model = str_replace('/', '\\', $this->argument('model'));
         $sub_folder = substr($model, 0, -strlen("\\$model_name"));
-        $namespace = $this->namespace.$sub_folder;
+        $namespace = trim($this->namespace.$sub_folder, '\\');
         $table = $this->model->getTable();
 
         $content = str_replace([

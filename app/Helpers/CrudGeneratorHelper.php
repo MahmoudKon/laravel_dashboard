@@ -19,7 +19,7 @@ function getTableModel(string $table) :string
 
 function getRelationName(string $table) :string
 {
-    return Str::lcfirst( Str::studly( Str::singular($table) ) );
+    return Str::lcfirst( Str::studly( Str::singular( getRelationMethodName($table) ) ) );
 }
 
 

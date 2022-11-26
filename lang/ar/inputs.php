@@ -73,4 +73,14 @@ return [
     // GENERAL INPUTS
     'model name' => 'ال:model إسم',
     'model image' => 'ال:model إسم',
+
+
+    // ANNOUNCEMENTS
+	'desc' => 'الوصف',
+	'start_date' => 'تاريخ البدء',
+	'end_date' => 'تاريخ الإنتهاء',
+	'open_type' => 'فتح في صفحة جديده؟',
+    'image' => 'الصورة',
+    'count days' => 'عدد الأيام',
+    'creator' => 'المنشئ',
 ];

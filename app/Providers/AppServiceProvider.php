@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Announcement;
 use App\Models\Setting;
 use App\Models\User;
+use App\Observers\AnnouncementObserver;
 use App\Observers\SettingObserver;
 use App\Observers\UserObserver;
 use Illuminate\Support\Facades\Blade;
@@ -34,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
 
         User::observe(UserObserver::class);
         Setting::observe(SettingObserver::class);
+        Announcement::observe(AnnouncementObserver::class);
 
         Blade::directive('superAdmin', function() { return "<?php if (isSuperAdmin()) { ?>"; });
         Blade::directive('endsuperAdmin', function() { return "<?php } ?>"; });

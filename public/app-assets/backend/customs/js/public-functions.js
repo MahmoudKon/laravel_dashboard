@@ -45,10 +45,12 @@ function rows(form = null) {
         data: data,
         success: function(data, textStatus, jqXHR) {
             $('#load-data').empty().append(data);
+            if (form) form.parent().removeClass('load');
         },
         error: function(jqXHR) {
             handleErrors(jqXHR);
             // $('#load-data').removeClass('load');
+            if (form) form.parent().removeClass('load');
         },
         complete: function () { $('#load-data').removeClass('loads'); initPluginElements();}
     });

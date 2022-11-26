@@ -183,7 +183,7 @@ class CreateView extends GeneratorCommand
             '{{ related }}'
         ], [
             $related_table,
-            "{$this->table}.$column->Field",
+            $column->Field,
             $column->Field,
             stripos($column->Null, 'NO') !== false ? 'required' : '',
             stripos($column->Type, 'varchar') !== false || stripos($column->Type, 'text') !== false

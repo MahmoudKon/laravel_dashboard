@@ -117,7 +117,7 @@ class CreateModel extends GeneratorCommand
             $model_name = getTableModel($column->fk_table);
             $class_namespace = getFilesInDir(app_path('Models'), $model_name);
             $this->namespaces .= "use {$class_namespace};\n";
-            $relations .= "\n\tpublic function {$column->fk_table}() \n\t{";
+            $relations .= "\n\tpublic function ".getRelationName($column->column_name)."() \n\t{";
             $relations .= "\n\t\treturn \$this->belongsTo({$model_name}::class, '{$column->column_name}', '{$column->fk_column}')->withDefault(['{$column->fk_column}' => null]);";
             $relations .= "\n\t}\n";
         }

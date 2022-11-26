@@ -68,4 +68,13 @@ return [
     'seen'  => 'Seen',
     'search'  => 'Search',
     'compose'  => 'Compose',
+
+	'desc' => 'Describtion',
+	'start_date' => 'Start Date',
+	'end_date' => 'End Date',
+	'open_type' => 'Open In New Window',
+    'image' => 'Image',
+    'count days' => 'Count Of Days',
+    'creator' => 'Creator',
+
 ];

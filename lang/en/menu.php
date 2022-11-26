@@ -89,6 +89,11 @@ return [
     'cities' => 'Cities',
     'city' => 'City',
 
+    // ANNOUNCEMENTS
+    'announcements' => 'announcements',
+    'announcement'  => 'announcement',
+    'the announcement' => 'announcement',
+
     // NOTIFICATIONS
     'notifications' => 'Notifications',
     'news' => 'News',

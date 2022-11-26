@@ -116,7 +116,7 @@ class CreateDatatable extends GeneratorCommand
     {
         $relations = '';
         foreach (getRelationsDetails($this->table) as $column)
-            $relations .= "'".getRelationName($column->fk_table)."', ";
+            $relations .= "'".getRelationName($column->column_name)."', ";
 
         return $relations !== '' ? "->with([". trim($relations, ', ') ."])" : '';
     }
@@ -126,13 +126,13 @@ class CreateDatatable extends GeneratorCommand
         $fk_columns = getRelationsDetails($this->table);
         $rows = '';
         foreach ($this->model->getFillable() as $column) {
-            $translate = "inputs.$this->table.$column";
+            $translate = "inputs.$column";
             $name = $column;
 
             if( isset( $fk_columns[$column] ) ) {
                 $related_table = $fk_columns[$column]->fk_table;
                 $translate = "menu.$related_table";
-                $name = getRelationName($related_table) . '.' . getFirstStringColumn( DB::select("SHOW FULL COLUMNS FROM $related_table") );
+                $name = getRelationName($column) . '.' . getFirstStringColumn( DB::select("SHOW FULL COLUMNS FROM $related_table") );
             }
 
             $rows .= "\n\t\t\tColumn::make('$name')->title(trans('$translate')),";
@@ -143,23 +143,27 @@ class CreateDatatable extends GeneratorCommand
 
     protected function addTranslations()
     {
-        $trans = "";
-        // $trans = "\n\t'$this->table' => [";
-
-        foreach($this->model->getFillable() as $column) {
-            if (stripos($column, '_id') !== false) continue;
-            $trans .= "\n\t'$column' => '". ucwords( str_replace('_', ' ', $column) ) ."',";
-        }
-        $trans .= "\n";
-        // $trans .= "\n\t],\n\n";
-
         foreach (config('languages') as $key => $lang) {
             $file = base_path("lang/$lang/inputs.php");
             if (!file_exists($file)) continue;
             $contents = file($file);
             $size = count($contents);
-            $contents[$size -1] = $trans.$contents[$size-1];
+            $contents[$size -1] = $this->setTrans($file).$contents[$size-1];
             file_put_contents($file, $contents);
         }
+    }
+
+    protected function setTrans($file)
+    {
+        $content = file_get_contents($file);
+        $trans = '';
+        foreach($this->model->getFillable() as $column) {
+            if (stripos($column, '_id') !== false) continue;
+            if (stripos( $content, "'$column'") !== false) continue;
+            $trans .= "\n\t'$column' => '". ucwords( str_replace('_', ' ', $column) ) ."',";
+        }
+        $trans .= "\n";
+
+        return $trans;
     }
 }

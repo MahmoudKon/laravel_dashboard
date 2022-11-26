@@ -67,9 +67,8 @@ class {{ class }} extends DataTable
         ])
         ->responsive(true)
         ->parameters(
-            $this->initComplete('1')
-        )
-        ->orderBy(1);
+            $this->initComplete('')
+        );
     }
 
     /**

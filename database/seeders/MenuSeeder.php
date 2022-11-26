@@ -53,6 +53,10 @@ class MenuSeeder extends Seeder
             ], [
                 'name' => ["en" => "Users", "ar" => "المستخدمين"],
                 'icon' => "fas fa-users",
+            ], [
+                'name' => ["en" => "Announcements", "ar" => "الإعلانات"],
+                'icon' => "fas fa-bullhorn",
+                'route' => "announcements.index",
             ],
         ];
 
