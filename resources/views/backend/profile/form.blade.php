@@ -13,7 +13,7 @@
         {{-- END ROLES --}}
 
         {{-- END FORM BUTTONS --}}
-        <x-form-buttons submit='save' />
+        <x-from-buttons submit='save' reset='reset' submit_color='success' />
         {{-- END FORM BUTTONS --}}
     </form>
 </div>
