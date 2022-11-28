@@ -65,7 +65,7 @@
 {{-- START ROLES --}}
 <div class="form-group">
     <x-html.select name='roles[]' :list="$roles"
-                :selected="old('roles[]', ($row ? $row->roles()->pluck('id')->toArray() : []))"
+                :selected="old('roles[]', (isset($row) ? $row->roles()->pluck('id')->toArray() : []))"
                 :label="trans('inputs.select-data', ['data' => trans('menu.roles')])" multiple />
 </div>
 {{-- END ROLES --}}

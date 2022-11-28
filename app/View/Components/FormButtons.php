@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class FromButtons extends Component
+class FormButtons extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class FromButtons extends Component
      */
     public function render()
     {
-        return view('components.from-buttons');
+        return view('components.form-buttons');
     }
 }

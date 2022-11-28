@@ -31,7 +31,7 @@
                 <div id="load-table"></div>
 
                 {{-- END FORM BUTTONS --}}
-                <x-form-buttons submit='save' />
+                <x-form-buttons />
                 {{-- END FORM BUTTONS --}}
             </form>
         </div>
