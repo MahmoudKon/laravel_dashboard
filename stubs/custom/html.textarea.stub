@@ -1,0 +1,9 @@
+<div class="col-md-12">
+    {{-- START {{ column }} --}}
+    <div class="form-group mb-5">
+        <label class='{{ required }}'>@lang('inputs.{{ column }}')</label>
+        <textarea class="form-control" rows="5" name="{{ column }}" placeholder="@lang('inputs.{{ column }}')">{{ $row->{{ column }} ?? old('{{ column }}') }}</textarea>
+        <x-validation-error input='{{ column }}' />
+    </div>
+    {{-- END {{ column }} --}}
+</div>

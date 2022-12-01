@@ -4,6 +4,7 @@ namespace App\Console\Commands\CRUD;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CreateDatatable extends GeneratorCommand
 {
@@ -156,7 +157,7 @@ class CreateDatatable extends GeneratorCommand
     protected function setTrans($file)
     {
         $content = file_get_contents($file);
-        $trans = '';
+        $trans = "\n\n\t// ". Str::upper($this->table);
         foreach($this->model->getFillable() as $column) {
             if (stripos($column, '_id') !== false) continue;
             if (stripos( $content, "'$column'") !== false) continue;

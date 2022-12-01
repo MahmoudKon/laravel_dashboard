@@ -4,16 +4,29 @@ namespace {{ namespace }};
 
 use Exception;
 use {{ modelNamespace }};
+use App\Traits\UploadFile;
 
 class {{ class }}
 {
+    use UploadFile;
+
     public function handle($request, $id = null)
     {
         try {
+            $this->saveFiles($request);
+
             $row = {{ model }}::updateOrCreate(['id' => $id], $request);
             return $row;
         } catch (Exception $e) {
             return $e->getMessage();
+        }
+    }
+
+    protected function saveFiles(&$request)
+    {
+        foreach (request()->allFiles() as $key => $value) {
+            if ($value && isset($request[$key]))
+                $request[$key] = $this->uploadImage($value, (new {{ model }})->getTable(), null, null);
         }
     }
 }

@@ -145,7 +145,7 @@ class CreateView extends GeneratorCommand
         if (stripos($column->Type, 'tinyint') !== false)
             return 'checkbox';
 
-        if ($column->Type == 'json' && stripos($column->Comment, 'translations') !== false)
+        if (stripos($column->Comment, 'translations') !== false)
             return 'trans';
 
         if (stripos($column->Field, '_id') !== false)
@@ -178,6 +178,7 @@ class CreateView extends GeneratorCommand
             '{{ table }}',
             '{{ trans_column }}',
             '{{ column }}',
+            '{{ upper_column }}',
             '{{ required }}',
             '{{ type }}',
             '{{ related }}'
@@ -185,6 +186,7 @@ class CreateView extends GeneratorCommand
             $related_table,
             $column->Field,
             $column->Field,
+            ucfirst($column->Field),
             stripos($column->Null, 'NO') !== false ? 'required' : '',
             stripos($column->Type, 'varchar') !== false || stripos($column->Type, 'text') !== false
                     ? 'text'

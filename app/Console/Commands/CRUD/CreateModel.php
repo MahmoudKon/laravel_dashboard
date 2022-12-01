@@ -3,6 +3,7 @@
 namespace App\Console\Commands\CRUD;
 
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateModel extends GeneratorCommand
@@ -17,6 +18,10 @@ class CreateModel extends GeneratorCommand
     protected $table;
     protected $namespaces = '';
     protected $timestamps = "\n\tpublic \$timestamps = false;\n";
+    protected $methods = '';
+    protected $traits = "";
+    protected $translatable = "protected \$translatable = [";
+
 
     /**
      * The console command description.
@@ -95,6 +100,10 @@ class CreateModel extends GeneratorCommand
             '{{ table }}' => $this->table,
             '{{ fillable }}' => $this->fillable(),
             '{{ timestamps }}' => $this->timestamps,
+            '{{ traits }}' => $this->traits,
+            '{{ methods }}' => $this->methods,
+            '{{ translatable }}' => trim($this->translatable, ',').'];',
+
         ];
 
         return $this->getStubContent($vars);
@@ -127,13 +136,37 @@ class CreateModel extends GeneratorCommand
     protected function fillable()
     {
         $fillables = '';
-        $columns = Schema::getColumnListing($this->argument('table'));
-        if (in_array('created_at', $columns)) $this->timestamps = '';
+        $columns = DB::select('SHOW FULL COLUMNS FROM '.$this->argument('table'));
+
         foreach ($columns as $column) {
-            if (in_array($column, ['id', 'created_at', 'updated_at'])) continue;
-            $fillables .= "'$column', ";
+            if (in_array($column->Field, ['created_at', 'updated_at'])) $this->timestamps = '';
+            if (in_array($column->Field, ['id', 'created_at', 'updated_at'])) continue;
+
+            $fillables .= "'$column->Field', ";
+
+            if ($column->Comment == 'translations') {
+                $this->namespaces .= "use Spatie\Translatable\HasTranslations;\n";
+                $this->namespaces .= "use Illuminate\Database\Eloquent\Casts\Attribute;\n";
+                $this->traits .= ', HasTranslations';
+                $this->translatable .= "'$column->Field',";
+                $this->methods .= "\n\tpublic function asJson(\$value)\n\t{";
+                $this->methods .= "\n\t\treturn json_encode(\$value, JSON_UNESCAPED_UNICODE);";
+                $this->methods .= "\n\t}\n";
+
+                $this->methods .= "\n\tprotected function $column->Field(): Attribute\n\t{";
+                $this->methods .= "\n\t\treturn Attribute::make(";
+                $this->methods .= "\n\t\tget: fn (\$value) => \$this->get". ucfirst($column->Field) ."(),";
+                $this->methods .= "\n\t\t);\n";
+                $this->methods .= "\n\t}\n";
+
+                $this->methods .= "\n\tpublic function get".ucfirst($column->Field)."(\$lang = null)\n\t{";
+                $this->methods .= "\n\t\t\$lang = \$lang ?? app()->getLocale();";
+                $this->methods .= "\n\t\treturn \$this->getTranslations('$column->Field')[\$lang] ?? '';";
+                $this->methods .= "\n\t}\n";
+            }
         }
 
         return rtrim($fillables, ', ');
+
     }
 }

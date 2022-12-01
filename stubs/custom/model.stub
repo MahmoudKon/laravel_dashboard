@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class {{ class }} extends Model
 {
-    use HasFactory;
+    use HasFactory{{ traits }};
 
     protected $table = '{{ table }}';
 
     protected $fillable = [{{ fillable }}];
     {{ timestamps }}
+    {{ translatable }}
+    {{ methods }}
     public function slug()
     {
         return $this->id;
@@ -24,6 +26,7 @@ class {{ class }} extends Model
     {
         return $query;
     }
+
 
     protected static function boot()
     {

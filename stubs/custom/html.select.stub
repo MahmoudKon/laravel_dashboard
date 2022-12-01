@@ -3,7 +3,7 @@
     <div class="form-group">
         <label>@lang('inputs.select-data', ['data' => trans('menu.{{ table }}')])</label>
         <select class="select2 form-control" id="{{ table }}" name="{{ column }}" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('menu.{{ table }}')]) ---" {{ required }}>
-            {{-- <option value="">@lang('inputs.please-select')</option> --}}
+            <option></option>
             @foreach (${{ related }} as $id => $name)
                 <option value="{{ $id }}" @selected(isset($row) && $row->{{ column }} == $id)>{{ $name }}</option>
             @endforeach
