@@ -14,11 +14,6 @@ class DepartmentController extends BackendController
     public $use_form_ajax   = true;
     public $use_button_ajax = true;
 
-    public function __construct(DepartmentDataTable $dataTable, Department $department)
-    {
-        parent::__construct($dataTable, $department, true);
-    }
-
     public function store(DepartmentRequest $request, DepartmentService $DepartmentService)
     {
         $department = $DepartmentService->handle($request->validated());
@@ -33,7 +28,17 @@ class DepartmentController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.department')]));
     }
 
-    public function append()
+    public function model()
+    {
+        return new Department;
+    }
+
+    public function dataTable()
+    {
+        return new DepartmentDataTable;
+    }
+
+    public function append() :array
     {
         return [
             'users' => User::pluck('name', 'id')

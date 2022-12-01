@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Services\DataTable;
 
 trait BackendControllerHelper
 {
@@ -59,12 +61,34 @@ trait BackendControllerHelper
     public $use_button_ajax = false;
 
     /**
+     * model
+     * To set the model
+     *
+     * @return Model|null
+     */
+    public function model()
+    {
+        return null;
+    }
+
+    /**
+     * dataTable
+     * To set the dataTable
+     *
+     * @return DataTable|null
+     */
+    public function dataTable()
+    {
+        return null;
+    }
+
+    /**
      * append
      * To append data for form page like [users data for select tag]
      *
      * @return array
      */
-    public function append()
+    public function append() :array
     {
         return [];
     }
@@ -76,9 +100,9 @@ trait BackendControllerHelper
      * @param  int $id
      * @return object|null
      */
-    public function query($id) :object|null
+    public function query($id) : ?object
     {
-        return $this->model::find($id);
+        return $this->model()::find($id);
     }
 
     /**
@@ -90,7 +114,7 @@ trait BackendControllerHelper
      */
     public function getTableName(bool $plural = false) :string
     {
-        return $plural ? $this->model->getTable() : Str::singular($this->model->getTable());
+        return $plural ? $this->model()->getTable() : Str::singular($this->model()->getTable());
     }
 
     /**
@@ -100,9 +124,9 @@ trait BackendControllerHelper
      */
     public function modelCount() :int
     {
-        return method_exists($this->model, 'scopeFilter')
-                ? $this->model::filter()->count()
-                : $this->model::count();
+        return method_exists($this->model(), 'scopeFilter')
+                ? $this->model()->filter()->count()
+                : $this->model()->count();
     }
 
     /**
@@ -114,7 +138,7 @@ trait BackendControllerHelper
      */
     public function getModelName(bool $lower_case = false, bool $plural = false) :string
     {
-        $model_name = class_basename($this->model);
+        $model_name = class_basename($this->model());
         $model_name = preg_replace('/([^A-Z])([A-Z])/', "$1_$2", $model_name);
         $model_name = $lower_case ? Str::lower($model_name) : $model_name;
         $model_name = $plural ? Str::plural($model_name) : $model_name;

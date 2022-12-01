@@ -8,17 +8,11 @@ use App\Http\Requests\CityRequest;
 use App\Http\Services\CityService;
 use App\Models\City;
 use App\Models\Governorate;
-use Illuminate\Http\Request;
 
 class CityController extends BackendController
 {
     public $use_form_ajax   = true;
     public $use_button_ajax = true;
-
-    public function __construct(CityDataTable $dataTable, City $city)
-    {
-        parent::__construct($dataTable, $city);
-    }
 
     public function store(CityRequest $request, CityService $CityService)
     {
@@ -34,12 +28,20 @@ class CityController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.city')]));
     }
 
+    public function model()
+    {
+        return new City;
+    }
+
+    public function dataTable()
+    {
+        return new CityDataTable;
+    }
+
     public function append(): array
     {
         return [
-            'governorates' => Governorate::when(request()->governorate, function($query) {
-                                    $query->where('id', request()->governorate);
-                                })->pluck('name', 'id')
+            'governorates' => Governorate::filter()->pluck('name', 'id')
         ];
     }
 }

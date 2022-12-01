@@ -13,11 +13,6 @@ class AnnouncementController extends BackendController
     public $use_form_ajax = true;
     public $view_sub_path = '.';
 
-    public function __construct(AnnouncementDataTable $dataTable, Announcement $Announcement)
-    {
-        parent::__construct($dataTable, $Announcement);
-    }
-
     public function store(AnnouncementRequest $request, AnnouncementService $AnnouncementService)
     {
         $row = $AnnouncementService->handle($request->validated());
@@ -31,8 +26,13 @@ class AnnouncementController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.announcement')]), routeHelper('announcements.show', $row));
     }
 
-    public function query($id) :object|null
+    public function model()
     {
-        return $this->model::find($id);
+        return new Announcement;
+    }
+
+    public function dataTable()
+    {
+        return new AnnouncementDataTable;
     }
 }

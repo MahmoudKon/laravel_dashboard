@@ -12,11 +12,6 @@ class ContentTypeController extends BackendController
 {
     public $full_page_ajax  = true;
 
-    public function __construct(ContentTypeDataTable $dataTable, ContentType $contentType)
-    {
-        parent::__construct($dataTable, $contentType);
-    }
-
     public function store(ContentTypeRequest $request, ContentTypeService $contentTypeService)
     {
         $content_type = $contentTypeService->handle($request->validated());
@@ -31,11 +26,13 @@ class ContentTypeController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.content_type')]));
     }
 
-    public function toggleVisible($id)
+    public function model()
     {
-        $content_type = ContentType::find($id);
-        if (is_null($content_type)) return $this->throwException("This Content Type Not Found!");
-        $content_type->update(['visible_to_content' => ! $content_type->visible_to_content]);
-        return $this->redirect("Content Type Updated His Visible Status Successfully!");
+        return new ContentType;
+    }
+
+    public function dataTable()
+    {
+        return new ContentTypeDataTable;
     }
 }

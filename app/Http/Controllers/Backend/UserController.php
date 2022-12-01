@@ -19,11 +19,6 @@ class UserController extends BackendController
     public $use_form_ajax = true;
     public $use_button_ajax = true;
 
-    public function __construct(UserDataTable $dataTable, User $user)
-    {
-        parent::__construct($dataTable, $user);
-    }
-
     public function store(UserRequest $request, UserService $UserService)
     {
         $user = $UserService->handle($request->except('image'));
@@ -54,7 +49,17 @@ class UserController extends BackendController
         return response()->json(['message' => "Data Saved Successfully!", 'icon' => 'success']);
     }
 
-    public function append()
+    public function model()
+    {
+        return new User;
+    }
+
+    public function dataTable()
+    {
+        return new UserDataTable;
+    }
+
+    public function append() :array
     {
         return [
             'departments' => Department::when(request('department'), function($query) {
@@ -67,6 +72,6 @@ class UserController extends BackendController
 
     public function query($id) :object|null
     {
-        return $this->model->hasManager()->find($id);
+        return $this->model()->hasManager()->find($id);
     }
 }

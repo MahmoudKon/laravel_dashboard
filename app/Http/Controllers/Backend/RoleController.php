@@ -12,11 +12,6 @@ class RoleController extends BackendController
 {
     public $full_page_ajax = true;
 
-    public function __construct(RoleDataTable $dataTable, Role $role)
-    {
-        parent::__construct($dataTable, $role);
-    }
-
     public function store(RoleRequest $request, RoleService $RoleService)
     {
         $role = $RoleService->handle($request->validated());
@@ -29,5 +24,15 @@ class RoleController extends BackendController
         $role = $RoleService->handle($request->validated(), $id);
         if (is_string($role)) return $this->throwException($role);
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.role')]));
+    }
+
+    public function model()
+    {
+        return new Role;
+    }
+
+    public function dataTable()
+    {
+        return new RoleDataTable;
     }
 }

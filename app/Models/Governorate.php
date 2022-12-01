@@ -29,6 +29,13 @@ class Governorate extends Model
         );
     }
 
+    public function scopeFilter($query)
+    {
+        return $query->when(request()->get('governorate'), function($query) {
+                    $query->where('id', request()->get('governorate'));
+                });
+    }
+
     public function slug()
     {
         return $this->name;

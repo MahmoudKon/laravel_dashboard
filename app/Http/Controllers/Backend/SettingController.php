@@ -15,11 +15,6 @@ class SettingController extends BackendController
 {
     public $use_form_ajax  = true;
 
-    public function __construct(SettingDataTable $dataTable, Setting $contentType)
-    {
-        parent::__construct($dataTable, $contentType);
-    }
-
     public function store(SettingRequest $request, SettingService $SettingService)
     {
         $setting = $SettingService->handle($request->validated());
@@ -42,7 +37,17 @@ class SettingController extends BackendController
         return $view_path ? view($view_path, compact('value'), ['name' => 'value', 'value' => $value]) : '';
     }
 
-    public function append()
+    public function model()
+    {
+        return new Setting;
+    }
+
+    public function dataTable()
+    {
+        return new SettingDataTable;
+    }
+
+    public function append() :array
     {
         return [
             'types' => ContentType::pluck('name', 'id')

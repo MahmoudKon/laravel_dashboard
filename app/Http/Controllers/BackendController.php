@@ -6,17 +6,15 @@ use App\Http\Middleware\CheckMiddleWare;
 use App\Http\Middleware\LockScreenMiddleware;
 use App\Traits\BackendControllerHelper;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
-use Yajra\DataTables\Services\DataTable;
 
 class BackendController extends Controller
 {
     use BackendControllerHelper;
 
-    public function __construct(public DataTable $dataTable, public Model $model)
+    public function __construct()
     {
         $this->middleware([CheckMiddleWare::class, LockScreenMiddleware::class]);
 
@@ -39,7 +37,7 @@ class BackendController extends Controller
     {
         try {
             if (request()->ajax())
-                return $this->dataTable->render('backend.includes.tables.table');
+                return $this->dataTable()->render('backend.includes.tables.table');
 
             return view($this->index_view, ['count' => $this->modelCount()]);
         } catch (Exception $e) {
@@ -117,7 +115,7 @@ class BackendController extends Controller
     public function multidelete(Request $request)
     {
         try {
-            $rows = $this->model::whereIn('id', (array)$request['id'])->get();
+            $rows = $this->model()->whereIn('id', (array)$request['id'])->get();
             DB::beginTransaction();
                 foreach ($rows as $row)
                     $row->delete();

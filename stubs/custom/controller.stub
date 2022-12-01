@@ -11,14 +11,9 @@ use App\Http\Requests\{{ model }}Request;
 class {{ class }} extends BackendController
 {
     public $full_page_ajax  = false;
-    public $use_form_ajax   = false;
+    public $use_form_ajax   = true;
     public $use_button_ajax = false;
     public $view_sub_path   = '{{ view_sub_path }}';
-
-    public function __construct({{ model_name }}DataTable $dataTable, {{ model_name }} ${{ model_name }})
-    {
-        parent::__construct($dataTable, ${{ model_name }});
-    }
 
     public function store({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service)
     {
@@ -33,6 +28,16 @@ class {{ class }} extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.{{ single_table }}')]));
     }
 
+    public function model()
+    {
+        return {{ model_name }}::class;
+    }
+
+    public function dataTable()
+    {
+        return {{ model_name }}DataTable::class;
+    }
+
     public function append(): array
     {
         return [
@@ -42,14 +47,6 @@ class {{ class }} extends BackendController
 
     public function query($id) :object|null
     {
-        return $this->model::find($id);
+        return $this->model()::find($id);
     }
-
-    public function doSomethingInCreate() { return false; }
-
-    public function doSomethingInShow($row) { return false; }
-
-    public function doSomethingInEdit($row) { return false; }
-
-    public function doSomethingAfterDelete() { return false; }
 }
