@@ -95,10 +95,10 @@ class CreateModel extends GeneratorCommand
         $vars = [
             '{{ namespace }}' => $namespace,
             '{{ relations }}' => $this->relations(),
-            '{{ namespaces }}' => $this->namespaces,
             '{{ class }}' => $name,
             '{{ table }}' => $this->table,
             '{{ fillable }}' => $this->fillable(),
+            '{{ namespaces }}' => $this->namespaces,
             '{{ timestamps }}' => $this->timestamps,
             '{{ traits }}' => $this->traits,
             '{{ methods }}' => $this->methods,
@@ -155,8 +155,8 @@ class CreateModel extends GeneratorCommand
 
                 $this->methods .= "\n\tprotected function $column->Field(): Attribute\n\t{";
                 $this->methods .= "\n\t\treturn Attribute::make(";
-                $this->methods .= "\n\t\tget: fn (\$value) => \$this->get". ucfirst($column->Field) ."(),";
-                $this->methods .= "\n\t\t);\n";
+                $this->methods .= "\n\t\t\tget: fn (\$value) => \$this->get". ucfirst($column->Field) ."(),";
+                $this->methods .= "\n\t\t);";
                 $this->methods .= "\n\t}\n";
 
                 $this->methods .= "\n\tpublic function get".ucfirst($column->Field)."(\$lang = null)\n\t{";

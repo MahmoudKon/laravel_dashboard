@@ -99,7 +99,7 @@ class CreateView extends GeneratorCommand
     {
         $view = convertCamelCaseTo($this->argument('view'));
         $view =  'resources/views/'.$view;
-        $view = str_replace(['/', '\\'], [DIRECTORY_SEPARATOR], $view);
+        $view = str_replace(['/', '\\'], ['/'], $view);
         return $view;
     }
 
