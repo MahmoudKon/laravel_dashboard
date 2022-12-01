@@ -126,6 +126,7 @@ class CreateRequest extends GeneratorCommand
         $validate = [];
 
         if (stripos($column->Null, "Yes") !== false || stripos($column->Type, "tinyint") !== false) array_push($validate, 'nullable');
+        elseif ( checkColumnIsFile($column->Comment) ) array_push($validate, 'required_without:id');
         else array_push($validate, 'required');
 
         if(stripos($column->Type, "tinyint") !== false)

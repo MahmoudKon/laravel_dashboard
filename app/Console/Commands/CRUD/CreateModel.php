@@ -163,6 +163,13 @@ class CreateModel extends GeneratorCommand
                 $this->methods .= "\n\t\t\$lang = \$lang ?? app()->getLocale();";
                 $this->methods .= "\n\t\treturn \$this->getTranslations('$column->Field')[\$lang] ?? '';";
                 $this->methods .= "\n\t}\n";
+
+            } elseif ( checkColumnIsFile($column->Comment) ) {
+                $this->methods .= "\n\tprotected function $column->Field(): Attribute\n\t{";
+                $this->methods .= "\n\t\treturn Attribute::make(";
+                $this->methods .= "\n\t\t\tget: fn (\$value) => \$value && file_exists('uploads/$this->table/' . \$value) ? \"uploads/$this->table/\$value\" : null";
+                $this->methods .= "\n\t\t);";
+                $this->methods .= "\n\t}\n";
             }
         }
 

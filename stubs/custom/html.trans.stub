@@ -17,7 +17,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input type="text" class="form-control" name="{{ column }}[{{ $lang }}]" value="{{ isset($row) ? $row->getName($lang) : old("{{ column }}.$lang") }}" placeholder="@lang('inputs.{{ column }}') / @lang("menu.$name")">
+                            <input type="text" class="form-control" name="{{ column }}[{{ $lang }}]" value="{{ isset($row) ? $row->get{{ upper_column }}($lang) : old("{{ column }}.$lang") }}" placeholder="@lang('inputs.{{ column }}') / @lang("menu.$name")">
                         </div>
                         <x-validation-error input="{{ column }}-{{ $lang }}" />
                     </div>

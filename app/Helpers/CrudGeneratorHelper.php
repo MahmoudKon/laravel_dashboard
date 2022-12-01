@@ -22,6 +22,16 @@ function getRelationName(string $table) :string
     return Str::lcfirst( Str::studly( Str::singular( getRelationMethodName($table) ) ) );
 }
 
+/**
+ * checkColumnIsFile
+ *
+ * @param  string $column
+ * @return bool
+ */
+function checkColumnIsFile(string $column) :bool
+{
+    return in_array($column, ['audio', 'video', 'file', 'image']);
+}
 
 function checkClassExists(string $path, string $specific_name) :bool|string
 {
