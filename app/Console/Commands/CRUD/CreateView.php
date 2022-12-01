@@ -154,6 +154,9 @@ class CreateView extends GeneratorCommand
         if (stripos($column->Type, 'date') !== false)
             return 'date';
 
+        if (stripos($column->Type, 'text') !== false)
+            return 'textarea';
+
         if (stripos($column->Comment, 'file') !== false)
             return 'file';
 

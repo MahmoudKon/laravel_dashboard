@@ -30,12 +30,12 @@ class {{ class }} extends BackendController
 
     public function model()
     {
-        return {{ model_name }}::class;
+        return new {{ model_name }};
     }
 
     public function dataTable()
     {
-        return {{ model_name }}DataTable::class;
+        return new {{ model_name }}DataTable;
     }
 
     public function append(): array
