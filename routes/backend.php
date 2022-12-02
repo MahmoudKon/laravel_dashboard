@@ -104,7 +104,7 @@ Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.mu
 
 Route::resource('langs', 'LangController');
 
-Route::resource('announcements', 'AnnouncementController'); 
-Route::post('announcements/multidelete', 'AnnouncementController@multidelete')->name('announcements.multidelete'); 
+Route::resource('announcements', 'AnnouncementController');
+Route::post('announcements/multidelete', 'AnnouncementController@multidelete')->name('announcements.multidelete');
 Route::any('announcements/{announcement}/column/{column}/toggle', 'AnnouncementController@columnToggle')->name('announcements.column.toggle');
 Route::get('announcements/search/form', 'AnnouncementController@search')->name('announcements.search.form');

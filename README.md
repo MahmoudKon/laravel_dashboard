@@ -112,6 +112,9 @@ php artisan serve
 <b>13- ease to make your custom search</b>
 
 ###### - just create route like this [change users word and controller name]
+```
+    Route::get('{users}/search/form', '{UserController}@search')->name('{users}.search.form');
+```
 ###### - in {users} folder add `` search.blade.php `` have only inputs without form tag 
 ###### - in Model have scopeFilter in this scope can add all your form conditions
 <p>
