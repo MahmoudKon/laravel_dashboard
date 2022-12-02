@@ -117,3 +117,53 @@ php artisan serve
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/search.png" alt="search page">
 </p>
 
+<p>14- Email System</p>
+<p>
+    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/email-form.png" alt="email-form page">
+    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/email-body.png" alt="email-body page">
+</p>
+
+
+## features
+
+<p> 1- on each controller have 3 properties</p>
+<p>     * use_form_ajax => if true, form create / update will submit using ajax and display validation errors if have, after success will redirect to any page you set it on store method</p>
+<p>     * use_button_ajax => if true, link create and update and delete will use ajax [ the form will open in modal ]</p>
+<p>     * full_page_ajax or make use_form_ajax && use_button_ajax is true, open form and submit will do in the same page, no have redirect </p>
+
+<p> 2- have command to create </p>
+<p>  * Model with relations & fillable & scope filter and slug method to display the row name in breadcrumb section </p>
+<p>  * Request class with all validations and attributs translation </p>
+<p>  * Datatable class with load relations & columns & multidelete / create buttons </p>
+<p>  * Service class to handle create / update </p>
+<p>  * Controller with some method </p>
+<p>  * append translation columns in translation files </p>
+<p>  * append routes in route file </p>
+<p>  * create new menu for new model </p>
+<p>  * create form blade with all inputs from fillable </p>
+
+
+<p> Use Command </p>
+<p> 1- create your migration table in make migrate </p>
+<p> some Notes: </p>
+<p>    * to create translation column with type json, please add comment ('translations')</p>
+<p>    * to create input image in form add comment ('image') for the column</p>
+<p>    * to create input video in form add comment ('video') for the column</p>
+<p>    * to create input audio in form add comment ('audio') for the column</p>
+<p>    * to create input file in form add comment ('file') for the column</p>
+
+<p>2- run this command</p>
+```
+php artisan make:crud table_name
+```
+<p>and can append all created file in specific new dir, use this argument '--namespace=New'</p>
+<p>will append to namespace for class the namespace argument</p>
+
+# and enjoy
+
+
+### to contact with me for any question <a href='https://www.facebook.com/MahmoudK0n/'> facebook </a>
+
+# Sorry for the poor explanation and my poor English
+
+
