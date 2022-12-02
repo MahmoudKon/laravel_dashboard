@@ -162,8 +162,8 @@ php artisan serve
 ```
 php artisan make:crud table_name
 ```
-<p>and can append all created file in specific new dir, use this argument '--namespace=New'</p>
-<p>will append to namespace for class the namespace argument</p>
+###### and can append all created file in specific new dir, use this argument '--namespace=New'
+###### will append to namespace for class the namespace argument
 
 #### and enjoy
 
