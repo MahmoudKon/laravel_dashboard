@@ -146,7 +146,6 @@ class CreateModel extends GeneratorCommand
 
             if ($column->Comment == 'translations') {
                 $this->namespaces .= "use Spatie\Translatable\HasTranslations;\n";
-                $this->namespaces .= "use Illuminate\Database\Eloquent\Casts\Attribute;\n";
                 $this->traits .= ', HasTranslations';
                 $this->translatable .= "'$column->Field',";
                 $this->methods .= "\n\tpublic function asJson(\$value)\n\t{";
