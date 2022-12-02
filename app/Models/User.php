@@ -11,7 +11,6 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
-use Messenger\Chat\Traits\Messageable;
 
 class User extends Authenticatable
 {
@@ -129,6 +128,6 @@ class User extends Authenticatable
 
     public function slug()
     {
-        return "<a href='".routeHelper('users.show', $this)."'>$this->name</a>";
+        return "<a href='".routeHelper('users.edit', $this)."'>$this->name</a>";
     }
 }

@@ -77,21 +77,16 @@
         {{-- END open_type --}}
     </div>
 
-
     <div class="col-md-6">
         {{-- START desc --}}
-            <div class="form-group">
-                <label>@lang("inputs.desc")</label>
-                <textarea name="desc" class="ckeditor" placeholder='@lang("inputs.desc")'>{{ $row->desc ?? old("desc") }}</textarea>
-                <x-validation-error input='desc' />
-            </div>
+        <div class="form-group">
+            <label>@lang("inputs.desc")</label>
+            <textarea name="desc" class="ckeditor" placeholder='@lang("inputs.desc")'>{{ $row->desc ?? old("desc") }}</textarea>
             <x-validation-error input='desc' />
         </div>
         {{-- END desc --}}
     </div>
-
 </div>
-
 
 @push('script')
     <script type="text/javascript" src="{{ assetHelper('vendors/js/editors/ckeditor/ckeditor.js') }}"></script>

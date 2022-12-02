@@ -30,6 +30,7 @@ return [
     'please select some rows' => 'Please select some rows!',
 
 
+    'search in table' => 'Search In :table Table',
 
     // LOCK SCREEN PAGE
     'unlock account' => 'Unlook Your Account',

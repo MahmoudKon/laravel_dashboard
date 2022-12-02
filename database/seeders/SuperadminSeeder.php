@@ -33,7 +33,7 @@ class SuperadminSeeder extends Seeder
 
         $user = User::firstOrCreate(['email' => $data['email']], $data);
         Department::get()->each(function($row) use($user) {
-            $row->update(['manager_id' => $user->id, 'manager_of_manager_id' => $user->id]);
+            $row->update(['manager_id' => $user->id]);
         });
         $user->assignRole('Super Admin');
     }

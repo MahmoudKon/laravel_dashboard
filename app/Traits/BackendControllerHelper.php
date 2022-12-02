@@ -94,6 +94,17 @@ trait BackendControllerHelper
     }
 
     /**
+     * searchData
+     * To append data for form search like [users data for select tag]
+     *
+     * @return array
+     */
+    public function searchData() :array
+    {
+        return [];
+    }
+
+    /**
      * query
      * to customize get instance of model like [get relations]
      *
@@ -108,13 +119,12 @@ trait BackendControllerHelper
     /**
      *  getTableName
      *  to get the table name from model object
-     * @param  bool $lower_case
-     * @param  bool $plural
+     * @param  bool $singular
      * @return string
      */
-    public function getTableName(bool $plural = false) :string
+    public function getTableName(bool $singular = false) :string
     {
-        return $plural ? $this->model()->getTable() : Str::singular($this->model()->getTable());
+        return $singular ? Str::singular($this->model()->getTable()) : $this->model()->getTable();
     }
 
     /**
@@ -130,23 +140,6 @@ trait BackendControllerHelper
     }
 
     /**
-     *  getModelName
-     *  to get the model name from model object
-     * @param  bool $lower_case
-     * @param  bool $plural
-     * @return string
-     */
-    public function getModelName(bool $lower_case = false, bool $plural = false) :string
-    {
-        $model_name = class_basename($this->model());
-        $model_name = preg_replace('/([^A-Z])([A-Z])/', "$1_$2", $model_name);
-        $model_name = $lower_case ? Str::lower($model_name) : $model_name;
-        $model_name = $plural ? Str::plural($model_name) : $model_name;
-        return $model_name;
-    }
-
-
-    /**
      * redirect
      * handler return type
      * 1) use single page for crud [modal for create and update] not use redirect, just display flash message after any action.
@@ -158,8 +151,8 @@ trait BackendControllerHelper
      */
     public function redirect($message = null, $redirect = null, $stop = false) :object
     {
-        $message = $message ?? $this->getModelName()." Created Successfully!";
-        $goto = $redirect ?? routeHelper(str_replace(' ', '_', $this->getModelName(true, true)).'.index');
+        $message = $message ?? trans('flash.row created', ['model' => trans('menu.'.$this->getTableName(singular: true))]);
+        $goto = $redirect ?? routeHelper($this->getTableName().'.index');
 
         if ($this->full_page_ajax || ($this->use_form_ajax && $this->use_button_ajax))
                 if ($redirect) {

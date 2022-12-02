@@ -24,20 +24,8 @@
 </div>
 {{-- END  EMAIL --}}
 
-<div class="row">
-    <div class="col-md-6">
-        {{-- START MANAGER --}}
-        <x-html.select name='manager_id' :list="$users"
-        :selected="old('manager_id', ($row->manager_id ?? null))"
-        :label="trans('inputs.select-data', ['data' => trans('inputs.manager')])" />
-        {{-- END MANAGER --}}
-    </div>
-
-    <div class="col-md-6">
-        {{-- START MANAGER OF MANAGER --}}
-        <x-html.select name='manager_of_manager_id' :list="$users"
-        :selected="old('manager_of_manager_id', ($row->manager_of_manager_id ?? null))"
-        :label="trans('inputs.select-data', ['data' => trans('inputs.manager-of-manager')])" />
-        {{-- END MANAGER OF MANAGER --}}
-    </div>
-</div>
+{{-- START MANAGER --}}
+<x-html.select name='manager_id' :list="$users"
+:selected="old('manager_id', ($row->manager_id ?? null))"
+:label="trans('inputs.select-data', ['data' => trans('inputs.manager')])" />
+{{-- END MANAGER --}}

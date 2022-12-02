@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::table('departments', function (Blueprint $table) {
             $table->foreignId('manager_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete()->after('email');
-            $table->foreignId('manager_of_manager_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete()->after('manager_id');
         });
     }
 

@@ -28,7 +28,8 @@ $('body').on('click', '.close-search-button', function(e) {
     e.preventDefault();
     $(this).addClass('hidden');
     $('.show-search-form').removeClass('hidden');
-    $('#search-form-body').slideUp(300, function () { $('#search-form-body').empty() })
+    $('#search-form-body').slideUp(300, function () { $('#search-form-body').empty() });
+    rows();
 });
 
 $('body').on('submit', 'form#search-form', function(e) {

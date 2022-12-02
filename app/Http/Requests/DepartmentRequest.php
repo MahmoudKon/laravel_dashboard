@@ -23,12 +23,10 @@ class DepartmentRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this->all());
         return [
             'title' => 'required|string|unique:departments,title,'.request()->route('department'),
             'email' => 'required|email|unique:departments,email,'.request()->route('department'),
             'manager_id' => 'required|numeric|exists:users,id',
-            'manager_of_manager_id' => 'nullable|numeric|exists:users,id',
         ];
     }
 
@@ -38,7 +36,6 @@ class DepartmentRequest extends FormRequest
             'title' => trans('inputs.title'),
             'email' => trans('inputs.email'),
             'manager_id' => trans('inputs.manager'),
-            'manager_of_manager_id' => trans('inputs.manager-of-manager'),
         ];
     }
 }

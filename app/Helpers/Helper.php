@@ -64,7 +64,7 @@ function getFilesInDir(string $dir, $specific_class = null) :array|string
     $files = [];
 
     foreach (File::allFiles($dir) as $file) {
-        $file_path = str_replace(['/', '.php', 'app'], ['\\', '', 'App'], strstr($file->getPathname(), 'app'));
+        $file_path = str_replace([base_path(), '/', '.php', 'app'], ['', '\\', '', 'App'], strstr($file->getPathname(), 'app'));
 
         if ($specific_class && "$specific_class.php" == $file->getFilename())
             return $file_path;
@@ -100,7 +100,7 @@ function getModel(bool $singular = false, $view = false) :string
         // usering full namsepace get the controller class
         $controller_class = app($controller);
         // in each controller has method [getModel] to get the model name.
-        $model = $controller_class->getTableName(true);
+        $model = $controller_class->getTableName();
     } catch (Exception $e) {
         $route = request()->route()->uri;
         $route = str_replace(app()->getLocale().'/', '', $route);
@@ -120,9 +120,8 @@ function getModel(bool $singular = false, $view = false) :string
  */
 function activeMenu(string|null $menu_route, string $active_class = 'active') :bool|string
 {
-    $route = \Illuminate\Support\Facades\Route::getRoutes()->getByName(ROUTE_PREFIX.$menu_route);
+    $route = \Illuminate\Support\Facades\Route::getRoutes()->getByName($menu_route);
     if (! $menu_route || ! $route) return '';
-    $menu_route = str_replace(ROUTE_PREFIX, '', $menu_route);
 
     return request()->route()->getAction('controller') == $route->getAction('controller')
                 ? $active_class : '';

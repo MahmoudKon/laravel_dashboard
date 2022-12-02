@@ -30,7 +30,7 @@ return [
     'you wont be able to revert this' => 'لن تتمكن من التراجع عن هذا ؟',
     'please select some rows' => 'الرجاء, إختيار بيانات لحذفها !',
 
-
+    'search in table' => 'البحث في الجدول :table',
 
     // LOCK SCREEN PAGE
     'unlock account' => 'فك قفل الحساب',

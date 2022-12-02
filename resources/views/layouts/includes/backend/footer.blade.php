@@ -28,6 +28,7 @@
         var SWAL_CANCEL_BUTTON = "@lang('buttons.cancel')";
         var SWAL_FAILED_TITLE = "@lang('title.please select some rows')";
         const AUTH_USER_ID = {{ auth()->id() }};
+        const APP_LOCALE = '{{ app()->getLocale() }}';
     </script>
 
     <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>

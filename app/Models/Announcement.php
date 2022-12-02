@@ -23,7 +23,7 @@ class Announcement extends Model
 
     public function slug()
     {
-        return $this->title;
+        return "<a href='".routeHelper($this->getTable().'.edit', $this)."'>$this->title</a>";
     }
 
 	public function creator()

@@ -106,7 +106,7 @@ class BackendController extends Controller
             $row->delete();
 
             $this->doSomethingAfterDelete();
-            return response()->json(['message' => trans('flash.row deleted', ['model' => trans('menu.'.$this->getTableName())]), 'icon' => 'success', 'count' => $this->modelCount()]);
+            return response()->json(['message' => trans('flash.row deleted', ['model' => trans('menu.'.$this->getTableName(singular: true))]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
@@ -122,7 +122,7 @@ class BackendController extends Controller
 
                 $this->doSomethingAfterDelete();
             DB::commit();
-            return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getTableName(true)), 'count' => $rows->count()]), 'icon' => 'success', 'count' => $this->modelCount()]);
+            return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getTableName()), 'count' => $rows->count()]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
@@ -131,8 +131,8 @@ class BackendController extends Controller
     public function search()
     {
         try {
-            $title = "Search In ".$this->getTableName(true)." Table";
-            return response()->json( view('backend.includes.forms.form-search', $this->append(), compact('title'))->render() );
+            $title = trans('title.search in table', ['table' => trans('menu.'.$this->getTableName())]);
+            return response()->json( view('backend.includes.forms.form-search', $this->searchData(), compact('title'))->render() );
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
@@ -144,6 +144,6 @@ class BackendController extends Controller
         if (! $row) return $this->throwException(trans('flash.something is wrong'));
 
         $row->update([$column => !$row->$column]);
-        return response()->json(['stop' => true, 'message' => trans('flash.row updated', ['model' => trans('menu.'.$this->getTableName())])]);
+        return response()->json(['stop' => true, 'message' => trans('flash.row updated', ['model' => trans('menu.'.$this->getTableName(singular: true))])]);
     }
 }

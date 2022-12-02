@@ -29,19 +29,7 @@ class DepartmentDataTable extends DataTable
                 $view = new LinkTag(routeHelper('users.index', ['department' => $department->id]), "( $department->users_count )", transListRows('menu.users'), 'btn-info', 'fa fa-list', visible: canUser('users.index'));
                 return $view->render()->with($view->data());
             })
-            ->editColumn('manager', function(Department $department) {return $department->manager?->name;})
-            ->editColumn('managerOfManager', function(Department $department) {return $department->managerOfManager?->name;})
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
-            ->filterColumn('manager', function ($query, $keywords) {
-                return $query->whereHas('manager', function($query) use($keywords) {
-                    return $query->where('name', 'LIKE', "%$keywords%");
-                });
-            })
-            ->filterColumn('managerOfManager', function ($query, $keywords) {
-                return $query->whereHas('managerOfManager', function($query) use($keywords) {
-                    return $query->where('name', 'LIKE', "%$keywords%");
-                });
-            })
             ->rawColumns(['action', 'users', 'check', 'image']);
     }
 
@@ -53,7 +41,7 @@ class DepartmentDataTable extends DataTable
      */
     public function query(Department $model)
     {
-        return $model->with('manager:id,name', 'managerOfManager:id,name')->withCount('users')->newQuery();
+        return $model->with('manager:id,name')->withCount('users')->newQuery();
     }
 
     /**
@@ -79,7 +67,7 @@ class DepartmentDataTable extends DataTable
         ])
         ->responsive(true)
         ->parameters(
-            $this->initComplete('1,2,3,4,5')
+            $this->initComplete('1,2,3,4')
         )
         ->orderBy(1);
     }
@@ -96,8 +84,7 @@ class DepartmentDataTable extends DataTable
             Column::make('id')->title('#')->width('70px'),
             Column::make('title')->title(trans('inputs.title')),
             Column::make('email')->title(trans('inputs.email')),
-            Column::make('manager')->title(trans('inputs.manager'))->footer(trans('inputs.manager'))->orderable(false),
-            Column::make('managerOfManager')->title(trans('inputs.manager-of-manager'))->footer(trans('inputs.manager-of-manager'))->orderable(false),
+            Column::make('manager.name')->title(trans('inputs.manager'))->footer(trans('inputs.manager'))->orderable(false),
             Column::computed('users')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('menu.users'))->footer(trans('menu.users')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('inputs.action'))->footer(trans('inputs.action')),
         ];

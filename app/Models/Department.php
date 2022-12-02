@@ -14,16 +14,11 @@ class Department extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['title', 'email', 'manager_id', 'manager_of_manager_id'];
+    protected $fillable = ['title', 'email', 'manager_id'];
 
     public function manager()
     {
-        return $this->belongsTo(User::class, 'manager_id')->select('id', 'name');
-    }
-
-    public function managerOfManager()
-    {
-        return $this->belongsTo(User::class, 'manager_of_manager_id')->select('id', 'name');
+        return $this->belongsTo(User::class, 'manager_id')->select('id', 'name')->withDefault(['id' => null, 'name' => '']);
     }
 
     public function users()

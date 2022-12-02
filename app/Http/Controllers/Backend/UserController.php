@@ -23,14 +23,14 @@ class UserController extends BackendController
     {
         $user = $UserService->handle($request->except('image'));
         if (is_string($user)) return $this->throwException($user);
-        return $this->redirect(trans('flash.row created', ['model' => trans('menu.user')]));
+        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $user));
     }
 
     public function update(UserRequest $request, UserService $UserService, $id)
     {
         $user = $UserService->handle($request->except('image'), $id);
         if (is_string($user)) return $this->throwException($user);
-        return $this->redirect(trans('flash.row updated', ['model' => trans('menu.user')]));
+        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $user));
     }
 
     public function export()
