@@ -63,14 +63,14 @@ php artisan serve
 </p>
 
 <p>6- Settings for site</p>
-- auto load setting in cache when site use it all time like [site name / logo / audios for notifications and alarms]
-- can close setting if you won't use it again
+<p> - auto load setting in cache when site use it all time like [site name / logo / audios for notifications and alarms] </p>
+<p> - can close setting if you won't use it again </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/settings.png" alt="settings page">
 </p>
 
 <p>7- Create / Update Setting Form</p>
-- after select content type, will show input with selected type
+<p> - after select content type, will show input with selected type </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/setting-form.png" alt="setting-form page">
 </p>
@@ -81,24 +81,13 @@ php artisan serve
 </p>
 
 <p>9- Menu</p>
-- full controll on menu
-    1- drag and drop.
-    2- close tap or specific link, to can't anyone open page. [only super admin role can open page]
-    3- reorder.
-    4- create / update / delete
+    <p> - full controll on menu </p>
+    <p> 1- drag and drop. </p>
+    <p> 2- close tap or specific link, to can't anyone open page. [only super admin role can open page] </p>
+    <p> 3- reorder. </p>
+    <p> 4- create / update / delete </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/menus.png" alt="menus page">
-</p>
-
-<p>9- Menu</p>
-- full controll on menu
-    1- drag and drop.
-    2- close tap or specific link, to can't anyone open page. [only super admin role can open page]
-    3- reorder.
-    4- create / update / delete
-<p>
-    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/menus.png" alt="menus page">
-    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/menu-form.png" alt="menu-form page">
 </p>
 
 <p>10- Roles</p>
@@ -107,8 +96,8 @@ php artisan serve
 </p>
 
 <p>11- Assign Routes To Roles</p>
-    1- select controller to list his methods.
-    2- when input is check for route in role, then role can use this route
+    <p> 1- select controller to list his methods. </p>
+    <p> 2- when input is check for route in role, then role can use this route </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/assign-role-form.png" alt="assign-role-form page">
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/assign.png" alt="assign page">
@@ -120,10 +109,10 @@ php artisan serve
 </p>
 
 <p>13- ease to make your custom search</p>
-    1- just create route like this [change users word and controller name]
+    <p> 1- just create route like this [change users word and controller name] </p>
         ``` Route::get('users/search/form', 'UserControllersearch')->name('users.search.form'); ```
-    2- in {users} folder add `` search.blade.php `` have only inputs without form tag
-    3- in Model have scopeFilter in this scope can add all your form conditions
+    <p> 2- in {users} folder add `` search.blade.php `` have only inputs without form tag </p> 
+    <p> 3- in Model have scopeFilter in this scope can add all your form conditions </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/search.png" alt="search page">
 </p>
