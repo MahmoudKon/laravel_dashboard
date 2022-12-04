@@ -28,5 +28,5 @@ Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('mainte
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
 Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
 
-Route::get('auth/service/{service}', [LoginServiceController::class, 'gitRedirect'])->name('auth.service');
-Route::get('auth/socialite/callback', [LoginServiceController::class, 'gitCallback']);
+Route::get('auth/service/{service}', [LoginServiceController::class, 'serviceRedirect'])->name('auth.service');
+Route::get('auth/socialite/callback', [LoginServiceController::class, 'serviceCallback']);
