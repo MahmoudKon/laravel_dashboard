@@ -65,7 +65,6 @@ class UserController extends BackendController
             'departments' => Department::when(request('department'), function($query) {
                                 $query->where('id', request('department'));
                             })->pluck('title', 'id'),
-            'users' => User::pluck('name', 'id'),
             'roles' => Role::whereNotIn('name', SUPERADMIN_ROLES)->pluck('name', 'id')
         ];
     }

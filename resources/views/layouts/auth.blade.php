@@ -94,5 +94,7 @@
             $('form').submit(function (e) { $(this).closest('.card').addClass('load'); });
         });
     </script>
+
+    @yield('script')
 </body>
 </html>

@@ -29,13 +29,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'behalf_id',
         'image',
         'department_id',
         'email_verified_at',
         'remember_token',
         'mobile_token',
-        'last_seen'
     ];
 
     /**

@@ -62,6 +62,23 @@
 
 <div class="card-footer d-lg-flex justify-content-between">
     {{-- <p class="text-left m-0"><a href="{{ route('password.request') }}" class="card-link text-bold-500">Recover password</a></p> --}}
+
+    <p class="text-left m-0">
+        <a href="{{ route('auth.service', 'github') }}" class="btn btn-sm btn-github login-service"> <i class="fa-brands fa-github"></i> Github</a>
+        <a href="{{ route('auth.service', 'google') }}" class="btn btn-sm btn-google login-service"> <i class="fa-brands fa-google"></i> Google</a>
+        <a href="{{ route('auth.service', 'gitlab') }}" class="btn btn-sm btn-warning login-service"> <i class="fa-brands fa-gitlab"></i> Gitlab</a>
+    </p>
     <p class="text-right m-0"> New to {{ env('APP_NAME') }} ? <a href="{{ route('register') }}" class="card-link text-bold-500">Sign Up</a> </p>
 </div>
+@endsection
+
+
+@section('script')
+    <script>
+        $(function() {
+            $('.login-service').on('click', function() {
+                $(this).closest('.card').addClass('load');
+            })
+        });
+    </script>
 @endsection

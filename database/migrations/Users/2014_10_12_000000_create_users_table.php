@@ -23,7 +23,6 @@ return new class extends Migration
             $table->foreignId('department_id')->nullable()->constrained('departments')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamp('email_verified_at')->nullable();
             $table->text('mobile_token')->nullable();
-            $table->timestamp('last_seen')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

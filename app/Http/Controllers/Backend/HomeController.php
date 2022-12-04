@@ -14,8 +14,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->permissions()->count() == 0 && ! isSuperAdmin())
-            return redirect('/');
+        // if (auth()->user()->permissions()->count() == 0 && ! isSuperAdmin())
+        //     return redirect('/');
 
         $tables['users']         = ['count' => User::count()      , 'color' => 'info'];
         $tables['departments']   = ['count' => Department::count(), 'color' => 'primary'];

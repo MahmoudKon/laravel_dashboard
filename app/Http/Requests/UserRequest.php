@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class UserRequest extends FormRequest
 {
@@ -23,10 +24,11 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $pass_validation = request()->route('user') ? "nullable" : "required";
         return [
             'name'          => 'required',
             'email'         => 'required|email|unique:users,email,'.request()->route('user'),
-            'password'      => 'required_without:id',
+            'password'      => [$pass_validation, Password::defaults()->min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
             'image'         => 'nullable',
             'department_id' => 'required|exists:departments,id',
             'roles'         => 'nullable|array',

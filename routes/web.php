@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginServiceController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,6 @@ Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('mainte
 
 Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
 Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
+
+Route::get('auth/service/{service}', [LoginServiceController::class, 'gitRedirect'])->name('auth.service');
+Route::get('auth/socialite/callback', [LoginServiceController::class, 'gitCallback']);
