@@ -13,3 +13,11 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+    <script>
+        $(function() {
+            $(`li[data-route="{{ ROUTE_PREFIX.getModel().'.index' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
+        });
+    </script>
+@endsection

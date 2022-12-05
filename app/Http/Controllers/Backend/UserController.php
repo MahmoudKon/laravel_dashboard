@@ -17,7 +17,7 @@ use Spatie\Permission\Models\Role;
 class UserController extends BackendController
 {
     public $use_form_ajax = true;
-    public $use_button_ajax = true;
+    public $use_button_ajax = false;
 
     public function store(UserRequest $request, UserService $UserService)
     {
