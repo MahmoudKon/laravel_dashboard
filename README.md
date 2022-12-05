@@ -63,14 +63,14 @@ php artisan serve
 </p>
 
 <b>6- Settings for site</b>
-###### * autoload setting in cache when site use it all time like [site name / logo / audios for notifications and alarms] </p>
-###### * can close setting if you won't use it again </p>
+* autoload setting in cache when site use it all time like [site name / logo / audios for notifications and alarms] </p>
+* can close setting if you won't use it again </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/settings.png" alt="settings page">
 </p>
 
 <b>7- Create / Update Setting Form</b>
-###### - after select content type, will show input with selected type </p>
+- after select content type, will show input with selected type </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/setting-form.png" alt="setting-form page">
 </p>
@@ -81,12 +81,12 @@ php artisan serve
 </p>
 
 <b>9- Menu</b>
-##### - full controll on menu
-###### * drag and drop.
-###### * close tap or specific link, to can't anyone open page. [only super admin role can open page]
-###### * reorder.
-###### * create / update / delete
-###### * can update menu seeder and click on sync menus button will update menu 
+##### - full controll on menu :
+* drag and drop.
+* close tap or specific link, to can't anyone open page. [only super admin role can open page]
+* reorder.
+* create / update / delete
+* can update menu seeder and click on sync menus button will update menu 
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/menus.png" alt="menus page">
 </p>
@@ -97,8 +97,8 @@ php artisan serve
 </p>
 
 <b>11- Assign Routes To Roles</b>
-###### - select controller to list his methods. </p>
-###### - when input is check for route in role, then role can use this route </p>
+- select controller to list his methods. </p>
+- when input is check for route in role, then role can use this route </p>
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/assign-role-form.png" alt="assign-role-form page">
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/assign.png" alt="assign page">
@@ -111,12 +111,12 @@ php artisan serve
 
 <b>13- ease to make your custom search</b>
 
-###### - just create route like this [change users word and controller name]
+- just create route like this [change users word and controller name]
 ```
     Route::get('{users}/search/form', '{UserController}@search')->name('{users}.search.form');
 ```
-###### - in {users} folder add `` search.blade.php `` have only inputs without form tag 
-###### - in Model have scopeFilter in this scope can add all your form conditions
+- in {users} folder add `` search.blade.php `` have only inputs without form tag 
+- in Model have scopeFilter in this scope can add all your form conditions
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/search.png" alt="search page">
 </p>
@@ -131,30 +131,30 @@ php artisan serve
 ## features
 
 #### 1- on each controller have 3 properties</p>
-###### * use_form_ajax => if true, form create / update will submit using ajax and display validation errors if have, after success will redirect to any page you set it on store method</p>
-###### * use_button_ajax => if true, link create and update and delete will use ajax [ the form will open in modal ]</p>
-###### * full_page_ajax or make use_form_ajax && use_button_ajax is true, open form and submit will do in the same page, no have redirect </p>
+* use_form_ajax => if true, form create / update will submit using ajax and display validation errors if have, after success will redirect to any page you set it on store method</p>
+* use_button_ajax => if true, link create and update and delete will use ajax [ the form will open in modal ]</p>
+* full_page_ajax or make use_form_ajax && use_button_ajax is true, open form and submit will do in the same page, no have redirect </p>
 
 #### 2- have command to create
-###### - Model with relations & fillable & scope filter and slug method to display the row name in breadcrumb section
-###### - Request class with all validations and attributs translation
-###### - Datatable class with load relations & columns & multidelete / create buttons
-###### - Service class to handle create / update
-###### - Controller with some method
-###### - append translation columns in translation files
-###### - append routes in route file
-###### - create new menu for new model
-###### - create form blade with all inputs from fillable
+- Model with relations & fillable & scope filter and slug method to display the row name in breadcrumb section
+- Request class with all validations and attributs translation
+- Datatable class with load relations & columns & multidelete / create buttons
+- Service class to handle create / update
+- Controller with some method
+- append translation columns in translation files
+- append routes in route file
+- create new menu for new model
+- create form blade with all inputs from fillable
 
 
 ### Use Command
 ##### 1- create your migration table and make migrate </p>
 <b> some Notes: </b>
-###### - to create translation column with type json, please add comment ('translations')
-###### - to create input image in form add comment ('image') for the column
-###### - to create input video in form add comment ('video') for the column
-###### - to create input audio in form add comment ('audio') for the column
-###### - to create input file in form add comment ('file') for the column
+- to create translation column with type json, please add comment ('translations')
+- to create input image in form add comment ('image') for the column
+- to create input video in form add comment ('video') for the column
+- to create input audio in form add comment ('audio') for the column
+- to create input file in form add comment ('file') for the column
 
 ###
 
