@@ -66,6 +66,11 @@ class User extends Authenticatable
         return $this->belongsTo(Department::class)->select('id', 'title', 'manager_id', 'manager_of_manager_id');
     }
 
+    public function socialAccounts()
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
+
     protected function password(): Attribute
     {
         return Attribute::make(

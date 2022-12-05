@@ -2,12 +2,25 @@
 
 namespace App\Observers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Traits\UploadFile;
 
 class UserObserver
 {
     use UploadFile;
+
+        /**
+     * Handle the User "created" event.
+     *
+     * @param  \App\Models\User  $user
+     * @return void
+     */
+    public function created(User $user)
+    {
+        if ( $user->roles()->count() == 0 )
+            $user->syncRoles( Role::whereIn('name', BASIC_ROLES)->pluck('id')->toArray() );
+    }
 
     /**
      * Handle the User "updated" event.

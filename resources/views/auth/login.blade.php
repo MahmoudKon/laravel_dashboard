@@ -64,10 +64,10 @@
     {{-- <p class="text-left m-0"><a href="{{ route('password.request') }}" class="card-link text-bold-500">Recover password</a></p> --}}
 
     <p class="text-left m-0">
-        <a href="{{ route('auth.service', 'github') }}" class="btn btn-sm btn-github login-service"> <i class="fa-brands fa-github"></i> Github</a>
-        <a href="{{ route('auth.service', 'google') }}" class="btn btn-sm btn-google login-service"> <i class="fa-brands fa-google"></i> Google</a>
-        <a href="{{ route('auth.service', 'gitlab') }}" class="btn btn-sm btn-warning login-service"> <i class="fa-brands fa-gitlab"></i> Gitlab</a>
-        <a href="{{ route('auth.service', 'facebook') }}" class="btn btn-sm btn-facebook login-service"> <i class="fa-brands fa-facebook"></i> Facebook</a>
+        <a href="{{ route('auth.provider', 'github') }}" class="btn btn-sm btn-github login-provider"> <i class="fa-brands fa-github"></i> Github</a>
+        <a href="{{ route('auth.provider', 'google') }}" class="btn btn-sm btn-google login-provider"> <i class="fa-brands fa-google"></i> Google</a>
+        <a href="{{ route('auth.provider', 'gitlab') }}" class="btn btn-sm btn-warning login-provider"> <i class="fa-brands fa-gitlab"></i> Gitlab</a>
+        <a href="{{ route('auth.provider', 'facebook') }}" class="btn btn-sm btn-facebook login-provider"> <i class="fa-brands fa-facebook"></i> Facebook</a>
     </p>
     <p class="text-right m-0"> New to {{ env('APP_NAME') }} ? <a href="{{ route('register') }}" class="card-link text-bold-500">Sign Up</a> </p>
 </div>
@@ -77,7 +77,7 @@
 @section('script')
     <script>
         $(function() {
-            $('.login-service').on('click', function() {
+            $('.login-provider').on('click', function() {
                 $(this).closest('.card').addClass('load');
             })
         });
