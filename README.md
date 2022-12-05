@@ -148,7 +148,7 @@ php artisan serve
 
 
 ### Use Command
-##### 1- create your migration table in make migrate </p>
+##### 1- create your migration table and make migrate </p>
 <b> some Notes: </b>
 ###### - to create translation column with type json, please add comment ('translations')
 ###### - to create input image in form add comment ('image') for the column
