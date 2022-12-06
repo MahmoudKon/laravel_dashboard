@@ -62,9 +62,7 @@ class UserController extends BackendController
     public function append() :array
     {
         return [
-            'departments' => Department::when(request('department'), function($query) {
-                                $query->where('id', request('department'));
-                            })->pluck('title', 'id'),
+            'departments' => Department::filter()->pluck('title', 'id'),
             'roles' => Role::whereNotIn('name', SUPERADMIN_ROLES)->pluck('name', 'id')
         ];
     }

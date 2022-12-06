@@ -30,4 +30,11 @@ class Department extends Model
     {
         return $this->title;
     }
+
+    public function scopeFilter($query)
+    {
+        return $query->when(request('department'), function($query) {
+                    $query->where('id', request('department'));
+                });
+    }
 }
