@@ -89,6 +89,11 @@ return [
     'cities' => 'المدن',
     'city' => 'مدينة',
 
+    // LANGUAGES
+    'languages' => 'اللغات',
+    'language' => 'لغة',
+    'the language' => 'اللغه',
+
     // ANNOUNCEMENTS
     'announcements' => 'الإعلانات',
     'announcement'  => 'إعلان',

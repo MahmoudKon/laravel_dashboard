@@ -94,6 +94,12 @@ return [
     'announcement'  => 'announcement',
     'the announcement' => 'announcement',
 
+
+    // LANGUAGES
+    'languages' => 'Languages',
+    'language' => 'Language',
+    'the language' => 'Language',
+
     // NOTIFICATIONS
     'notifications' => 'Notifications',
     'news' => 'News',
