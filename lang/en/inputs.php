@@ -77,4 +77,9 @@ return [
     'count days' => 'Count Of Days',
     'creator' => 'Creator',
 
+
+
+	// LANGUAGES
+	'short_name' => 'Short Name',
+	'native' => 'Native',
 ];

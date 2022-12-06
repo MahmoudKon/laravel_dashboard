@@ -2,12 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Announcement;
-use App\Models\Setting;
-use App\Models\User;
-use App\Observers\AnnouncementObserver;
-use App\Observers\SettingObserver;
-use App\Observers\UserObserver;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        activeLanguages();
+        //
     }
 
     /**
@@ -34,9 +28,10 @@ class AppServiceProvider extends ServiceProvider
 
         setSettingCache();
 
-        User::observe(UserObserver::class);
-        Setting::observe(SettingObserver::class);
-        Announcement::observe(AnnouncementObserver::class);
+        \App\Models\User::observe(\App\Observers\UserObserver::class);
+        \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
+        \App\Models\Announcement::observe(\App\Observers\AnnouncementObserver::class);
+        \App\Models\Language::observe(\App\Observers\LanguageObserver::class);
 
         Blade::directive('superAdmin', function() { return "<?php if (isSuperAdmin()) { ?>"; });
         Blade::directive('endsuperAdmin', function() { return "<?php } ?>"; });

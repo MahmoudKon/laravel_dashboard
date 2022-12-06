@@ -102,9 +102,15 @@ Route::post('governorates/multidelete', 'GovernorateController@multidelete')->na
 Route::resource('cities', 'CityController')->except('show');
 Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.multidelete');
 
-Route::resource('langs', 'LangController');
-
 Route::resource('announcements', 'AnnouncementController');
 Route::post('announcements/multidelete', 'AnnouncementController@multidelete')->name('announcements.multidelete');
 Route::any('announcements/{announcement}/column/{column}/toggle', 'AnnouncementController@columnToggle')->name('announcements.column.toggle');
 Route::get('announcements/search/form', 'AnnouncementController@search')->name('announcements.search.form');
+
+
+Route::controller('LanguageController')->as('languages.')->prefix('languages')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{language}/edit', 'edit')->name('edit');
+    Route::put('{language}', 'update')->name('update');
+    Route::any('{language}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
+});

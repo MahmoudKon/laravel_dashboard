@@ -57,6 +57,10 @@ class MenuSeeder extends Seeder
                 'name' => ["en" => "Announcements", "ar" => "الإعلانات"],
                 'icon' => "fas fa-bullhorn",
                 'route' => "announcements.index",
+            ], [
+                'name' => ["en" => "Languages", "ar" => "اللغات"],
+                'icon' => "fa-solid fa-language",
+                'route' => "languages.index",
             ],
         ];
 

@@ -41,14 +41,14 @@
                     <li class="dropdown dropdown-language nav-item">
                         <a class="dropdown-toggle nav-link" id="dropdown-flag" href="javascript:void(0)" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" title="@lang('title.change-language')">
-                            <i class="flag-icon flag-icon-{{ (new App\Helpers\LaravelLocalization)->getCurrentFlagName() }}"></i>
+                            <i class="{{ $active_languages[ LaravelLocalization::getCurrentLocaleNative() ] }}"></i>
                             <span class="selected-language"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
                             @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
                                 href="{{ App::getLocale() !== $localeCode ? LaravelLocalization::getLocalizedURL($localeCode, null, [], true) : 'javascript:void(0)' }}">
-                                <i class="flag-icon flag-icon-{{ $properties['flag'] }}"></i>
+                                <i class="{{ $active_languages[$properties['native']] }}"></i>
                                 {{ $properties['native'] }}
                             </a>
                             @endforeach

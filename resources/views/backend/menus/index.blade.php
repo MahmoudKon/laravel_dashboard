@@ -94,7 +94,6 @@
         $(function() {
             $('body').on('keyup', 'input[name="icon"]', function() {
                 let icon = $(this).closest('.input-group').find('.input-group-text');
-                console.log(icon);
                 icon.html(`<i class="${$(this).val()}"></i>`);
             });
         });

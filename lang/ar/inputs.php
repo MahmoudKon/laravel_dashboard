@@ -83,4 +83,9 @@ return [
     'image' => 'الصورة',
     'count days' => 'عدد الأيام',
     'creator' => 'المنشئ',
+
+
+	// LANGUAGES
+	'short_name' => 'الإختصار',
+	'native' => 'إسم اللغه',
 ];

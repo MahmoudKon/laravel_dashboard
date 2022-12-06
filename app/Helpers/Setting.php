@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Language;
 use App\Models\Menu;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\View;
 function setSettingCache()
 {
     $successAudio = $warrningAudio = $notificationAudio = $list_menus = $settingLogo = '';
-    $website_settings = [];
+    $website_settings = $active_languages = [];
 
     if (! app()->runningInConsole()) {
         $list_menus = Cache::remember('list_menus', 60 * 60 * 24, function () {
@@ -20,6 +21,10 @@ function setSettingCache()
 
         $website_settings = Cache::remember('website_settings', 60 * 60 * 24, function () {
                                 return Setting::active()->autoload()->pluck('value', 'key')->toArray();
+                            });
+
+        $active_languages = Cache::remember('active_languages', 60 * 60 * 24, function () {
+                                return Language::active()->pluck('icon', 'native')->toArray();
                             });
 
         $settingLogo = $website_settings['logo'] ?? '';
@@ -33,6 +38,7 @@ function setSettingCache()
     }
 
     View::share([
+                    'active_languages'  => $active_languages,
                     'website_settings'  => $website_settings,
                     'successAudio'      => $successAudio,
                     'warrningAudio'     => $warrningAudio,
