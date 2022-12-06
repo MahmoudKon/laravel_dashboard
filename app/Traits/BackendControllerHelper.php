@@ -191,44 +191,4 @@ trait BackendControllerHelper
             }
         }
     }
-
-    /**
-     * doSomethingInCreate
-     *
-     * This method will do something In Create Page
-     * if return true, then will not contineu
-     *
-     * @return bool
-     */
-    public function doSomethingInCreate() { return false; }
-
-    /**
-     * doSomethingInShow
-     *
-     * This method will do something In Show Page
-     * if return true, then will not contineu
-     *
-     * @return bool
-     */
-    public function doSomethingInShow($row) { return false; }
-
-    /**
-     * doSomethingInEdit
-     *
-     * This method will do something In Edit Page
-     * if return true, then will not contineu
-     *
-     * @return bool
-     */
-    public function doSomethingInEdit($row) { return false; }
-
-    /**
-     * doSomethingAfterDelete
-     *
-     * This method will do something after do delete row
-     * if return true, then will not contineu
-     *
-     * @return bool
-     */
-    public function doSomethingAfterDelete() { return false; }
 }
