@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SuperadminSeeder::class);
         $this->call(ContentTypeSeeder::class);
         $this->call(SettingSeeder::class);
+        $this->call(LanguageSeeder::class);
 
         $images = $this->GetApiImage('people');
         User::factory(30)->create()->each(function ($user) use($images) {

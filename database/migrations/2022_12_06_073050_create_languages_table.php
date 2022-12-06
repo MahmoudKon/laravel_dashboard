@@ -17,7 +17,7 @@ return new class extends Migration
             $table->engine = "InnoDB";
             $table->id();
             $table->string('name', 200)->unique();
-            $table->string('native', 200)->unique();
+            $table->string('native', 200);
             $table->string('short_name', 50)->unique();
             $table->boolean('active')->default(true);
             $table->string('icon', 50)->nullable();
