@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\Language;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
 
 class LanguageObserver
 {
@@ -48,7 +47,11 @@ class LanguageObserver
         Cache::forget('active_languages');
 
         if ($language->active && !$force_remove)
-            $active_languages[$language->native] = $language->icon;
+            $active_languages[$language->short_name] = [
+                'icon' => $language->icon,
+                'name' => $language->name,
+                'native' => $language->native,
+            ];
         else
             $this->unsetKey($active_languages, $language);
 
@@ -58,8 +61,8 @@ class LanguageObserver
 
     protected function unsetKey(&$active_languages, $language)
     {
-        if(isset($active_languages[$language->native]))
-            unset($active_languages[$language->native]);
+        if(isset($active_languages[$language->short_name]))
+            unset($active_languages[$language->short_name]);
     }
 
     protected function updateFile($language)

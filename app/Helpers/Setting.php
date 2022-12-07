@@ -24,17 +24,22 @@ function setSettingCache()
                             });
 
         $active_languages = Cache::remember('active_languages', 60 * 60 * 24, function () {
-                                return Language::active()->pluck('icon', 'native')->toArray();
+                                $data = [];
+                                foreach (Language::active()->orderBy('short_name', 'ASC')->get() as $lang) {
+                                    $data[$lang->short_name] = [
+                                        'short_name' => $lang->short_name,
+                                        'icon' => $lang->icon,
+                                        'name' => $lang->name,
+                                        'native' => $lang->native,
+                                    ];
+                                }
+                                return $data;
                             });
 
         $settingLogo = $website_settings['logo'] ?? '';
         $notificationAudio = $website_settings['notification_audio'] ?? '';
         $successAudio = $website_settings['success_audio'] ?? '';
         $warrningAudio = $website_settings['warrning_audio'] ?? '';
-        // $settingLogo = Cache::remember('logo', 60 * 60 * 24, function () { return setting('logo', env('APP_NAME')); });
-        // $notificationAudio = Cache::remember('notification_audio', 60 * 60 * 24, function () { return setting('notification_audio', 'samples/audios/success.mp3'); });
-        // $successAudio = Cache::remember('success_audio', 60 * 60 * 24, function () { return setting('success_audio', 'samples/audios/success.mp3'); });
-        // $warrningAudio = Cache::remember('warrning_audio', 60 * 60 * 24, function () { return setting('warrning_audio', 'samples/audios/warrning.mp3'); });
     }
 
     View::share([
