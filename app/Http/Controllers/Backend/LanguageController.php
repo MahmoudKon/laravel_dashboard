@@ -11,7 +11,6 @@ use App\Http\Requests\LanguageRequest;
 class LanguageController extends BackendController
 {
     public $use_form_ajax   = true;
-    public $use_button_ajax = true;
     public $view_sub_path   = '.';
 
     public function store(LanguageRequest $request, LanguageService $LanguageService)
