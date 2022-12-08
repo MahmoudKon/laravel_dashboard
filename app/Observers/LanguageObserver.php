@@ -57,6 +57,7 @@ class LanguageObserver
 
         $this->updateFile($language);
         Cache::remember('active_languages', 60 * 60 * 24, function() use($active_languages) { return $active_languages; });
+        activeLanguages();
     }
 
     protected function unsetKey(&$active_languages, $language)
@@ -78,7 +79,6 @@ class LanguageObserver
                 $content = str_replace("'$language->short_name'", "//'$language->short_name'", $content);
         }
 
-        activeLanguages();
         file_put_contents($file, $content);
     }
 }

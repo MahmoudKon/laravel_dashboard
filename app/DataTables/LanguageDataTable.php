@@ -26,6 +26,8 @@ class LanguageDataTable extends DataTable
             ->eloquent($query)
             ->editColumn('icon', function(Language $row) { return "<i class='$row->icon'></i>"; })
             ->editColumn('active', function(Language $row) {
+                if ($row->short_name == config('app.fallback_locale'))
+                    return "DEFAULT";
                 $view = new ToggleColumn($row->id, 'active', $row->active);
                 return $view->render()->with($view->data());
             })

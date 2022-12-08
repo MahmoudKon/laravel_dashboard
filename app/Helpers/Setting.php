@@ -23,6 +23,7 @@ function setSettingCache()
                                 return Setting::active()->autoload()->pluck('value', 'key')->toArray();
                             });
 
+                            Cache::forget('active_languages');
         $active_languages = Cache::remember('active_languages', 60 * 60 * 24, function () {
                                 $data = [];
                                 foreach (Language::active()->orderBy('short_name', 'ASC')->get() as $lang) {

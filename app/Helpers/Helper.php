@@ -200,7 +200,8 @@ function fileExtensions()
 function activeLanguages()
 {
     $array = [];
-    foreach (config('laravellocalization.supportedLocales') as $lang => $info)
+
+    foreach (Cache::get('active_languages') as $lang => $info)
         $array[$info['name']] = $lang;
 
     file_put_contents(config_path('languages.php'), "<?php \n\nreturn " . var_export($array, true) . ";");
