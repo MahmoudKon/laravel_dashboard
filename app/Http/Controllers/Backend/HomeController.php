@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\LockScreenMiddleware;
 use App\Models\Department;
 use App\Models\Menu;
 use App\Models\Route;
@@ -12,6 +13,11 @@ use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware([LockScreenMiddleware::class]);
+    }
+
     public function index()
     {
         if (auth()->user()->roles()->count() == 0 && ! isSuperAdmin())
