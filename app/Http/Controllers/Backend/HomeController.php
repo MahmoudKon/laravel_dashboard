@@ -9,7 +9,6 @@ use App\Models\Menu;
 use App\Models\Route;
 use App\Models\Setting;
 use App\Models\User;
-use Locale;
 use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller

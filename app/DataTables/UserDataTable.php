@@ -105,7 +105,7 @@ class UserDataTable extends DataTable
     {
         return [
             Column::make('check')->title('<label class="skin skin-square p-0 m-0"><input data-color="red" type="checkbox" class="switchery" id="check-all" style="width: 25px"></label>')->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(15)->addClass('text-center')->footer(trans('buttons.delete')),
-            Column::make('id')->title('#')->width('70px'),
+            Column::make('code')->title('#')->width('70px'),
             Column::make('name')->title(trans('inputs.name')),
             Column::make('email')->title(trans('inputs.email')),
             Column::make('image')->title(trans('title.avatar'))->footer(trans('title.avatar'))->orderable(false),

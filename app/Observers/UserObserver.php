@@ -10,7 +10,18 @@ class UserObserver
 {
     use UploadFile;
 
-        /**
+    /**
+     * Handle the User "creating" event.
+     *
+     * @param  \App\Models\User  $user
+     * @return void
+     */
+    public function creating(User $user)
+    {
+        $user->code = $user->code ?? User::generateCode();
+    }
+
+    /**
      * Handle the User "created" event.
      *
      * @param  \App\Models\User  $user

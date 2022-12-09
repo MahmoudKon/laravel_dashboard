@@ -14,7 +14,7 @@
         <label for="email" class="required">@lang('inputs.email')</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+                <span class="input-group-text"> <i class="fa-solid fa-envelope"></i> </span>
             </div>
             <input type="email" id="email" name="email" class="form-control" value="{{ $email ?? old('email') }}"
                     autofocus placeholder="Type your email..." autocomplete="email" required>

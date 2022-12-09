@@ -9,10 +9,11 @@
 
     <!-- BEGIN USER NAME INPUT -->
     <fieldset class="form-group">
-        <label for="email" class="required">Email or Phone</label>
+        <label for="email" class="required">Email or Code</label>
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+                <span class="input-group-text"> <i class="fa-solid fa-envelope"></i> </span>
+                <span class="input-group-text"> <i class="fa-solid fa-barcode"></i> </span>
             </div>
             <input type="text" id="username" name="username" class="form-control" value="{{ old('username') ?? env('LOGIN_EMAIL', '') }}"
                     autofocus placeholder="Type your email or phone..." required>

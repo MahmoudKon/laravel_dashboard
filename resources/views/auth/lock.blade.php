@@ -17,7 +17,7 @@
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text show-password" data-toggle="tooltip" data-original-title="Show Password">
-                    <i class="fas fa-eye-slash"></i>
+                    <i class="fa-solid fa-eye-slash"></i>
                 </span>
             </div>
             <input type="password" id="password" name="password" value="{{ old('password') ?? env('LOGIN_PASSWORD', '') }}"
@@ -27,31 +27,31 @@
     </fieldset>
     <!-- END USER PASSWORD INPUT -->
 
-    <!-- BEGIN OPTIONS INPUT -->
-    <div class="form-group row">
-        <div class="col-md-6 col-12 text-center text-md-left">
-            <fieldset>
-                <input type="checkbox" id="remember-me" class="chk-remember" name="remember" @checked(old('remember'))>
-                <label for="remember-me" class="px-1 cursor-pointer" data-toggle="tooltip" data-original-title="The system will remember your login"> Remember Me</label>
-            </fieldset>
-        </div>
-        @if (Route::has('password.request'))
-        <div class="col-md-6 col-12 text-center text-md-right">
-            <a href="{{ route('password.request') }}" class="card-link text-bold-500" data-toggle="tooltip" data-original-title="Forget and reset password">
-                Forgot Your Password ?
-            </a>
-        </div>
-        @endif
-    </div>
-    <!-- END OPTIONS INPUT -->
-
-    <button type="submit" class="btn btn-outline-info btn-block" data-toggle="tooltip" data-original-title="@lang('title.unlock account')"><i class="fa fa-unlock-alt"></i> @lang('buttons.unlock')</button>
-</form>
-
-<form id="logout-form" action="{{ route('logout') }}" method="POST" class="mt-1">
-    @csrf
-    <button type="submit" class="btn btn-outline-danger d-block w-100" data-toggle="tooltip" data-original-title="@lang('menu.logout')">
-        <i class="ft-power"></i> @lang('menu.logout')
+    <button type="submit" class="btn btn-outline-info btn-block" data-toggle="tooltip" data-original-title="@lang('title.unlock account')">
+        <i class="fa-sharp fa-solid fa-unlock"></i> @lang('buttons.unlock')
     </button>
 </form>
+
+
+<!-- BEGIN OPTIONS INPUT -->
+<div class="form-group mt-2 row">
+    <div class="col-md-6 col-12 text-center text-md-left">
+        <fieldset>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger d-block w-100" data-toggle="tooltip" data-original-title="@lang('menu.logout')">
+                    <i class="fa-solid fa-power-off"></i> @lang('menu.logout')
+                </button>
+            </form>
+        </fieldset>
+    </div>
+    @if (Route::has('password.request'))
+    <div class="col-md-6 col-12 text-center text-md-right">
+        <a href="{{ route('password.request') }}" class="btn btn-primary d-block w-100" data-toggle="tooltip" data-original-title="Forget and reset password">
+            <i class="fa-solid fa-key"></i> Forgot Your Password ?
+        </a>
+    </div>
+    @endif
+</div>
+<!-- END OPTIONS INPUT -->
 @endsection

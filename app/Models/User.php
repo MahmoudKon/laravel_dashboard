@@ -11,10 +11,13 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
+use Faker\Factory;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
+
+    const CODE_LENGTH = 6;
 
     protected $guard_name = 'web,api';
 
@@ -26,6 +29,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'code',
         'name',
         'email',
         'password',
@@ -132,5 +136,13 @@ class User extends Authenticatable
     public function slug()
     {
         return "<a href='".routeHelper('users.edit', $this)."'>$this->name</a>";
+    }
+
+    public static function generateCode()
+    {
+        do {
+            $code = (Factory::create())->randomNumber(self::CODE_LENGTH, true);
+        } while ( self::query()->where('code', $code)->exists() );
+        return $code;
     }
 }

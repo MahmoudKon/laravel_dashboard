@@ -22,6 +22,7 @@ class SuperadminSeeder extends Seeder
         $images = $this->GetApiImage('people', 1);
 
         $data = [
+            'code'                  => 111111,
             'name'                  => 'super_admin',
             'email'                 => 'super_admin@app.com',
             'password'              => 123,

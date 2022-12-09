@@ -5,6 +5,10 @@
         <table class="table table-bordered mb-0">
             <thead>
                 <tr>
+                    <th>@lang('inputs.code')</th>
+                    <th>{{ $row->code }}</th>
+                </tr>
+                <tr>
                     <th>@lang('inputs.name')</th>
                     <th>
                         <a href="{{ routeHelper('users.edit', $row->id) }}" data-toggle="tooltip" data-original-title="Edit User Details">
