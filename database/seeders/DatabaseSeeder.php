@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Announcement;
 use App\Models\User;
 use App\Traits\UploadFile;
 use Exception;
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SuperadminSeeder::class);
         $this->call(ContentTypeSeeder::class);
         $this->call(SettingSeeder::class);
+        Announcement::factory(30)->create();
 
         $images = $this->GetApiImage('people');
         User::factory(30)->create()->each(function ($user) use($images) {

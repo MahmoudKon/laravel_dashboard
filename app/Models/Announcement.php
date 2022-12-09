@@ -69,6 +69,11 @@ class Announcement extends Model
         return $query->whereActive(true);
     }
 
+    public function scopeDisplay($query)
+    {
+        return $query->active()->where('start_date', '>=', today());
+    }
+
     public function scopeFilter($query)
     {
         return $query->when(request()->get('title'), function($query) {
@@ -82,10 +87,6 @@ class Announcement extends Model
 
         static::addGlobalScope('orderDesc', function (Builder $builder) {
             $builder->orderBy('id', 'DESC');
-        });
-
-        static::creating(function($model) {
-            $model->creator_id = auth()->id();
         });
     }
 }

@@ -62,6 +62,7 @@
                             </div>
                         </div>
                     </section>
+                    <x-announcement />
                 </div>
             </div>
         </div>
