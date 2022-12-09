@@ -33,7 +33,8 @@ class LanguageController extends BackendController
 
     public function append(): array
     {
-        $files = getFilesInDir(base_path('public\app-assets\backend\fonts\flag-icon-css\flags\1x1'));
+        $path = 'app-assets'.DIRECTORY_SEPARATOR.'backend'.DIRECTORY_SEPARATOR.'fonts'.DIRECTORY_SEPARATOR.'flag-icon-css'.DIRECTORY_SEPARATOR.'flags'.DIRECTORY_SEPARATOR.'1x1';
+        $files = getFilesInDir( public_path( $path ) );
         $icons = [];
         foreach ($files as $name => $path) {
             $name = 'flag-icon flag-icon-'.explode('.', $name)[0];

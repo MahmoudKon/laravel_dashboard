@@ -19,4 +19,9 @@ class Language extends Model
     {
         return $query->where('active', true);
     }
+
+    public function slug()
+    {
+        return "<i class='$this->icon'></i> $this->native";
+    }
 }
