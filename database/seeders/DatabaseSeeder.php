@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($truncate_tables as $table) truncateTables($table);
 
+        $this->call(LanguageSeeder::class);
         $this->call(GovernorateSeeder::class);
         $this->call(CitySeeder::class);
         $this->call(MenuSeeder::class);
@@ -35,7 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SuperadminSeeder::class);
         $this->call(ContentTypeSeeder::class);
         $this->call(SettingSeeder::class);
-        $this->call(LanguageSeeder::class);
 
         $images = $this->GetApiImage('people');
         User::factory(30)->create()->each(function ($user) use($images) {

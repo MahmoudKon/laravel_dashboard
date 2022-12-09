@@ -64,7 +64,7 @@ function getFilesInDir(string $dir, $specific_class = null) :array|string
     $files = [];
 
     foreach (File::allFiles($dir) as $file) {
-        $file_path = str_replace([base_path(), '/', '.php', 'app'], ['', '\\', '', 'App'], strstr($file->getPathname(), 'app'));
+        $file_path = str_replace([base_path(), '/', '.php', 'app'], ['', '\\', '', 'App'], $file->getPathname());
 
         if ($specific_class && "$specific_class.php" == $file->getFilename())
             return $file_path;
@@ -200,7 +200,9 @@ function fileExtensions()
 function activeLanguages()
 {
     $array = [];
-    foreach (config('laravellocalization.supportedLocales') as $lang => $info)
+
+    $languages = Cache::get('active_languages') ?? config('laravellocalization.supportedLocales');
+    foreach ($languages as $lang => $info)
         $array[$info['name']] = $lang;
 
     file_put_contents(config_path('languages.php'), "<?php \n\nreturn " . var_export($array, true) . ";");

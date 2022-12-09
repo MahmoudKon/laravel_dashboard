@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function department()
     {
-        return $this->belongsTo(Department::class)->select('id', 'title', 'manager_id', 'manager_of_manager_id');
+        return $this->belongsTo(Department::class)->select('id', 'title', 'manager_id');
     }
 
     public function socialAccounts()
