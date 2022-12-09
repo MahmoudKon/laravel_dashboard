@@ -41,15 +41,15 @@
                     <li class="dropdown dropdown-language nav-item">
                         <a class="dropdown-toggle nav-link" id="dropdown-flag" href="javascript:void(0)" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" title="@lang('title.change-language')">
-                            <i class="{{ $active_languages[ LaravelLocalization::getCurrentLocaleNative() ] }}"></i>
+                            <i class="{{ $active_languages[ LaravelLocalization::getCurrentLocale() ]['icon'] }}"></i>
                             <span class="selected-language"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
-                                href="{{ App::getLocale() !== $localeCode ? LaravelLocalization::getLocalizedURL($localeCode, null, [], true) : 'javascript:void(0)' }}">
-                                <i class="{{ $active_languages[$properties['native']] }}"></i>
-                                {{ $properties['native'] }}
+                            @foreach ($active_languages as $short_name => $active_language_data)
+                            <a class="dropdown-item" rel="alternate" hreflang="{{ $short_name }}"
+                                href="{{ App::getLocale() !== $short_name ? LaravelLocalization::getLocalizedURL($short_name, null, [], true) : 'javascript:void(0)' }}">
+                                <i class="{{ $active_language_data['icon'] }}"></i>
+                                {{ $active_language_data['native'] }}
                             </a>
                             @endforeach
                         </div>

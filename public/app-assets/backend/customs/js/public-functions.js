@@ -78,20 +78,10 @@ function handleErrors(jqXHR, form = null)
 function initPluginElements() {
     $(".select2").select2({
         dropdownParent: $("#load-form"),
-        templateResult: iconFormat,
-        templateSelection: iconFormat,
     });
 
     $('[data-toggle="tooltip"]').tooltip();
 }
-
-// Format icon
-function iconFormat(icon) {
-    if (!icon.id) return icon.text;
-    if (!$(icon.element).data('icon')) return icon.text;
-    return `<i class='${$(icon.element).data('icon')}'></i> ${icon.text}`;
-}
-
 
 function toast(message, title = null, icon = 'error', timer = 5000)
 {

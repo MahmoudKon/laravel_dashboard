@@ -32,7 +32,7 @@
     function iconFormat(icon) {
         var originalOption = icon.element;
         if (!icon.id) { return icon.text; }
-        var $icon = "<i class='la la-" + $(icon.element).data('icon') + "'></i>" + icon.text;
+        var $icon = "<i class='" + $(icon.element).data('icon') + "'></i>" + icon.text;
 
         return $icon;
     }

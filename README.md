@@ -127,6 +127,12 @@ php artisan serve
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/email-body.png" alt="email-body page">
 </p>
 
+<p>15- Languages</p>
+- An easy way to add or delete a language
+<p>
+    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/lang.png" alt="Languages page">
+</p>
+
 
 ## features
 

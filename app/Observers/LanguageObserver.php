@@ -47,18 +47,23 @@ class LanguageObserver
         Cache::forget('active_languages');
 
         if ($language->active && !$force_remove)
-            $active_languages[$language->native] = $language->icon;
+            $active_languages[$language->short_name] = [
+                'icon' => $language->icon,
+                'name' => $language->name,
+                'native' => $language->native,
+            ];
         else
             $this->unsetKey($active_languages, $language);
 
         $this->updateFile($language);
         Cache::remember('active_languages', 60 * 60 * 24, function() use($active_languages) { return $active_languages; });
+        activeLanguages();
     }
 
     protected function unsetKey(&$active_languages, $language)
     {
-        if(isset($active_languages[$language->native]))
-            unset($active_languages[$language->native]);
+        if(isset($active_languages[$language->short_name]))
+            unset($active_languages[$language->short_name]);
     }
 
     protected function updateFile($language)
@@ -67,14 +72,13 @@ class LanguageObserver
         $content = file_get_contents( $file );
 
         if ($language->active) {
-            if(strpos($content, " //'$language->short_name' ") !== false)
-                $content = str_replace(" //'$language->short_name' ", " '$language->short_name' ", $content);
+            if(strpos($content, "//'$language->short_name'") !== false)
+                $content = str_replace(" //'$language->short_name' ", "'$language->short_name'", $content);
         } else {
-            if(strpos($content, " //'$language->short_name' ") === false)
-                $content = str_replace(" '$language->short_name' ", " //'$language->short_name' ", $content);
+            if(strpos($content, "//'$language->short_name'") === false)
+                $content = str_replace(" '$language->short_name' ", "//'$language->short_name'", $content);
         }
 
-        activeLanguages();
         file_put_contents($file, $content);
     }
 }
