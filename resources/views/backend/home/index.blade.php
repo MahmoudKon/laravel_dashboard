@@ -39,5 +39,8 @@
 
 </div>
 
+
+@include("backend.home.announcements")
+
 <!--/ eCommerce statistic -->
 @endsection

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\LockScreenMiddleware;
+use App\Models\Announcement;
 use App\Models\Department;
+use App\Models\Language;
 use App\Models\Menu;
 use App\Models\Route;
 use App\Models\Setting;
@@ -28,7 +30,10 @@ class HomeController extends Controller
         $tables['roles']         = ['count' => Role::count()      , 'color' => 'warning'];
         $tables['routes']        = ['count' => Route::count()     , 'color' => 'success'];
         $tables['settings']      = ['count' => Setting::count()   , 'color' => 'primary'];
+        $tables['languages']     = ['count' => Language::active()->count()  , 'color' => 'dark'];
+        $tables['announcements'] = ['count' => Announcement::count() , 'color' => 'google'];
         $icons = Menu::select('icon', 'name->en as name')->pluck('icon', 'name')->toArray();
-        return view('backend.home.index', compact('tables', 'icons'));
+        $active_announcements = Announcement::Display()->inRandomOrder()->limit(5)->get();
+        return view('backend.home.index', compact('tables', 'icons', 'active_announcements'));
     }
 }

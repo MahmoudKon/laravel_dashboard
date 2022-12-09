@@ -26,13 +26,7 @@ class AnnouncementController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.announcement')]), routeHelper('announcements.show', $row));
     }
 
-    public function model()
-    {
-        return new Announcement;
-    }
+    public function model() { return new Announcement; }
 
-    public function dataTable()
-    {
-        return new AnnouncementDataTable;
-    }
+    public function dataTable() { return new AnnouncementDataTable; }
 }
