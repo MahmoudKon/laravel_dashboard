@@ -45,11 +45,11 @@
         {{-- START ICON --}}
         <div class="form-group">
             <label>@lang('inputs.select-data', ['data' => trans('inputs.icon')])</label>
-            <select name="icon" class="select2-icons form-control" id="select2-icons" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('inputs.icon')]) ---">
+            <select name="icon" class="select2 select2-icons form-control" data-placeholder="--- @lang('inputs.select-data', ['data' => trans('inputs.icon')]) ---">
                 <option></option>
                 @foreach ($icons as $key => $value)
                     <option value="{{ $key }}" data-icon="{{ $key }}" @selected( isset($row) && $row->icon == $key || old('icon') == $key )>
-                        {{ strtoupper( explode('.', last( explode('\\', $value) ))[0] ) }}
+                        {{ $value }}
                     </option>
                 @endforeach
             </select>

@@ -33,15 +33,16 @@ class LanguageController extends BackendController
 
     public function append(): array
     {
-        $path = 'app-assets'.DIRECTORY_SEPARATOR.'backend'.DIRECTORY_SEPARATOR.'fonts'.DIRECTORY_SEPARATOR.'flag-icon-css'.DIRECTORY_SEPARATOR.'flags'.DIRECTORY_SEPARATOR.'1x1';
-        $files = getFilesInDir( public_path( $path ) );
+        $countries = json_decode(file_get_contents("http://country.io/names.json"), true);
+        $path = 'app-assets'.DIRECTORY_SEPARATOR.'backend'.DIRECTORY_SEPARATOR.'fonts'.DIRECTORY_SEPARATOR.'flag-icon-css'.DIRECTORY_SEPARATOR.'flags'.DIRECTORY_SEPARATOR.'4x3';
         $icons = [];
-        foreach ($files as $name => $path) {
-            $name = 'flag-icon flag-icon-'.explode('.', $name)[0];
-            $icons[$name] = $path;
+        foreach (getFilesInDir( public_path( $path ) ) as $name => $path) {
+            $icon = 'flag-icon flag-icon-'.explode('.', $name)[0];
+            $short_name = strtoupper( last( explode('-', $icon) ) );
+            $icons[$icon] = $countries[$short_name] ?? $short_name;
         }
         return [
-            'icons' => $icons
+            'icons' => $icons,
         ];
     }
 }
