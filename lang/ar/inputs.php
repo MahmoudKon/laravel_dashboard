@@ -88,4 +88,9 @@ return [
 	// LANGUAGES
 	'short_name' => 'الإختصار',
 	'native' => 'إسم اللغه',
+
+
+	// CLIENTS
+	'username' => 'إسم المستخدم',
+	'phone' => 'رقم الهاتف',
 ];

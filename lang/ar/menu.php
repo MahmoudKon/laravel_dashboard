@@ -99,6 +99,11 @@ return [
     'announcement'  => 'إعلان',
     'the announcement' => 'الإعلان',
 
+    // CLIENTS
+    'clients' => 'العملاء',
+    'client'  => 'عميل',
+    'the client' => 'العميل',
+
     // NOTIFICATIONS
     'notifications' => 'الإشعارات',
     'news' => 'جديد',

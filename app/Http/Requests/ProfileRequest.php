@@ -29,7 +29,6 @@ class ProfileRequest extends FormRequest
         if ($this->form_type == 'info') {
             $inputs = [
                 'name' => 'required|string',
-                'behalf_id' => 'nullable|exists:users,id'
             ];
 
         } else if ($this->form_type == 'password') {
@@ -50,5 +49,16 @@ class ProfileRequest extends FormRequest
         }
 
         return $inputs;
+    }
+
+    public function attributes()
+    {
+        return [
+			'password' => trans('inputs.password'),
+			'name' => trans('inputs.name'),
+			'image' => trans('inputs.image'),
+			'roles' => trans('menu.roles'),
+			'permissions' => trans('menu.permissions'),
+        ];
     }
 }

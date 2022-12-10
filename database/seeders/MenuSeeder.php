@@ -61,6 +61,10 @@ class MenuSeeder extends Seeder
                 'name' => ["en" => "Languages", "ar" => "اللغات"],
                 'icon' => "fa-solid fa-language",
                 'route' => "languages.index",
+            ], [
+                'name' => ["en" => "Clients", "ar" => "العملاء"],
+                'icon' => "fa-solid fa-user-secret",
+                'route' => "clients.index",
             ],
         ];
 

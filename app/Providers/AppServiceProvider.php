@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
         \App\Models\Announcement::observe(\App\Observers\AnnouncementObserver::class);
         \App\Models\Language::observe(\App\Observers\LanguageObserver::class);
+        \App\Models\Client::observe(\App\Observers\ClientObserver::class);
 
         Blade::directive('superAdmin', function() { return "<?php if (isSuperAdmin()) { ?>"; });
         Blade::directive('endsuperAdmin', function() { return "<?php } ?>"; });

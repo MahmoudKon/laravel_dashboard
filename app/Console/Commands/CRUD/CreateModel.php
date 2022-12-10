@@ -20,7 +20,7 @@ class CreateModel extends GeneratorCommand
     protected $timestamps = "\n\tpublic \$timestamps = false;\n";
     protected $methods = '';
     protected $traits = "";
-    protected $translatable = "protected \$translatable = [";
+    protected $translatable = '';
 
 
     /**
@@ -102,8 +102,7 @@ class CreateModel extends GeneratorCommand
             '{{ timestamps }}' => $this->timestamps,
             '{{ traits }}' => $this->traits,
             '{{ methods }}' => $this->methods,
-            '{{ translatable }}' => trim($this->translatable, ',').'];',
-
+            '{{ translatable }}' => $this->translatable ? "protected \$translatable = [".trim($this->translatable, ',').'];' : '',
         ];
 
         return $this->getStubContent($vars);

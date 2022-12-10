@@ -29,4 +29,12 @@ class PermissionRequest extends FormRequest
             'roles.*' => 'required|exists:roles,id'
         ];
     }
+
+    public function attributes()
+    {
+        return [
+			'name' => trans('inputs.name'),
+			'roles' => trans('menu.roles'),
+        ];
+    }
 }

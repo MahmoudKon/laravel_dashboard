@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->id();
-             $table->string('title')->unique();
+            $table->string('title')->unique();
             $table->json('intro')->comment('translations');
             $table->text('description')->nullable();
             $table->string('video')->comment('video');

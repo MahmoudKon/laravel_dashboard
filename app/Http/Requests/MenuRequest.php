@@ -36,4 +36,19 @@ class MenuRequest extends FormRequest
 
         return $validations;
     }
+
+    public function attributes()
+    {
+        $attributes = [
+			'route' => trans('inputs.route'),
+			'route' => trans('inputs.route'),
+			'icon' => trans('inputs.icon'),
+			'parent_id' => trans('menu.menu'),
+        ];
+
+        foreach (config('languages') as $lang)
+            $attributes["name.$lang"] = trans('inputs.name').' / '.trans("title.$lang");
+
+        return $attributes;
+    }
 }

@@ -100,6 +100,12 @@ return [
     'language' => 'Language',
     'the language' => 'Language',
 
+
+    // CLIENTS
+    'clients' => 'Clients',
+    'client'  => 'Client',
+    'the client' => 'Client',
+
     // NOTIFICATIONS
     'notifications' => 'Notifications',
     'news' => 'News',

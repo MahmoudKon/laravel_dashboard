@@ -32,4 +32,13 @@ class SettingRequest extends FormRequest
 
         return array_merge($validations, SettingType::validaionHandler($this->content_type_id));
     }
+
+    public function attributes()
+    {
+        return [
+			'key' => trans('inputs.key'),
+			'active' => trans('inputs.active'),
+			'content_type_id' => trans('menu.content_type'),
+        ];
+    }
 }

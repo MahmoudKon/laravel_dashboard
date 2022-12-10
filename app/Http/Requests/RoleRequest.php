@@ -27,4 +27,11 @@ class RoleRequest extends FormRequest
             'name' => 'required|unique:roles,name,'.request()->route('role')
         ];
     }
+
+    public function attributes()
+    {
+        return [
+			'name' => trans('inputs.name')
+        ];
+    }
 }

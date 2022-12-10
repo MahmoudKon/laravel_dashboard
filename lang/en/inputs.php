@@ -82,4 +82,9 @@ return [
 	// LANGUAGES
 	'short_name' => 'Short Name',
 	'native' => 'Native',
+
+
+	// CLIENTS
+	'username' => 'Username',
+	'phone' => 'Phone',
 ];
