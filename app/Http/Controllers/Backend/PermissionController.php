@@ -26,13 +26,7 @@ class PermissionController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.permission')]));
     }
 
-    public function model()
-    {
-        return new Permission;
-    }
+    public function model() { return new Permission; }
 
-    public function dataTable()
-    {
-        return new PermissionDataTable;
-    }
+    public function dataTable() { return new PermissionDataTable; }
 }

@@ -26,13 +26,7 @@ class RoleController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.role')]));
     }
 
-    public function model()
-    {
-        return new Role;
-    }
+    public function model() { return new Role; }
 
-    public function dataTable()
-    {
-        return new RoleDataTable;
-    }
+    public function dataTable() { return new RoleDataTable; }
 }

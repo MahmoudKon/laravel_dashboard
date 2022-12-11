@@ -37,15 +37,9 @@ class SettingController extends BackendController
         return $view_path ? view($view_path, compact('value'), ['name' => 'value', 'value' => $value]) : '';
     }
 
-    public function model()
-    {
-        return new Setting;
-    }
+    public function model() { return new Setting; }
 
-    public function dataTable()
-    {
-        return new SettingDataTable;
-    }
+    public function dataTable() { return new SettingDataTable; }
 
     public function append() :array
     {

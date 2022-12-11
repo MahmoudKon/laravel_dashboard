@@ -131,15 +131,9 @@ class RouteController extends BackendController
         return back();
     }
 
-    public function model()
-    {
-        return new Route;
-    }
+    public function model() { return new Route; }
 
-    public function dataTable()
-    {
-        return new RouteDataTable;
-    }
+    public function dataTable() { return new RouteDataTable; }
 
     public function append() :array
     {

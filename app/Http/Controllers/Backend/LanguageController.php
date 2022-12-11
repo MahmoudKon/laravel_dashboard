@@ -11,7 +11,6 @@ use App\Http\Requests\LanguageRequest;
 class LanguageController extends BackendController
 {
     public $use_form_ajax   = true;
-    public $view_sub_path   = '.';
 
     public function store(LanguageRequest $request, LanguageService $LanguageService)
     {
@@ -33,16 +32,8 @@ class LanguageController extends BackendController
 
     public function append(): array
     {
-        $countries = json_decode(file_get_contents("http://country.io/names.json"), true);
-        $path = 'app-assets'.DIRECTORY_SEPARATOR.'backend'.DIRECTORY_SEPARATOR.'fonts'.DIRECTORY_SEPARATOR.'flag-icon-css'.DIRECTORY_SEPARATOR.'flags'.DIRECTORY_SEPARATOR.'4x3';
-        $icons = [];
-        foreach (getFilesInDir( public_path( $path ) ) as $name => $path) {
-            $icon = 'flag-icon flag-icon-'.explode('.', $name)[0];
-            $short_name = strtoupper( last( explode('-', $icon) ) );
-            $icons[$icon] = $countries[$short_name] ?? $short_name;
-        }
         return [
-            'icons' => $icons,
+            'icons' => LanguageService::getFlags(),
         ];
     }
 }

@@ -11,7 +11,6 @@ use App\Http\Requests\AnnouncementRequest;
 class AnnouncementController extends BackendController
 {
     public $use_form_ajax = true;
-    public $view_sub_path = '.';
 
     public function store(AnnouncementRequest $request, AnnouncementService $AnnouncementService)
     {

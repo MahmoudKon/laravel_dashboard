@@ -26,13 +26,7 @@ class ContentTypeController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.content_type')]));
     }
 
-    public function model()
-    {
-        return new ContentType;
-    }
+    public function model() { return new ContentType; }
 
-    public function dataTable()
-    {
-        return new ContentTypeDataTable;
-    }
+    public function dataTable() { return new ContentTypeDataTable; }
 }

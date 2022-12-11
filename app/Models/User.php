@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\UserBuilder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -89,36 +90,9 @@ class User extends Authenticatable
         );
     }
 
-    public function scopeWithRole($query, $role)
+    public function newEloquentBuilder($query)
     {
-        return $query->whereHas('roles', function($query) use($role) {
-            return $query->where('name', 'LIKE', "%$role%");
-        });
-    }
-
-    public function scopeHasManager($query)
-    {
-        return $query->when(! isSuperAdmin(), function($query) {
-            $query->whereHas('department', function($query) {
-                $query->where('manager_id', auth()->id());
-            });
-        });
-    }
-
-    public function scopeExceptAuth($query)
-    {
-        return $query->where('id', '!=', auth()->id());
-    }
-
-    public function scopeFilter($query)
-    {
-        return $query->when(request('department'), function ($query) {
-                        return $query->where('department_id', request('department'));
-                    })->when(request()->name, function ($query) {
-                        return $query->where('name', 'LIKE', "%".request()->name."%");
-                    })->when(request()->email, function ($query) {
-                        return $query->where('email', 'LIKE', "%".request()->email."%");
-                    });
+        return new UserBuilder($query);
     }
 
     public function hasPermission($permission)

@@ -27,13 +27,7 @@ class GovernorateController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.governorate')]));
     }
 
-    public function model()
-    {
-        return new Governorate;
-    }
+    public function model() { return new Governorate; }
 
-    public function dataTable()
-    {
-        return new GovernorateDataTable;
-    }
+    public function dataTable() { return new GovernorateDataTable; }
 }

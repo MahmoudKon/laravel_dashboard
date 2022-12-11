@@ -28,15 +28,9 @@ class CityController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.city')]));
     }
 
-    public function model()
-    {
-        return new City;
-    }
+    public function model() { return new City; }
 
-    public function dataTable()
-    {
-        return new CityDataTable;
-    }
+    public function dataTable() { return new CityDataTable; }
 
     public function append(): array
     {

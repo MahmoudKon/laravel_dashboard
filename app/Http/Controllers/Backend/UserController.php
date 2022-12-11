@@ -49,15 +49,9 @@ class UserController extends BackendController
         return response()->json(['message' => "Data Saved Successfully!", 'icon' => 'success']);
     }
 
-    public function model()
-    {
-        return new User;
-    }
+    public function model() { return new User; }
 
-    public function dataTable()
-    {
-        return new UserDataTable;
-    }
+    public function dataTable() { return new UserDataTable; }
 
     public function append() :array
     {

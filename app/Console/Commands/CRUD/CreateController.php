@@ -18,7 +18,6 @@ class CreateController extends Command
     protected $controller;
     protected $model;
     protected $path = 'app/Http/Controllers/Backend/';
-    protected $sub_dir = '';
     protected $namespace  = "App\Http\Controllers\Backend\\";
 
     /**
@@ -81,6 +80,7 @@ class CreateController extends Command
         $model_name = class_basename($this->model);
         $model = str_replace('/', '\\', $this->argument('model'));
         $sub_folder = substr($model, 0, -strlen("\\$model_name"));
+        $view_sub_path = str_replace('\\', '.', convertCamelCaseTo($sub_folder)).'.';
         $namespace = trim($this->namespace.$sub_folder, '\\');
         $table = $this->model->getTable();
 
@@ -99,7 +99,7 @@ class CreateController extends Command
             "{$model_name}Controller",
             Str::singular($table),
             createAppends($table),
-            str_replace('\\', '.', convertCamelCaseTo($sub_folder)).'.'
+            trim($view_sub_path, '.')
         ], $content);
 
         return $content;
