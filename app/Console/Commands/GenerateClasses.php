@@ -90,6 +90,6 @@ class GenerateClasses extends Command
     {
         $this->table = $this->argument('table');
         $this->model = getTableModel($this->table);
-        if ($this->option('namespace')) $this->model = ucfirst( $this->option('namespace') ).'/'.$this->model;
+        if ($this->option('namespace')) $this->model = $this->option('namespace').'/'.$this->model;
     }
 }
