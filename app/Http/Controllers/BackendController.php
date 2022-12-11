@@ -8,7 +8,6 @@ use App\Traits\BackendControllerHelper;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\View;
 
 class BackendController extends Controller
 {
@@ -17,20 +16,7 @@ class BackendController extends Controller
     public function __construct()
     {
         $this->middleware([CheckMiddleWare::class, LockScreenMiddleware::class]);
-
-        if ($this->full_page_ajax) {
-            $this->use_form_ajax   = true;
-            $this->use_button_ajax = true;
-            $this->index_view  = "backend.includes.pages.crud-index-page";
-        }
-
-        session(['use_button_ajax' => $this->use_button_ajax, 'view_sub_path' => $this->view_sub_path]);
-        if ($this->use_button_ajax) {
-            $this->create_view = "backend.includes.forms.form-create";
-            $this->update_view = "backend.includes.forms.form-update";
-        }
-        View::share('use_form_ajax', $this->use_form_ajax);
-        View::share('use_button_ajax', $this->use_button_ajax);
+        $this->init();
     }
 
     public function index()
@@ -57,7 +43,7 @@ class BackendController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $row = $this->query($id);
         if (! $row) return $this->throwException(trans('flash.something is wrong'));
@@ -65,7 +51,7 @@ class BackendController extends Controller
         return view($this->show_view, compact('row'));
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         try {
             $row = $this->query($id);
@@ -80,7 +66,7 @@ class BackendController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         try {
             $row = $this->query($id);
@@ -116,7 +102,7 @@ class BackendController extends Controller
         }
     }
 
-    public function columnToggle(int $id, $column)
+    public function columnToggle(int $id, string $column)
     {
         $row = $this->query($id);
         if (! $row) return $this->throwException(trans('flash.something is wrong'));
