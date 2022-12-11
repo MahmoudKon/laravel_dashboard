@@ -1,6 +1,9 @@
-@push('style')
-    {{-- CSS Style --}}
-@endpush
+
+@once
+    @push('style')
+        {{-- CSS Style --}}
+    @endpush
+@endonce
 
 
 <div class='row'>
@@ -8,6 +11,8 @@
 </div>
 
 
-@push('script')
-    {{-- JS Code --}}
-@endpush
+@once
+    @push('script')
+        {{-- JS Code --}}
+    @endpush
+@endonce

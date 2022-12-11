@@ -52,6 +52,7 @@ function createAppends($table)
     foreach (getRelationsDetails($table) as $column) {
         $model = getFilesInDir(base_path('app/Models'), getTableModel($column->fk_table));
         if (! $model) continue;
+        $model = trim($model, '\\');
         $model_Class = app($model);
 
         $fk_column_name = $model_Class->getFillable()[0] ?? getFirstStringColumn( getTableColumns( $column->fk_table ) );

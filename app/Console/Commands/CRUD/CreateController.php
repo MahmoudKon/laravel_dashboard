@@ -99,7 +99,7 @@ class CreateController extends Command
             "{$model_name}Controller",
             Str::singular($table),
             createAppends($table),
-            trim($view_sub_path, '.')
+            $view_sub_path == '.' ? '' : $view_sub_path
         ], $content);
 
         return $content;
