@@ -75,6 +75,9 @@ return [
     'model image' => 'ال:model إسم',
 
 
+    'color' => 'اللون',
+
+
     // ANNOUNCEMENTS
 	'desc' => 'الوصف',
 	'start_date' => 'تاريخ البدء',
@@ -83,6 +86,7 @@ return [
     'image' => 'الصورة',
     'count days' => 'عدد الأيام',
     'creator' => 'المنشئ',
+    'color' => 'اللون',
 
 
 	// LANGUAGES

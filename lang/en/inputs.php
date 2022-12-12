@@ -40,6 +40,7 @@ return [
     'visible_to_content' => 'Visible To Content!',
 
 
+    'color' => 'Color',
 
     'parent-category' => 'Parent Category',
     'sub-categories' => 'Sub Categories',
