@@ -115,5 +115,7 @@ Route::controller('LanguageController')->as('languages.')->prefix('languages')->
     Route::any('{language}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
 });
 
-Route::resource('clients', 'ClientController'); 
-Route::post('clients/multidelete', 'ClientController@multidelete')->name('clients.multidelete'); 
+Route::resource('clients', 'ClientController');
+Route::post('clients/multidelete', 'ClientController@multidelete')->name('clients.multidelete');
+
+Route::any('commands', 'CommandController@index')->name('commands.index');
