@@ -6,10 +6,8 @@
         @include('backend.includes.cards.table-header')
         {{-- START INCLUDE TABLE HEADER --}}
 
-        <div class="card-content collpase show">
+        <div class="card-content collpase show" dir="lrt" style="text-align: left">
             <div class="card-body">
-                @include('backend.commands.output')
-
                 <div class="row">
                     @foreach($commands as $command)
                         @include('backend.commands.command', ['command' => $command])
@@ -19,3 +17,16 @@
         </div>
     </div>
 @endsection
+
+@once
+    @push('script')
+        <script>
+            $(function() {
+                $('.call-command-form').on('submit', function (e) {
+                    e.preventDefault();
+                    submitForm($(this), function(response) { $('#load-form').modal('show').find('.modal-body').html(response) });
+                });
+            });
+        </script>
+    @endpush
+@endonce

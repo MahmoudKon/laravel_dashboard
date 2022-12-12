@@ -20,6 +20,8 @@ return [
     // SIMULATE
     'simulate' => 'محاكاة',
 
+    'commands' => 'الأوامر',
+
     // IMAGE CROPPER
     'image-cropper' => 'إقتصاص الصور',
     'image-quality' => 'جودة الصورة',

@@ -52,7 +52,7 @@ function rows(form = null) {
             // $('#load-data').removeClass('load');
             if (form) form.parent().removeClass('load');
         },
-        complete: function () { $('#load-data').removeClass('loads'); initPluginElements();}
+        complete: function () { $('#load-data').removeClass('load'); initPluginElements();}
     });
 } // AJAX CODE TO LOAD THE DATA TABLE
 
@@ -145,3 +145,16 @@ $('.badge-text-maxlength').maxlength({
 $('body').on('submit', 'form', function() {
     $(this).parent().addClass('load');
 });
+
+
+function submitForm(form, callback) {
+    $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: function (response) {
+            callback(response);
+        },
+        complete: function () { form.parent().removeClass('load'); }
+    });
+}

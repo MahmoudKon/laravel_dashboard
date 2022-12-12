@@ -82,7 +82,12 @@ class MenuSeeder extends Seeder
             [
                 'name' => ["en" => "Simulate", "ar" => "المحاكاة"],
                 'route' => "simulate.index",
-                'icon' => "fas fa-clone ",
+                'icon' => "fas fa-clone",
+                'parent_id' => $Configurations
+            ], [
+                'name' => ["en" => "Commands", "ar" => "الأوامر"],
+                'route' => "commands.index",
+                'icon' => "fa-solid fa-terminal",
                 'parent_id' => $Configurations
             ], [
                 'name' => ["en" => "Settings", "ar" => "الإعدادات"],

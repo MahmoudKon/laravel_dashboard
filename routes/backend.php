@@ -118,4 +118,5 @@ Route::controller('LanguageController')->as('languages.')->prefix('languages')->
 Route::resource('clients', 'ClientController');
 Route::post('clients/multidelete', 'ClientController@multidelete')->name('clients.multidelete');
 
-Route::any('commands', 'CommandController@index')->name('commands.index');
+Route::get('commands', 'CommandController@index')->name('commands.index');
+Route::post('commands/call', 'CommandController@call')->name('commands.call');

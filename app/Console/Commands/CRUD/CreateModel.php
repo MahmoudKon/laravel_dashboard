@@ -28,7 +28,7 @@ class CreateModel extends GeneratorCommand
      *
      * @var string
      */
-    protected $description = 'To create service class for model';
+    protected $description = 'To create Model class';
 
     protected $type = 'model';
 

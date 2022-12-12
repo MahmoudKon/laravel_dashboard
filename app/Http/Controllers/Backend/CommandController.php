@@ -17,12 +17,9 @@ class CommandController extends Controller
 
     public function index()
     {
-        $artisan_output = '';
-        if (request()->isMethod('post'))
-            $this->callArtisan($artisan_output);
         $commands = $this->getArtisanCommands();
         $count = count($commands);
-        return view('backend.commands.index', compact('commands', 'artisan_output', 'count'));
+        return view('backend.commands.index', compact('commands', 'count'));
     }
 
     private function getArtisanCommands()
@@ -68,17 +65,15 @@ class CommandController extends Controller
         return $commands;
     }
 
-    private function callArtisan(&$artisan_output)
+    public function call()
     {
-        $command = request()->command;
-        $args = request()->args;
-        $args = (isset($args)) ? ' '.$args : '';
-
+        $command = request()->command . ' ' . request()->args;
         try {
-            Artisan::call($command.$args);
+            Artisan::call($command);
             $artisan_output = Artisan::output();
         } catch (Exception $e) {
             $artisan_output = $e->getMessage();
         }
+        return view('backend.commands.output', compact('artisan_output'));
     }
 }

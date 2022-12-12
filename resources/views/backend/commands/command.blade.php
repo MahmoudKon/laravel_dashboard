@@ -1,12 +1,16 @@
 <div class="col-md-3">
-    <div class="command" data-command="{{ $command->name }}">
-        <code>php artisan {{ $command->name }}</code>
-        <small>{{ $command->description }}</small><i class="voyager-terminal"></i>
-        <form action="{{ routeHelper('commands.index') }}" class="cmd_form" method="POST">
+    <div class="rounded border border-secondary border-1 mb-2">
+        <code class="d-block text-center w-100">php artisan {{ $command->name }}</code>
+        <p class="px-1">{{ $command->description }}</p>
+        <form action="{{ routeHelper('commands.call') }}" class="call-command-form" method="POST">
             @csrf
-            <input type="text" name="args" autofocus class="form-control" placeholder="additional_args">
-            <input type="submit" class="btn btn-primary btn-sm" value="Run">
             <input type="hidden" name="command" id="hidden_cmd" value="{{ $command->name }}">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-primary btn-sm">Run </button>
+                </div>
+                <input type="text" name="args" autofocus class="form-control input-sm" placeholder="additional_args">
+            </div>
         </form>
     </div>
 </div>

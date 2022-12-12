@@ -19,6 +19,7 @@ return [
 
     // SIMULATE
     'simulate' => 'Simulate',
+    'commands' => 'Commands',
 
     // IMAGE CROPPER
     'image-cropper' => 'Image Cropper',
