@@ -1,6 +1,8 @@
 <li class="list-group-item cursor-move mb-1" data-id="{{ $menu->id }}">
-    <span class="order">{{ $menu->order }}</span> -
-    <i class="{{ $menu->icon }}"></i> {{ $menu->getName() }}
+    <span style="color: {{ $menu->color }} !important">
+        <span class="order">{{ $menu->order }}</span> -
+        <i class="{{ $menu->icon }}"></i> {{ $menu->getName() }}
+    </span>
 
     @include('backend.menus.actions')
 

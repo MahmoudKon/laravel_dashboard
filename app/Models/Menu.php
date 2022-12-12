@@ -14,7 +14,7 @@ class Menu extends Model
     use HasFactory, HasTranslations;
 
     protected $table = 'menus';
-    protected $fillable = ['name', 'route', 'icon', 'parent_id', 'order', 'visible'];
+    protected $fillable = ['name', 'route', 'icon', 'parent_id', 'order', 'color', 'visible'];
     public $translatable = ['name'];
     public $timestamps = false;
 

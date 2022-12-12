@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('route')->nullable();
             $table->string('icon')->nullable();
             $table->boolean('visible')->default(1);
+            $table->string('color', 100)->default('#6B6F82');
             $table->foreignId('parent_id')->nullable()->constrained('menus')->cascadeOnUpdate()->nullOnDelete();
             $table->unsignedSmallInteger('order')->nullable();
         });

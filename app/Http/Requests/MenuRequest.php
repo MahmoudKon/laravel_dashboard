@@ -27,6 +27,7 @@ class MenuRequest extends FormRequest
             'route' => 'required|string',
             'route' => 'nullable|string',
             'icon'  => 'nullable|string',
+            'color' => 'nullable|string|max:100',
             'parent_id' => 'nullable|exists:menus,id',
         ];
         foreach (config('languages') as $lang) {

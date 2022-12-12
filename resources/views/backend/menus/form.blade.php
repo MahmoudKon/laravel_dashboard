@@ -33,7 +33,7 @@
 
             <div class="row">
 
-                <div class="col-md-8">
+                <div class="col-md-7">
                     {{-- START ROUTE --}}
                     <div class="form-group">
                         <label>@lang('inputs.route')</label>
@@ -48,7 +48,7 @@
                     {{-- END ROUTE --}}
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     {{-- START ICON --}}
                     <div class="form-group">
                         <label>@lang('inputs.icon')</label>
@@ -61,6 +61,21 @@
                         <x-validation-error input='icon' />
                     </div>
                     {{-- END ICON --}}
+                </div>
+
+                <div class="col-md-2">
+                    {{-- START COLOR --}}
+                    <div class="form-group">
+                        <label>@lang('inputs.color')</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa-solid fa-brush"></i> </span>
+                            </div>
+                            <input type="color" class="form-control" name="color" value="{{ $row->color ?? old('color', '#6B6F82') }}"  placeholder="fa fa-user">
+                        </div>
+                        <x-validation-error input='color' />
+                    </div>
+                    {{-- END COLOR --}}
                 </div>
 
             </div>
