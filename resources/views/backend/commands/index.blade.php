@@ -24,7 +24,11 @@
             $(function() {
                 $('.call-command-form').on('submit', function (e) {
                     e.preventDefault();
-                    submitForm($(this), function(response) { $('#load-form').modal('show').find('.modal-body').html(response) });
+                    let form = $(this);
+                    submitForm(form, function(response) {
+                        $('#load-form').modal('show').find('.modal-body').html(response);
+                        form.find('input[name="args"]').val('');
+                    });
                 });
             });
         </script>
