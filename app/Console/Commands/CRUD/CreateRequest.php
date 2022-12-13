@@ -15,7 +15,7 @@ class CreateRequest extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'crud:request {model}';
+    protected $signature = 'crud:request {model : the model class namespace after Models folder}';
     protected $model;
     protected $table;
     protected $validations = '';

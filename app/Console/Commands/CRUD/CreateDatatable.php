@@ -13,7 +13,7 @@ class CreateDatatable extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'crud:datatable {model}';
+    protected $signature = 'crud:datatable {model : the model class namespace after Models folder}';
     protected $datatable;
     protected $model;
     protected $table;

@@ -19,7 +19,7 @@ class GenerateClasses extends Command
      *
      * @var string
      */
-    protected $signature = 'make:crud {table} {--namespace=}'; // EX => php artisan make:crud clients
+    protected $signature = 'make:crud {table : the table name from database} {--namespace= : the namespace of all classes and view}'; // EX => php artisan make:crud clients
     protected $table;
     protected $model;
 

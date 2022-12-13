@@ -14,7 +14,7 @@ class CreateController extends Command
      *
      * @var string
      */
-    protected $signature  = 'crud:controller {model}';
+    protected $signature  = 'crud:controller {model : the model class namespace after Models folder}';
     protected $controller;
     protected $model;
     protected $path = 'app/Http/Controllers/Backend/';
