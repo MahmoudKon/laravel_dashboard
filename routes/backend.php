@@ -119,4 +119,5 @@ Route::resource('clients', 'ClientController');
 Route::post('clients/multidelete', 'ClientController@multidelete')->name('clients.multidelete');
 
 Route::get('commands', 'CommandController@index')->name('commands.index');
+Route::post('commands/{command}/info', 'CommandController@commandInfo')->name('commands.command.info');
 Route::post('commands/call', 'CommandController@call')->name('commands.call');

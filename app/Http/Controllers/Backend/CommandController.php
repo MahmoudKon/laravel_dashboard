@@ -65,6 +65,18 @@ class CommandController extends Controller
         return $commands;
     }
 
+    public function commandInfo(string $command)
+    {
+        $command_object = Artisan::all()[$command];
+        $command_details = [
+            'name' => $command,
+            'description' => $command_object->getDescription(),
+            'arguments' => $command_object->getDefinition()->getArguments(),
+            'options' => $command_object->getDefinition()->getOptions()
+        ];
+        return view('backend.commands.call-command', ['command' => $command_details]);
+    }
+
     public function call()
     {
         $command = request()->command . ' ' . request()->args;

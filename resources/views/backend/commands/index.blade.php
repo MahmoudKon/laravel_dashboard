@@ -22,7 +22,14 @@
     @push('script')
         <script>
             $(function() {
-                $('.call-command-form').on('submit', function (e) {
+                $('.load-command-info').on('click', function (e) {
+                    e.preventDefault();
+                    submitForm($(this).closest('form'), function(response) {
+                        $('#load-form').modal('show').find('.modal-body').html(response);
+                    });
+                });
+
+                $('body').on('submit', '.call-command-form', function (e) {
                     e.preventDefault();
                     let form = $(this);
                     submitForm(form, function(response) {
