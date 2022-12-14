@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Jobs\ExceptionOccured;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,7 +46,34 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            $this->sendEmail($e);
         });
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function sendEmail(Throwable $exception)
+    {
+        try {
+            dispatch( new ExceptionOccured($this->getExceptionDetails($exception)) );
+        } catch (Throwable $exception) {
+            Log::error($exception);
+        }
+    }
+
+    protected function getExceptionDetails($exception)
+    {
+        return [
+            'message' => $exception->getMessage(),
+            'file'    => $exception->getFile(),
+            'line'    => $exception->getLine(),
+            // 'trace'   => $exception->getTrace(),
+            'url'     => request()->url(),
+            'body'    => request()->all(),
+            'ip'      => request()->ip(),
+        ];
     }
 }
