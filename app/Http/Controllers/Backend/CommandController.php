@@ -86,6 +86,6 @@ class CommandController extends Controller
         } catch (Exception $e) {
             $artisan_output = $e->getMessage();
         }
-        return view('backend.commands.output', compact('artisan_output'));
+        return view('backend.commands.output', ['command' => request()->command, 'artisan_output' => $artisan_output]);
     }
 }
