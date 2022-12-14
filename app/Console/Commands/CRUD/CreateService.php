@@ -11,7 +11,7 @@ class CreateService extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'crud:service {model}';
+    protected $signature = 'crud:service {model : the model class namespace after Models folder}';
     protected $service;
     protected $model;
 

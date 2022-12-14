@@ -17,7 +17,7 @@ class CreateRoute extends Command
      *
      * @var string
      */
-    protected $signature = 'crud:routes {model}';
+    protected $signature = 'crud:routes {model : the model class namespace after Models folder}';
     protected $controller;
     protected $route_controller_namespace;
     protected $table;

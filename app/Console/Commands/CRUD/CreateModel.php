@@ -13,7 +13,7 @@ class CreateModel extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'crud:model {model} {table}';
+    protected $signature = 'crud:model {model : the model class namespace after Models folder} {table : the table name from database}';
     protected $model;
     protected $table;
     protected $namespaces = '';

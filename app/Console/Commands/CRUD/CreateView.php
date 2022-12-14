@@ -14,7 +14,7 @@ class CreateView extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'crud:view {view} {model}';
+    protected $signature = 'crud:view {view : the view path after view folder} {model : the model class namespace after Models folder}';
     protected $columns = array();
     protected $relations = array();
     protected $model;
