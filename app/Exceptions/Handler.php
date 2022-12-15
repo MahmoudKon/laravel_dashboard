@@ -66,11 +66,22 @@ class Handler extends ExceptionHandler
 
     protected function getExceptionDetails($exception)
     {
+        $traces = [];
+        foreach ($exception->getTrace() as $trace) {
+            $traces[] = [
+                'file'      => $trace['file'] ?? '',
+                'line'      => $trace['line'] ?? '',
+                'function'  => $trace['function'] ?? '',
+                'class'     => $trace['class'] ?? '',
+                'type'      => $trace['type'] ?? '',
+            ];
+        }
+
         return [
             'message' => $exception->getMessage(),
             'file'    => $exception->getFile(),
             'line'    => $exception->getLine(),
-            // 'trace'   => $exception->getTrace(),
+            'trace'   => $traces,
             'url'     => request()->url(),
             'body'    => request()->all(),
             'ip'      => request()->ip(),

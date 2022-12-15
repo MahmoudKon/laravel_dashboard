@@ -77,15 +77,16 @@
                                     @foreach($content['trace'] as $value)
                                         <tr>
                                             <td>
-                                                @if ( isset( $value['class'] ) )
+                                                @if ( isset( $value['class'] ) && $value['class'] )
                                                     at <span class="trace-class">
                                                         <span title="{{ $value['class'] ?? '' }}">{{ basename($value['class'] ?? '') }}</span>
                                                     </span>
                                                 @endif
-                                                <span class="trace-type">-></span>
+                                                @if ( isset( $value['type'] ) && $value['type'] )
+                                                    <span class="trace-type">{{ $value['type'] }}</span>
+                                                @endif
                                                 <span class="trace-method">{{ $value['function'] ?? '' }}</span>
-                                                (<span class="trace-arguments"></span>)
-                                                @if ( asset( $value['file'] ) )
+                                                @if ( asset( $value['file'] ) && $value['file'] )
                                                     <span class="block trace-file-path">
                                                         in <span title="">
                                                             <strong>{{ $value['file'] ?? '' }}</strong> line {{ $value['line'] ?? '' }}
