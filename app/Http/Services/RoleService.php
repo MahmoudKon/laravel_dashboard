@@ -11,7 +11,7 @@ class RoleService {
         try {
             return Role::updateOrCreate(['id' => $id],$request + ['guard_name' => PERMISSION_GUARDS]);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }

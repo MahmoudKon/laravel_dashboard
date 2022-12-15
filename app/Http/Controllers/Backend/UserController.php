@@ -10,27 +10,28 @@ use App\Http\Services\UserService;
 use App\Imports\UsersImport;
 use App\Models\Department;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
 class UserController extends BackendController
 {
-    public $use_form_ajax = true;
+    public $use_form_ajax   = true;
     public $use_button_ajax = false;
 
     public function store(UserRequest $request, UserService $UserService)
     {
-        $user = $UserService->handle($request->except('image'));
-        if (is_string($user)) return $this->throwException($user);
-        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $user));
+        $row = $UserService->handle($request->except('image'));
+        if ($row instanceof Exception ) throw new Exception( $row );
+        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $row));
     }
 
     public function update(UserRequest $request, UserService $UserService, $id)
     {
-        $user = $UserService->handle($request->except('image'), $id);
-        if (is_string($user)) return $this->throwException($user);
-        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $user));
+        $row = $UserService->handle($request->except('image'), $id);
+        if ($row instanceof Exception ) throw new Exception( $row );
+        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $row));
     }
 
     public function export()

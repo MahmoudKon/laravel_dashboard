@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController;
 use App\Models\{{ model }};
 use App\Http\Services\{{ model }}Service;
 use App\Http\Requests\{{ model }}Request;
+use Exception;
 
 class {{ class }} extends BackendController
 {
@@ -18,14 +19,14 @@ class {{ class }} extends BackendController
     public function store({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service)
     {
         $row = ${{ model_name }}Service->handle($request->validated());
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.{{ single_table }}')]));
     }
 
     public function update({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service, $id)
     {
         $row = ${{ model_name }}Service->handle($request->validated(), $id);
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.{{ single_table }}')]));
     }
 

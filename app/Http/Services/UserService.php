@@ -27,7 +27,7 @@ class UserService {
             DB::commit();
             return $user;
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController;
 use App\Models\Announcement;
 use App\Http\Services\AnnouncementService;
 use App\Http\Requests\AnnouncementRequest;
+use Exception;
 
 class AnnouncementController extends BackendController
 {
@@ -15,13 +16,14 @@ class AnnouncementController extends BackendController
     public function store(AnnouncementRequest $request, AnnouncementService $AnnouncementService)
     {
         $row = $AnnouncementService->handle($request->validated());
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.announcement')]), routeHelper('announcements.show', $row));
     }
 
     public function update(AnnouncementRequest $request, AnnouncementService $AnnouncementService, $id)
     {
         $row = $AnnouncementService->handle($request->validated(), $id);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.announcement')]), routeHelper('announcements.show', $row));
     }
 

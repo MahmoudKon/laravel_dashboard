@@ -13,7 +13,7 @@ class LanguageService
             $row = Language::updateOrCreate(['id' => $id], $request);
             return $row;
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 

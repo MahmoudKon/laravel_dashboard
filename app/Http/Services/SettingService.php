@@ -18,10 +18,10 @@ class SettingService {
         try {
             if (isset($request['value']))
                 $request['value'] = $this->ContentType->requestHandler($request);
-                
+
             return Setting::updateOrCreate(['id' => $id],$request);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }

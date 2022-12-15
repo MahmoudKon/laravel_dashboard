@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController;
 use App\Http\Requests\RoleRequest;
 use App\Http\Services\RoleService;
 use App\Models\Role;
+use Exception;
 
 class RoleController extends BackendController
 {
@@ -14,15 +15,15 @@ class RoleController extends BackendController
 
     public function store(RoleRequest $request, RoleService $RoleService)
     {
-        $role = $RoleService->handle($request->validated());
-        if (is_string($role)) return $this->throwException($role);
+        $row = $RoleService->handle($request->validated());
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.role')]));
     }
 
     public function update(RoleRequest $request, RoleService $RoleService, $id)
     {
-        $role = $RoleService->handle($request->validated(), $id);
-        if (is_string($role)) return $this->throwException($role);
+        $row = $RoleService->handle($request->validated(), $id);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.role')]));
     }
 

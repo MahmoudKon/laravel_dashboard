@@ -27,7 +27,7 @@ class BackendController extends Controller
 
             return view($this->index_view, ['count' => $this->modelCount()]);
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            throw new Exception( $e->getMessage() );
         }
     }
 
@@ -39,14 +39,14 @@ class BackendController extends Controller
 
             return view($this->create_view, $this->append());
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            throw new Exception( $e->getMessage() );
         }
     }
 
     public function show(int $id)
     {
         $row = $this->query($id);
-        if (! $row) return $this->throwException(trans('flash.something is wrong'));
+        if (! $row) throw new Exception( trans('flash.something is wrong') );
 
         return view($this->show_view, compact('row'));
     }
@@ -55,14 +55,14 @@ class BackendController extends Controller
     {
         try {
             $row = $this->query($id);
-            if (! $row) return $this->throwException(trans('flash.something is wrong'));
+            if (! $row) throw new Exception( trans('flash.something is wrong') );
 
             if (! request()->ajax() && $this->use_form_ajax)
                 $this->update_view = "backend.includes.pages.form-page";
 
             return view($this->update_view, $this->append(), compact('row'));
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            throw new Exception( $e->getMessage() );
         }
     }
 
@@ -70,11 +70,11 @@ class BackendController extends Controller
     {
         try {
             $row = $this->query($id);
-            if (! $row) return $this->throwException(trans('flash.something is wrong'));
+            if (! $row) throw new Exception( trans('flash.something is wrong') );
             $row->delete();
             return response()->json(['message' => trans('flash.row deleted', ['model' => trans('menu.'.$this->getTableName(singular: true))]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            throw new Exception( $e->getMessage() );
         }
     }
 
@@ -88,7 +88,7 @@ class BackendController extends Controller
             DB::commit();
             return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getTableName()), 'count' => $rows->count()]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            throw new Exception( $e->getMessage() );
         }
     }
 
@@ -98,14 +98,14 @@ class BackendController extends Controller
             $title = trans('title.search in table', ['table' => trans('menu.'.$this->getTableName())]);
             return response()->json( view('backend.includes.forms.form-search', $this->searchData(), compact('title'))->render() );
         } catch (Exception $e) {
-            return response()->json($e->getMessage(), 500);
+            throw new Exception( $e->getMessage() );
         }
     }
 
     public function columnToggle(int $id, string $column)
     {
         $row = $this->query($id);
-        if (! $row) return $this->throwException(trans('flash.something is wrong'));
+        if (! $row) throw new Exception( trans('flash.something is wrong') );
 
         $row->update([$column => !$row->$column]);
         return response()->json(['stop' => true, 'message' => trans('flash.row updated', ['model' => trans('menu.'.$this->getTableName(singular: true))])]);

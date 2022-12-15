@@ -12,7 +12,7 @@ class CountryService {
         try {
             return Country::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }

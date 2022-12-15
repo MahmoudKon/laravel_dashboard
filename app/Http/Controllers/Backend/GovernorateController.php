@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController;
 use App\Http\Requests\GovernorateRequest;
 use App\Http\Services\GovernorateService;
 use App\Models\Governorate;
+use Exception;
 
 class GovernorateController extends BackendController
 {
@@ -16,14 +17,14 @@ class GovernorateController extends BackendController
     public function store(GovernorateRequest $request, GovernorateService $GovernorateService)
     {
         $row = $GovernorateService->handle($request->validated());
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.governorate')]));
     }
 
     public function update(GovernorateRequest $request, GovernorateService $GovernorateService, $id)
     {
         $row = $GovernorateService->handle($request->validated(), $id);
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.governorate')]));
     }
 

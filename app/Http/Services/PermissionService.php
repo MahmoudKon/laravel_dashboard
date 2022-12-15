@@ -19,7 +19,7 @@ class PermissionService {
 
             return $permission;
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }

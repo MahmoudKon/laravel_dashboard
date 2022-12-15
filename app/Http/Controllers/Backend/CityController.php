@@ -8,6 +8,7 @@ use App\Http\Requests\CityRequest;
 use App\Http\Services\CityService;
 use App\Models\City;
 use App\Models\Governorate;
+use Exception;
 
 class CityController extends BackendController
 {
@@ -17,14 +18,14 @@ class CityController extends BackendController
     public function store(CityRequest $request, CityService $CityService)
     {
         $row = $CityService->handle($request->validated());
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.city')]), routeHelper('governorates.cities.index', $request->governorate_id));
     }
 
     public function update(CityRequest $request, CityService $CityService, $id)
     {
         $row = $CityService->handle($request->validated(), $id);
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.city')]));
     }
 

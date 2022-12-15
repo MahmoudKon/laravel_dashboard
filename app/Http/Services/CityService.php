@@ -13,7 +13,7 @@ class CityService {
             $row = City::updateOrCreate(['id' => $id], $request);
             return $row;
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }

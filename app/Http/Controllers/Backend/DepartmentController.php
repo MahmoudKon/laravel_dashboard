@@ -8,6 +8,7 @@ use App\Http\Requests\DepartmentRequest;
 use App\Http\Services\DepartmentService;
 use App\Models\Department;
 use App\Models\User;
+use Exception;
 
 class DepartmentController extends BackendController
 {
@@ -16,15 +17,15 @@ class DepartmentController extends BackendController
 
     public function store(DepartmentRequest $request, DepartmentService $DepartmentService)
     {
-        $department = $DepartmentService->handle($request->validated());
-        if (is_string($department)) return $this->throwException($department);
+        $row = $DepartmentService->handle($request->validated());
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.department')]));
     }
 
     public function update(DepartmentRequest $request, DepartmentService $DepartmentService, $id)
     {
-        $department = $DepartmentService->handle($request->validated(), $id);
-        if (is_string($department)) return $this->throwException($department);
+        $row = $DepartmentService->handle($request->validated(), $id);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.department')]));
     }
 

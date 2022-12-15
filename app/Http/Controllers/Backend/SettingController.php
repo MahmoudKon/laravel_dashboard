@@ -10,6 +10,7 @@ use App\Http\Services\SettingService;
 use App\Models\ContentType;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Exception;
 
 class SettingController extends BackendController
 {
@@ -17,15 +18,15 @@ class SettingController extends BackendController
 
     public function store(SettingRequest $request, SettingService $SettingService)
     {
-        $setting = $SettingService->handle($request->validated());
-        if (is_string($setting)) return $this->throwException($setting);
+        $row = $SettingService->handle($request->validated());
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.setting')]));
     }
 
     public function update(SettingRequest $request, SettingService $SettingService, $id)
     {
-        $setting = $SettingService->handle($request->validated(), $id);
-        if (is_string($setting)) return $this->throwException($setting);
+        $row = $SettingService->handle($request->validated(), $id);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.setting')]));
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController;
 use App\Models\Client;
 use App\Http\Services\ClientService;
 use App\Http\Requests\ClientRequest;
+use Exception;
 
 class ClientController extends BackendController
 {
@@ -16,14 +17,14 @@ class ClientController extends BackendController
     public function store(ClientRequest $request, ClientService $ClientService)
     {
         $row = $ClientService->handle($request->validated());
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.client')]));
     }
 
     public function update(ClientRequest $request, ClientService $ClientService, $id)
     {
         $row = $ClientService->handle($request->validated(), $id);
-        if (is_string($row)) return $this->throwException($row);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.client')]));
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController;
 use App\Http\Requests\PermissionRequest;
 use App\Http\Services\PermissionService;
 use Spatie\Permission\Models\Permission;
+use Exception;
 
 class PermissionController extends BackendController
 {
@@ -14,15 +15,15 @@ class PermissionController extends BackendController
 
     public function store(PermissionRequest $request, PermissionService $PermissionService)
     {
-        $permission = $PermissionService->handle($request->validated());
-        if (is_string($permission)) return $this->throwException($permission);
+        $row = $PermissionService->handle($request->validated());
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.permission')]));
     }
 
     public function update(PermissionRequest $request, PermissionService $PermissionService, $id)
     {
-        $permission = $PermissionService->handle($request->validated(), $id);
-        if (is_string($permission)) return $this->throwException($permission);
+        $row = $PermissionService->handle($request->validated(), $id);
+        if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.permission')]));
     }
 

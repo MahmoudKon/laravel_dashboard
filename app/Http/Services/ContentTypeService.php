@@ -12,7 +12,7 @@ class ContentTypeService {
         try {
             return ContentType::updateOrCreate(['id' => $id],$request);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }

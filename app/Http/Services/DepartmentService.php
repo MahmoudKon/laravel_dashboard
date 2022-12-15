@@ -12,7 +12,7 @@ class DepartmentService {
         try {
             return Department::updateOrCreate(['id' => $id],$request);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
     }
 }
