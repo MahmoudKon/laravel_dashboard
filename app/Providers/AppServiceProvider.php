@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->loadAllMigrations();
 
-        setSettingCache();
+        \App\Helpers\SettingHelper::setSettingCache();
 
         \App\Models\User::observe(\App\Observers\UserObserver::class);
         \App\Models\Setting::observe(\App\Observers\SettingObserver::class);

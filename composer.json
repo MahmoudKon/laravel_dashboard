@@ -43,7 +43,6 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/Setting.php",
             "app/Helpers/Helper.php",
             "app/Helpers/EmailHelper.php",
             "app/Helpers/CrudGeneratorHelper.php",

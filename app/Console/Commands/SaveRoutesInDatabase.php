@@ -16,7 +16,7 @@ class SaveRoutesInDatabase extends Command
      */
     protected $signature = 'sync:routes';
 
-    protected $namespaces = ['App\Http\Controllers\Backend'];
+    protected $namespaces = 'App\Http\Controllers\Backend';
 
     protected $exceptControllers = ['LoginController', 'LogoutController', 'RegisterController', 'ForgotPasswordController', 'ProfileController'];
 
@@ -36,7 +36,9 @@ class SaveRoutesInDatabase extends Command
     {
         foreach (\Illuminate\Support\Facades\Route::getRoutes()->getRoutes() as $route) {
             $action = $route->getAction();
-            if ( !isset($action['controller']) || ! isset($action['as']) || stripos($action['as'], URL_PREFIX) === false)
+            $controller_class = $route->getController();
+
+            if ( stripos( get_class( $controller_class ), $this->namespaces ) === false || in_array( class_basename( $controller_class ), $this->exceptControllers ) )
                 continue;
 
             /**

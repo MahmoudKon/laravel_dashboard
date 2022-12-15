@@ -54,6 +54,12 @@ class SettingSeeder extends Seeder
                 'content_type_id' => ContentType::where('name', 'LIKE', '%Languages%')->first()->id,
                 'active' => true,
                 'autoload' => true,
+            ], [
+                'key' => 'route_prefix',
+                'value' => 'dashboard',
+                'content_type_id' => ContentType::where('name', 'LIKE', '%Normal Text%')->first()->id,
+                'active' => true,
+                'autoload' => true,
             ]
         ];
 
