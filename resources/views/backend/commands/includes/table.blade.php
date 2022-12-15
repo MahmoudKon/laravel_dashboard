@@ -20,7 +20,7 @@
                 <tr> <td colspan="2" class="text-center"> <b> Options </b> </td> </tr>
                 @forelse ($command['options'] as $option)
                     <tr>
-                        <td>{{ $option->getName() }}</td>
+                        <td>--{{ $option->getName() }}</td>
                         <td>{{ $option->getDescription() }}</td>
                     </tr>
                 @empty

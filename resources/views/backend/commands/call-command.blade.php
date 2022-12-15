@@ -1,4 +1,4 @@
-<div class="card" dir="ltr" style="text-align: left">
+<div class="card mb-0" dir="ltr" style="text-align: left">
     <form action="{{ routeHelper('commands.call') }}" method="POST" class="call-command-form">
         @csrf
         <input type="hidden" name="command" id="hidden_cmd" value="{{ $command['name'] }}">
@@ -20,7 +20,7 @@
                 </div>
 
                 @if ( count( $command['arguments'] ) || count( $command['options'] ) )
-                    <input type="text" name="args" {{ count( $command['arguments'] ) ? 'required' : '' }} autofocus class="form-control input-sm" placeholder="{{ implode(' ', array_keys( $command['arguments'] )) }}">
+                    <input type="text" name="args" value="{{ $args ?? '' }}" {{ count( $command['arguments'] ) ? 'required' : '' }} autofocus class="form-control input-sm" placeholder="Type Arguments Or Options">
                 @endif
                 <div class="input-group-prepend">
                     <button type="submit" class="btn btn-primary btn-sm">Run </button>

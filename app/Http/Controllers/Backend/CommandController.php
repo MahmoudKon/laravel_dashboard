@@ -74,7 +74,7 @@ class CommandController extends Controller
             'arguments' => $command_object->getDefinition()->getArguments(),
             'options' => $command_object->getDefinition()->getOptions()
         ];
-        return view('backend.commands.call-command', ['command' => $command_details]);
+        return view('backend.commands.call-command', ['command' => $command_details, 'args' => request()->args]);
     }
 
     public function call()
@@ -86,6 +86,6 @@ class CommandController extends Controller
         } catch (Exception $e) {
             $artisan_output = $e->getMessage();
         }
-        return view('backend.commands.output', ['command' => request()->command, 'artisan_output' => $artisan_output]);
+        return view('backend.commands.output', ['command' => request()->command, 'artisan_output' => $artisan_output, 'args' => request()->args]);
     }
 }
