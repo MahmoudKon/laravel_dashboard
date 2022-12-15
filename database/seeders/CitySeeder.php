@@ -850,10 +850,10 @@ class CitySeeder extends Seeder
                         "governorate_id" => $this->getGovernorateID('اسيوط', 'Assiut'),
                         "name" => ["ar" => "صدفا", "en" => "Sidfa"]
                     ], [
-                        "governorate_id" => $this->getGovernorateID('___', '___'),
+                        "governorate_id" => $this->getGovernorateID('بني سويف', 'Beni Suef'),
                         "name" => ["ar" => "بني سويف", "en" => "Bani Sweif"]
                     ], [
-                        "governorate_id" => $this->getGovernorateID('___', '___'),
+                        "governorate_id" => $this->getGovernorateID('بني سويف', 'Beni Suef'),
                         "name" => ["ar" => "بني سويف الجديدة", "en" => "Beni Suef El Gedida"]
                     ], [
                         "governorate_id" => $this->getGovernorateID('بني سويف', 'Beni Suef'),
