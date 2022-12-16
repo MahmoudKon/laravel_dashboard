@@ -4,7 +4,7 @@
         <input type="hidden" name="command" id="hidden_cmd" value="{{ $command['name'] }}">
 
         <div class="card-header bg-dark text-center">
-            <h3 class="card-title text-white"> <b> php artisan {{ $command['name'] }} </b> </h3>
+            <h3 class="card-title text-white"> <i class="fa-solid fa-terminal"></i> <b> php artisan {{ $command['name'] }} </b> </h3>
         </div>
 
         <div class="card-body">
@@ -14,16 +14,17 @@
         </div>
 
         <div class="card-footer text-center">
-            <div class="input-group">
+            <div class="input-group justify-content-center">
                 <div class="input-group-prepend">
-                    <button class="btn btn-sm btn-info" disabled> php artisan {{ $command['name'] }} </button>
+                    <button class="btn btn-sm btn-info" disabled> <i class="fa-solid fa-terminal"></i> php artisan {{ $command['name'] }} </button>
                 </div>
 
                 @if ( count( $command['arguments'] ) || count( $command['options'] ) )
                     <input type="text" name="args" value="{{ $args ?? '' }}" {{ count( $command['arguments'] ) ? 'required' : '' }} autofocus class="form-control input-sm" placeholder="Type Arguments Or Options">
                 @endif
+
                 <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-primary btn-sm">Run </button>
+                    <button type="submit" class="btn btn-primary btn-sm"> <i class="fa-solid fa-bolt-lightning"></i> Run </button>
                 </div>
             </div>
         </div>
