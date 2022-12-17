@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SocialLoginController;
+use App\Http\Controllers\Frontend\SudokuController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,7 @@ Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'un
 
 Route::get('auth/provider/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('auth.provider');
 Route::get('auth/socialite/callback', [SocialLoginController::class, 'providerCallback']);
+
+Route::get('sudoku', [SudokuController::class, 'index'])->name('sudoku.index');
+Route::post('sudoku/solve', [SudokuController::class, 'solve'])->name('sudoku.solve');
+Route::post('sudoku/generate', [SudokuController::class, 'generate'])->name('sudoku.generate');

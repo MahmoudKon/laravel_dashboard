@@ -213,7 +213,6 @@ function convertCamelCaseTo(string $string, string $us = '_') :string
     return strtolower( preg_replace('/([a-z]+)([A-Z]+)/', '$1'.$us.'$2', $string) );
 }
 
-
 function transListRows($model = 'menu.users')
 {
     return trans('menu.list-rows', ['model' => trans($model)]);

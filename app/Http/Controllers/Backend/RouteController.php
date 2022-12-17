@@ -113,7 +113,6 @@ class RouteController extends BackendController
         }
     }
 
-
     public function syncRoutes()
     {
         truncateTables('routes');
