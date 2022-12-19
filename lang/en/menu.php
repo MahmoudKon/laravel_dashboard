@@ -32,6 +32,10 @@ return [
     'menus' => 'Menus',
     'menu' => 'Menu',
 
+    // OAUTH SOCIALS
+    'oauth_socials' => 'Oauth Socials',
+    'oauth_social' => 'Oauth Social',
+
     // ROUTES
     'routes' => 'Routes',
     'route' => 'Route',

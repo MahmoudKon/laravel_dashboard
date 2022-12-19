@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_accounts', function (Blueprint $table) {
+        Schema::create('oauth_socials', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->id();
-            $table->morphs('sociable');
-            $table->string('provider_name')->nullable();
-            $table->string('provider_id')->unique()->nullable();
+            $table->string('display_name')->unique();
+            $table->string('name')->unique();
+            $table->string('icon', 50)->nullable();
+            $table->string('color', 20)->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_accounts');
+        Schema::dropIfExists('oauth_socials');
     }
 };

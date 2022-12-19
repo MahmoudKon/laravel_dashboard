@@ -8,6 +8,7 @@ use App\Models\Announcement;
 use App\Models\Department;
 use App\Models\Language;
 use App\Models\Menu;
+use App\Models\OauthSocial;
 use App\Models\Route;
 use App\Models\Setting;
 use App\Models\User;
@@ -32,6 +33,7 @@ class HomeController extends Controller
         $tables['settings']      = ['count' => Setting::count()   , 'color' => 'primary'];
         $tables['languages']     = ['count' => Language::active()->count()  , 'color' => 'dark'];
         $tables['announcements'] = ['count' => Announcement::count() , 'color' => 'google'];
+        $tables['oauth_socials'] = ['count' => OauthSocial::active()->count() , 'color' => 'google'];
         $icons = Menu::select('icon', 'name->en as name')->pluck('icon', 'name')->toArray();
         $active_announcements = Announcement::Display()->inRandomOrder()->limit(5)->get();
         return view('backend.home.index', compact('tables', 'icons', 'active_announcements'));

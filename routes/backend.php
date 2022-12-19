@@ -121,3 +121,7 @@ Route::post('clients/multidelete', 'ClientController@multidelete')->name('client
 Route::get('commands', 'CommandController@index')->name('commands.index');
 Route::post('commands/{command}/info', 'CommandController@commandInfo')->name('commands.command.info');
 Route::post('commands/call', 'CommandController@call')->name('commands.call');
+
+Route::resource('oauth_socials', 'OauthSocialController');
+Route::post('oauth_socials/multidelete', 'OauthSocialController@multidelete')->name('oauth_socials.multidelete');
+Route::any('oauth_socials/{oauth_social}/column/{column}/toggle', 'OauthSocialController@columnToggle')->name('oauth_socials.column.toggle');

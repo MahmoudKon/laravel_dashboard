@@ -33,6 +33,10 @@ return [
     'menus' => 'القوائم',
     'menu' => 'قائمة',
 
+    // OAUTH SOCIALS
+    'oauth_socials' => 'Oauth Socials',
+    'oauth_social' => 'Oauth Social',
+
     // ROUTES
     'routes' => 'المسارات',
     'route' => 'مسار',

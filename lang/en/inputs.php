@@ -88,4 +88,8 @@ return [
 	// CLIENTS
 	'username' => 'Username',
 	'phone' => 'Phone',
+
+
+	// OAUTH_SOCIALS
+	'display_name' => 'Display Name',
 ];

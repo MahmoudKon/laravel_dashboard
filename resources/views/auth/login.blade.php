@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('page_title', 'Login')
-@section('title', 'Welcome to ' . setting('site_name'))
+@section('title', 'Welcome to ' . $website_settings['site_name'] ?? env('APP_NAME'))
 
 @section('content')
 <form action="{{ route('login') }}" method="POST">
@@ -49,11 +49,11 @@
             </fieldset>
         </div>
         @if (Route::has('password.request'))
-        <div class="col-md-6 col-12 text-center text-md-right">
-            <a href="{{ route('password.request') }}" class="card-link text-bold-500" data-toggle="tooltip" data-original-title="Forget and reset password">
-                Forgot Your Password ?
-            </a>
-        </div>
+            <div class="col-md-6 col-12 text-center text-md-right">
+                <a href="{{ route('password.request') }}" class="card-link text-bold-500" data-toggle="tooltip" data-original-title="Forget and reset password">
+                    Forgot Your Password ?
+                </a>
+            </div>
         @endif
     </div>
     <!-- END OPTIONS INPUT -->
@@ -62,15 +62,16 @@
 </form>
 
 <div class="card-footer d-lg-flex justify-content-between">
-    {{-- <p class="text-left m-0"><a href="{{ route('password.request') }}" class="card-link text-bold-500">Recover password</a></p> --}}
-
     <p class="text-left m-0">
-        <a href="{{ route('auth.provider', 'github') }}" class="btn btn-sm btn-github login-provider"> <i class="fa-brands fa-github"></i> Github</a>
-        <a href="{{ route('auth.provider', 'google') }}" class="btn btn-sm btn-google login-provider"> <i class="fa-brands fa-google"></i> Google</a>
-        <a href="{{ route('auth.provider', 'gitlab') }}" class="btn btn-sm btn-warning login-provider"> <i class="fa-brands fa-gitlab"></i> Gitlab</a>
-        <a href="{{ route('auth.provider', 'facebook') }}" class="btn btn-sm btn-facebook login-provider"> <i class="fa-brands fa-facebook"></i> Facebook</a>
+        @foreach (\App\Models\OauthSocial::active()->get() as $social)
+            <a href="{{ route('auth.provider', $social->name) }}" class="btn btn-sm login-provider" style="color: #fff; background-color: {{ $social->color }}; border-color: #fff">
+                <i class="{{ $social->icon }}"></i> {{ $social->display_name }}
+            </a>
+        @endforeach
     </p>
-    <p class="text-right m-0"> New to {{ env('APP_NAME') }} ? <a href="{{ route('register') }}" class="card-link text-bold-500">Sign Up</a> </p>
+    @if (Route::has('register'))
+        <p class="text-right m-0"> New to {{ $website_settings['site_name'] ?? env('APP_NAME') }} ? <a href="{{ route('register') }}" class="card-link text-bold-500">Sign Up</a> </p>
+    @endif
 </div>
 @endsection
 

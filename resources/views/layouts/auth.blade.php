@@ -60,6 +60,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body pt-0">
+                                        @include('layouts.includes.backend.alerts')
                                         @yield('content')
                                     </div>
                                 </div>

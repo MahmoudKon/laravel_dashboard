@@ -97,4 +97,8 @@ return [
 	// CLIENTS
 	'username' => 'إسم المستخدم',
 	'phone' => 'رقم الهاتف',
+
+
+	// OAUTH_SOCIALS
+	'display_name' => 'إسم العرض',
 ];

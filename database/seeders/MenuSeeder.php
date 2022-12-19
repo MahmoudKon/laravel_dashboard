@@ -100,6 +100,11 @@ class MenuSeeder extends Seeder
                 'icon' => "fas fa-bars",
                 'parent_id' => $Configurations
             ], [
+                'name' => ["en" => "Oauth Socials", "ar" => "Oauth Socials"],
+                'route' => "oauth_socials.index",
+                'icon' => "fas fa-icons",
+                'parent_id' => $Configurations
+            ], [
                 'name' => ["en" => "Image Tools", "ar" => "أدوات الصور"],
                 'icon' => "fas fa-image",
                 'parent_id' => $Configurations

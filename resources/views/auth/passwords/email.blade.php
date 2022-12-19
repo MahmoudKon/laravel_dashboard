@@ -4,12 +4,6 @@
 @section('title', 'We will send you a link to reset password')
 
 @section('content')
-@if (session('status'))
-    <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-    </div>
-@endif
-
 <form method="POST" action="{{ route('password.email') }}">
     @csrf
 

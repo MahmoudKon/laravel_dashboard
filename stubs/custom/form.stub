@@ -1,7 +1,9 @@
 
 @once
     @push('style')
-        {{-- CSS Style --}}
+        <style>
+            {{-- CSS Style --}}
+        </style>
     @endpush
 @endonce
 
@@ -13,6 +15,10 @@
 
 @once
     @push('script')
-        {{-- JS Code --}}
+        <script>
+            $(function() {
+                {{-- JS Code --}}
+            })
+        </script>
     @endpush
 @endonce

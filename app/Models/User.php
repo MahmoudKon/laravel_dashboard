@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public function socialAccounts()
     {
-        return $this->hasMany(SocialAccount::class);
+        return $this->morphMany(SocialAccount::class, 'sociable');
     }
 
     protected function password(): Attribute

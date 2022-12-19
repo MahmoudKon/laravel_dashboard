@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\OauthSocial;
 use App\Models\SocialAccount;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
@@ -10,7 +11,9 @@ use Laravel\Socialite\Facades\Socialite;
 class SocialLoginController extends Controller
 {
     public function redirectToProvider(String $provider) {
-        session(['provider' => $provider]);
+        if (! $this->checkProviderExists($provider))
+            return back();
+
         return Socialite::driver($provider)->redirect();
     }
 
@@ -30,6 +33,16 @@ class SocialLoginController extends Controller
         }
     }
 
+    protected function checkProviderExists($provider)
+    {
+        if (OauthSocial::active()->where('name', $provider)->exists()) {
+            session(['provider' => $provider]);
+            return true;
+        }
+        session()->flash('error', "This Platform '$provider' Not Exists In Database");
+        return false;
+    }
+
     protected function getProvider()
     {
         $provider = session('provider');
@@ -42,9 +55,9 @@ class SocialLoginController extends Controller
     {
         // First Find Social Account
         $account = SocialAccount::where([
-            'provider_name'=>$provider,
-            'provider_id'=>$provider_id
-        ])->first();
+                        'provider_name' => $provider,
+                        'provider_id'   => $provider_id
+                    ])->first();
 
         // If Social Account Exist then Find User and Login
         if($account){

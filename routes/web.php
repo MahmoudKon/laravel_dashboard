@@ -17,20 +17,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
-// Auth::routes(['register' => false]);
+// Routes Used In Dashboard
+Route::group([], function () {
+    Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
+    Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
 
-Route::redirect('/home', '/dashboard');
+    Route::get('auth/provider/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('auth.provider');
+    Route::get('auth/socialite/callback', [SocialLoginController::class, 'providerCallback']);
+
+    Auth::routes(['register' => false]);
+});
+
+// Route::middleware('auth:client')->namespace('Frontend')->prefix('client')->as('client')->group(function() {
+//     // Auth::routes();
+//     Route::get('auth/provider/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('auth.provider');
+//     Route::get('auth/socialite/callback', [SocialLoginController::class, 'providerCallback']);
+// });
+
+Route::redirect('/home', '/');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('maintenance');
-
-
-Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
-Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
-
-Route::get('auth/provider/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('auth.provider');
-Route::get('auth/socialite/callback', [SocialLoginController::class, 'providerCallback']);
 
 Route::get('sudoku', [SudokuController::class, 'index'])->name('sudoku.index');
 Route::post('sudoku/solve', [SudokuController::class, 'solve'])->name('sudoku.solve');
