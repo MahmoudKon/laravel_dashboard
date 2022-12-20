@@ -35,12 +35,18 @@ class SocialLoginController extends Controller
 
     protected function checkProviderExists($provider)
     {
-        if (OauthSocial::active()->where('name', $provider)->exists()) {
-            session(['provider' => $provider]);
-            return true;
+        if (! isset( config('services')[$provider] )) {
+            session()->flash('warning', "This service '$provider' is not configured");
+            return false;
         }
-        session()->flash('error', "This Platform '$provider' Not Exists In Database");
-        return false;
+
+        if (! OauthSocial::active()->where('name', $provider)->exists()) {
+            session()->flash('error', "This Platform '$provider' Not Exists In Database");
+            return false;
+        }
+
+        session(['provider' => $provider]);
+        return true;
     }
 
     protected function getProvider()
