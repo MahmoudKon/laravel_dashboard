@@ -158,3 +158,9 @@ function submitForm(form, callback) {
         complete: function () { form.parent().removeClass('load'); }
     });
 }
+
+
+$('body').on('click', '[data-toggle="tooltip"]', function() {
+    $('body').find(`#${$(this).attr('aria-describedby')}`).remove();
+    $(this).removeAttr('aria-describedby');
+});

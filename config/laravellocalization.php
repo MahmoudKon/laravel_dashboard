@@ -148,7 +148,7 @@ return [
         //'pt-BR'       => ['name' => 'Brazilian Portuguese',   'script' => 'Latn', 'native' => 'português do Brasil', 'regional' => 'pt_BR'],
         //'ff'          => ['name' => 'Fulah',                  'script' => 'Latn', 'native' => 'Pulaar', 'regional' => 'ff_SN'],
         //'pi'          => ['name' => 'Pahari-Potwari',         'script' => 'Latn', 'native' => 'Pāli', 'regional' => ''],
-     //'aa'       => ['name' => 'Afar',                   'script' => 'Latn', 'native' => 'Qafar', 'regional' => 'aa_ER'],
+   //'aa'     => ['name' => 'Afar',                   'script' => 'Latn', 'native' => 'Qafar', 'regional' => 'aa_ER'],
         //'ty'          => ['name' => 'Tahitian',               'script' => 'Latn', 'native' => 'Reo Māohi', 'regional' => ''],
         //'ksf'         => ['name' => 'Bafia',                  'script' => 'Latn', 'native' => 'rikpa', 'regional' => ''],
         //'ro'          => ['name' => 'Romanian',               'script' => 'Latn', 'native' => 'română', 'regional' => 'ro_RO'],

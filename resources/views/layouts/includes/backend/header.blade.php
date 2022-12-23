@@ -78,10 +78,4 @@
     data-menu="vertical-menu" data-col="content-detached-left-sidebar"> --}}
 <body id="loader-progress" class="vertical-layout vertical-menu content-left-sidebar email-application fixed-navbar menu-expanded pace-done" data-open="click" data-menu="vertical-menu" data-col="content-left-sidebar">
 
-    {{-- <div id="body-loading">
-        <p id="loading-text">
-            Loading... <i class="fas fa-undo"></i>
-        </p>
-    </div> --}}
-
     <div id="body-loading"> <span> ... Loading ...</span> </div>

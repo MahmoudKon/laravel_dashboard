@@ -7,16 +7,16 @@
 .load::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    content: "\f110";
+    content: "\f021";
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bolder;
     color: #000;
-    z-index: 10001;
-    animation: load 1s linear infinite;
+    z-index: 1030;
+    animation: load .9s linear infinite;
 }
 
 .load::after {
@@ -27,14 +27,11 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgb(207 216 234 / 50%);
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
     z-index: 1029;
     height: 100%;
     transition: all .5s ease-in-out;
-    -webkit-transition: all .5s ease-in-out;
-    -moz-transition: all .5s ease-in-out;
-    -ms-transition: all .5s ease-in-out;
-    -o-transition: all .5s ease-in-out;
 }
 
 @keyframes load {
@@ -68,13 +65,13 @@
 
 @keyframes hide {
     0% {
-        opacity: 0.1;
-        filter: blur(5px);
-        letter-spacing: 10px;
-    }
-    100% {
         opacity: 1;
         filter: blur(0);
         letter-spacing: 2px;
+    }
+    100% {
+        opacity: 0.1;
+        filter: blur(5px);
+        letter-spacing: 10px;
     }
 }
