@@ -1,21 +1,10 @@
+/** ELEMENT LOADING **/
 .load {
     cursor: wait;
     position: relative;
 }
 
-.body-loading {
-    cursor: wait;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #000;
-    z-index: 1000000;
-    scroll-behavior: smooth;
-}
-
-.body-loading::before, .load::before {
+.load::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f110";
@@ -30,11 +19,7 @@
     animation: load 1s linear infinite;
 }
 
-.body-loading::before {
-    color: #fff;
-}
-
-.body-loading::after, .load::after {
+.load::after {
     content: "";
     display: block;
     position: absolute;
@@ -53,11 +38,43 @@
 }
 
 @keyframes load {
-    from {
-        transform: rotate(0deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-    to {
-        transform: rotate(360deg);
+
+/** LOADING PAGE **/
+#body-loading {
+    cursor: wait;
+    background: #000;
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#body-loading span {
+    text-shadow: 5px 0px 7px #838383;
+    font-family: Helvetica, sans-serif, Arial;
+    font-size: 30px;
+    animation: hide 1s infinite 0s ease-in-out;
+    animation-direction: alternate;
+}
+
+@keyframes hide {
+    0% {
+        opacity: 0.1;
+        filter: blur(5px);
+        letter-spacing: 10px;
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        letter-spacing: 2px;
     }
 }

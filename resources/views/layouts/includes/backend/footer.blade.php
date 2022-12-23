@@ -87,7 +87,7 @@
 
             $(`li[data-route="{{ request()->route()->action['as'] }}"]`).addClass('active').closest('.has-sub').addClass('active open');
 
-            $('.body-loading').fadeOut(250, function() { $(this).remove(); });
+            $('#body-loading').fadeOut(250, function() { $(this).remove(); });
         });
     </script>
 
@@ -117,12 +117,9 @@
                             if ({{ auth()->id() }} != e.auth_id) return;
                                 $('#all-unread-messages').text(e.count)
                         });
-
             });
         </script>
     @endif
-
-    @php session()->forget(['success', 'failed', 'error', 'info', 'warning']); @endphp
 </body>
 
 </html>

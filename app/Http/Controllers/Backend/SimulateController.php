@@ -38,7 +38,7 @@ class SimulateController extends Controller
             if (stripos($file_name, $command) !== false) {
                 dispatch(app($namespace));
                 toast("Command is running in the background!<br> NOTE: please run queue:work", 'success');
-                session(['success' => "<span class='form-control copy'>php artisan queue:work</span>"]);
+                session()->flash('success', "<span class='form-control copy'>php artisan queue:work</span>");
                 return back();
             }
         }

@@ -118,7 +118,7 @@ class RouteController extends BackendController
         truncateTables('routes');
         dispatch(new SaveRoutesInDatabase());
         toast("Routes will be synchronized with the database in the background!<br> NOTE: please run queue:work", 'success');
-        session(['success' => "<span class='form-control copy'>php artisan queue:work</span>"]);
+        session()->flash('success', "<span class='form-control copy'>php artisan queue:work</span>");
         return back();
     }
 
@@ -126,7 +126,7 @@ class RouteController extends BackendController
     {
         dispatch(new AssignPermissionsToRole());
         toast("Assign permissions will be synchronized with the database in the background!<br> NOTE: please run queue:work", 'success');
-        session(['success' => "<span class='form-control copy'>php artisan queue:work</span>"]);
+        session()->flash('success', "<span class='form-control copy'>php artisan queue:work</span>");
         return back();
     }
 

@@ -40,9 +40,6 @@ class EmailController extends Controller
 
     public function index()
     {
-        // dispatch( new JobsSendEmail(14) );
-
-        // dd('sent');
         if (request()->ajax())
             return $this->show(request()->email);
         return view('backend.emails.index');

@@ -28,8 +28,8 @@
     <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/css/forms/toggle/switchery.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/plugins/forms/switch.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/core/colors/palette-switch.css ') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/plugins/loaders/loaders.min.css ') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/core/colors/palette-switch.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/plugins/loaders/loaders.min.css') }}">
     {{-- ************** END FONTS AWESOME ************** --}}
 
     {{-- ************** START RTL , LTR CSS FILES ************** --}}
@@ -76,6 +76,12 @@
 
 {{-- <body class="vertical-layout vertical-menu content-detached-left-sidebar menu-expanded fixed-navbar" data-open="click"
     data-menu="vertical-menu" data-col="content-detached-left-sidebar"> --}}
-<body class="vertical-layout vertical-menu content-left-sidebar email-application fixed-navbar menu-expanded pace-done" data-open="click" data-menu="vertical-menu" data-col="content-left-sidebar">
+<body id="loader-progress" class="vertical-layout vertical-menu content-left-sidebar email-application fixed-navbar menu-expanded pace-done" data-open="click" data-menu="vertical-menu" data-col="content-left-sidebar">
 
-    <div class="body-loading"></div>
+    {{-- <div id="body-loading">
+        <p id="loading-text">
+            Loading... <i class="fas fa-undo"></i>
+        </p>
+    </div> --}}
+
+    <div id="body-loading"> <span> ... Loading ...</span> </div>
