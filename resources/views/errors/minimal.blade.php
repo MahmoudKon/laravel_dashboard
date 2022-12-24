@@ -21,25 +21,28 @@
             svg {
                 position: absolute;
                 top: 50%;
-                left: 50%;
-                margin-top: -250px;
-                margin-left: -400px;
+                left: 35%;
+                transform: translate(-50%, -50%);
             }
             .message-box {
-                height: 200px;
-                width: 380px;
+                width: 500px;
+                padding: 30px 0px;
                 position: absolute;
                 top: 50%;
-                left: 50%;
-                margin-top: -100px;
-                margin-left: 50px;
+                right: 0%;
                 font-family: Roboto;
                 font-weight: 300;
+                text-align: center;
+                transform: translate(-50%, -50%);
             }
-            .message-box h1 {
+            .message-box .error-message {
+                color: #959595;
+                padding: 15px 0;
+                font-style: italic;
+                margin-bottom: 15px;
+            }
+            .message-box .status-code {
                 font-size: 60px;
-                line-height: 46px;
-                margin-bottom: 40px;
             }
 
             #Polygon-1 , #Polygon-2 , #Polygon-3 , #Polygon-4 , #Polygon-4, #Polygon-5 {
@@ -84,7 +87,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="{{ assetHelper('customs/css/error_page.css') }}" />
     </head>
     <body>
-        {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex items-center pt-8 sm:justify-start sm:pt-0">
 
@@ -99,8 +102,8 @@
                     </svg>
 
                     <div class="message-box">
-                        <h1>@yield('code')</h1>
-                        <p class="text-capitalize">@yield('message')</p>
+                        <span class="status-code">@yield('code')</span>
+                        <h3 class="text-capitalize error-message">@yield('message')</h3>
                         <div class="buttons-con">
                             <div class="action-link-wrap">
                                 <a href="#" onclick="history.back();" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left-long"></i> Go Back</a>
@@ -110,16 +113,6 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
-
-        <div id="body">
-            <h1 class="shadow">{{ $exception->getMessage() ?: 'This Page Not Found' }}</h1>
-            <section class="error-container">
-                <span class="four"><span class="screen-reader-text">4</span></span>
-                <span class="zero"><span class="screen-reader-text">0</span></span>
-                <span class="four"><span class="screen-reader-text">4</span></span>
-            </section>
-            <p class="zoom-area"> Back To <a href="{{ routeHelper('/') }}" class="btn btn-sm btn-primary"><i class="fa fa-home"></i> Home</a></p>
         </div>
     </body>
 </html>

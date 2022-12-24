@@ -24,8 +24,6 @@ class CheckMiddleWare
         // To check auth user is has specific roles, this roles can access to this page without conditions.
         if (!auth()->check() || isSuperAdmin()) return $next($request);
 
-        if (auth()->user()->permissions()->count() == 0 && ! isSuperAdmin()) return redirect('/');
-
         // get the route object
         $route = request()->route();
 
@@ -77,7 +75,7 @@ class CheckMiddleWare
         // if current route not exists in database, return 404 page not found
         if (!$route) {
             if ($request->ajax()) return response()->json(['message' => 'This route not saved in database!', 'title' => 'ROLES'], 403);
-            abort(403, 'This route not saved in database!');
+            abort(400, 'This route not found in database!');
         }
 
         if ($auth_user->hasPermissionTo($route->permissionName())) return $next($request);
