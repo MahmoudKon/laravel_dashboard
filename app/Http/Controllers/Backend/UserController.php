@@ -22,14 +22,14 @@ class UserController extends BackendController
 
     public function store(UserRequest $request, UserService $UserService)
     {
-        $row = $UserService->handle($request->except('image'));
+        $row = $UserService->handle($request->validated());
         if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $row));
     }
 
     public function update(UserRequest $request, UserService $UserService, $id)
     {
-        $row = $UserService->handle($request->except('image'), $id);
+        $row = $UserService->handle($request->validated(), $id);
         if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $row));
     }

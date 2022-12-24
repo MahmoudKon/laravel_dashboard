@@ -15,10 +15,7 @@ class UserService
     {
         try {
             DB::beginTransaction();
-
                 $this->saveFiles($request);
-
-                if (is_null($request['password'])) unset($request['password']);
 
                 $user = User::updateOrCreate(['id' => $id],$request);
 
