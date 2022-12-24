@@ -25,7 +25,7 @@ Route::group([], function () {
     Route::get('auth/provider/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('auth.provider');
     Route::get('auth/socialite/callback', [SocialLoginController::class, 'providerCallback'])->name('auth.callback');
 
-    Auth::routes(['register' => true]);
+    Auth::routes(['register' => false]);
 });
 
 // Route::middleware('auth:client')->namespace('Frontend')->prefix('client')->as('client')->group(function() {
