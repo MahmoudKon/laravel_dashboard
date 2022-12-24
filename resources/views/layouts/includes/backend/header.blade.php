@@ -78,4 +78,14 @@
     data-menu="vertical-menu" data-col="content-detached-left-sidebar"> --}}
 <body id="loader-progress" class="vertical-layout vertical-menu content-left-sidebar email-application fixed-navbar menu-expanded pace-done" data-open="click" data-menu="vertical-menu" data-col="content-left-sidebar">
 
-    <div id="body-loading"> <span> ... Loading ...</span> </div>
+    {{-- <div id="body-loading"> <span> ... Loading ...</span> </div> --}}
+
+    <div id="page-loading-animation">
+        <div>G</div>
+        <div>N</div>
+        <div>I</div>
+        <div>D</div>
+        <div>A</div>
+        <div>O</div>
+        <div>L</div>
+    </div>
