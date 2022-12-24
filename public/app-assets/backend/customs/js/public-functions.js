@@ -159,7 +159,6 @@ function submitForm(form, callback) {
     });
 }
 
-
 $('body').on('click', '[data-toggle="tooltip"]', function() {
     $('body').find(`#${$(this).attr('aria-describedby')}`).remove();
     $(this).removeAttr('aria-describedby');

@@ -67,23 +67,7 @@ input:disabled {
     cursor: pointer;
 }
 
-#modal-view-image {
-    /* width: auto; */
-    min-width: 400px;
-    max-height: 80%;
-    position: fixed;
-    background: rgba(255, 255, 255, 0.67);
-    z-index: 99999;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, -50%);
-    padding: 25px;
-    box-shadow: 0 0 10px 10px #00000070;
-    display: none;
-}
-
 #modal-view-image img {
-    margin-top: 20px;
     box-shadow: 0 0 10px 10px #00000070;
 }
 
