@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Faker\Factory;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -86,7 +87,7 @@ class User extends Authenticatable
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value && file_exists('uploads/users/' . $value) ? "uploads/users/$value" : null,
+            get: fn ($value) => $value && Storage::disk('public')->exists( 'uploads/users/' . $value ) ? 'storage/uploads/users/' . $value : null,
         );
     }
 

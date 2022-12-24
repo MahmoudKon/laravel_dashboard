@@ -5,8 +5,8 @@ namespace App\Http\Services;
 use App\Models\Department;
 use Exception;
 
-class DepartmentService {
-
+class DepartmentService
+{
     public function handle($request, $id = null)
     {
         try {

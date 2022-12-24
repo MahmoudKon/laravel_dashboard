@@ -15,7 +15,7 @@
     font-size: 19px;
     font-weight: bolder;
     color: #000;
-    z-index: 1030;
+    z-index: 1029;
     animation: load .9s linear infinite;
 }
 
@@ -29,7 +29,7 @@
     right: 0;
     background-color: rgb(255, 255, 255);
     opacity: 0.8;
-    z-index: 1029;
+    z-index: 1028;
     height: 100%;
     transition: all .5s ease-in-out;
 }

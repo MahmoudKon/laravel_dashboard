@@ -44,7 +44,13 @@ class AnnouncementRequest extends FormRequest
 			'url' => trans('inputs.url'),
 			'image' => trans('inputs.image'),
 			'open_type' => trans('inputs.open_type'),
-
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'open_type' => $this->open_type ?? 0,
+        ]);
     }
 }

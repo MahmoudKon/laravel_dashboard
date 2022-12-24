@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class Client extends User
 {
@@ -19,7 +20,7 @@ class Client extends User
     protected function image(): Attribute
 	{
 		return Attribute::make(
-			get: fn ($value) => $value && file_exists('uploads/clients/' . $value) ? "uploads/clients/$value" : null
+            get: fn ($value) => $value && Storage::disk('public')->exists( 'uploads/clients/' . $value ) ? 'storage/uploads/clients/' . $value : null,
 		);
 	}
 

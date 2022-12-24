@@ -7,17 +7,16 @@ use App\Traits\UploadFile;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class UserService {
+class UserService
+{
     use UploadFile;
 
     public function handle($request, $id = null)
     {
         try {
             DB::beginTransaction();
-                if(request()->image) {
-                    $image = $this->uploadImage(request()->image, 'users');
-                    $request['image'] = $image;
-                }
+
+                $this->saveFiles($request);
 
                 if (is_null($request['password'])) unset($request['password']);
 
@@ -28,6 +27,14 @@ class UserService {
             return $user;
         } catch (Exception $e) {
             return $e;
+        }
+    }
+
+    protected function saveFiles(&$request)
+    {
+        foreach (request()->allFiles() as $key => $value) {
+            if ($value && isset($request[$key]))
+                $request[$key] = $this->uploadImage($value, (new User)->getTable(), 200, 200);
         }
     }
 }

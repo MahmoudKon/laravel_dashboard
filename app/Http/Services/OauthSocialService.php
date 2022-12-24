@@ -10,8 +10,7 @@ class OauthSocialService
     public function handle($request, $id = null)
     {
         try {
-            $row = OauthSocial::updateOrCreate(['id' => $id], $request);
-            return $row;
+            return OauthSocial::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
             return $e;
         }

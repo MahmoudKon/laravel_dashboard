@@ -6,7 +6,9 @@ use App\Constants\SettingType;
 use App\Models\Setting;
 use Exception;
 
-class SettingService {
+class SettingService
+{
+    public $ContentType;
 
     public function __construct()
     {

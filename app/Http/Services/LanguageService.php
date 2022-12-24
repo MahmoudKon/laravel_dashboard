@@ -10,8 +10,7 @@ class LanguageService
     public function handle($request, $id = null)
     {
         try {
-            $row = Language::updateOrCreate(['id' => $id], $request);
-            return $row;
+            return Language::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
             return $e;
         }

@@ -22,13 +22,12 @@ class UserFactory extends Factory
     {
         DB::select("DELETE FROM `users` WHERE `id` > 1");
         return [
-            'name'                  => $this->faker->name(),
-            'email'                 => $this->faker->unique()->safeEmail(),
-            'password'              => 123,
-            'department_id'         => Department::inRandomOrder()->first()->id,
-            'email_verified_at'     => now(),
-            'remember_token'        => Str::random(10),
-            'image'                => $this->faker->imageUrl(300, 300, 'cats'),
+            'name'              => $this->faker->name(),
+            'email'             => $this->faker->unique()->safeEmail(),
+            'password'          => 123,
+            'department_id'     => Department::inRandomOrder()->first()->id,
+            'email_verified_at' => now(),
+            'remember_token'    => Str::random(10)
         ];
     }
 

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
     {
         session()->flush();
         cache()->flush();
-        $truncate_tables = ['emails'];
+        $truncate_tables = ['emails', 'social_accounts', 'announcements'];
 
         foreach ($truncate_tables as $table) truncateTables($table);
 
@@ -37,9 +37,16 @@ class DatabaseSeeder extends Seeder
         $this->call(SuperadminSeeder::class);
         $this->call(ContentTypeSeeder::class);
         $this->call(SettingSeeder::class);
-        Announcement::factory(30)->create();
 
         $images = $this->GetApiImage('people');
+
+        Announcement::factory(30)->create()->each(function ($user) use($images) {
+            try {
+                $index = array_rand($images);
+                $user->update(['image' => $this->uploadApiImage($images[$index]['src']['medium'], 'announcements')]);
+            } catch (Exception $e) {}
+        });
+
         User::factory(30)->create()->each(function ($user) use($images) {
             try {
                 $index = array_rand($images);

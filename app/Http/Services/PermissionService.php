@@ -6,7 +6,8 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 
-class PermissionService {
+class PermissionService
+{
     public function handle($request, $id = null)
     {
         try {

@@ -15,8 +15,7 @@ class ClientService
         try {
             $this->saveFiles($request);
 
-            $row = Client::updateOrCreate(['id' => $id], $request);
-            return $row;
+            return Client::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
             return $e;
         }

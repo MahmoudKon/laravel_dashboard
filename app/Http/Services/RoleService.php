@@ -5,7 +5,8 @@ namespace App\Http\Services;
 use Exception;
 use Spatie\Permission\Models\Role;
 
-class RoleService {
+class RoleService
+{
     public function handle($request, $id = null)
     {
         try {

@@ -5,13 +5,12 @@ namespace App\Http\Services;
 use Exception;
 use App\Models\Governorate;
 
-class GovernorateService {
-
+class GovernorateService
+{
     public function handle($request, $id = null)
     {
         try {
-            $row = Governorate::updateOrCreate(['id' => $id], $request);
-            return $row;
+            return Governorate::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
             return $e;
         }

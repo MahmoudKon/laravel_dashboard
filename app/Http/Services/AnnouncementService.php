@@ -13,14 +13,19 @@ class AnnouncementService
     public function handle($request, $id = null)
     {
         try {
-            if( isset($request['image']) && $request['image'] )
-                $request['image'] = $this->uploadImage($request['image'], 'announcements');
+            $this->saveFiles($request);
 
-            $request['open_type'] = $request['open_type'] ?? false;
-            $row = Announcement::updateOrCreate(['id' => $id], $request);
-            return $row;
+            return Announcement::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
             return $e;
+        }
+    }
+
+    protected function saveFiles(&$request)
+    {
+        foreach (request()->allFiles() as $key => $value) {
+            if ($value && isset($request[$key]))
+                $request[$key] = $this->uploadImage($value, (new Announcement)->getTable(), 200, 200);
         }
     }
 }

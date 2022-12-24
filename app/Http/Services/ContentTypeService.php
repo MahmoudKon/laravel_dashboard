@@ -5,8 +5,8 @@ namespace App\Http\Services;
 use App\Models\ContentType;
 use Exception;
 
-class ContentTypeService {
-
+class ContentTypeService
+{
     public function handle($request, $id = null)
     {
         try {

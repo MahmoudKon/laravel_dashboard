@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -174,8 +175,7 @@ function truncateTables($tables)
 {
     foreach (convertToArray($tables) as $table) {
         Schema::disableForeignKeyConstraints();
-            if (File::isDirectory(public_path("uploads/$table")))
-                File::deleteDirectory(public_path("uploads/$table"));
+            Storage::disk('public')->deleteDirectory("uploads/$table");
 
             if (Schema::hasTable($table)) {
                 DB::table($table)->truncate();

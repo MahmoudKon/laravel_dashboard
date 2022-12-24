@@ -18,10 +18,10 @@ class EmailFactory extends Factory
     public function definition()
     {
         return [
-            'subject' => $this->faker->text(100),
-            'body'    => $this->faker->text(400),
-            'to'      => User::inRandomOrder()->take(rand(1,3))->pluck('email')->implode(','),
-            'cc'      => User::inRandomOrder()->take(rand(1,3))->pluck('email')->implode(','),
+            'subject'     => $this->faker->text(100),
+            'body'        => $this->faker->text(400),
+            'to'          => User::inRandomOrder()->take(rand(1,3))->pluck('email')->implode(','),
+            'cc'          => User::inRandomOrder()->take(rand(1,3))->pluck('email')->implode(','),
             'notifier_id' => User::first()->id
         ];
     }

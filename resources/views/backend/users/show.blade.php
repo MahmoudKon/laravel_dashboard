@@ -1,3 +1,9 @@
+<div class="mb-2 d-flex justify-content-between">
+    @if (canUser('users-edit'))
+        <a href="{{ routeHelper('users.edit', $row) }}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> @lang('buttons.edit') </a>
+    @endif
+</div>
+
 <div class="d-flex">
     <img src="{{ asset($row->image) }}" class="img-thumbnail preview-modal-image">
 
@@ -10,11 +16,7 @@
                 </tr>
                 <tr>
                     <th>@lang('inputs.name')</th>
-                    <th>
-                        <a href="{{ routeHelper('users.edit', $row->id) }}" data-toggle="tooltip" data-original-title="Edit User Details">
-                            {{ $row->name }}
-                        </a>
-                    </th>
+                    <th>{{ $row->name }}</th>
                 </tr>
                 <tr>
                     <th>@lang('inputs.email')</th>

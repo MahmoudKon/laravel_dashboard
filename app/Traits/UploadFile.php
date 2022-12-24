@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
@@ -13,19 +14,13 @@ trait UploadFile
     {
         $path = $this->checkFolderIsExists($folder);
         $name = $file->hashName();
-        if ($width != null && $height != null)
-            Image::make($file)->resize($width, $height)->save("$path{$name}");
-        else
-            $file->move($path, $name);
-        return $get_full_path ? $this->getPath($folder, $name) : $name;
-    }
 
-    public function uploadFile(UploadedFile $file, $folder, $get_full_path = false)
-    {
-        $path = $this->checkFolderIsExists($folder);
-        $name = $file->hashName();
-        $file->move($path, $name);
-        return $get_full_path ? $this->getPath($folder, $name) : $name;
+        $content = stripos($file->getMimeType(), 'image') !== false
+                    ? Image::make($file)->resize($width, $height)->stream()
+                    : $file->get();
+
+        Storage::disk('public')->put($path.$name, $content, 'public');
+        return $get_full_path ? 'storage/'.$this->getPath($folder, $name) : $name;
     }
 
     /**
@@ -47,8 +42,7 @@ trait UploadFile
         $name = time().rand(1,10000000).".$extension";
         $contents = file_get_contents($url);
         $path = $this->checkFolderIsExists($folder);
-        file_put_contents("$path/$name", $contents);
-
+        Storage::disk('public')->put($path.$name, $contents, 'public');
         return $name;
     }
 
@@ -82,9 +76,9 @@ trait UploadFile
 
     public function videoImagePreview($video, $folder)
     {
-        $path = $this->checkFolderIsExists($folder);
+        $path = Storage::disk('public')->getConfig()['root'] .'/'. $this->checkFolderIsExists($folder);
         $image  = time().'.png';
-        $command = 'ffmpeg -ss 00:00:02 -i ' . $path.$video . ' -vframes 1 -q:v 2 ' . $path.$image . '';
+        $command = 'ffmpeg -ss 00:00:02 -i ' . $video . ' -vframes 1 -q:v 2 ' . $path.$image . '';
         $command = str_replace('\\', '/', $command);
         exec($command);
         return $image;
@@ -98,12 +92,12 @@ trait UploadFile
     */
     protected function checkFolderIsExists($folder)
     {
-        $path =  public_path($this->getPath($folder));
+        $path =  storage_path($this->getPath($folder));
 
         if (!File::exists($path))
             File::makeDirectory($path, 0777, true);
 
-        return $path;
+        return $this->getPath($folder);
     }
 
     protected function getPath($folder, $file_name = '')

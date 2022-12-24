@@ -5,13 +5,12 @@ namespace App\Http\Services;
 use Exception;
 use App\Models\City;
 
-class CityService {
-
+class CityService
+{
     public function handle($request, $id = null)
     {
         try {
-            $row = City::updateOrCreate(['id' => $id], $request);
-            return $row;
+            return City::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
             return $e;
         }

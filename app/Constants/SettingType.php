@@ -152,14 +152,11 @@ class SettingType {
                 break;
 
             case self::IMAGE:
-                [$width, $height] = getimagesize($request['value']);
-                $response = $this->uploadImage($request['value'], 'settings', $width, $height, true);
-                break;
-
             case self::AUDIO:
             case self::VIDEO:
             case self::FILE:
-                $response = $this->uploadImage($request['value'], 'settings', NUll, NULL, true);
+                [$width, $height] = getimagesize($request['value']);
+                $response = $this->uploadImage($request['value'], 'settings', $width, $height, true);
                 break;
 
             case self::WEEKEND_DAYS:

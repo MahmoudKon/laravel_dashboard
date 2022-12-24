@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\OauthSocial;
 use App\Models\SocialAccount;
 use App\Models\User;
+use Exception;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialLoginController extends Controller
 {
     public function redirectToProvider(String $provider) {
-        if (! $this->checkProviderExists($provider))
+        if ( ! $this->checkProviderExists($provider))
             return back();
 
         return Socialite::driver($provider)->redirect();
@@ -22,25 +23,25 @@ class SocialLoginController extends Controller
             $provider = $this->getProvider();
             $social_user = Socialite::driver($provider)->user();
 
-            if ( $this->checkSocialAccountExists($provider, $social_user->getId()) )
+            if ( $this->checkSocialAccountExists($social_user->getId()) )
                 return redirect()->route(ROUTE_PREFIX.'/');
 
             $this->checkOrCreateUser($provider, $social_user);
             return redirect()->route(ROUTE_PREFIX.'/');
 
         }catch(\Exception $e){
-            return redirect()->route('login');
+            throw new Exception($e->getMessage());
         }
     }
 
     protected function checkProviderExists($provider)
     {
-        if (! isset( config('services')[$provider] )) {
+        if ( ! isset( config('services')[$provider] )) {
             session()->flash('warning', "This service '$provider' is not configured");
             return false;
         }
 
-        if (! OauthSocial::active()->where('name', $provider)->exists()) {
+        if ( ! OauthSocial::active()->where('name', $provider)->exists()) {
             session()->flash('error', "This Platform '$provider' Not Exists In Database");
             return false;
         }
@@ -57,21 +58,17 @@ class SocialLoginController extends Controller
         return $provider ?? last( explode('/', $prev_url) );
     }
 
-    protected function checkSocialAccountExists($provider, $provider_id)
+    protected function checkSocialAccountExists($provider_id)
     {
         // First Find Social Account
-        $account = SocialAccount::where([
-                        'provider_name' => $provider,
-                        'provider_id'   => $provider_id
-                    ])->first();
+        $account = SocialAccount::with('user')->where('provider_id', $provider_id)->first();
 
-        // If Social Account Exist then Find User and Login
-        if($account){
-            auth()->login($account->user);
-            return true;
-        }
+        // If Social Account Not Exist Or Not Has User
+        if(!$account || !$account->user) return false;
 
-        return false;
+        // If Social Account Exist And Ha User Then Login
+        auth()->login($account->user);
+        return true;
     }
 
     protected function checkOrCreateUser($provider, $social_user)
@@ -87,11 +84,7 @@ class SocialLoginController extends Controller
         ]);
 
         // Create Social Accounts
-        $user->socialAccounts()->create([
-            'provider_id'   => $social_user->getId(),
-            'provider_name' => $provider
-        ]);
-
+        $user->socialAccounts()->firstOrCreate(['provider_id' => $social_user->getId()], ['provider_name' => $provider]);
         // Login
         auth()->login($user);
     }

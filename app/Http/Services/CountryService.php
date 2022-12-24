@@ -5,8 +5,8 @@ namespace App\Http\Services;
 use App\Models\Country;
 use Exception;
 
-class CountryService {
-
+class CountryService
+{
     public function handle($request, $id = null)
     {
         try {

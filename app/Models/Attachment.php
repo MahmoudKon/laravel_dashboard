@@ -6,6 +6,7 @@ use App\Traits\UploadFile;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
 {
@@ -23,7 +24,8 @@ class Attachment extends Model
     protected function attachment(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value && file_exists('uploads/emails/' . $value) ? "uploads/emails/$value" : null,
+            get: fn ($value) => $value && Storage::disk('public')->exists( 'uploads/emails/' . $value ) ? 'storage/uploads/emails/' . $value : null,
+
         );
     }
 

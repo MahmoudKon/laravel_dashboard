@@ -30,6 +30,8 @@ php artisan migrate --seed
 
 ## Run project
 ```
+php artisan queue:work
+php artisan storage:link
 php artisan serve
 ```
 
