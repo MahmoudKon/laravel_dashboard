@@ -15,14 +15,11 @@ class UsersImport implements ToModel, WithHeadingRow
         return User::firstOrCreate([
             'email' => $row['email']
         ], [
-            'name'                => $row['name'],
-            'email'               => $row['email'],
-            'password'            => 123,
-            'department_id'       => $this->getDepartmentID($row['department']),
-            'annual_credit'       => $row['annual_credit'],
-            'finger_print_id'     => $row['finger_print_id'],
-            'salary_per_monthly'  => $row['salary'],
-            'insurance_deduction' => $row['insurance_deduction']
+            'name'              => $row['name'],
+            'email'             => $row['email'],
+            'password'          => 123,
+            'department_id'     => $this->getDepartmentID($row['department']),
+            'email_verified_at' => now(),
         ]);
     }
 

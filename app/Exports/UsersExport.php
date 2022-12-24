@@ -14,6 +14,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles, WithMapping, WithEvents
 {
+    public $index = 0;
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -24,8 +25,9 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
 
     public function map($user): array
     {
+        $this->index ++;
         return [
-            $user->finger_print_id,
+            $this->index,
             $user->name,
             $user->email,
             $user->department->title ?? '',
@@ -34,7 +36,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
 
     public function headings(): array
     {
-        return ["Finger ID", "Name", "Email", "Behalf", "Aggregator", "Department", "Annual Credit", "Salary", "Insurance Deduction"];
+        return ['#', 'Name', 'Email', 'Department'];
     }
 
     public function styles(Worksheet $sheet)
@@ -58,7 +60,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
         return [
             AfterSheet::class => function(AfterSheet $event) {
                 $sheet = $event->sheet;
-                $sheet->getStyle('A1:I1')->getFill()->applyFromArray(['fillType' => 'solid','rotation' => 5, 'color' => ['rgb' => 'cccccc'],]);
+                $sheet->getStyle('A1:D1')->getFill()->applyFromArray(['fillType' => 'solid','rotation' => 5, 'color' => ['rgb' => 'cccccc'],]);
                 $sheet->getDelegate()->getRowDimension(1)->setRowHeight(40);
             },
         ];
