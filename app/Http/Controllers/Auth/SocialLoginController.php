@@ -84,7 +84,7 @@ class SocialLoginController extends Controller
         ]);
 
         // Create Social Accounts
-        $user->socialAccounts()->firstOrCreate(['provider_id' => $social_user->getId()], ['provider_name' => $provider]);
+        $user->socialAccounts()->firstOrCreate(['provider_id' => $social_user->getId(), 'provider_name' => $provider]);
         // Login
         auth()->login($user);
     }

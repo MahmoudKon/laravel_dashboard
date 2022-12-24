@@ -33,22 +33,21 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID', 'Iv1.0455ac100c34e2ad'),
         'client_secret' => env('GITHUB_CLIENT_SECRET', '118569615262fb04a8c20976d367870b375b144a'),
-        'redirect' => url(env('SOCIALITE_REDIRECT', "auth/socialite/callback")),
+        'redirect' => env('SOCIALITE_REDIRECT'),
     ],
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID', "1079002974610-aav9o2gv8kpas62nleq6l9f37gf0oc2f"),
         'client_secret' => env('GOOGLE_CLIENT_SECRET', "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"),
-        'redirect' => url(env('SOCIALITE_REDIRECT', "auth/socialite/callback")),
+        'redirect' => env('SOCIALITE_REDIRECT'),
     ],
     'gitlab' => [
         'client_id' => env('GITLAB_CLIENT_ID'),
         'client_secret' => env('GITLAB_CLIENT_SECRET'),
-        'redirect' => url(env('SOCIALITE_REDIRECT', "auth/socialite/callback")),
+        'redirect' => env('SOCIALITE_REDIRECT'),
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => url(env('SOCIALITE_REDIRECT', "auth/socialite/callback")),
+        'redirect' => env('SOCIALITE_REDIRECT'),
     ],
-
 ];
