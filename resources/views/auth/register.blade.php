@@ -70,7 +70,15 @@
     <button type="submit" class="btn btn-info btn-lg btn-block"><i class="fa fa-unlock-alt"></i> Register</button>
 </form>
 
-<div class="card-footer">
+<div class="card-footer d-lg-flex justify-content-between">
+    <p class="text-left m-0">
+        @foreach (\App\Models\OauthSocial::active()->get() as $social)
+            <a href="{{ route('auth.provider', $social->name) }}" class="btn btn-sm login-provider" style="color: #fff; background-color: {{ $social->color }}; border-color: #fff">
+                <i class="{{ $social->icon }}"></i> {{ $social->display_name }}
+            </a>
+        @endforeach
+    </p>
+
     <p class="text-center m-0">Already have an account ? <a href="{{ route('login') }}" class="card-link text-bold-500">Login</a></p>
 </div>
 @endsection

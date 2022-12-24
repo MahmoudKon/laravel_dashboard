@@ -23,9 +23,9 @@ Route::group([], function () {
     Route::post('lockscreen', [App\Http\Controllers\LockScreenController::class, 'unlock'])->name('unlock');
 
     Route::get('auth/provider/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('auth.provider');
-    Route::get('auth/socialite/callback', [SocialLoginController::class, 'providerCallback']);
+    Route::get('auth/socialite/callback', [SocialLoginController::class, 'providerCallback'])->name('auth.callback');
 
-    Auth::routes(['register' => false]);
+    Auth::routes(['register' => true]);
 });
 
 // Route::middleware('auth:client')->namespace('Frontend')->prefix('client')->as('client')->group(function() {

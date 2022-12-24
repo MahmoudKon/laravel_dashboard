@@ -57,7 +57,11 @@
 
     <button type="submit" class="btn btn-info btn-lg btn-block"><i class="fa fa-unlock-alt"></i> Reset Password</button>
 </form>
-<p class="text-center"> Go To<a href="{{ route('login') }}" class="card-link">Login ?</a> </p>
+
+<div class="card-footer d-lg-flex justify-content-between">
+    <p class="text-right m-0"> Go To <a href="{{ route('login') }}" class="card-link text-bold-500">Login</a>? </p>
+</div>
+
 @endsection
 
 
