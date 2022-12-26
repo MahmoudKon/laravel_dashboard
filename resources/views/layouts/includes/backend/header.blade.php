@@ -80,7 +80,7 @@
 
     {{-- <div id="body-loading"> <span> ... Loading ...</span> </div> --}}
 
-    <div id="page-loading-animation">
+    {{-- <div id="page-loading-animation">
         <div>G</div>
         <div>N</div>
         <div>I</div>
@@ -88,4 +88,13 @@
         <div>A</div>
         <div>O</div>
         <div>L</div>
+    </div> --}}
+
+    <div id="page-loading-animation">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
+
+
+
