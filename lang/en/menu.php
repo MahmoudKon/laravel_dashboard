@@ -17,6 +17,9 @@ return [
     'settings' => 'Settings',
     'setting' => 'Setting',
 
+    // DATABASE
+    'database' => 'Database',
+
     // SIMULATE
     'simulate' => 'Simulate',
     'commands' => 'Commands',

@@ -17,6 +17,9 @@ return [
     'settings' => 'الإعدادات',
     'setting' => 'إعداد',
 
+    // DATABASE
+    'database' => 'قاعدة البيانات',
+
     // SIMULATE
     'simulate' => 'محاكاة',
 
