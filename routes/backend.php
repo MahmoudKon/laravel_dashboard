@@ -12,15 +12,20 @@ Route::controller('SimulateController')->middleware(['role:Super Admin'])->group
 
 Route::get('file-manager', 'FileManagerController@index')->name('file.manager');
 
-Route::controller('RouteController')->group(function () {
-    Route::get('routes','index')->name('routes.index');
-    Route::get('routes/download','download')->name('routes.download');
-    Route::get('routes/sync-routes','syncRoutes')->name('routes.syncRoutes');
-    Route::get('routes/sync-permissions','syncPermissions')->name('routes.syncPermissions');
-    Route::get('routes/{route}/edit','edit')->name('routes.edit');
-    Route::put('routes/{route}/update','update')->name('routes.update');
-    Route::get('routes/assign-roles','assign')->name('routes.assign');
-    Route::post('routes/assign-roles','assignRoles')->name('routes.assign-roles');
+Route::controller('RouteController')->as('routes.')->prefix('routes')->group(function () {
+    Route::get('/','index')->name('index');
+    Route::get('download','download')->name('download');
+    Route::get('sync-routes','syncRoutes')->name('syncRoutes');
+    Route::get('sync-permissions','syncPermissions')->name('syncPermissions');
+    Route::get('{route}/edit','edit')->name('edit');
+    Route::put('{route}/update','update')->name('update');
+    Route::get('assign-roles','assign')->name('assign');
+    Route::post('assign-roles','assignRoles')->name('assign-roles');
+});
+
+Route::controller('DatabaseController')->as('database.')->prefix('database')->group(function () {
+    Route::get('/','index')->name('index');
+    Route::get('{table}','show')->name('show');
 });
 
 

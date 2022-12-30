@@ -49,7 +49,6 @@ function rows(form = null) {
         },
         error: function(jqXHR) {
             handleErrors(jqXHR);
-            // $('#load-data').removeClass('load');
             if (form) form.parent().removeClass('load');
         },
         complete: function () { $('#load-data').removeClass('load'); initPluginElements();}

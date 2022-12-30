@@ -95,6 +95,11 @@ class MenuSeeder extends Seeder
                 'icon' => "fas fa-gear",
                 'parent_id' => $Configurations
             ], [
+                'name' => ["en" => "Database", "ar" => "قاعدة البيانات"],
+                'route' => "database.index",
+                'icon' => "fa-solid fa-database",
+                'parent_id' => $Configurations
+            ], [
                 'name' => ["en" => "Menus", "ar" => "القوائم"],
                 'route' => "menus.index",
                 'icon' => "fas fa-bars",

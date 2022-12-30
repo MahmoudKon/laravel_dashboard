@@ -93,11 +93,12 @@ function getTableDetails(string $table, bool $with_relations = true)
 
         array_push($data['columns'], $value);
         if ($value->Key == 'MUL' && $with_relations) {
-            $related_table = Str::plural(str_replace('_id', '', $value->Field));
-            $data['relations'][$related_table] = getTableDetails($related_table, false);
+            $related_table = getSpecificRelation($table, $value->Field);
+            if (! $related_table) continue;
+            $data['relations'][$related_table->fk_table] = getTableDetails($related_table->fk_table, false);
+
         }
     }
-
     return $data;
 }
 
@@ -120,7 +121,6 @@ function getFirstStringColumn(array $columns) :string
     return $columns[0]->Field;
 }
 
-
 /**
  * getRelationsDetails
  *
@@ -136,6 +136,22 @@ function getRelationsDetails($table) :array
                             AND `table_name` = '$table' AND `referenced_column_name` IS NOT NULL"
                     );
     return array_combine(collect($data)->pluck('column_name')->toArray(), $data);
+}
+
+
+/**
+ * getRelationsDetails
+ *
+ *  This query to get specific fk column details
+ *
+ * @param  string $table
+ * @param  string $column
+ * @return ?object
+ */
+function getSpecificRelation($table, string $column) :?object
+{
+    $relations = getRelationsDetails($table);
+    return $relations[$column] ?? null;
 }
 
 /**
