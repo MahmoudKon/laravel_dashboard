@@ -1,6 +1,6 @@
 <div class="card-header bg-primary">
     <h4 class="card-title white text-capitalize text-center">
-        <i class="fa fa-info fa-sm"></i><span class="mx-1">{{ str_replace('_', ' ', $table) }} Table</span>
+        <i class="fa fa-info-circle"></i><span class="mx-1">{{ str_replace('_', ' ', $table) }} Table</span>
     </h4>
 </div>
 
@@ -56,7 +56,7 @@
 
 @if ( count($row['relations']) )
     <div class="card-content collpase show">
-        <h4 class="py-1 text-center bg-blue-grey bg-darken-1 text-white"> <i class="fas fa-link"></i> Relations </h4>
+        <h4 class="py-1 text-center bg-blue-grey bg-darken-1 text-white"> <i class="fa-solid fa-diagram-project"></i> Relations </h4>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-sm table-striped table-hover mb-0">

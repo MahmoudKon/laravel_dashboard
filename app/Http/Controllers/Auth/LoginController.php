@@ -52,12 +52,8 @@ class LoginController extends Controller
 
     public function logout() {
         Cache::forget('user-is-online-'.auth()->id());
+        session()->forget('locked');
         auth()->logout();
         return redirect('/login');
-    }
-
-    protected function loggedOut() {
-        session()->forget('locked');
-        return redirect(env('APP_URL'));
     }
 }
