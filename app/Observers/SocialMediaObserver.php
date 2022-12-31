@@ -55,13 +55,7 @@ class SocialMediaObserver
 
     protected function setKey(&$social_medias, $social_media)
     {
-        $social_medias[$social_media->id] = [
-                                                'id'    => $social_media->id,
-                                                'name'  => $social_media->name,
-                                                'url'   => $social_media->url,
-                                                'icon'  => $social_media->icon,
-                                                'color' => $social_media->color,
-                                            ];
+        $social_medias[$social_media->id] = $social_media->getTemplate(true);
         ksort($social_medias);
     }
 

@@ -27,7 +27,7 @@ class OauthSocial extends Model
     public function getTemplate($use_route = false)
     {
         $route = $use_route ? route('auth.provider', $this->name) : 'javascript::void(0)';
-        return "<a href='$route' class='btn btn-sm login-provider' style='color: #fff; background-color: $this->color; border: unset; font-weight: bold'>
+        return "<a href='$route' class='btn btn-sm login-provider' data-toggle='tooltip' title='$this->display_name' style='background-color: $this->color !important; color: #fff; border-color: $this->color; font-weight: bold'>
                     <i class='$this->icon' style='padding: 0 5px;'></i></i> $this->display_name
                 </a>";
     }

@@ -25,8 +25,9 @@ class SocialMedia extends Model
 
     public function getTemplate()
     {
-        return "<a class='btn btn-sm target='_blank' href='$this->url' style='background-color: $this->color !important; color: #fff; border: unset; font-weight: bold'>
-                    <i class='$this->icon' style='padding: 0 5px;'></i>
+        return "<a class='btn btn-sm' target='_blank' href='$this->url' data-toggle='tooltip' title='$this->name'
+                    style='background-color: $this->color !important; color: #fff; border-color: $this->color; font-weight: bold'>
+                    <i class='$this->icon' style='padding: 0 5px'></i>
                     $this->name
                 </a>";
     }

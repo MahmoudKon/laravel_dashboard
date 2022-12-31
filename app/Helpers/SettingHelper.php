@@ -38,8 +38,11 @@ class SettingHelper
     public static function setSocialMedias() :array
     {
         return Cache::remember('social_medias', 60 * 60 * 24, function () {
-                    $rows = SocialMedia::isVisible()->select('id', 'name', 'url', 'icon', 'color')->get()->toArray();
-                    return array_combine( array_column($rows, 'id'), $rows );
+                    $rows = [];
+                    SocialMedia::isVisible()->select('id', 'name', 'url', 'icon', 'color')->get()->map(function($SocialMedia) use(&$rows) {
+                        $rows[$SocialMedia->id] = $SocialMedia->getTemplate();
+                    });
+                    return $rows;
                 });
     }
 
