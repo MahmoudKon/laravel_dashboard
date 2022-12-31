@@ -25,8 +25,10 @@ class {{ class }}
     protected function saveFiles(&$request)
     {
         foreach (request()->allFiles() as $key => $value) {
-            if ($value && isset($request[$key]))
-                $request[$key] = $this->uploadImage($value, (new {{ model }})->getTable(), null, null);
+            if ($value && isset($request[$key])) {
+                [$width, $height] = getimagesize($value);
+                $request[$key] = $this->uploadImage($value, (new {{ model }})->getTable(), $width, $height);
+            }
         }
     }
 }

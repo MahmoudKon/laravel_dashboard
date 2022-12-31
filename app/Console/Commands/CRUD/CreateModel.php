@@ -163,9 +163,14 @@ class CreateModel extends GeneratorCommand
                 $this->methods .= "\n\t}\n";
 
             } elseif ( checkColumnIsFile($column->Comment) ) {
+                $storage_namespace = "use Illuminate\Support\Facades\Storage;\n";
+                if ( stripos($storage_namespace, $this->namespace) === false )
+                    $this->namespace .= $storage_namespace;
+
                 $this->methods .= "\n\tprotected function $column->Field(): Attribute\n\t{";
                 $this->methods .= "\n\t\treturn Attribute::make(";
                 $this->methods .= "\n\t\t\tget: fn (\$value) => \$value && file_exists('uploads/$this->table/' . \$value) ? \"uploads/$this->table/\$value\" : null";
+                $this->methods .= "\n\t\t\tget: fn (\$value) => \$value && Storage::disk('public')->exists( 'uploads/$this->table/' . \$value ) ? 'storage/uploads/$this->table/' . \$value : null,";
                 $this->methods .= "\n\t\t);";
                 $this->methods .= "\n\t}\n";
             }

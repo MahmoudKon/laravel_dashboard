@@ -203,7 +203,7 @@ function activeLanguages()
 
     $languages = Cache::get('active_languages') ?? config('laravellocalization.supportedLocales');
     foreach ($languages as $lang => $info)
-        $array[$info['name']] = $lang;
+        $array[$info['native']] = $lang;
 
     file_put_contents(config_path('languages.php'), "<?php \n\nreturn " . var_export($array, true) . ";");
 }

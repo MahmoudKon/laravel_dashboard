@@ -15,7 +15,7 @@ trait UploadFile
         $path = $this->checkFolderIsExists($folder);
         $name = $file->hashName();
 
-        $content = stripos($file->getMimeType(), 'image') !== false
+        $content = stripos($file->getMimeType(), 'image') !== false && $width && $height
                     ? Image::make($file)->resize($width, $height)->stream()
                     : $file->get();
 
