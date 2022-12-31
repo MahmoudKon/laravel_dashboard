@@ -92,4 +92,8 @@ return [
 
 	// OAUTH_SOCIALS
 	'display_name' => 'Display Name',
+
+
+	// SOCIAL_MEDIAS
+	'is_visible' => 'Is Visible',
 ];

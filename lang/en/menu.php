@@ -39,6 +39,10 @@ return [
     'oauth_socials' => 'Oauth Socials',
     'oauth_social' => 'Oauth Social',
 
+    // SOCIAL MEDIAS
+    'social_medias' => 'Social Medias',
+    'social_media' => 'Social Media',
+
     // ROUTES
     'routes' => 'Routes',
     'route' => 'Route',

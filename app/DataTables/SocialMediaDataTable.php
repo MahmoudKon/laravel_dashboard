@@ -2,17 +2,17 @@
 
 namespace App\DataTables;
 
-use App\Models\OauthSocial;
+use App\Models\SocialMedia;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Column;
 use App\Traits\DatatableHelper;
 use App\View\Components\ToggleColumn;
 
-class OauthSocialDataTable extends DataTable
+class SocialMediaDataTable extends DataTable
 {
     use DatatableHelper;
 
-    protected $table = 'oauth_socials';
+    protected $table = 'social_medias';
 
     /**
      * Build DataTable class.
@@ -24,25 +24,25 @@ class OauthSocialDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('check', 'backend.includes.tables.checkbox')
-            ->editColumn('action', 'backend.includes.buttons.table-buttons')
-            ->editColumn('active', function(OauthSocial $row) {
-                $view = new ToggleColumn($row->id, 'active', $row->active);
+            ->editColumn('is_visible', function(SocialMedia $row) {
+                $view = new ToggleColumn($row->id, 'is_visible', $row->is_visible);
                 return $view->render()->with($view->data());
             })
-            ->editColumn('icon', function(OauthSocial $row) {
+            ->addColumn('url', function(SocialMedia $row) {
                 return $row->getTemplate();
             })
-            ->rawColumns(['action', 'check', 'active', 'icon']);
+            ->addColumn('check', 'backend.includes.tables.checkbox')
+            ->editColumn('action', 'backend.includes.buttons.table-buttons')
+            ->rawColumns(['action', 'check', 'is_visible', 'url']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\OauthSocial $model
+     * @param \App\Models\SocialMedia $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(OauthSocial $model)
+    public function query(SocialMedia $model)
     {
         return $model->newQuery();
     }
@@ -55,7 +55,7 @@ class OauthSocialDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-        ->setTableId('oauth_socials-table')
+        ->setTableId('social_medias-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         ->dom('Bfrtip')
@@ -70,7 +70,7 @@ class OauthSocialDataTable extends DataTable
         ])
         ->responsive(true)
         ->parameters(
-            $this->initComplete('1,2')
+            $this->initComplete('')
         );
     }
 
@@ -83,10 +83,9 @@ class OauthSocialDataTable extends DataTable
     {
         return [
             Column::make('check')->title('<label class="skin skin-square p-0 m-0"><input data-color="red" type="checkbox" class="switchery" id="check-all" style="width: 25px"></label>')->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(15)->addClass('text-center')->footer(trans('buttons.delete')),
-			Column::make('display_name')->title(trans('inputs.display_name')),
 			Column::make('name')->title(trans('inputs.name')),
-			Column::make('icon')->title(trans('inputs.icon')),
-			Column::make('active')->title(trans('inputs.active')),
+			Column::make('url')->title(trans('inputs.url')),
+			Column::make('is_visible')->title(trans('inputs.is_visible')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->footer(trans('inputs.action'))->title(trans('inputs.action')),
         ];
     }
@@ -98,6 +97,6 @@ class OauthSocialDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'oauth_socials_' . date('YmdHis');
+        return 'social_medias_' . date('YmdHis');
     }
 }

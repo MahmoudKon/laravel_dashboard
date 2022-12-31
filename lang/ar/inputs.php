@@ -101,4 +101,8 @@ return [
 
 	// OAUTH_SOCIALS
 	'display_name' => 'إسم العرض',
+
+
+	// SOCIAL_MEDIAS
+	'is_visible' => 'قابل للعرض',
 ];

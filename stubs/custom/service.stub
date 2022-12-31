@@ -15,8 +15,7 @@ class {{ class }}
         try {
             $this->saveFiles($request);
 
-            $row = {{ model }}::updateOrCreate(['id' => $id], $request);
-            return $row;
+            return {{ model }}::updateOrCreate(['id' => $id], $request);
         } catch (Exception $e) {
             return $e;
         }

@@ -40,6 +40,10 @@ return [
     'oauth_socials' => 'Oauth Socials',
     'oauth_social' => 'Oauth Social',
 
+    // SOCIAL MEDIAS
+    'social_medias' => 'وسائل التواصل الاجتماعي',
+    'social_media' => 'وسيلة التواصل الاجتماعي',
+
     // ROUTES
     'routes' => 'المسارات',
     'route' => 'مسار',

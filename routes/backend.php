@@ -68,14 +68,14 @@ Route::resource('settings','SettingController')->except('show');
 Route::controller('SettingController')->group(function () {
     Route::post('settings/type/input', 'getTypeInput')->name('settings.type.input');
     Route::post('settings/multidelete', 'multidelete')->name('settings.multidelete');
-    Route::any('settings/{setting}/column/{column}/toggle', 'columnToggle')->name('settings.column.toggle');
+    Route::post('settings/{setting}/column/{column}/toggle', 'columnToggle')->name('settings.column.toggle');
 });
 
 
 
 Route::resource('content_types','ContentTypeController')->except('show');
 Route::post('content_types/multidelete', 'ContentTypeController@multidelete')->name('content_types.multidelete');
-Route::any('content_types/{setting}/column/{column}/toggle', 'ContentTypeController@columnToggle')->name('content_types.column.toggle');
+Route::post('content_types/{setting}/column/{column}/toggle', 'ContentTypeController@columnToggle')->name('content_types.column.toggle');
 
 
 Route::controller('MenuController')->prefix('menus')->as('menus.')->group(function () {
@@ -109,7 +109,7 @@ Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.mu
 
 Route::resource('announcements', 'AnnouncementController');
 Route::post('announcements/multidelete', 'AnnouncementController@multidelete')->name('announcements.multidelete');
-Route::any('announcements/{announcement}/column/{column}/toggle', 'AnnouncementController@columnToggle')->name('announcements.column.toggle');
+Route::post('announcements/{announcement}/column/{column}/toggle', 'AnnouncementController@columnToggle')->name('announcements.column.toggle');
 Route::get('announcements/search/form', 'AnnouncementController@search')->name('announcements.search.form');
 
 
@@ -117,7 +117,7 @@ Route::controller('LanguageController')->as('languages.')->prefix('languages')->
     Route::get('/', 'index')->name('index');
     Route::get('{language}/edit', 'edit')->name('edit');
     Route::put('{language}', 'update')->name('update');
-    Route::any('{language}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
+    Route::post('{language}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
 });
 
 Route::resource('clients', 'ClientController');
@@ -129,4 +129,8 @@ Route::post('commands/call', 'CommandController@call')->name('commands.call');
 
 Route::resource('oauth_socials', 'OauthSocialController');
 Route::post('oauth_socials/multidelete', 'OauthSocialController@multidelete')->name('oauth_socials.multidelete');
-Route::any('oauth_socials/{oauth_social}/column/{column}/toggle', 'OauthSocialController@columnToggle')->name('oauth_socials.column.toggle');
+Route::post('oauth_socials/{oauth_social}/column/{column}/toggle', 'OauthSocialController@columnToggle')->name('oauth_socials.column.toggle');
+
+Route::resource('social_medias', 'SocialMediaController');
+Route::post('social_medias/multidelete', 'SocialMediaController@multidelete')->name('social_medias.multidelete');
+Route::post('social_medias/{oauth_social}/column/{column}/toggle', 'SocialMediaController@columnToggle')->name('social_medias.column.toggle');

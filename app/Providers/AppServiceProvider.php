@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Announcement::observe(\App\Observers\AnnouncementObserver::class);
         \App\Models\Language::observe(\App\Observers\LanguageObserver::class);
         \App\Models\Client::observe(\App\Observers\ClientObserver::class);
+        \App\Models\SocialMedia::observe(\App\Observers\SocialMediaObserver::class);
 
         Blade::directive('superAdmin', function() { return "<?php if (isSuperAdmin()) { ?>"; });
         Blade::directive('endsuperAdmin', function() { return "<?php } ?>"; });

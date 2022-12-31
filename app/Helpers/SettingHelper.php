@@ -5,6 +5,7 @@ namespace App\Helpers;
 use App\Models\Language;
 use App\Models\Menu;
 use App\Models\Setting;
+use App\Models\SocialMedia;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
@@ -14,22 +15,31 @@ class SettingHelper
 {
     public static function setSettingCache() :void
     {
-        $website_settings = $list_menus = $active_languages = [];
+        $website_settings = $list_menus = $active_languages = $social_medias = [];
 
         if (! app()->runningInConsole()) {
             $website_settings = self::setSettings();
+            $social_medias    = self::setSocialMedias();
             $list_menus       = self::setMenus();
             $active_languages = self::setLanguages();
         }
 
         self::setRoutePrefix($website_settings['route_prefix'] ?? '');
-        self::shareValues($website_settings, $list_menus, $active_languages);
+        self::shareValues($website_settings, $list_menus, $active_languages, $social_medias);
     }
 
     public static function setSettings() :array
     {
         return Cache::remember('website_settings', 60 * 60 * 24, function () {
                     return Setting::active()->autoload()->pluck('value', 'key')->toArray();
+                });
+    }
+
+    public static function setSocialMedias() :array
+    {
+        return Cache::remember('social_medias', 60 * 60 * 24, function () {
+                    $rows = SocialMedia::isVisible()->select('id', 'name', 'url', 'icon', 'color')->get()->toArray();
+                    return array_combine( array_column($rows, 'id'), $rows );
                 });
     }
 
@@ -67,7 +77,7 @@ class SettingHelper
         define('ROUTE_PREFIX', $prefix_route);
     }
 
-    public static function shareValues(array $website_settings, $list_menus, array $active_languages) :void
+    public static function shareValues(array $website_settings, $list_menus, array $active_languages, array $social_medias) :void
     {
         View::share([
             'website_settings'  => $website_settings,
@@ -76,7 +86,8 @@ class SettingHelper
             'successAudio'      => $website_settings['success_audio'] ?? '',
             'warrningAudio'     => $website_settings['warrning_audio'] ?? '',
             'notificationAudio' => $website_settings['notification_audio'] ?? '',
-            'settingLogo'       => $website_settings['logo'] ?? ''
+            'settingLogo'       => $website_settings['logo'] ?? '',
+            'social_medias'     => $social_medias
         ]);
     }
 }

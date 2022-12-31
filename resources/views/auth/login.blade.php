@@ -64,9 +64,7 @@
 <div class="card-footer d-lg-flex justify-content-between">
     <p class="text-left m-0">
         @foreach (\App\Models\OauthSocial::active()->get() as $social)
-            <a href="{{ route('auth.provider', $social->name) }}" class="btn btn-sm login-provider" style="color: #fff; background-color: {{ $social->color }}; border-color: #fff">
-                <i class="{{ $social->icon }}"></i> {{ $social->display_name }}
-            </a>
+            {!! $social->getTemplate(true) !!}
         @endforeach
     </p>
     @if (Route::has('register'))
