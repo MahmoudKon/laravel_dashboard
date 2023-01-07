@@ -1,4 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/app-assets/backend/build/css/main.css": "/app-assets/backend/build/css/main.css",
+    "/app-assets/backend/build/css/main-rtl.css": "/app-assets/backend/build/css/main-rtl.css",
+    "/app-assets/backend/build/css/main-ltr.css": "/app-assets/backend/build/css/main-ltr.css",
+    "/app-assets/backend/build/css/custom.css": "/app-assets/backend/build/css/custom.css",
+    "/app-assets/backend/build/js/main.js": "/app-assets/backend/build/js/main.js"
 }

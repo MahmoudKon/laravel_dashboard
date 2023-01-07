@@ -1,5 +1,5 @@
 <a class="heading-elements-toggle">
-    <i class="la la-ellipsis-h font-medium-3"></i>
+    <i class="fas fa la-ellipsis-h font-medium-3"></i>
 </a>
 <div class="heading-elements" style="top: 16px">
     <ul class="list-inline mb-0">
@@ -10,8 +10,8 @@
             </a>
         </li>
 
-        <li><a data-action="collapse" data-toggle="tooltip" class="text-white" title="@lang('title.minus-section')" ><i class="ft-minus"></i></a></li>
-        <li><a data-action="expand" data-toggle="tooltip" class="text-white" title="@lang('title.full-page')" ><i class="ft-maximize"></i></a></li>
-        <li><a data-action="close" data-toggle="tooltip" class="text-white" title="@lang('title.remove-section')" ><i class="ft-x"></i></a></li>
+        <li><a data-action="collapse" data-toggle="tooltip" class="text-white" title="@lang('title.minus-section')" ><i class="fas fa-minus"></i></a></li>
+        <li><a data-action="expand" data-toggle="tooltip" class="text-white" title="@lang('title.full-page')" ><i class="fas fa-maximize"></i></a></li>
+        <li><a data-action="close" data-toggle="tooltip" class="text-white" title="@lang('title.remove-section')" ><i class="fas fa-times"></i></a></li>
     </ul>
 </div>

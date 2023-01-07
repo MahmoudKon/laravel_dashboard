@@ -6,4 +6,3 @@
         </span>
     </div>
 </div>
- loading=""

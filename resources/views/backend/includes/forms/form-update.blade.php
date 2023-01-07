@@ -1,6 +1,6 @@
 <div class="card-header bg-primary">
     <h4 class="card-title white">
-        <i class="ft-edit"></i><span class="mx-1">{{ $title ?? trans('menu.edit-row', ['model' => trans('menu.'.getModel(true))]) }}</span>
+        <i class="fas fa-edit"></i><span class="mx-1">{{ $title ?? trans('menu.edit-row', ['model' => trans('menu.'.getModel(true))]) }}</span>
     </h4>
     @yield('back')
 </div>

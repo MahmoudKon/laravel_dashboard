@@ -11,9 +11,9 @@
         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
         <div class="heading-elements">
             <ul class="list-inline mb-0">
-                <li><a data-action="collapse" data-toggle="tooltip" title="@lang('title.minus-section')" ><i class="ft-minus"></i></a></li>
-                <li><a data-action="expand" data-toggle="tooltip" title="@lang('title.full-page')" ><i class="ft-maximize"></i></a></li>
-                <li><a data-action="close" data-toggle="tooltip" title="@lang('title.remove-section')" ><i class="ft-x"></i></a></li>
+                <li><a data-action="collapse" data-toggle="tooltip" title="@lang('title.minus-section')" ><i class="fas fa-minus"></i></a></li>
+                <li><a data-action="expand" data-toggle="tooltip" title="@lang('title.full-page')" ><i class="fas fa-maximize"></i></a></li>
+                <li><a data-action="close" data-toggle="tooltip" title="@lang('title.remove-section')" ><i class="fas fa-times"></i></a></li>
             </ul>
         </div>
     </div>
@@ -27,13 +27,13 @@
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <button class="btn bg-gradient-x2-grey-blue text-white btn-sm download-cropped" type="button">
-                                <i class="fa fa-download"></i> Download Cropped Image
+                                <i class="fas fa-download"></i> Download Cropped Image
                             </button>
                         </div>
 
                         <div class="custom-file">
                             <input type="file" class="custom-file-input cursor-pointer upload-image" id="upload-image" accept="image/*">
-                            <label class="custom-file-label" for="upload-image"><i class="fa fa-upload"></i> Choose file</label>
+                            <label class="custom-file-label" for="upload-image"><i class="fas fa-upload"></i> Choose file</label>
                         </div>
                     </div>
                 </fieldset>

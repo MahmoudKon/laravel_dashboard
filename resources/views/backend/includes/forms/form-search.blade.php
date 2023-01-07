@@ -1,7 +1,7 @@
 <div class="card px-2 pt-2 mb-0">
     <div class="card-header bg-blue-grey py-1">
         <h4 class="card-title white">
-            <i class="fa fa-search fa-sm"></i><span class="mx-1">{{ $title }}</span>
+            <i class="fas fa-search fa-sm"></i><span class="mx-1">{{ $title }}</span>
         </h4>
     </div>
 

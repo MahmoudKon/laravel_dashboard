@@ -50,7 +50,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <div class="docs-preview clearfix">
-                            <div class="img-preview preview-lg img-fluid"></div>
+                            <div class="img-preview preview-lg img-fluid" dir="ltr"></div>
                             {{-- <div class="img-preview preview-md img-fluid"></div>
                             <div class="img-preview preview-sm img-fluid"></div>
                             <div class="img-preview preview-xs img-fluid"></div> --}}

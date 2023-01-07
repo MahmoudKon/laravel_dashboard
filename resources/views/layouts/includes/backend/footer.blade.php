@@ -40,40 +40,11 @@
     </script>
 
     <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/vendors.min.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/select/select2.full.min.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/extended/maxlength/bootstrap-maxlength.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/toggle/bootstrap-switch.min.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/toggle/bootstrap-checkbox.min.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/forms/toggle/switchery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/ui/headroom.min.js') }}"></script>
-    {{-- ************** END VENDOR JS ************** --}}
-
-    {{-- ************** START FONTAWESOME JS ************** --}}
-    <script type="text/javascript" src="{{ assetHelper('js/scripts/fontawesome-all.min.js') }}"></script>
-    {{-- ************** START FONTAWESOME JS ************** --}}
-
-    {{-- ************** START MODERN JS ************** --}}
-    <script type="text/javascript" src="{{ assetHelper('js/core/app-menu.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('js/core/app.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('js/scripts/customizer.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('js/scripts/forms/switch.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('js/scripts/popover/popover.js') }}"></script>
-    {{-- ************** END MODERN JS ************** --}}
+    <script type="text/javascript" src="{{ assetHelper('build/js/main.js') }}"></script>
 
     {{-- ************** START SWEETALERT JS ************** --}}
     @include('sweetalert::alert')
     {{-- ************** END SWEETALERT JS ************** --}}
-
-
-    {{-- ************** START CUSTOM JS ************** --}}
-    <script type="text/javascript" src="{{ assetHelper('customs/js/preview-file.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('customs/js/public-functions.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('customs/js/email-notification.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('customs/js/script.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('customs/js/check-offline.js') }}"></script>
-    <script type="text/javascript" src="{{ assetHelper('customs/js/lock-page.js') }}"></script>
-    {{-- ************** END CUSTOM JS ************** --}}
 
     @yield('script')
     @stack('script')

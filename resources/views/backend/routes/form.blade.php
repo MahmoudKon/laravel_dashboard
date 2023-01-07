@@ -7,7 +7,7 @@
     <label>@lang('inputs.uri')</label>
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="la la-anchor"></i> </span>
+            <span class="input-group-text"> <i class="fas fa-anchor"></i> </span>
         </div>
         <input class="form-control" value="{{ $row->uri ?? '' }}" disabled readonly>
     </div>

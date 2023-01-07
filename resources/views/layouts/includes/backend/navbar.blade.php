@@ -26,8 +26,8 @@
             <div class="collapse navbar-collapse" id="navbar-mobile">
                 <ul class="nav navbar-nav mr-auto float-left">
                     <li class="nav-item d-none d-md-block">
-                        <a class="nav-link nav-menu-main menu-toggle hidden-xs is-active" data-toggle="tooltip" title="@lang('title.toggle-menu')" href="#">
-                            <i class="ft-menu"></i>
+                        <a class="nav-link nav-menu-main menu-toggle hidden-xs is-active" style="line-height: 1.5" data-toggle="tooltip" title="@lang('title.toggle-menu')" href="#">
+                            <i class="fa-solid fa-bars"></i>
                         </a>
                     </li>
 

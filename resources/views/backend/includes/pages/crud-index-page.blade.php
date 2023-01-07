@@ -1,11 +1,5 @@
 @extends('layouts.backend')
 
-@section('style')
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/css/tables/datatable/datatables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/css/tables/extensions/buttons.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/css/forms/toggle/switchery.min.css') }}">
-@endsection
-
 @section('content')
     @php $check_permission = canUser(getModel()."-create"); @endphp
     <div class="content-detached {{ $check_permission ? "content-right" : "" }}">
@@ -28,7 +22,3 @@
     @endif
     {{-- END INCLUDE SIDEBARE --}}
 @endsection
-
-@push('script')
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/tables/datatable/datatables.min.js') }}"></script>
-@endpush

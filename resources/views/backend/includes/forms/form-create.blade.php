@@ -1,6 +1,6 @@
 <div class="card-header bg-primary">
     <h4 class="card-title white">
-        <i class="fa fa-plus fa-sm"></i><span class="mx-1">{{ $title ?? trans('menu.create-row', ['model' => trans('menu.'.getModel(true))]) }}</span>
+        <i class="fas fa-plus fa-sm"></i><span class="mx-1">{{ $title ?? trans('menu.create-row', ['model' => trans('menu.'.getModel(true))]) }}</span>
     </h4>
 
     @yield('back')

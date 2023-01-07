@@ -1,12 +1,12 @@
 <span class="dropdown">
     <button id="table-optins" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-        class="btn btn-primary dropdown-toggle dropdown-menu-right"><i class="ft-settings"></i></button>
+        class="btn btn-primary dropdown-toggle dropdown-menu-right"> <i class="fa-solid fa-screwdriver-wrench"></i> </button>
     <span aria-labelledby="table-optins" class="dropdown-menu mt-1 dropdown-menu-left" x-placement="bottom-end">
 
         @if (canUser(getModel()."-edit") && Route::has(ROUTE_PREFIX.getModel().'.edit'))
             <a href="{{ routeHelper(getModel().'.edit', $id) }}" data-toggle="tooltip" title="@lang('buttons.edit')"
                 class="btn btn-outline-primary {{ $use_button_ajax ? 'show-modal-form' : '' }} dropdown-item">
-                <i class="ft-edit"></i> @lang('buttons.edit')
+                <i class="fas fa-edit"></i> @lang('buttons.edit')
             </a>
         @endif
 
@@ -15,7 +15,7 @@
                 {{ csrf_field() }}
                 @method('delete')
                 <button type="submit" class="btn btn-outline-danger dropdown-item delete" data-toggle="tooltip" title="@lang('buttons.delete')">
-                    <i class="ft-trash-2"></i> @lang('buttons.delete')
+                    <i class="fas fa-trash"></i> @lang('buttons.delete')
                 </button>
             </form>
         @endif

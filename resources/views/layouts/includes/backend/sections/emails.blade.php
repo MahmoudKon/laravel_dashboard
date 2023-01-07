@@ -1,5 +1,6 @@
 <li class="dropdown dropdown-notification nav-item">
-    <a class="nav-link nav-link-label" href="#" id="get-emails-count" data-toggle="dropdown"><i class="ficon ft-bell"></i>
+    <a class="nav-link nav-link-label" href="#" id="get-emails-count" data-toggle="dropdown">
+        <i class="fa-solid fa-bell" style="font-size: 23px"></i>
         <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow unread-notifications-count"> <b class="emails-unread-count" id="emails-unread-count">{{ $emails_not_seen_count }}</b> </span>
     </a>
     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">

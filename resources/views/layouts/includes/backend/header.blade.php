@@ -23,52 +23,23 @@
     {{-- ************** START FONTS AWESOME ************** --}}
     <link rel="stylesheet" type="text/css" href="{{ assetHelper('fonts/line-awesome/css/line-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/fontawesome-all.min.css') }}">
-
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/css/forms/toggle/bootstrap-switch.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/css/forms/toggle/switchery.min.css') }}">
-
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/plugins/forms/switch.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/core/colors/palette-switch.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/plugins/loaders/loaders.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/main.css') }}">
     {{-- ************** END FONTS AWESOME ************** --}}
 
     {{-- ************** START RTL , LTR CSS FILES ************** --}}
     @if (App::isLocale('ar'))
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/vendors.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/custom-rtl.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/core/menu/menu-types/vertical-menu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/core/colors/palette-gradient.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/core/colors/palette-loader.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/vendors.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/main-rtl.css') }}">
     @else
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/vendors.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/core/menu/menu-types/vertical-menu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/core/colors/palette-gradient.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/core/colors/palette-loader.css') }}">
-
-    {{ config()->set('sweetalert.toast_position', 'top-end') }}
+        <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/vendors.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/main-ltr.css') }}">
+        {{ config()->set('sweetalert.toast_position', 'top-end') }}
     @endif
     {{-- ************** END RTL , LTR CSS FILES ************** --}}
 
-    {{-- ************** START MODERN CSS ************** --}}
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/css/forms/selects/select2.min.css') }}">
-    {{-- ************** END MODERN CSS ************** --}}
-
-    {{-- ************** START DATATABLES ************** --}}
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/plugins/animate/animate.css') }}">
-    {{-- ************** START DATATABLES ************** --}}
-
     {{-- ************** START CUSTOM CSS ************** --}}
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('customs/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('customs/css/loading.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('customs/css/preview-file.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('customs/css/email.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/custom.css') }}">
     {{-- ************** END CUSTOM CSS ************** --}}
-
-    @if (App::isLocale('ar'))
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('customs/css/style_ar.css') }}">
-    @endif
 
     @yield('style')
     @stack('style')

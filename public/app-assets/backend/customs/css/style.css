@@ -60,7 +60,7 @@ input:disabled {
 
 .breadcrumb .breadcrumb-item + .breadcrumb-item::before
 {
-    content: "/";
+    content: "/" !important;
 }
 
 .preview-modal-image {

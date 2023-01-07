@@ -6,7 +6,6 @@
 
 .load::before {
     font-family: "Font Awesome 5 Free";
-    font-weight: 900;
     content: "\f021";
     position: absolute;
     left: 50%;

@@ -2,6 +2,6 @@
     @csrf
 
     <div class="form-check form-switch form-check-custom form-check-solid">
-        <input type="checkbox" class="form-check-input switchery checkbox-change-status" @checked($value)>
+        <input type="checkbox" class="switchery checkbox-change-status" @checked($value)>
     </div>
 </form>
