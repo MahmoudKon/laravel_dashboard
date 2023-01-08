@@ -10,6 +10,9 @@
                 {{-- START INCLUDE TABLE HEADER --}}
 
                 <div class="card-content collpase show">
+
+                    <div id="search-form-body"></div>
+
                     <div class="card-body" id="load-data"></div>
                 </div>
             </div>

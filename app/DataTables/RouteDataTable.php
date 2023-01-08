@@ -63,8 +63,6 @@ class RouteDataTable extends DataTable
         ->pageLength($this->pageLength)
         ->language($this->translateDatatables())
         ->buttons([
-            $this->getDeleteButton(),
-
             Button::make()->text('<i class="fa fa-download"></i>')
             ->addClass('btn btn-outline-primary')->action("window.location.href = " . '"' . routeHelper('routes.download'). '"')
             ->titleAttr(trans('buttons.download')),
@@ -79,7 +77,13 @@ class RouteDataTable extends DataTable
             ->action("window.location.href = " . '"' . routeHelper('routes.syncPermissions'). '"')
             ->titleAttr(trans('buttons.sync permissions')),
 
-            $this->getPageLengthButton(),
+            $this->getCreateButton(),
+            $this->getDeleteButton(),
+            $this->getImportButton(),
+            $this->getExportButton(),
+            $this->getSearchButton(),
+            $this->getCloseButton(),
+            $this->getPageLengthButton()
         ])
         ->responsive(true)
         ->parameters(

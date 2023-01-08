@@ -105,7 +105,7 @@ function toast(message, title = null, icon = 'error', timer = 5000)
     });
 }
 
-function swal (callback) {
+function FireSwal (callback) {
     playAudio('warning');
     Swal.fire({
         title: SWAL_TITLE,

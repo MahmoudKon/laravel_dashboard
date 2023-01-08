@@ -68,8 +68,10 @@ class ClientDataTable extends DataTable
         ->buttons([
             $this->getCreateButton(),
             $this->getDeleteButton(),
-            // $this->getSearchButton(),
-            // $this->getCloseButton(),
+            $this->getImportButton(),
+            $this->getExportButton(),
+            $this->getSearchButton(),
+            $this->getCloseButton(),
             $this->getPageLengthButton()
         ])
         ->responsive(true)

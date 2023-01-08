@@ -17,19 +17,24 @@ class SocialMediaSeeder extends Seeder
         $rows = [
             [
                 'name'  => 'Facebook',
-                'icon'  => 'fa-brands fa-facebook',
+                'icon'  => 'fa-brands fa-facebook-f',
                 'color' => '#3b5998',
-                'url' => 'https://www.facebook.com/MahmoudK0n',
+                'url'   => 'https://www.facebook.com/MahmoudK0n',
             ], [
                 'name'  => 'Whatsapp',
                 'icon'  => 'fa-brands fa-whatsapp',
                 'color' => '#198754',
-                'url' => 'https://www.facebook.com/MahmoudK0n',
+                'url'   => 'https://wa.me/01156455369',
             ], [
-                'name'  => 'Twitter',
-                'icon'  => 'fa-brands fa-twitter',
-                'color' => '#00ACEE',
-                'url' => 'https://www.facebook.com/MahmoudK0n',
+                'name'  => 'LinkedIn',
+                'icon'  => 'fa-brands fa-linkedin-in',
+                'color' => '#007ba7',
+                'url'   => 'https://www.linkedin.com/in/mahmoud-mohammed-00b74418a/',
+            ],  [
+                'name'  => 'Github',
+                'icon'  => 'fa-brands fa-github',
+                'color' => '#444444',
+                'url'   => 'https://github.com/MahmoudKon',
             ],
         ];
 

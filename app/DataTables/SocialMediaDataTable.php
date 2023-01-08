@@ -66,6 +66,10 @@ class SocialMediaDataTable extends DataTable
         ->buttons([
             $this->getCreateButton(),
             $this->getDeleteButton(),
+            $this->getImportButton(),
+            $this->getExportButton(),
+            $this->getSearchButton(),
+            $this->getCloseButton(),
             $this->getPageLengthButton()
         ])
         ->responsive(true)

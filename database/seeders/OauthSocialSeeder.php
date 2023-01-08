@@ -36,7 +36,7 @@ class OauthSocialSeeder extends Seeder
             ], [
                 'display_name'  => 'Facebook',
                 'name'          => 'facebook',
-                'icon'          => 'fa-brands fa-facebook',
+                'icon'          => 'fa-brands fa-facebook-f',
                 'color'         => '#3b5998'
             ],
         ];

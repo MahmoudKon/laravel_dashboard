@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     // $(document).ajaxComplete(function() { $('.load').removeClass('load'); }); // WHEN THE REQUEST IS COMPLETED WILL BE REMOVE THE CLASS LOAD
 
     document.addEventListener('wheel', (e) => (e.ctrlKey || e.metaKey) && e.preventDefault(), { passive: false });
@@ -92,7 +92,7 @@ $(function () {
     $('body').on('submit', 'form.form-destroy', function (e) {
         e.preventDefault();
         let href = $(this).attr('action'), data = $(this).serialize();
-        swal(function (){
+        FireSwal(function (){
                 $.ajax({
                     url: href,
                     type: "post",
@@ -161,7 +161,6 @@ $(function () {
 
 
 
-
 // ************************************************************************************************************
 // ***************************************** MULTI DELETE FUNCTIONS *******************************************
 // ************************************************************************************************************
@@ -211,7 +210,7 @@ $(function() {
         if (multi_delete_rows_id.length == 0) {
             Swal.fire({ title: SWAL_FAILED_TITLE, icon: 'warning' });
         } else {
-            swal( function () {
+            FireSwal( function () {
                 $.ajax({
                     url: multi_delete_href,
                     type: "post",

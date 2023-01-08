@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Route;
 use Yajra\DataTables\Html\Button;
 use Illuminate\Support\Str;
 
@@ -56,16 +57,17 @@ trait DatatableHelper
 
     public function getCreateButton() :Button
     {
+        if ( !canUser("$this->table-create") || !Route::has(ROUTE_PREFIX."$this->table.create")) return new Button();
         $route = routeHelper($this->table.'.create', getUrlQuery());
         if (session('use_button_ajax')) {
             return Button::make()
                     ->text('<i class="fa fa-plus"></i> <span class="hidden" data-yajra-href="'.$route.'"></span>')
-                    ->addClass('btn btn-outline-info show-modal-form '. (canUser("$this->table-create") ? "" : "remove-hidden-element"))
+                    ->addClass('btn btn-outline-info show-modal-form')
                     ->titleAttr(trans('menu.create-row', ['model' => trans('menu.'.Str::singular($this->table))]));
 
         } else {
             return Button::make()->text('<i class="fa fa-plus"></i>')
-                    ->addClass('btn btn-outline-info '. (canUser("$this->table-create") ? "" : "remove-hidden-element"))
+                    ->addClass('btn btn-outline-info')
                     ->action("window.location.href = '$route'")
                     ->titleAttr(trans('menu.create-row', ['model' => trans('menu.'.Str::singular($this->table))]));
         }
@@ -73,9 +75,10 @@ trait DatatableHelper
 
     public function getDeleteButton() :Button
     {
+        if ( !canUser($this->table."-multidelete") || !Route::has(ROUTE_PREFIX."$this->table.multidelete") ) return new Button();
         return Button::make()
                         ->text('<i class="fas fa-trash"></i>')
-                        ->addClass('btn btn-outline-danger multi-delete '. (canUser($this->table."-multidelete") ? "" : "remove-hidden-element"))
+                        ->addClass('btn btn-outline-danger multi-delete')
                         ->titleAttr(trans('buttons.multi-delete'));
 
     }
@@ -90,14 +93,16 @@ trait DatatableHelper
 
     public function getImportButton() :Button
     {
+        if ( !canUser($this->table."-import") || !Route::has(ROUTE_PREFIX."$this->table.excel.import.form") ) return new Button();
         return Button::make()
                     ->text('<i class="fa fa-cloud-upload"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.excel.import.form').'"></span>')
-                    ->addClass('btn btn-outline-primary show-modal-form'. (canUser($this->table."-import") ? "" : "remove-hidden-element"))
+                    ->addClass('btn btn-outline-primary show-modal-form')
                     ->titleAttr('Import '.$this->table);
     }
 
     public function getExportButton() :Button
     {
+        if ( !Route::has(ROUTE_PREFIX."$this->table.search.export") ) return new Button();
         return Button::make()->text('<i class="fas fa-cloud-download"></i>')
                         ->action("window.location.href = '". routeHelper($this->table.'.excel.export') ."'")
                         ->addClass('btn btn-outline-info '. (canUser($this->table."-export") ? "" : "remove-hidden-element"))
@@ -106,17 +111,19 @@ trait DatatableHelper
 
     public function getSearchButton() :Button
     {
+        if ( !Route::has(ROUTE_PREFIX."$this->table.search.form") ) return new Button();
         return Button::make()
                     ->text('<i class="fa fa-search"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.search.form').'"></span>')
-                    ->addClass('btn btn-outline-warning show-search-form '. (request()->has('search') ? 'hidden' : ''))
+                    ->addClass('btn btn-outline-warning show-search-form ' . (request()->has('search') ? 'hidden' : ''))
                     ->titleAttr('Open Search Form');
     }
 
     public function getCloseButton() :Button
     {
+        if ( !Route::has(ROUTE_PREFIX."$this->table.search.form") ) return new Button();
         return Button::make()
                     ->text('<i class="fa fa-times"></i>')
-                    ->addClass('btn btn-outline-warning close-search-button '. (request()->has('search') ? '' : 'hidden'))
+                    ->addClass('btn btn-outline-warning close-search-button ' . (request()->has('search') ? '' : 'hidden'))
                     ->titleAttr('Close Search Form');
     }
 

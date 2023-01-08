@@ -2,5 +2,5 @@
 
 return array (
   'English' => 'en',
-  'Arabic' => 'ar',
+  'العربية' => 'ar',
 );

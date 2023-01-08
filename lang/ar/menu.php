@@ -37,8 +37,8 @@ return [
     'menu' => 'قائمة',
 
     // OAUTH SOCIALS
-    'oauth_socials' => 'Oauth Socials',
-    'oauth_social' => 'Oauth Social',
+    'oauth_socials' => 'طرق تسجيل الدخول',
+    'oauth_social' => 'طريقة تسجيل دخول',
 
     // SOCIAL MEDIAS
     'social_medias' => 'وسائل التواصل الاجتماعي',
