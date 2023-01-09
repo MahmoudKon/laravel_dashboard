@@ -79,11 +79,6 @@ class CreateModel extends GeneratorCommand
             return true;
         }
 
-        if ($this->alreadyExists($this->table)) {
-            $this->error("$this->type $this->datatable already exists!");
-            return true;
-        }
-
         return false;
     }
 
@@ -124,7 +119,7 @@ class CreateModel extends GeneratorCommand
         foreach (getRelationsDetails($this->table) as $column) {
             $model_name = getTableModel($column->fk_table);
             $class_namespace = getFilesInDir(app_path('Models'), $model_name);
-            $this->namespaces .= "use {$class_namespace};\n";
+            $this->namespaces .= "use ". trim($class_namespace, '\\') .";\n";
             $relations .= "\n\tpublic function ".getRelationName($column->column_name)."() \n\t{";
             $relations .= "\n\t\treturn \$this->belongsTo({$model_name}::class, '{$column->column_name}', '{$column->fk_column}')->withDefault(['{$column->fk_column}' => null]);";
             $relations .= "\n\t}\n";
@@ -163,13 +158,12 @@ class CreateModel extends GeneratorCommand
                 $this->methods .= "\n\t}\n";
 
             } elseif ( checkColumnIsFile($column->Comment) ) {
-                $storage_namespace = "use Illuminate\Support\Facades\Storage;\n";
-                if ( stripos($storage_namespace, $this->namespace) === false )
-                    $this->namespace .= $storage_namespace;
+                $storage_namespace = "Illuminate\Support\Facades\Storage";
+                if ( stripos($this->namespaces, $storage_namespace) === false )
+                    $this->namespaces .= "use $storage_namespace;\n";
 
                 $this->methods .= "\n\tprotected function $column->Field(): Attribute\n\t{";
                 $this->methods .= "\n\t\treturn Attribute::make(";
-                $this->methods .= "\n\t\t\tget: fn (\$value) => \$value && file_exists('uploads/$this->table/' . \$value) ? \"uploads/$this->table/\$value\" : null";
                 $this->methods .= "\n\t\t\tget: fn (\$value) => \$value && Storage::disk('public')->exists( 'uploads/$this->table/' . \$value ) ? 'storage/uploads/$this->table/' . \$value : null,";
                 $this->methods .= "\n\t\t);";
                 $this->methods .= "\n\t}\n";
