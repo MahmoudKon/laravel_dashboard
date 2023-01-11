@@ -130,7 +130,7 @@ php artisan serve
 </p>
 
 <p>15- Languages</p>
-- An easy way to add or delete a language
+- An easy way to add or disabled a language
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/lang.png" alt="Languages page">
 </p>
