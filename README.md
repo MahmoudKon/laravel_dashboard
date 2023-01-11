@@ -5,7 +5,7 @@ git clone https://github.com/MahmoudKon/laravel_9.git
 
 ## Go inside the project
 ```
-cd laravel_9
+cd  new_laravel_9
 ```
 
 ## Create database
