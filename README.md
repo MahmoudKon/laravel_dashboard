@@ -23,6 +23,12 @@ composer install --ignore-platform-reqs
 
 ```
 
+## Install npm and build assets
+```
+npm install
+npm run dev
+```
+
 ## Generat data
 ```
 php artisan migrate --seed
