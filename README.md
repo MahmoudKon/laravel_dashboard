@@ -1,6 +1,6 @@
 ## Make clone to project
 ```
-git clone https://github.com/MahmoudKon/laravel_9.git
+git clone https://github.com/MahmoudKon/new_laravel_9.git
 ```
 
 ## Go inside the project
@@ -25,8 +25,7 @@ composer install --ignore-platform-reqs
 
 ## Install npm and build assets
 ```
-npm install
-npm run dev
+npm install && npm run dev
 ```
 
 ## Generat data
