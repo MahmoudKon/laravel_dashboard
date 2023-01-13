@@ -96,4 +96,10 @@ return [
 
 	// SOCIAL_MEDIAS
 	'is_visible' => 'Is Visible',
+
+
+    // LANGUAGES
+    'file_name' => 'File Name',
+    'file_size' => 'File Size',
+    'translations_count' => 'Translations Count',
 ];

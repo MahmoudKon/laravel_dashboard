@@ -7,6 +7,7 @@ return [
     'edit' => 'تعديل',
     'back' => 'رجوع',
     'cover' => 'الغلاف',
+    'show' => 'عرض',
     'search' => 'بحث',
     'submit' => 'تقديم النموذج',
     'multi-delete' => 'حذف متعدد',

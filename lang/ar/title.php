@@ -41,4 +41,8 @@ return [
     'this page is under maintenance' => 'هذه الصفحة تحت الصيانة.',
     'we\'re sorry for the inconvenience' => 'نحن آسفون للإزعاج.',
     'please check back later' => 'يرجى التحقق مرة أخرى في وقت لاحق.',
+
+
+    // LANGUAGES
+    'show lang files' => 'عرض ملفات الترجمة في المجلد <b>:lang</b>',
 ];

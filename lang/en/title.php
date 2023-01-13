@@ -42,4 +42,8 @@ return [
     'this page is under maintenance' => 'This page is under maintenance.',
     'we\'re sorry for the inconvenience' => 'We\'re sorry for the inconvenience.',
     'please check back later' => 'Please check back later.',
+
+
+    // LANGUAGES
+    'show lang files' => 'List Files In Directory <b>:lang</b>',
 ];

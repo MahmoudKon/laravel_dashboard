@@ -31,8 +31,11 @@ class LanguageDataTable extends DataTable
                 $view = new ToggleColumn($row->id, 'active', $row->active);
                 return $view->render()->with($view->data());
             })
+            ->editColumn('short_name', function(Language $row) {
+                return "<a href='".routeHelper('languages.files', $row)."' class='btn btn-sm btn-link show-modal-form'>$row->short_name</a>";
+            })
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
-            ->rawColumns(['action', 'active', 'icon']);
+            ->rawColumns(['action', 'active', 'icon', 'short_name']);
     }
 
     /**

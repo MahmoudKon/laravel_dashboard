@@ -94,25 +94,19 @@ function convertUrlToArray() :array
 function getModel(bool $singular = false, $view = false) :string
 {
     try {
-        // get the full controller namespace form route.
-        $controller = request()->route()->action['controller'];
-        // remove the method from controller namespace [UserController@index   => UserController]
-        $controller = explode('@', $controller)[0];
-        // usering full namsepace get the controller class
-        $controller_class = app($controller);
-        // in each controller has method [getModel] to get the model name.
-        $model = $controller_class->getTableName();
+        $controller = request()->route()->getController();
+        // in each controller has method [getTableName] to get the model name.
+        $table = $controller->getTableName();
     } catch (Exception $e) {
         $route = request()->route()->uri;
         $route = str_replace(app()->getLocale().'/', '', $route);
         $route = str_replace('dashboard/', '', $route);
-
-        $model = explode('/', $route)[0] ?? "dashboard";
+        $table = explode('/', $route)[0] ?? "dashboard";
     }
-    $model = str_replace(' ', '_', $model);
+    $table = str_replace(' ', '_', $table);
 
-    if ($view) return session('view_sub_path').$model;
-    return $singular ? Str::singular($model) : $model;
+    if ($view) return session('view_sub_path').$table;
+    return $singular ? Str::singular($table) : $table;
 }
 
 /**

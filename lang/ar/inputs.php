@@ -105,4 +105,9 @@ return [
 
 	// SOCIAL_MEDIAS
 	'is_visible' => 'قابل للعرض',
+
+    // LANGUAGES
+    'file_name' => 'إسم الملف',
+    'file_size' => 'حجم الملف',
+    'translations_count' => 'عدد الترجمات',
 ];

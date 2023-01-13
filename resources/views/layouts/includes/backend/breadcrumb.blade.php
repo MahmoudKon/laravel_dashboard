@@ -22,7 +22,13 @@
                     @else
                         <li class="breadcrumb-item">
                             <a href="{{ url($full_url) }}">
-                                {{ $link == "" ? trans('menu.dashboard') : trans("menu.$link") }}
+                                @if ($link == '')
+                                    @lang('menu.dashboard')
+                                @elseif (Lang::has("menu.$link"))
+                                    @lang("menu.$link")
+                                @else
+                                    {{ $link }}
+                                @endif
                             </a>
                         </li>
                     @endif
