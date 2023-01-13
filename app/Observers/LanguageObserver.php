@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Language;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 
 class LanguageObserver
 {
@@ -72,11 +73,14 @@ class LanguageObserver
         $content = file_get_contents( $file );
 
         if ($language->active) {
+            if (! File::exists(lang_path( $language->short_name )) )
+                File::copyDirectory( lang_path('en'), lang_path( $language->short_name ) );
+
             if(strpos($content, "//'$language->short_name'") !== false)
-                $content = str_replace(" //'$language->short_name' ", "'$language->short_name'", $content);
+                $content = str_replace(" //'$language->short_name'", "'$language->short_name'", $content);
         } else {
             if(strpos($content, "//'$language->short_name'") === false)
-                $content = str_replace(" '$language->short_name' ", "//'$language->short_name'", $content);
+                $content = str_replace(" '$language->short_name'", "//'$language->short_name'", $content);
         }
 
         file_put_contents($file, $content);
