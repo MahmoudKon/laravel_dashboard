@@ -30,20 +30,16 @@ $(function() {
 
         let url = btn.find('[data-yajra-href]').length ? btn.find(`[data-yajra-href]`).data('yajra-href') : btn.attr('href');
 
-        modal.modal('show').addClass('load');
-
         $.ajax({
             url: url,
             type: "GET",
             success: function (response, textStatus, jqXHR) {
                 if (response.redirect) return window.location = response.redirect;
-                modal.find('.form-body').empty().append(response);
+                modal.modal('show').find('.form-body').empty().append(response);
                 initPluginElements();
-                modal.removeClass('load');
             },
             error: function(jqXHR) {
                 handleErrors(jqXHR);
-                modal.removeClass('load');
             },
         });
     }); // PUSH FORM TO THE BOOTSTRAP MODAL

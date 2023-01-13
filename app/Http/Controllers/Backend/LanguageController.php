@@ -33,6 +33,12 @@ class LanguageController extends BackendController
     public function files($id)
     {
         $row = $this->query($id);
+        if (! file_exists( lang_path( $row->short_name ) )) {
+            $this->use_button_ajax = true;
+            $this->throwException( throw new Exception("This lang $row->short_name Not has translation files") );
+        }
+
+
         $files = [];
         foreach (File::allFiles( lang_path( $row->short_name ) ) as $index => $file) {
             $file_name = str_replace('.php', '', $file->getRelativePathname());
