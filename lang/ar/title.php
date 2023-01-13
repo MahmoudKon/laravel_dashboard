@@ -45,4 +45,5 @@ return [
 
     // LANGUAGES
     'show lang files' => 'عرض ملفات الترجمة في المجلد <b>:lang</b>',
+    'the language does not have translation files' => 'اللغة ( :lang ) ليس لديها ملفات ترجمة',
 ];

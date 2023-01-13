@@ -115,11 +115,12 @@ Route::get('announcements/search/form', 'AnnouncementController@search')->name('
 
 Route::controller('LanguageController')->as('languages.')->prefix('languages')->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('{language}/files', 'files')->name('files');
-    Route::get('{language}/trans/{file}', 'trans')->name('trans');
     Route::get('{language}/edit', 'edit')->name('edit');
     Route::put('{language}', 'update')->name('update');
     Route::post('{language}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
+    Route::get('{language}', 'show')->name('show');
+    Route::get('{language}/trans/{key}/edit', 'transEdit')->name('trans.edit');
+    Route::post('{language}/trans/{key}/update', 'transUpdate')->name('trans.update');
 });
 
 Route::resource('clients', 'ClientController');

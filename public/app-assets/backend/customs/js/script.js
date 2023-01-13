@@ -73,7 +73,7 @@ $(function() {
 
                 $('.modal').modal("hide");
                 form.trigger("reset");
-                $("select").val('').trigger('change');
+                form.find('select').val('').trigger('change');
                 rows();
                 $('#recourds-count').text(response.count);
             },

@@ -46,4 +46,5 @@ return [
 
     // LANGUAGES
     'show lang files' => 'List Files In Directory <b>:lang</b>',
+    'the language does not have translation files' => 'The language ( :lang ) does not have translation files',
 ];

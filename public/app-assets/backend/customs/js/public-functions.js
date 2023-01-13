@@ -27,9 +27,9 @@ function playAudio(type = 'success') {
 }
 
 // Initialize query to datatable in page
-function rows(form = null) {
+function rows(form = null, route = null) {
     let data = null;
-    let url  = window.location.href;
+    let url  = route ?? window.location.href;
     let type = "get";
 
     if (form) {
