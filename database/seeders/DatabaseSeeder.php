@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if ( ! file_exists( storage_path('oauth-private.key') ) )
+            Artisan::call('passport:install');
+
         session()->flush();
         cache()->flush();
         $truncate_tables = ['emails', 'social_accounts', 'announcements'];
@@ -56,7 +59,5 @@ class DatabaseSeeder extends Seeder
                 $user->roles()->attach(Role::whereNotIn('name', SUPERADMIN_ROLES)->inRandomOrder()->first()->id);
             } catch (Exception $e) {}
         });
-
-        Artisan::call('passport:install');
     }
 }

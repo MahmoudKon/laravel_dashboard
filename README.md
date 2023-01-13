@@ -1,11 +1,11 @@
 ## Make clone to project
 ```
-git clone https://github.com/MahmoudKon/laravel_9.git
+git clone https://github.com/MahmoudKon/new_laravel_9.git
 ```
 
 ## Go inside the project
 ```
-cd laravel_9
+cd  new_laravel_9
 ```
 
 ## Create database
@@ -21,6 +21,11 @@ php artisan key:generate
 ```
 composer install --ignore-platform-reqs
 
+```
+
+## Install npm and build assets
+```
+npm install && npm run dev
 ```
 
 ## Generat data
@@ -130,7 +135,7 @@ php artisan serve
 </p>
 
 <p>15- Languages</p>
-- An easy way to add or delete a language
+- An easy way to active or disabled a language
 <p>
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/lang.png" alt="Languages page">
 </p>
