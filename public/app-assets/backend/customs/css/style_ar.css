@@ -28,8 +28,8 @@
 
 .single-email .unseen-email::after {
     content: '';
-    left: 5%;
-    right: unset;
+    left: 5% !important;
+    right: unset !important;
 }
 
 .dt-button-collection {
