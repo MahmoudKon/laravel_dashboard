@@ -11,8 +11,8 @@ use Exception;
 
 class GovernorateController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = true;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function store(GovernorateRequest $request, GovernorateService $GovernorateService)
     {
@@ -28,7 +28,7 @@ class GovernorateController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.governorate')]));
     }
 
-    public function model() { return new Governorate; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Governorate; }
 
-    public function dataTable() { return new GovernorateDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new GovernorateDataTable; }
 }

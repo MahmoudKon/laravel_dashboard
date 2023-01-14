@@ -12,8 +12,8 @@ use Exception;
 
 class CityController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = true;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function store(CityRequest $request, CityService $CityService)
     {
@@ -29,9 +29,9 @@ class CityController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.city')]));
     }
 
-    public function model() { return new City; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new City; }
 
-    public function dataTable() { return new CityDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new CityDataTable; }
 
     public function append(): array
     {

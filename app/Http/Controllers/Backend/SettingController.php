@@ -14,7 +14,7 @@ use Exception;
 
 class SettingController extends BackendController
 {
-    public $use_form_ajax  = true;
+    public bool $use_form_ajax  = true;
 
     public function store(SettingRequest $request, SettingService $SettingService)
     {
@@ -38,9 +38,9 @@ class SettingController extends BackendController
         return $view_path ? view($view_path, compact('value'), ['name' => 'value', 'value' => $value]) : '';
     }
 
-    public function model() { return new Setting; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Setting; }
 
-    public function dataTable() { return new SettingDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new SettingDataTable; }
 
     public function append() :array
     {

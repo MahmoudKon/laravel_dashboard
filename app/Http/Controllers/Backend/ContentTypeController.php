@@ -11,7 +11,7 @@ use Exception;
 
 class ContentTypeController extends BackendController
 {
-    public $full_page_ajax  = true;
+    public bool $full_page_ajax  = true;
 
     public function store(ContentTypeRequest $request, ContentTypeService $contentTypeService)
     {
@@ -27,7 +27,7 @@ class ContentTypeController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.content_type')]));
     }
 
-    public function model() { return new ContentType; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new ContentType; }
 
-    public function dataTable() { return new ContentTypeDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new ContentTypeDataTable; }
 }

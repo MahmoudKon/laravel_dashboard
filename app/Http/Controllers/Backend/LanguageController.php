@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Lang;
 
 class LanguageController extends BackendController
 {
-    public $use_form_ajax   = true;
+    public bool $use_form_ajax = true;
 
     public function store(LanguageRequest $request, LanguageService $LanguageService)
     {
@@ -56,9 +56,9 @@ class LanguageController extends BackendController
         return response()->json(['message' => trans('flash.row updated', ['model' => trans('menu.language')])], 200);
     }
 
-    public function model() { return new Language; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Language; }
 
-    public function dataTable() { return new LanguageDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new LanguageDataTable; }
 
     public function append(): array
     {

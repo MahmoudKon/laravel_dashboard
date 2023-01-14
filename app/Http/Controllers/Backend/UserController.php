@@ -17,8 +17,8 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = false;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function store(UserRequest $request, UserService $UserService)
     {
@@ -50,9 +50,9 @@ class UserController extends BackendController
         return response()->json(['message' => "Data Saved Successfully!", 'icon' => 'success']);
     }
 
-    public function model() { return new User; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new User; }
 
-    public function dataTable() { return new UserDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new UserDataTable; }
 
     public function append() :array
     {

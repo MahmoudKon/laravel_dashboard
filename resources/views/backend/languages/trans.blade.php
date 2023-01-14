@@ -18,7 +18,7 @@
                 {{-- <a href='' class="btn btn-sm btn-primary float-right"> <i class="fas fa-plus"></i> @lang('buttons.create')</a> --}}
             @endif
 
-            <div id="load-data"></div>
+            <div id="load-data" data-route=''></div>
         </div>
     </div>
 @endsection
@@ -30,15 +30,20 @@
 
             $('body').on('change', '#trans-file', function() {
                 let url = `${window.location.href}?file=${$('#trans-file').val()}`;
-                rows(null, url);
+                $('#load-data').data('route', url);
+                rows();
             });
 
             $('body').on('click', 'a.page-link', function(e) {
                 e.preventDefault();
+                if ($(this).parent('li').hasClass('active')) return;
                 let url = new URL( $(this).attr('href') );
                 url.searchParams.append('file', $('#trans-file').val());
-                rows(null, url.href);
+                $('#load-data').data('route', url.href);
+                rows();
             });
+
+            $('#trans-file').change();
         });
     </script>
 @endsection

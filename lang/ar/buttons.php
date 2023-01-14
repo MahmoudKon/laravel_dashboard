@@ -21,7 +21,7 @@ return [
     'create-sub-category' => 'إنشاء قسم فرعي',
     'create-operator' => 'إنشاء مشغل',
     'list-operators' => 'عرض المشغلين',
-    'list-posts' => 'عرض المنشورات',
+		'list-posts' => 'عرض المنشورات',
     'short' => 'تقصير الرابط',
     'short' => 'تقصير',
     'yes' => 'نعم',
@@ -43,4 +43,6 @@ return [
     // SWAL JS TRANSLATIONS
     'yes delete' => 'أجل, أحذف هذا',
     'cancel' => 'إلغاء',
+
+    'show-trans' => 'عرض الترجمات',
 ];

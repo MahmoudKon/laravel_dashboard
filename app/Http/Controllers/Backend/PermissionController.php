@@ -11,7 +11,7 @@ use Exception;
 
 class PermissionController extends BackendController
 {
-    public $full_page_ajax   = true;
+    public bool $full_page_ajax   = true;
 
     public function store(PermissionRequest $request, PermissionService $PermissionService)
     {
@@ -27,7 +27,7 @@ class PermissionController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.permission')]));
     }
 
-    public function model() { return new Permission; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Permission; }
 
-    public function dataTable() { return new PermissionDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new PermissionDataTable; }
 }

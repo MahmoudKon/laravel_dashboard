@@ -11,8 +11,8 @@ use Exception;
 
 class SocialMediaController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = true;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function store(SocialMediaRequest $request, SocialMediaService $SocialMediaService)
     {
@@ -28,7 +28,7 @@ class SocialMediaController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.social_media')]));
     }
 
-    public function model() { return new SocialMedia; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new SocialMedia; }
 
-    public function dataTable() { return new SocialMediaDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new SocialMediaDataTable; }
 }

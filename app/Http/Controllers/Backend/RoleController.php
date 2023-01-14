@@ -11,7 +11,7 @@ use Exception;
 
 class RoleController extends BackendController
 {
-    public $full_page_ajax = true;
+    public bool $full_page_ajax = true;
 
     public function store(RoleRequest $request, RoleService $RoleService)
     {
@@ -27,7 +27,7 @@ class RoleController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.role')]));
     }
 
-    public function model() { return new Role; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Role; }
 
-    public function dataTable() { return new RoleDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new RoleDataTable; }
 }

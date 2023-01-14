@@ -12,8 +12,8 @@ use Exception;
 
 class DepartmentController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = true;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function store(DepartmentRequest $request, DepartmentService $DepartmentService)
     {
@@ -29,15 +29,9 @@ class DepartmentController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.department')]));
     }
 
-    public function model()
-    {
-        return new Department;
-    }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Department; }
 
-    public function dataTable()
-    {
-        return new DepartmentDataTable;
-    }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new DepartmentDataTable; }
 
     public function append() :array
     {

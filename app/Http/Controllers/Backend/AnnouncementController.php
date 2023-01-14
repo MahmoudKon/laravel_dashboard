@@ -11,7 +11,7 @@ use Exception;
 
 class AnnouncementController extends BackendController
 {
-    public $use_form_ajax = true;
+    public bool $use_form_ajax = true;
 
     public function store(AnnouncementRequest $request, AnnouncementService $AnnouncementService)
     {
@@ -27,7 +27,7 @@ class AnnouncementController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.announcement')]), routeHelper('announcements.show', $row));
     }
 
-    public function model() { return new Announcement; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Announcement; }
 
-    public function dataTable() { return new AnnouncementDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new AnnouncementDataTable; }
 }

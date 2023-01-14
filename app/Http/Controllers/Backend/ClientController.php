@@ -11,8 +11,8 @@ use Exception;
 
 class ClientController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = true;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function store(ClientRequest $request, ClientService $ClientService)
     {
@@ -28,7 +28,7 @@ class ClientController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.client')]));
     }
 
-    public function model() { return new Client; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Client; }
 
-    public function dataTable() { return new ClientDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new ClientDataTable; }
 }

@@ -8,13 +8,16 @@ use App\Models\{{ model }};
 use App\Http\Services\{{ model }}Service;
 use App\Http\Requests\{{ model }}Request;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
+use Yajra\DataTables\Services\DataTable;
+
 
 class {{ class }} extends BackendController
 {
-    public $full_page_ajax  = false;
-    public $use_form_ajax   = true;
-    public $use_button_ajax = false;
-    public $view_sub_path   = '{{ view_sub_path }}';
+    public bool $full_page_ajax  = false;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = false;
+    public string $view_sub_path = '{{ view_sub_path }}';
 
     public function store({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service)
     {
@@ -30,9 +33,9 @@ class {{ class }} extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.{{ single_table }}')]));
     }
 
-    public function model() { return new {{ model_name }}; }
+    public function model() :Model { return new {{ model_name }}; }
 
-    public function dataTable() { return new {{ model_name }}DataTable; }
+    public function dataTable() :DataTable { return new {{ model_name }}DataTable; }
 
     public function append(): array
     {

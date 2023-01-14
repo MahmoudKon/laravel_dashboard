@@ -11,8 +11,8 @@ use Exception;
 
 class OauthSocialController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = true;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function store(OauthSocialRequest $request, OauthSocialService $OauthSocialService)
     {
@@ -28,7 +28,7 @@ class OauthSocialController extends BackendController
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.oauth_social')]));
     }
 
-    public function model() { return new OauthSocial; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new OauthSocial; }
 
-    public function dataTable() { return new OauthSocialDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new OauthSocialDataTable; }
 }

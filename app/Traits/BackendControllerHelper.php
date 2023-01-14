@@ -9,49 +9,54 @@ use Yajra\DataTables\Services\DataTable;
 
 trait BackendControllerHelper
 {
-    public $view_sub_path = '';
+    /**
+     * view_sub_path
+     * the sub dir path after 'backend' folder.
+     * @var string
+     */
+    public string $view_sub_path = '';
 
     /**
      * index_view
      * the main index page for larg data.
      * @var string
      */
-    public $index_view  = "backend.includes.pages.index-page";
+    public string $index_view  = "backend.includes.pages.index-page";
 
     /**
      * create_view
      * the form create in in full page
      * @var string
      */
-    public $create_view = "backend.includes.pages.form-page";
+    public string $create_view = "backend.includes.pages.form-page";
 
     /**
      * update_view
      * the form update in in full page
      * @var string
      */
-    public $update_view = "backend.includes.pages.form-page";
+    public string $update_view = "backend.includes.pages.form-page";
 
     /**
      * show_view
      * the cover/show page in in full page
      * @var string
      */
-    public $show_view   = "backend.includes.pages.show-page";
+    public string $show_view = "backend.includes.pages.show-page";
 
     /**
      * full_page_ajax
      *  to make the create/update in modal in the same index page, with add small create form near table list, without refresh page.
      * @var bool
      */
-    public $full_page_ajax  = false;
+    public bool $full_page_ajax  = false;
 
     /**
      * use_form_ajax
      * to make create/update form use ajax when make submit, then refresh the page.
      * @var bool
      */
-    public $use_form_ajax   = false;
+    public bool $use_form_ajax   = false;
 
     /**
      * use_button_ajax
@@ -59,15 +64,15 @@ trait BackendControllerHelper
      * NOTE if form blade has code js and this property is true, then must remove the push or section if used to use script tag direct
      * @var bool
      */
-    public $use_button_ajax = false;
+    public bool $use_button_ajax = false;
 
     /**
      * model
      * To set the model
      *
-     * @return Model|null
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function model()
+    public function model() :?Model
     {
         return null;
     }
@@ -76,9 +81,9 @@ trait BackendControllerHelper
      * dataTable
      * To set the dataTable
      *
-     * @return DataTable|null
+     * @return \Yajra\DataTables\Services\DataTable|null
      */
-    public function dataTable()
+    public function dataTable() :?DataTable
     {
         return null;
     }
@@ -92,7 +97,7 @@ trait BackendControllerHelper
     public function append() :array
     {
         return [];
-    }
+}
 
     /**
      * searchData
@@ -201,12 +206,10 @@ trait BackendControllerHelper
     public function init()
     {
         if ($this->full_page_ajax) {
-            $this->use_form_ajax   = true;
-            $this->use_button_ajax = true;
+            $this->use_form_ajax = $this->use_button_ajax = true;
             $this->index_view  = "backend.includes.pages.crud-index-page";
         }
 
-        session(['use_button_ajax' => $this->use_button_ajax, 'view_sub_path' => $this->view_sub_path]);
         if ($this->use_button_ajax) {
             $this->create_view = "backend.includes.forms.form-create";
             $this->update_view = "backend.includes.forms.form-update";
@@ -214,5 +217,6 @@ trait BackendControllerHelper
 
         View::share('use_form_ajax', $this->use_form_ajax);
         View::share('use_button_ajax', $this->use_button_ajax);
+        session(['use_button_ajax' => $this->use_button_ajax, 'view_sub_path' => $this->view_sub_path]);
     }
 }

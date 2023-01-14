@@ -31,11 +31,11 @@ class LanguageDataTable extends DataTable
                 $view = new ToggleColumn($row->id, 'active', $row->active);
                 return $view->render()->with($view->data());
             })
-            ->editColumn('short_name', function(Language $row) {
-                return "<a href='".routeHelper('languages.show', $row)."' class='btn btn-sm btn-link'>$row->short_name</a>";
+            ->addColumn('show', function(Language $row) {
+                return "<a href='".routeHelper('languages.show', $row)."' class='btn btn-sm btn-primary'> <i class='fas fa-list'></i> ".trans('buttons.show')." </a>";
             })
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
-            ->rawColumns(['action', 'active', 'icon', 'short_name']);
+            ->rawColumns(['action', 'active', 'icon', 'show']);
     }
 
     /**
@@ -91,6 +91,7 @@ class LanguageDataTable extends DataTable
 			Column::make('name')->title(trans('inputs.name')),
 			Column::make('native')->title(trans('inputs.native')),
 			Column::make('short_name')->title(trans('inputs.short_name')),
+			Column::make('show')->title(trans('buttons.show-trans')),
 			Column::make('active')->title(trans('inputs.active'))->searchable(false),
 			Column::make('icon')->title(trans('inputs.icon'))->searchable(false),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('inputs.action'))->footer(trans('inputs.action')),

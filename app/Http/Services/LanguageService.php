@@ -55,7 +55,7 @@ class LanguageService
     {
         $rows = [];
         self::convertArray(Lang::get( $file, locale: $short_name ), $rows);
-        return self::convertArrayToCollection($rows, 1, request()->get('page'));
+        return self::convertArrayToCollection($rows, 10, request()->get('page'));
     }
 
     public static function transUpdate(string $file, string $short_name, string $key) :void

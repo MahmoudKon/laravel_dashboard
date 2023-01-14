@@ -27,9 +27,10 @@ function playAudio(type = 'success') {
 }
 
 // Initialize query to datatable in page
-function rows(form = null, route = null) {
+function rows(form = null) {
+    let ele  = $('#load-data');
     let data = null;
-    let url  = route ?? window.location.href;
+    let url  = ele.data('route') || window.location.href;
     let type = "get";
 
     if (form) {
@@ -38,20 +39,22 @@ function rows(form = null, route = null) {
         type = form.attr('method');
     }
 
-    $('#load-data').addClass('load');
+    ele.addClass('load');
     $.ajax({
         url: url,
         type: type,
         data: data,
         success: function(data, textStatus, jqXHR) {
-            $('#load-data').empty().append(data);
-            if (form) form.parent().removeClass('load');
+            ele.empty().append(data);
         },
         error: function(jqXHR) {
             handleErrors(jqXHR);
-            if (form) form.parent().removeClass('load');
         },
-        complete: function () { $('#load-data').removeClass('load'); initPluginElements();}
+        complete: function () {
+            if (form) form.parent().removeClass('load');
+            ele.removeClass('load');
+            initPluginElements();
+        }
     });
 } // AJAX CODE TO LOAD THE DATA TABLE
 

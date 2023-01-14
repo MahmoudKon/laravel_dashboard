@@ -16,8 +16,8 @@ use Spatie\Permission\Models\Permission;
 
 class RouteController extends BackendController
 {
-    public $use_form_ajax   = true;
-    public $use_button_ajax = true;
+    public bool $use_form_ajax   = true;
+    public bool $use_button_ajax = true;
 
     public function update(Request $request, $id)
     {
@@ -130,9 +130,9 @@ class RouteController extends BackendController
         return back();
     }
 
-    public function model() { return new Route; }
+    public function model() :\Illuminate\Database\Eloquent\Model { return new Route; }
 
-    public function dataTable() { return new RouteDataTable; }
+    public function dataTable() :\Yajra\DataTables\Services\DataTable { return new RouteDataTable; }
 
     public function append() :array
     {

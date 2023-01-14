@@ -46,4 +46,6 @@ return [
     'yes delete' => 'Yes, Delete it!',
     'cancel' => 'Cancel',
 
+    'show-trans' => 'Show Translations',
+
 ];
