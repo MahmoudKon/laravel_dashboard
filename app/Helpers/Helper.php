@@ -105,7 +105,7 @@ function getModel(bool $singular = false, $view = false) :string
     }
     $table = str_replace(' ', '_', $table);
 
-    if ($view) return session('view_sub_path').$table;
+    if ($view) return cache()->get('view_sub_path').$table;
     return $singular ? Str::singular($table) : $table;
 }
 

@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Services\DataTable;
@@ -214,9 +215,18 @@ trait BackendControllerHelper
             $this->create_view = "backend.includes.forms.form-create";
             $this->update_view = "backend.includes.forms.form-update";
         }
+        
+        $this->shareProperties();
+    }
 
+    protected function shareProperties()
+    {
         View::share('use_form_ajax', $this->use_form_ajax);
         View::share('use_button_ajax', $this->use_button_ajax);
-        session(['use_button_ajax' => $this->use_button_ajax, 'view_sub_path' => $this->view_sub_path]);
+
+        Cache::forget('use_button_ajax');
+        Cache::forget('view_sub_path');
+        Cache::add('use_button_ajax', $this->use_button_ajax);
+        Cache::add('view_sub_path', $this->view_sub_path);
     }
 }

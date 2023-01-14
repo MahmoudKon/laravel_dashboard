@@ -59,7 +59,7 @@ trait DatatableHelper
     {
         if ( !canUser("$this->table-create") || !Route::has(ROUTE_PREFIX."$this->table.create")) return new Button();
         $route = routeHelper($this->table.'.create', getUrlQuery());
-        if (session('use_button_ajax')) {
+        if (cache()->get('use_button_ajax')) {
             return Button::make()
                     ->text('<i class="fa fa-plus"></i> <span class="hidden" data-yajra-href="'.$route.'"></span>')
                     ->addClass('btn btn-outline-info show-modal-form')

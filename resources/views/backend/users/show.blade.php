@@ -1,6 +1,6 @@
 <div class="mb-2 d-flex justify-content-between">
     @if (canUser('users-edit'))
-        <a href="{{ routeHelper('users.edit', $row) }}" class="btn btn-sm btn-primary"> <i class="fa fa-edit"></i> @lang('buttons.edit') </a>
+        <a href="{{ routeHelper('users.edit', $row) }}" class="btn btn-sm btn-primary {{ $use_button_ajax ? 'show-modal-form' : '' }}"> <i class="fa fa-edit"></i> @lang('buttons.edit') </a>
     @endif
 </div>
 

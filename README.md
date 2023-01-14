@@ -12,15 +12,15 @@ cd  new_laravel_9
 * copy .env.example and rename it to .env
 * set database config in your inv file
 
-## Create key
-```
-php artisan key:generate
-```
-
 ## Install composer
 ```
 composer install --ignore-platform-reqs
 
+```
+
+## Create key
+```
+php artisan key:generate
 ```
 
 ## Install npm and build assets
