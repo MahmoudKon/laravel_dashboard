@@ -8,6 +8,7 @@ use App\Models\Language;
 use App\Http\Services\LanguageService;
 use App\Http\Requests\LanguageRequest;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 
 class LanguageController extends BackendController
@@ -37,7 +38,22 @@ class LanguageController extends BackendController
             return view('backend.languages.includes.list-trans', compact('row', 'rows', 'file'));
         }
         $files = LanguageService::getFiles($row->short_name);
-        return view('backend.languages.trans', compact('row', 'files'));
+        $languages = Language::select('id', 'icon', 'native')->active()->get();
+        return view('backend.languages.trans', compact('row', 'files', 'languages'));
+    }
+
+    public function transCreate($id)
+    {
+        $trans = ['file' => request()->get('file', 'auth')];
+        return view('backend.languages.edit-trans', compact('id', 'trans'));
+    }
+
+    public function transStore(Request $request, $id)
+    {
+        $row = $this->query($id);
+        $file = request()->get('file', 'auth');
+        LanguageService::transStore($file, $row->short_name, $request);
+        return response()->json(['message' => trans('flash.row updated', ['model' => trans('menu.language')])], 200);
     }
 
     public function transEdit($id, $key)
@@ -45,7 +61,7 @@ class LanguageController extends BackendController
         $row = $this->query($id);
         $file = request()->get('file', 'auth');
         $trans = ['file' => $file, 'key' => $key, 'val' => Lang::get("$file.$key", locale: $row->short_name)];
-        return view('backend.languages.edit-trans', compact('row', 'trans'));
+        return view('backend.languages.edit-trans', compact('id', 'trans'));
     }
 
     public function transUpdate($id, $key)

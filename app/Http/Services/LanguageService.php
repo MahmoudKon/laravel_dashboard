@@ -58,6 +58,16 @@ class LanguageService
         return self::convertArrayToCollection($rows, 10, request()->get('page'));
     }
 
+
+    public static function transStore(string $file, string $short_name, $request) :void
+    {
+        $file = lang_path( "$short_name/$file.php" );
+        $contents = file($file);
+        $size = count($contents);
+        $contents[$size -1] = "\n\t\t'$request->key' => '$request->trans',\n".$contents[$size-1];
+        file_put_contents($file, $contents);
+    }
+
     public static function transUpdate(string $file, string $short_name, string $key) :void
     {
         $file = lang_path( "$short_name/$file.php" );
@@ -65,7 +75,7 @@ class LanguageService
 
         foreach ($content as $index => $val) {
             if ( stripos( $val, "'$key'" ) !== false ) {
-                $content[$index] = "\t\t'$key' => '".request()->input($key)."',";
+                $content[$index] = "\t\t'$key' => '".request()->input('trans')."',";
             }
         }
 

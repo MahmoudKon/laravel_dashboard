@@ -119,8 +119,10 @@ Route::controller('LanguageController')->as('languages.')->prefix('languages')->
     Route::put('{language}', 'update')->name('update');
     Route::post('{language}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
     Route::get('{language}', 'show')->name('show');
+    Route::get('{language}/trans/create', 'transCreate')->name('trans.create');
+    Route::post('{language}/trans', 'transStore')->name('trans.store');
     Route::get('{language}/trans/{key}/edit', 'transEdit')->name('trans.edit');
-    Route::post('{language}/trans/{key}/update', 'transUpdate')->name('trans.update');
+    Route::put('{language}/trans/{key}', 'transUpdate')->name('trans.update');
 });
 
 Route::resource('clients', 'ClientController');
