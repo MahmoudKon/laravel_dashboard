@@ -74,7 +74,7 @@ class LanguageService
         $content = explode("\n", file_get_contents( $file ));
 
         foreach ($content as $index => $val) {
-            if ( stripos( $val, "'$key'" ) !== false ) {
+            if ( stripos( $val, "'$key'" ) !== false || stripos( $val, "\"$key\"" ) !== false ) {
                 $content[$index] = "\t\t'$key' => '".request()->input('trans')."',";
             }
         }

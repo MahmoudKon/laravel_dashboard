@@ -44,6 +44,9 @@ return [
 
 
     // LANGUAGES
-    'show lang files' => 'عرض ملفات الترجمة في المجلد <b>:lang</b>',
+    // 'show lang files' => 'عرض ملفات الترجمة في المجلد <b>:lang</b>',
+    'show lang files' => 'عرض ملفات الترجمة',
     'the language does not have translation files' => 'اللغة ( :lang ) ليس لديها ملفات ترجمة',
+    'type translation key' => 'اكتب المفتاح الخاص بالترجمة',
+    'type translation value' => 'اكتب جملة الترجمة',
 ];

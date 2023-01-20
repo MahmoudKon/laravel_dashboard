@@ -140,6 +140,14 @@ php artisan serve
     <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/lang.png" alt="Languages page">
 </p>
 
+<p>16- New page to list lang files</p>
+- can create or edit for language file keys
+<p>
+    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/translation-page.png" alt="email-form page">
+    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/edit-translation.png" alt="email-body page">
+    <img src="https://github.com/MahmoudKon/new_laravel_9/blob/master/photos/create-translation.png" alt="email-body page">
+</p>
+
 
 ## features
 
