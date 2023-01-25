@@ -69,7 +69,7 @@ class SaveRoutesInDatabase extends Command
             $prefix = $action['prefix']; // ex: /en/dashboard
 
             // get url without prefix
-            $uri = str_replace($prefix, URL_PREFIX, $route->uri); // remove prefex from  en/dashboard/users => dashboard/users
+            $uri = str_replace($prefix, getRoutePrefex(), $route->uri); // remove prefex from  en/dashboard/users => dashboard/users
 
             $route_name = $action['as'] ?? "";
             $middleware = implode(',', $action['middleware']);

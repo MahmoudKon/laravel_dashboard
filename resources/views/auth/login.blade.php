@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('page_title', 'Login')
-@section('title', 'Welcome to ' . $website_settings['site_name'] ?? env('APP_NAME'))
+@section('title', 'Welcome to ' . getSettingKey('site_name', env('APP_NAME')))
 
 @section('content')
 <form action="{{ route('login') }}" method="POST">
@@ -68,7 +68,7 @@
         @endforeach
     </p>
     @if (Route::has('register'))
-        <p class="text-right m-0"> New to {{ $website_settings['site_name'] ?? env('APP_NAME') }} ? <a href="{{ route('register') }}" class="card-link text-bold-500">Sign Up</a> </p>
+        <p class="text-right m-0"> New to {{ getSettingKey('site_name', env('APP_NAME')) }} ? <a href="{{ route('register') }}" class="card-link text-bold-500">Sign Up</a> </p>
     @endif
 </div>
 @endsection

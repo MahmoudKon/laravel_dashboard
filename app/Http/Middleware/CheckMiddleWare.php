@@ -41,7 +41,7 @@ class CheckMiddleWare
         $action = $route->getAction();
 
         //  Check if the route is in the menu table
-        $menu = Menu::where('route', str_replace(ROUTE_PREFIX, '', $action['as']))->first();
+        $menu = Menu::where('route', str_replace(getRoutePrefex(), '', $action['as']))->first();
         // If the route is in the menu table and it visible is false, then redirect to error page
         if ($menu && ! $menu->visible) abort(503, 'This page is closed because it is under maintenance!');
 
@@ -61,7 +61,7 @@ class CheckMiddleWare
         $prefix = $action['prefix']; // ex: /en/dashboard
 
         // get url without prefix
-        $uri = str_replace($prefix, URL_PREFIX, $route->uri); // remove prefex from  en/dashboard/users => dashboard/users
+        $uri = str_replace($prefix, getRoutePrefex(), $route->uri); // remove prefex from  en/dashboard/users => dashboard/users
 
         // get the route from database
         // en/dashboard/users

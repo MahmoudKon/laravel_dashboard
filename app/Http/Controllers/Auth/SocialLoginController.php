@@ -24,10 +24,10 @@ class SocialLoginController extends Controller
             $social_user = Socialite::driver($provider)->user();
 
             if ( $this->checkSocialAccountExists($social_user->getId()) )
-                return redirect()->route(ROUTE_PREFIX.'/');
+                return redirect()->route(getRoutePrefex('.').'/');
 
             $this->checkOrCreateUser($provider, $social_user);
-            return redirect()->route(ROUTE_PREFIX.'/');
+            return redirect()->route(getRoutePrefex('.').'/');
 
         }catch(\Exception $e){
             throw new Exception($e->getMessage());

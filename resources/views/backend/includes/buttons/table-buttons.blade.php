@@ -3,14 +3,14 @@
         class="btn btn-primary dropdown-toggle dropdown-menu-right"> <i class="fa-solid fa-screwdriver-wrench"></i> </button>
     <span aria-labelledby="table-optins" class="dropdown-menu mt-1 dropdown-menu-left" x-placement="bottom-end">
 
-        @if (canUser(getModel()."-edit") && Route::has(ROUTE_PREFIX.getModel().'.edit'))
+        @if (canUser(getModel()."-edit") && Route::has(getRoutePrefex('.').getModel().'.edit'))
             <a href="{{ routeHelper(getModel().'.edit', $id) }}" data-toggle="tooltip" title="@lang('buttons.edit')"
                 class="btn btn-outline-primary {{ $use_button_ajax ? 'show-modal-form' : '' }} dropdown-item">
                 <i class="fas fa-edit"></i> @lang('buttons.edit')
             </a>
         @endif
 
-        @if (canUser(getModel()."-destroy") && Route::has(ROUTE_PREFIX.getModel().'.destroy'))
+        @if (canUser(getModel()."-destroy") && Route::has(getRoutePrefex('.').getModel().'.destroy'))
             <form action="{{ routeHelper(getModel().'.destroy', $id) }}" method="POST" class="form-destroy">
                 {{ csrf_field() }}
                 @method('delete')

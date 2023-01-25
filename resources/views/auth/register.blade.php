@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('page_title', 'Register')
-@section('title', 'Register with ' . $website_settings['site_name'] ?? env('APP_NAME'))
+@section('title', 'Register with ' . getSettingKey('site_name', env('APP_NAME')))
 
 @section('content')
 <form action="{{ route('register') }}" method="POST">

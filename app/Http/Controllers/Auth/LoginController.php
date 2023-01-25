@@ -50,6 +50,11 @@ class LoginController extends Controller
         return $field;
     }
 
+    public function redirectPath()
+    {
+        return routeHelper('/');
+    }
+
     public function logout() {
         Cache::forget('user-is-online-'.auth()->id());
         session()->forget('locked');

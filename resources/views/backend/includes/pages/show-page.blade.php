@@ -17,7 +17,7 @@
 @section('script')
     <script>
         $(function() {
-            $(`li[data-route="{{ ROUTE_PREFIX.getModel().'.index' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
+            $(`li[data-route="{{ getRoutePrefex('.').getModel().'.index' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
         });
     </script>
 @endsection

@@ -45,6 +45,6 @@ class LockScreenController extends Controller
     {
         $redirect = session('unlook-redirect');
         session()->forget(['unlook-redirect', 'locked']);
-        return $redirect == 'lock' ? ROUTE_PREFIX.'/' : $redirect;
+        return $redirect == 'lock' ? getRoutePrefex().'/' : $redirect;
     }
 }

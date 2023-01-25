@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\View;
 
 class SettingHelper
 {
-    public static function setSettingCache() :void
+    public static function setSettingCache($force = false) :void
     {
         $website_settings = $list_menus = $active_languages = $social_medias = [];
+        
+        self::clearCache();
 
-        if (! app()->runningInConsole()) {
+        if (! app()->runningInConsole() || $force) {
             $website_settings = self::setSettings();
             $social_medias    = self::setSocialMedias();
             $list_menus       = self::setMenus();
@@ -75,12 +77,9 @@ class SettingHelper
     {
         $prefix = $prefix ?? '';
         $prefix = str_replace(' ', '_', strtolower($prefix));
-
-        if(! defined('URL_PREFIX')) 
-            define('URL_PREFIX', $prefix);
-            $prefix_route = $prefix ? "$prefix." : '';
-        if(! defined('ROUTE_PREFIX')) 
-            define('ROUTE_PREFIX', $prefix_route);
+        if (! defined('URL_PREFIX') ) define('URL_PREFIX', $prefix);
+        $prefix_route = $prefix ? "$prefix." : '';
+        if (! defined('ROUTE_PREFIX') ) define('ROUTE_PREFIX', $prefix_route);
     }
 
     public static function shareValues(array $website_settings, $list_menus, array $active_languages, array $social_medias) :void
@@ -95,5 +94,13 @@ class SettingHelper
             'settingLogo'       => $website_settings['logo'] ?? '',
             'social_medias'     => $social_medias
         ]);
+    }
+
+    public static function clearCache() :void
+    {
+        if (! Cache::get('website_settings') || empty( Cache::get('website_settings') ) ) Cache::forget('website_settings');
+        if (! Cache::get('list_menus') || empty( Cache::get('list_menus') ) )             Cache::forget('list_menus');
+        if (! Cache::get('active_languages') || empty( Cache::get('active_languages') ) ) Cache::forget('active_languages');
+        if (! Cache::get('social_medias') || empty( Cache::get('social_medias') ) )       Cache::forget('social_medias');
     }
 }

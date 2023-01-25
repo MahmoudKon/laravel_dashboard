@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('page_title', 'Verify Email')
-@section('title', 'Verify Your Email Address with ' . $website_settings['site_name'] ?? env('APP_NAME'))
+@section('title', 'Verify Your Email Address with ' . getSettingKey('site_name', env('APP_NAME')))
 
 @section('content')
     @if (session('resent'))

@@ -87,7 +87,7 @@ class EmailController extends Controller
 
     public function read()
     {
-        foreach (Email::onTo()->onCc()->seen(EMAIL_UNSEEN)->get() as $email) {
+        foreach (Email::seen(EMAIL_UNSEEN)->get() as $email) {
             DB::beginTransaction();
                 $email->updateSeen();
             DB::commit();

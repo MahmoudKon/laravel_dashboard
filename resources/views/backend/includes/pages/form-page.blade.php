@@ -19,10 +19,10 @@
 @section('script')
     <script>
         $(function() {
-            if ($(`li[data-route="{{ ROUTE_PREFIX.getModel().'.create' }}"]`).length)
-                $(`li[data-route="{{ ROUTE_PREFIX.getModel().'.create' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
+            if ($(`li[data-route="{{ getRoutePrefex('.').getModel().'.create' }}"]`).length)
+                $(`li[data-route="{{ getRoutePrefex('.').getModel().'.create' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
             else
-                $(`li[data-route="{{ ROUTE_PREFIX.getModel().'.index' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
+                $(`li[data-route="{{ getRoutePrefex('.').getModel().'.index' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
         });
     </script>
 @endsection
