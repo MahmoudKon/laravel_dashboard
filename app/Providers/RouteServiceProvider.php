@@ -50,9 +50,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
             Route::middleware(['web', 'auth', 'localeSessionRedirect', 'localizationRedirect'])
-                ->prefix(LaravelLocalization::setLocale()."/".URL_PREFIX)
+                ->prefix(LaravelLocalization::setLocale()."/".getRoutePrefex())
                 ->namespace("$this->namespace\Backend")
-                ->as(ROUTE_PREFIX)
+                ->as(getRoutePrefex('.'))
                 ->group(base_path('routes/backend.php'));
         });
     }

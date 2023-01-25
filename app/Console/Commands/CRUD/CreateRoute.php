@@ -53,8 +53,8 @@ class CreateRoute extends Command
         $model_pram   = Str::singular( Str::lower(class_basename($model)) );
         $namespace    = "App\\Http\\Controllers\\Backend";
         $middleware   = "web,localeSessionRedirect,localizationRedirect,localeViewPath,auth";
-        $ROUTE_PREFIX = URL_PREFIX."/";
-        $prefix       = "/".URL_PREFIX;
+        $ROUTE_PREFIX = getRoutePrefex()."/";
+        $prefix       = "/".getRoutePrefex();
 
         $routes = [
             [

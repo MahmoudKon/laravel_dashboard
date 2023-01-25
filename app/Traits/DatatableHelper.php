@@ -57,7 +57,7 @@ trait DatatableHelper
 
     public function getCreateButton() :Button
     {
-        if ( !canUser("$this->table-create") || !Route::has(ROUTE_PREFIX."$this->table.create")) return new Button();
+        if ( !canUser("$this->table-create") || !Route::has(getRoutePrefex('.')."$this->table.create")) return new Button();
         $route = routeHelper($this->table.'.create', getUrlQuery());
         if (cache()->get('use_button_ajax')) {
             return Button::make()
@@ -75,7 +75,7 @@ trait DatatableHelper
 
     public function getDeleteButton() :Button
     {
-        if ( !canUser($this->table."-multidelete") || !Route::has(ROUTE_PREFIX."$this->table.multidelete") ) return new Button();
+        if ( !canUser($this->table."-multidelete") || !Route::has(getRoutePrefex('.')."$this->table.multidelete") ) return new Button();
         return Button::make()
                         ->text('<i class="fas fa-trash"></i>')
                         ->addClass('btn btn-outline-danger multi-delete')
@@ -93,7 +93,7 @@ trait DatatableHelper
 
     public function getImportButton() :Button
     {
-        if ( !canUser($this->table."-import") || !Route::has(ROUTE_PREFIX."$this->table.excel.import.form") ) return new Button();
+        if ( !canUser($this->table."-import") || !Route::has(getRoutePrefex('.')."$this->table.excel.import.form") ) return new Button();
         return Button::make()
                     ->text('<i class="fa fa-cloud-upload"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.excel.import.form').'"></span>')
                     ->addClass('btn btn-outline-primary show-modal-form')
@@ -102,7 +102,7 @@ trait DatatableHelper
 
     public function getExportButton() :Button
     {
-        if ( !Route::has(ROUTE_PREFIX."$this->table.search.export") ) return new Button();
+        if ( !Route::has(getRoutePrefex('.')."$this->table.search.export") ) return new Button();
         return Button::make()->text('<i class="fas fa-cloud-download"></i>')
                         ->action("window.location.href = '". routeHelper($this->table.'.excel.export') ."'")
                         ->addClass('btn btn-outline-info '. (canUser($this->table."-export") ? "" : "remove-hidden-element"))
@@ -111,7 +111,7 @@ trait DatatableHelper
 
     public function getSearchButton() :Button
     {
-        if ( !Route::has(ROUTE_PREFIX."$this->table.search.form") ) return new Button();
+        if ( !Route::has(getRoutePrefex('.')."$this->table.search.form") ) return new Button();
         return Button::make()
                     ->text('<i class="fa fa-search"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.search.form').'"></span>')
                     ->addClass('btn btn-outline-warning show-search-form ' . (request()->has('search') ? 'hidden' : ''))
@@ -120,7 +120,7 @@ trait DatatableHelper
 
     public function getCloseButton() :Button
     {
-        if ( !Route::has(ROUTE_PREFIX."$this->table.search.form") ) return new Button();
+        if ( !Route::has(getRoutePrefex('.')."$this->table.search.form") ) return new Button();
         return Button::make()
                     ->text('<i class="fa fa-times"></i>')
                     ->addClass('btn btn-outline-warning close-search-button ' . (request()->has('search') ? '' : 'hidden'))

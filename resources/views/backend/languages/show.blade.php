@@ -38,7 +38,7 @@
 @section('script')
     <script>
         $(function() {
-            $(`li[data-route="{{ ROUTE_PREFIX.getModel().'.index' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
+            $(`li[data-route="{{ getRoutePrefex('.').getModel().'.index' }}"]`).addClass('active').closest('.has-sub').addClass('active open');
             $('body').on('change', '#languages', function() { window.location = $(this).find('option:selected').data('route'); });
 
             $('body').on('change', '#trans-file', function() {

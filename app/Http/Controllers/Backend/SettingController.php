@@ -20,14 +20,16 @@ class SettingController extends BackendController
     {
         $row = $SettingService->handle($request->validated());
         if ($row instanceof Exception ) throw new Exception( $row );
-        return $this->redirect(trans('flash.row created', ['model' => trans('menu.setting')]));
+        $redirect = '/'.getRoutePrefex().'/settings';
+        return $this->redirect(trans('flash.row created', ['model' => trans('menu.setting')]), $redirect);
     }
 
     public function update(SettingRequest $request, SettingService $SettingService, $id)
     {
         $row = $SettingService->handle($request->validated(), $id);
         if ($row instanceof Exception ) throw new Exception( $row );
-        return $this->redirect(trans('flash.row updated', ['model' => trans('menu.setting')]));
+        $redirect = '/'.getRoutePrefex().'/settings';
+        return $this->redirect(trans('flash.row updated', ['model' => trans('menu.setting')]), $redirect);
     }
 
     public function getTypeInput(Request $request)

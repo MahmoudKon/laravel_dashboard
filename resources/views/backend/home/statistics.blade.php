@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </a>
-                @if (canUser("$table-create") && Route::has(ROUTE_PREFIX."$table.create"))
+                @if (canUser("$table-create") && Route::has(getRoutePrefex('.')."$table.create"))
                     <a href="{{ routeHelper("$table.create") }}" class="btn btn-sm btn-{{ $info['color'] }} btn-block mt-1">
                         <i class="fa fa-plus"></i> <b> @lang('buttons.create')</b>
                     </a>

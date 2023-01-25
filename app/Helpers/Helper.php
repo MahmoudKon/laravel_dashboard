@@ -17,6 +17,16 @@ function assetHelper(string $path, string $folder = 'backend') :string
     return asset("app-assets/$folder/$path");
 }
 
+function getRoutePrefex(string $append = '') :string
+{
+    return getSettingKey('route_prefix', 'dashboard')."$append";
+}
+
+function getSettingKey(string $key, string $default) :mixed
+{
+    return Cache::get('website_settings')[$key] ?? $default;
+}
+
 /**
  *  routeHelper
  *  To return the route after route prefix [dashboard/]
@@ -24,7 +34,7 @@ function assetHelper(string $path, string $folder = 'backend') :string
 function routeHelper(string|null $route, object|array|string|int|null $options = null) :string
 {
     if (! $route || $route == '#') return '';
-    $route = ROUTE_PREFIX.$route;
+    $route = getRoutePrefex('.').$route;
     return route(trim($route, '.'), $options);
 }
 
@@ -100,8 +110,8 @@ function getModel(bool $singular = false, $view = false) :string
     } catch (Exception $e) {
         $route = request()->route()->uri;
         $route = str_replace(app()->getLocale().'/', '', $route);
-        $route = str_replace('dashboard/', '', $route);
-        $table = explode('/', $route)[0] ?? "dashboard";
+        $route = str_replace(getRoutePrefex().'/', '', $route);
+        $table = explode('/', $route)[0] ?? getRoutePrefex();
     }
     $table = str_replace(' ', '_', $table);
 

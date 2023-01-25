@@ -10,7 +10,7 @@
         <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
             <span class="float-md-left d-block d-md-inline-block">
                 Copyright &copy; {{ date('Y') }}
-                <a class="text-bold-800 grey darken-2" target="_blank">{{ $website_settings['site_name'] }}</a>
+                <a class="text-bold-800 grey darken-2" target="_blank">{{ getSettingKey('site_name', env('APP_NAME')) }}</a>
                 , All rights reserved.
             </span>
 

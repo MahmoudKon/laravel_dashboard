@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('page_title', 'Reset Password')
-@section('title', 'Reset Password with ' . $website_settings['site_name'] ?? env('APP_NAME'))
+@section('title', 'Reset Password with ' . getSettingKey('site_name', env('APP_NAME')))
 
 @section('content')
 <form method="POST" action="{{ route('password.update') }}">
