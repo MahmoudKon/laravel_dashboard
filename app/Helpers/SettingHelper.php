@@ -75,9 +75,12 @@ class SettingHelper
     {
         $prefix = $prefix ?? '';
         $prefix = str_replace(' ', '_', strtolower($prefix));
-        define('URL_PREFIX', $prefix);
-        $prefix_route = $prefix ? "$prefix." : '';
-        define('ROUTE_PREFIX', $prefix_route);
+
+        if(! defined('URL_PREFIX')) 
+            define('URL_PREFIX', $prefix);
+            $prefix_route = $prefix ? "$prefix." : '';
+        if(! defined('ROUTE_PREFIX')) 
+            define('ROUTE_PREFIX', $prefix_route);
     }
 
     public static function shareValues(array $website_settings, $list_menus, array $active_languages, array $social_medias) :void
