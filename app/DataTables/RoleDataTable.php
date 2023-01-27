@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Traits\DatatableHelper;
+use App\View\Components\LinkTag;
 use Spatie\Permission\Contracts\Role;
 use Spatie\Permission\Models\Role as ModelsRole;
 use Yajra\DataTables\Html\Column;
@@ -25,9 +26,13 @@ class RoleDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('check', 'backend.includes.tables.checkbox')
+            ->addColumn('clone_routes', function(Role $role) {
+                $view = new LinkTag(routeHelper('roles.clone.routes', $role), trans('buttons.clone'), trans('buttons.clone'), 'btn-warning '.(cache()->get('use_button_ajax') ? 'show-modal-form' : ''), 'fas fa-copy');
+                return $view->render()->with($view->data());
+            })
             ->addColumn('action', 'backend.includes.buttons.table-buttons')
             ->editColumn('action', function(Role $role) {return view('backend.'.getModel(view:true).'.actions', ['id' => $role->id])->render();})
-            ->rawColumns(['action', 'check']);
+            ->rawColumns(['action', 'check', 'clone_routes']);
     }
 
     /**
@@ -84,6 +89,7 @@ class RoleDataTable extends DataTable
             Column::make('check')->title('<label class="skin skin-square p-0 m-0"><input data-color="red" type="checkbox" class="switchery" id="check-all" style="width: 25px"></label>')->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(15)->addClass('text-center')->footer(trans('buttons.delete')),
             Column::make('id')->title('#')->width('70px'),
             Column::make('name')->title(trans('inputs.name')),
+            Column::make('clone_routes')->exportable(false)->printable(false)->title(trans('title.make clone', ['model' => trans('menu.permissions')])),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->footer(trans('inputs.action'))->title(trans('inputs.action')),
         ];
     }

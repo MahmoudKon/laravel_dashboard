@@ -54,9 +54,11 @@ Route::post('departments/multidelete', 'DepartmentController@multidelete')->name
 
 
 Route::resource('roles','RoleController');
-Route::controller('RoleController')->group(function () {
-    Route::post('roles/get/permissions', 'getPermissions')->name('roles.permissions');
-    Route::post('roles/multidelete', 'multidelete')->name('roles.multidelete');
+Route::controller('RoleController')->as('roles.')->prefix('roles')->group(function () {
+    Route::post('get/permissions', 'getPermissions')->name('permissions');
+    Route::post('multidelete', 'multidelete')->name('multidelete');
+    Route::get('{role}/clone/routes', 'cloneRoutes')->name('clone.routes');
+    Route::post('{role}/clone/routes', 'saveCloneRoutes')->name('save.clone.routes');
 });
 
 

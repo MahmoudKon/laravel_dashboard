@@ -14,6 +14,8 @@ return [
     'show-row-details' => 'عرض بيانات :model',
     'assign-roles-for-each-route' => 'تعيين الصلاحيات لكل مسار',
 
+    'make clone' => 'نسخ :model',
+
 
     'ar' => 'باللغة العربية',
     'en' => 'باللغة الإنجليزية',

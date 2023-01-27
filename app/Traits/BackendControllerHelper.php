@@ -46,6 +46,13 @@ trait BackendControllerHelper
     public string $show_view = "backend.includes.pages.show-page";
 
     /**
+     * form_general
+     * the Generate form modal
+     * @var string
+     */
+    public $form_general = "backend.includes.pages.general-form";
+
+    /**
      * full_page_ajax
      *  to make the create/update in modal in the same index page, with add small create form near table list, without refresh page.
      * @var bool
@@ -214,6 +221,7 @@ trait BackendControllerHelper
         if ($this->use_button_ajax) {
             $this->create_view = "backend.includes.forms.form-create";
             $this->update_view = "backend.includes.forms.form-update";
+            $this->form_general = "backend.includes.forms.form-general";
         }
         
         $this->shareProperties();

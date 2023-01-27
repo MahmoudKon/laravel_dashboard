@@ -17,6 +17,9 @@ return [
 
     'invalid data' => 'Invalid data!',
 
+
+    'cloned successfully' => ':model Cloned Successfully',
+
     // Profile
     'change info'  => 'The information changed successfully!',
     'change image' => 'The image changed successfully!',

@@ -18,6 +18,7 @@ return [
     'create' => 'إنشاء',
     'assign-roles' => 'تعيين صلاحيات',
     'copy' => 'نسخ',
+    'clone' => 'إستنساخ',
     'create-sub-category' => 'إنشاء قسم فرعي',
     'create-operator' => 'إنشاء مشغل',
     'list-operators' => 'عرض المشغلين',

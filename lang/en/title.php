@@ -14,6 +14,8 @@ return [
     'show-row-details' => 'Show :model Details',
     'assign-roles-for-each-route' => 'Assign Roles For Each Route',
 
+    'make clone' => 'Clone :model',
+
     'ar' => 'english',
     'en' => 'arabic',
 

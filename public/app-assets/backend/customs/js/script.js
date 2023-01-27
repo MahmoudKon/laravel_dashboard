@@ -61,6 +61,7 @@ $(function() {
             processData: false,
             contentType: false,
             success: function (response, textStatus, jqXHR) {
+                $('.modal').modal("hide").find('.form-body').empty();
                 if (response.redirect) return window.location = response.redirect;
 
                 if (response.reload) return location.reload(true);
@@ -70,8 +71,6 @@ $(function() {
                 form.parent().removeClass('load');
 
                 if (response.stop) return;
-
-                $('.modal').modal("hide");
                 form.trigger("reset");
                 form.find('select').val('').trigger('change');
                 rows();

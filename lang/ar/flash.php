@@ -16,6 +16,9 @@ return [
 
     'invalid data' => 'بيانات غير صالحة',
 
+
+    'cloned successfully' => 'تم نسخ :model بنجاح',
+
     // Profile
     'change info'  => 'تم تغيير البيانات بنجاح',
     'change image' => 'تم تغيير الصورة بنجاح',

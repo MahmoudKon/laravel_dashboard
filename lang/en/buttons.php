@@ -18,6 +18,7 @@ return [
     'create' => 'Create',
     'assign-roles' => 'Assign Roles',
     'copy' => 'Copy',
+    'clone' => 'Clone',
     'create-sub-category' => 'Create Sub Category',
     'create-operator' => 'Create Operator',
     'list-operators' => 'List Operators',
