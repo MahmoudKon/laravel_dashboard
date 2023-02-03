@@ -52,7 +52,7 @@ class SettingHelper
     {
         return Cache::remember('list_menus', 60 * 60 * 24, function () {
                     return Schema::hasTable('menus')
-                            ? Menu::with('visibleSubs')->parent()->getVisible()->get()
+                            ? Menu::isParent()->with('visibleSubs')->getVisible()->get()
                             : [];
                 });
     }

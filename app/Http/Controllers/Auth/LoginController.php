@@ -44,7 +44,7 @@ class LoginController extends Controller
         $field = "email";
         if (filter_var(request()->username, FILTER_VALIDATE_INT)) $field = "code";
         else if (filter_var(request()->username, FILTER_VALIDATE_EMAIL)) $field = "email";
-        else if ( is_string( request()->username ) ) $field = "username";
+        else if ( is_string( request()->username ) ) $field = "name";
 
         request()->merge([$field => request()->username]);
         return $field;

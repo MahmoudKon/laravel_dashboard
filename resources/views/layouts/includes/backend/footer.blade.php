@@ -62,8 +62,6 @@
                 if ($.trim($(this).find('.menu-content').text()).length == 0) $(this).remove();
             });
 
-            setInterval(function() { $('body').find('.remove-hidden-element').remove(); }, 1000);
-
             $(`li[data-route="{{ request()->route()->action['as'] }}"]`).addClass('active').closest('.has-sub').addClass('active open');
 
             $('#page-loading-animation').fadeOut(350, function() { $(this).remove(); });

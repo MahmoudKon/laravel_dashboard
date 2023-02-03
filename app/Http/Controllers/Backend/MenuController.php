@@ -12,7 +12,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menus = Menu::with('subs')->parent()->get();
+        $menus = Menu::isParent()->with('subs')->get();
         return view('backend.menus.index', ['count' => $menus->count(), 'menus' => $menus]);
     }
 

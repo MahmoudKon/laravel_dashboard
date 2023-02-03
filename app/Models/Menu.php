@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Spatie\Translatable\HasTranslations;
 
 class Menu extends Model
@@ -38,9 +39,14 @@ class Menu extends Model
         return $this->hasMany(self::class, 'parent_id', 'id')->getVisible()->with('visibleSubs');
     }
 
-    public function scopeParent($query)
+    public function scopeIsParent($query)
     {
         $query->whereNull('parent_id');
+    }
+
+    public function scopeGetVisible($query)
+    {
+        return $query->where('visible', 1);
     }
 
     protected function name(): Attribute
@@ -48,11 +54,6 @@ class Menu extends Model
         return Attribute::make(
             get: fn ($value) => $this->getName(),
         );
-    }
-
-    public function scopeGetVisible($query)
-    {
-        return $query->where('visible', 1);
     }
 
     public function getName($lang = null)

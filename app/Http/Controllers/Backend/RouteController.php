@@ -40,7 +40,7 @@ class RouteController extends BackendController
             return view('backend.routes.list-route-roles', compact('routes', 'roles'));
         }
 
-        $controllers = Route::select('controller')->pluck('controller', 'controller');
+        $controllers = Route::select('controller')->orderBy('controller', 'ASC')->pluck('controller', 'controller');
         return view('backend.routes.assign-roles', compact('controllers'));
     }
 
@@ -61,7 +61,7 @@ class RouteController extends BackendController
                 $this->createPermission($request->controller, $route->func, $roles_id);
             }
         }
-
+        cache()->forget('list_menus');
         return $this->redirect('Assigned Roles Successfully!', stop: true);
     }
 
