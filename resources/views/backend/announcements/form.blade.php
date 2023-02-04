@@ -3,7 +3,7 @@
 @endpush
 
 <div class='row'>
-    <div class="col-md-6">
+    <div class="col-md-9">
         {{-- START title --}}
         <div class="form-group">
             <label class="required">@lang('inputs.title')</label>
@@ -52,41 +52,37 @@
         {{-- START url --}}
         <div class="form-group">
             <label class="required">@lang('inputs.url')</label>
+            <label class="float-right">@lang('inputs.open_type')</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-link"></i> </span>
                 </div>
                 <input type="url" class="form-control" name="url" required value="{{ $row->url ?? old('url') }}"  placeholder="@lang('inputs.url')">
+                <div class="input-group-prepend">
+                    <span class="input-group-text py-0">
+                        <input type="checkbox" name="open_type" value="1" class="switchery" data-size="sm" @checked($row->open_type ?? (old('open_type')))>
+                    </span>
+                </div>
             </div>
             <x-validation-error input='url' />
         </div>
         {{-- END url --}}
+    </div>
 
+    <div class="col-md-3">
         {{-- START image --}}
         @include('backend.includes.forms.input-file', ['image' => isset($row) && $row->image ? url($row->image) : null, 'alt' => $row->name ?? null])
         {{-- END image --}}
-
-        {{-- START open_type --}}
-        <div class="form-group">
-            <div>
-                <label>@lang('inputs.open_type')</label>
-                <input type="checkbox" name="open_type" value="1" class="switchery" @checked($row->open_type ?? (old('open_type')))>
-            </div>
-            <x-validation-error input='open_type' />
-        </div>
-        {{-- END open_type --}}
-    </div>
-
-    <div class="col-md-6">
-        {{-- START desc --}}
-        <div class="form-group">
-            <label>@lang("inputs.desc")</label>
-            <textarea name="desc" class="ckeditor" placeholder='@lang("inputs.desc")'>{{ $row->desc ?? old("desc") }}</textarea>
-            <x-validation-error input='desc' />
-        </div>
-        {{-- END desc --}}
     </div>
 </div>
+
+{{-- START desc --}}
+<div class="form-group">
+    <label>@lang("inputs.desc")</label>
+    <textarea name="desc" class="ckeditor" placeholder='@lang("inputs.desc")'>{{ $row->desc ?? old("desc") }}</textarea>
+    <x-validation-error input='desc' />
+</div>
+{{-- END desc --}}
 
 @push('script')
     <script type="text/javascript" src="{{ assetHelper('vendors/js/editors/ckeditor/ckeditor.js') }}"></script>
