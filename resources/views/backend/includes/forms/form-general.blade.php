@@ -12,13 +12,17 @@
             <form action="{{ $route }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}" enctype="multipart/form-data">
                 @csrf
 
-                {{-- END FORM INPUTS --}}
+                {{-- START FORM INPUTS --}}
                 @include('backend.' . getModel(view:true) . '.'.$form_name)
                 {{-- END FORM INPUTS --}}
 
-                {{-- END FORM BUTTONS --}}
+                {{-- START FORM BUTTONS --}}
                 <x-form-buttons />
                 {{-- END FORM BUTTONS --}}
+
+                {{-- START FORM PROGRESS --}}
+                <x-html.progress />
+                {{-- END FORM PROGRESS --}}
             </form>
         </div>
     </div>

@@ -30,7 +30,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
             $this->index,
             $user->name,
             $user->email,
-            $user->department->title ?? '',
+            $user->department->title,
         ];
     }
 

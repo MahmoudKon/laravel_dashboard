@@ -58,6 +58,31 @@ function rows(form = null) {
     });
 } // AJAX CODE TO LOAD THE DATA TABLE
 
+function beforeSendRequest(form)
+{
+    form.find('button').prop('disabled', true);
+    form.find('span.error').fadeOut(100);
+    form.find('.progress').fadeIn(300).removeClass('hidden');
+    progressBar(form.find(".progress"), 0);
+}
+
+function completeRequest(form)
+{
+    form.parent().removeClass('load').find('button').prop('disabled', false);
+    progressBar(form.find(".progress"), 100);
+}
+
+function progressBar(ele, percentage = 0)
+{
+    ele.find('.progress-bar').css({"width": `${percentage}%`}).text(`${percentage}%`);
+    if ( percentage >= 100 ) {
+        ele.find('.progress-bar').css({"width": '100%'}).text('100%');
+        ele.fadeOut(3000, function() {
+            ele.find('.progress-bar').css({"width": '0%'}).text('0%');
+        });
+    }
+}
+
 function handleErrors(jqXHR, form = null)
 {
     if (jqXHR.readyState == 0) return true;

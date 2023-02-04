@@ -102,7 +102,7 @@ trait DatatableHelper
 
     public function getExportButton() :Button
     {
-        if ( !Route::has(getRoutePrefex('.')."$this->table.search.export") ) return new Button();
+        if ( !Route::has(getRoutePrefex('.')."$this->table.excel.export") ) return new Button();
         return Button::make()->text('<i class="fas fa-cloud-download"></i>')
                         ->action("window.location.href = '". routeHelper($this->table.'.excel.export') ."'")
                         ->addClass('btn btn-outline-info '. (canUser($this->table."-export") ? "" : "remove-hidden-element"))

@@ -51,7 +51,8 @@ $(function() {
     $('body').on('submit', 'form.submit-form', function(e) {
         e.preventDefault();
         let form = $(this);
-        form.find('span.error').fadeOut(100);
+        let time;
+        let progress = 0;
 
         $.ajax({
             url: form.attr('action'),
@@ -60,6 +61,18 @@ $(function() {
             dataType: 'JSON',
             processData: false,
             contentType: false,
+            xhr: function () {
+                let jqXHR = window.ActiveXObject ? new window.ActiveXObject( "Microsoft.XMLHTTP" ) : new window.XMLHttpRequest();
+                jqXHR.upload.addEventListener( "progress", function ( evt ) {
+                    if ( evt.lengthComputable ) {
+                        let percent = Math.round( (evt.loaded * 100) / evt.total );
+                        progressBar(form.find(".progress"), percent);
+                        $.ajaxSettings.xhr(evt, evt.loaded, evt.total, percent);
+                    }
+                }, false );
+                return jqXHR;
+            },
+            beforeSend: function (jqHXR) { beforeSendRequest(form) },
             success: function (response, textStatus, jqXHR) {
                 $('.modal').modal("hide").find('.form-body').empty();
                 if (response.redirect) return window.location = response.redirect;
@@ -76,13 +89,10 @@ $(function() {
                 rows();
                 $('#recourds-count').text(response.count);
             },
-            error: function (jqXHR, textStatus, errorMessage) {
-                handleErrors(jqXHR, form);
-                form.parent().removeClass('load');
-            },
+            error: function (jqXHR, textStatus, errorMessage) { handleErrors(jqXHR, form); },
+            complete: function (jqXHR, textStatus) { clearInterval(time); completeRequest(form); }
         });
     }); // WHEN SUBMIT THE FORM SEND DATA TO CONTROLLER
-
 
     $('body').on('submit', 'form.form-destroy', function (e) {
         e.preventDefault();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\UserDataTable;
 use App\Exports\UsersExport;
 use App\Http\Controllers\BackendController;
+use App\Http\Requests\ImportExcelRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
 use App\Imports\UsersImport;
@@ -24,14 +25,14 @@ class UserController extends BackendController
     {
         $row = $UserService->handle($request->validated());
         if ($row instanceof Exception ) throw new Exception( $row );
-        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $row));
+        return $this->redirect(trans('flash.row created', ['model' => trans('menu.user')]), routeHelper($this->getTableName().'.show', $row));
     }
 
     public function update(UserRequest $request, UserService $UserService, $id)
     {
         $row = $UserService->handle($request->validated(), $id);
         if ($row instanceof Exception ) throw new Exception( $row );
-        return $this->redirect(redirect: routeHelper($this->getTableName().'.show', $row));
+        return $this->redirect(trans('flash.row updated', ['model' => trans('menu.user')]), routeHelper($this->getTableName().'.show', $row));
     }
 
     public function export()
@@ -41,10 +42,14 @@ class UserController extends BackendController
 
     public function import()
     {
-        return view('backend.users.import');
+        return view($this->form_general, [
+            'route' => routeHelper(getModel().'.excel.import'),
+            'title' => 'Import Users Excel File',
+            'form_name' => 'import'
+        ]);
     }
 
-    public function saveImport(Request $request)
+    public function saveImport(ImportExcelRequest $request)
     {
         Excel::import(new UsersImport, $request->file);
         return response()->json(['message' => "Data Saved Successfully!", 'icon' => 'success']);

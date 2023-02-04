@@ -19,6 +19,10 @@
             {{-- END FORM BUTTONS --}}
             <x-form-buttons />
             {{-- END FORM BUTTONS --}}
+
+            {{-- START FORM PROGRESS --}}
+            <x-html.progress />
+            {{-- END FORM PROGRESS --}}
         </form>
     </div>
 </div>
