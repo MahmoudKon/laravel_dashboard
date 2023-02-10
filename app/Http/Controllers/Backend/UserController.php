@@ -12,7 +12,6 @@ use App\Imports\UsersImport;
 use App\Models\Department;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
@@ -53,6 +52,12 @@ class UserController extends BackendController
     {
         Excel::import(new UsersImport, $request->file);
         return response()->json(['message' => "Data Saved Successfully!", 'icon' => 'success']);
+    }
+
+    public function forceLogout()
+    {
+        $this->model()->filter()->update(['logged_in' => false]);
+        return response()->json(['message' => trans('flash.user logged out')]);
     }
 
     public function model() :\Illuminate\Database\Eloquent\Model { return new User; }

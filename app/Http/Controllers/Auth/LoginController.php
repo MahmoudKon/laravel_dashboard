@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class LoginController extends Controller
@@ -50,6 +51,11 @@ class LoginController extends Controller
         return $field;
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        $user->update(['logged_in' => true]);
+    }
+
     public function redirectPath()
     {
         return routeHelper('/');
@@ -57,7 +63,7 @@ class LoginController extends Controller
 
     public function logout() {
         Cache::forget('user-is-online-'.auth()->id());
-        session()->forget('locked');
+        session()->flush();
         auth()->logout();
         return redirect('/login');
     }

@@ -30,22 +30,23 @@ Route::controller('DatabaseController')->as('database.')->prefix('database')->gr
 
 
 Route::resource('users','UserController');
-Route::controller('UserController')->group(function () {
-    Route::post('users/multidelete', 'multidelete')->name('users.multidelete');
-    Route::get('users/excel/export', 'export')->name('users.excel.export');
-    Route::get('users/excel/import', 'import')->name('users.excel.import.form');
-    Route::post('users/excel/import', 'saveImport')->name('users.excel.import');
-    Route::get('users/search/form', 'search')->name('users.search.form');
+Route::controller('UserController')->prefix('users')->as('users.')->group(function () {
+    Route::post('multidelete', 'multidelete')->name('multidelete');
+    Route::get('excel/export', 'export')->name('excel.export');
+    Route::get('excel/import', 'import')->name('excel.import.form');
+    Route::post('excel/import', 'saveImport')->name('excel.import');
+    Route::get('search/form', 'search')->name('search.form');
+    Route::get('force/logout', 'forceLogout')->name('force.logout');
 });
 
 
-Route::controller('ProfileController')->group(function () {
-    Route::get('profile', 'index')->name('profile.index');
-    Route::put('profile/info', 'info')->name('profile.info');
-    Route::put('profile/avatar', 'avatar')->name('profile.avatar');
-    Route::put('profile/password', 'password')->name('profile.password');
-    Route::put('profile/roles', 'roles')->name('profile.roles');
-    Route::put('profile/permissions', 'permissions')->name('profile.permissions');
+Route::controller('ProfileController')->prefix('profile')->as('profile.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::put('info', 'info')->name('info');
+    Route::put('avatar', 'avatar')->name('avatar');
+    Route::put('password', 'password')->name('password');
+    Route::put('roles', 'roles')->name('roles');
+    Route::put('permissions', 'permissions')->name('permissions');
 });
 
 
@@ -67,10 +68,10 @@ Route::post('permissions/multidelete', 'PermissionController@multidelete')->name
 
 
 Route::resource('settings','SettingController')->except('show');
-Route::controller('SettingController')->group(function () {
-    Route::post('settings/type/input', 'getTypeInput')->name('settings.type.input');
-    Route::post('settings/multidelete', 'multidelete')->name('settings.multidelete');
-    Route::post('settings/{setting}/column/{column}/toggle', 'columnToggle')->name('settings.column.toggle');
+Route::controller('SettingController')->prefix('settings')->as('settings.')->group(function () {
+    Route::post('type/input', 'getTypeInput')->name('type.input');
+    Route::post('multidelete', 'multidelete')->name('multidelete');
+    Route::post('{setting}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
 });
 
 
@@ -110,9 +111,11 @@ Route::resource('cities', 'CityController')->except('show');
 Route::post('cities/multidelete', 'CityController@multidelete')->name('cities.multidelete');
 
 Route::resource('announcements', 'AnnouncementController');
-Route::post('announcements/multidelete', 'AnnouncementController@multidelete')->name('announcements.multidelete');
-Route::post('announcements/{announcement}/column/{column}/toggle', 'AnnouncementController@columnToggle')->name('announcements.column.toggle');
-Route::get('announcements/search/form', 'AnnouncementController@search')->name('announcements.search.form');
+Route::controller('AnnouncementController')->as('announcements.')->prefix('announcements')->group(function () {
+    Route::post('multidelete', 'multidelete')->name('multidelete');
+    Route::post('{announcement}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
+    Route::get('search/form', 'search')->name('search.form');
+});
 
 
 Route::controller('LanguageController')->as('languages.')->prefix('languages')->group(function () {
@@ -130,13 +133,17 @@ Route::controller('LanguageController')->as('languages.')->prefix('languages')->
 Route::resource('clients', 'ClientController');
 Route::post('clients/multidelete', 'ClientController@multidelete')->name('clients.multidelete');
 
-Route::get('commands', 'CommandController@index')->name('commands.index');
-Route::post('commands/{command}/info', 'CommandController@commandInfo')->name('commands.command.info');
-Route::post('commands/call', 'CommandController@call')->name('commands.call');
+Route::controller('CommandController')->as('commands.')->prefix('commands')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('{command}/info', 'commandInfo')->name('command.info');
+    Route::post('call', 'call')->name('call');
+});
 
 Route::resource('oauth_socials', 'OauthSocialController');
-Route::post('oauth_socials/multidelete', 'OauthSocialController@multidelete')->name('oauth_socials.multidelete');
-Route::post('oauth_socials/{oauth_social}/column/{column}/toggle', 'OauthSocialController@columnToggle')->name('oauth_socials.column.toggle');
+Route::controller('OauthSocialController')->as('oauth_socials.')->prefix('oauth_socials')->group(function () {
+    Route::post('multidelete', 'multidelete')->name('multidelete');
+    Route::post('{oauth_social}/column/{column}/toggle', 'columnToggle')->name('column.toggle');
+});
 
 Route::resource('social_medias', 'SocialMediaController');
 Route::post('social_medias/multidelete', 'SocialMediaController@multidelete')->name('social_medias.multidelete');

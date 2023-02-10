@@ -16,6 +16,8 @@ return [
 
     'invalid data' => 'بيانات غير صالحة',
 
+    'user logged out' => 'تم تسجيل خروج المستخدم بنجاح',
+
 
     'cloned successfully' => 'تم نسخ :model بنجاح',
 

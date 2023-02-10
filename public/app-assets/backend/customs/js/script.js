@@ -12,7 +12,7 @@ $(function() {
     });
 
 
-    $('a[data-action="reload"]').click(function () {rows();});
+    $('a[data-btn-action="reload"]').click(function () {rows();});
 
 
     // THIS FOR CHECK IF THE PAGE HAVE TABLE OR NOT, IF HAVE THEN RUN THE AJAX CODE TO GET THE TABLE DATA
@@ -43,6 +43,25 @@ $(function() {
             },
         });
     }); // PUSH FORM TO THE BOOTSTRAP MODAL
+
+    $('body').on('click', '.do-single-process', function (e) {
+        e.preventDefault();
+        let btn = $(this);
+
+        $.ajax({
+            url: btn.attr('href'),
+            type: "GET",
+            beforeSend: function (jqHXR) { btn.css('pointer-events', 'none') },
+            success: function (response, textStatus, jqXHR) {
+                btn.remove();
+                toast(response.message, null, 'success');
+            },
+            error: function(jqXHR) {
+                btn.css('pointer-events', 'all');
+                handleErrors(jqXHR);
+            },
+        });
+    }); // THIS TO DO SOMETHING IN BACKGROUND AND WILL REMOVE ELEMENT
 
     $('body').on('change', '.checkbox-change-status', function() {
         $(this).closest('form').submit();

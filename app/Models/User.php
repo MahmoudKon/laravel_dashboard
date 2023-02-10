@@ -40,6 +40,7 @@ class User extends Authenticatable
         'email_verified_at',
         'remember_token',
         'mobile_token',
+        'logged_in'
     ];
 
     /**

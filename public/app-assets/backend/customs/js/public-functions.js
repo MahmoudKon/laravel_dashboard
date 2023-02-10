@@ -3,7 +3,7 @@ $.ajaxSetup({
 }); // TO SEND THE CSRF TOKEN WITH AJAX REQUEST
 
 $(document).ajaxError(function(response, jqXHR) {
-    if (jqXHR.status === 419) { location.reload(true); }
+    if (jqXHR.status === 419 || jqXHR.status === 401) { location.reload(true); }
 }); // WHEN MAKE REQUEST AND THE RESPONSE IS ERROR THEN MAKE REFRESH THE PAGE
 
 function playAudio(type = 'success') {

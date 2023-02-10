@@ -29,6 +29,8 @@ return [
     'key' => 'Key',
     'value' => 'Value',
 
+    'logged_in' => 'Logged In',
+    
     'autoload' => 'Auto Load',
 
     'active' => 'Activation',

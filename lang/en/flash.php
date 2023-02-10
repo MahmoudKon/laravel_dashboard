@@ -17,6 +17,8 @@ return [
 
     'invalid data' => 'Invalid data!',
 
+    'user logged out' => 'User logged out successfully',
+
 
     'cloned successfully' => ':model Cloned Successfully',
 

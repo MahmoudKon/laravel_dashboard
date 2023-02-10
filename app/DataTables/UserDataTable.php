@@ -49,8 +49,13 @@ class UserDataTable extends DataTable
                 $view = new LinkTag(routeHelper('users.show', $user), $user->name, trans('buttons.cover'), 'btn-link');
                 return $view->render()->with($view->data());
             })
+            ->editColumn('logged_in', function(User $user) {
+                if (! $user->logged_in || ! canUser('users-forceLogout')) return '';
+                $view = new LinkTag(routeHelper('users.force.logout', ['id' => $user->id]), '', trans('menu.logout'), 'btn-sm btn-danger do-single-process', 'fa-solid fa-arrow-right-from-bracket');
+                return $view->render()->with($view->data());
+            })
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
-            ->rawColumns(['action', 'check', 'image', 'department_id']);
+            ->rawColumns(['action', 'check', 'image', 'department_id', 'logged_in']);
     }
 
     /**
@@ -110,6 +115,7 @@ class UserDataTable extends DataTable
             Column::make('email')->title(trans('inputs.email')),
             Column::make('image')->title(trans('title.avatar'))->footer(trans('title.avatar'))->orderable(false),
             Column::make('department_id')->title(trans('menu.department'))->footer(trans('menu.department')),
+            Column::make('logged_in')->title(trans('menu.logout'))->class(canUser('users-forceLogout') ? '' : 'hidden')->footer(trans('menu.logout'))->searchable(false)->orderable(false),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->footer(trans('inputs.action'))->title(trans('inputs.action')),
         ];
     }
