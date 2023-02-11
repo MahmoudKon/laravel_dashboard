@@ -77,6 +77,7 @@ return [
 	'end_date' => 'End Date',
 	'open_type' => 'Open In New Window',
     'image' => 'Image',
+    'file' => 'File',
     'count days' => 'Count Of Days',
     'creator' => 'Creator',
 

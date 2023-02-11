@@ -74,7 +74,8 @@ return [
 
     // GENERAL INPUTS
     'model name' => 'ال:model إسم',
-    'model image' => 'ال:model إسم',
+    'model image' => 'صورة :model',
+    'file' => 'ملف',
 
 
     'color' => 'اللون',

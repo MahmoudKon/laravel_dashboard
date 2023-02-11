@@ -1,17 +1,24 @@
 function previewFile(file) {
+    let targetEle = $('#show-file');
+    let reader = new FileReader();
+    targetEle.closest('#file-preview').addClass('load');
     if (file.files && file.files[0]) {
-        var reader = new FileReader();
         reader.onload = function(e) {
+            console.log(e.target);
             if (file.files[0].type.split("/")[0] == 'application')
-                $('#show-file').attr('href', e.target.result);
+                targetEle.attr('href', e.target.result);
             else if (file.files[0].type.split("/")[0] == 'image')
-                $('#show-file').attr('src', e.target.result);
+                targetEle.attr('src', e.target.result);
             else
-                $('#show-file').attr('src', e.target.result).parent()[0].load();
+                targetEle.attr('src', e.target.result).parent()[0].load();
         }
         reader.readAsDataURL(file.files[0]);
     } else {
-        $('#show-file').attr('src', file.value).parent()[0].load();
+        targetEle.attr('src', file.value).parent()[0].load();
+    }
+
+    reader.onloadend = function(e) {
+        targetEle.closest('#file-preview').removeClass('load');
     }
 }
 

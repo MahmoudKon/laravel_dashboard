@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
             'name'          => 'required',
             'email'         => 'required|email|unique:users,email,'.request()->route('user'),
             'password'      => [$pass_validation, Password::defaults()->min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
-            'image'         => 'nullable|mimes:png,jpg',
+            'image'         => 'nullable|image|mimes:png,jpg,gif',
             'department_id' => 'required|exists:departments,id',
             'roles'         => 'nullable|array',
         ];
@@ -41,7 +41,7 @@ class UserRequest extends FormRequest
             'name'          => trans('inputs.model name', ['model' => trans('menu.user')]),
             'email'         => trans('inputs.email'),
             'password'      => trans('inputs.password'),
-            'image'         => trans('inputs.model image', ['model' => trans('menu.user')]),
+            'image'         => trans('inputs.file'),
             'department_id' => trans('menu.department'),
             'roles'         => trans('menu.role')
         ];
