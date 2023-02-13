@@ -2,8 +2,15 @@
     {{-- START {{ column }} --}}
     <div class="form-group mb-5">
         <label class='{{ required }}'>@lang('inputs.{{ column }}')</label>
-        <textarea class="form-control" rows="5" name="{{ column }}" placeholder="@lang('inputs.{{ column }}')">{{ $row->{{ column }} ?? old('{{ column }}') }}</textarea>
+        <textarea class="form-control ckeditor" rows="5" name="{{ column }}" placeholder="@lang('inputs.{{ column }}')">{{ $row->{{ column }} ?? old('{{ column }}') }}</textarea>
         <x-validation-error input='{{ column }}' />
     </div>
     {{-- END {{ column }} --}}
 </div>
+
+@push('script')
+    <script type="text/javascript" src="{{ assetHelper('vendors/js/editors/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        $(document).ready(function() {CKEDITOR.replaceAll('ckeditor'); });
+    </script>
+@endpush

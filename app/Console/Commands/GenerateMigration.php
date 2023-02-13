@@ -19,7 +19,7 @@ class GenerateMigration extends GeneratorCommand
      *
      * @var string
      */
-    protected $description = 'To generate the migration file from database';
+    protected $description = 'To generate the migration file from database | This command not finished yet';
 
     protected $type = 'migration';
 

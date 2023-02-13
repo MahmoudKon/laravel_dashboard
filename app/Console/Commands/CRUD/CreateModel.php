@@ -139,12 +139,15 @@ class CreateModel extends GeneratorCommand
             $fillables .= "'$column->Field', ";
 
             if ($column->Comment == 'translations') {
-                $this->namespaces .= "use Spatie\Translatable\HasTranslations;\n";
-                $this->traits .= ', HasTranslations';
-                $this->translatable .= "'$column->Field',";
-                $this->methods .= "\n\tpublic function asJson(\$value)\n\t{";
-                $this->methods .= "\n\t\treturn json_encode(\$value, JSON_UNESCAPED_UNICODE);";
-                $this->methods .= "\n\t}\n";
+
+                if (stripos($this->namespaces, "use Spatie\Translatable\HasTranslations;") === false) {
+                    $this->namespaces .= "use Spatie\Translatable\HasTranslations;\n";
+                    $this->traits .= ', HasTranslations';
+                    $this->translatable .= "'$column->Field',";
+                    $this->methods .= "\n\tpublic function asJson(\$value)\n\t{";
+                    $this->methods .= "\n\t\treturn json_encode(\$value, JSON_UNESCAPED_UNICODE);";
+                    $this->methods .= "\n\t}\n";
+                }
 
                 $this->methods .= "\n\tprotected function $column->Field(): Attribute\n\t{";
                 $this->methods .= "\n\t\treturn Attribute::make(";
