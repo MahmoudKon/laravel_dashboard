@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 
 class GenerateClasses extends Command
 {
@@ -39,12 +40,19 @@ class GenerateClasses extends Command
     {
         $this->init();
 
+        if (! Schema::hasTable($this->table)) {
+            $this->error("table $this->table not exists!");
+            return ;
+        }
+
         if (file_exists("app/Models/{$this->model}.php")) {
             $this->error("model class app/Models/{$this->model}.php already exists!");
         } else {
             Artisan::call("crud:model {$this->model} {$this->table}");
             $this->info("model class<options=bold> app/Models/{$this->model}.php </>created successfully!");
         }
+
+        $this->line('');
 
         if (file_exists("app/Http/Requests/{$this->model}Request.php")) {
             $this->error("request class app/Http/Requests/{$this->model}Request.php already exists!");
@@ -53,12 +61,16 @@ class GenerateClasses extends Command
             $this->info("request class<options=bold> app/Http/Requests/{$this->model}Request.php </>created successfully!");
         }
 
+        $this->line('');
+
         if (file_exists("app/Http/Services/{$this->model}Service.php")) {
             $this->error("service class app/Http/Services/{$this->model}Service already exists!");
         } else {
             Artisan::call("crud:service {$this->model}");
             $this->info("service class<options=bold> app/Http/Services/{$this->model}Service.php </>created successfully!");
         }
+
+        $this->line('');
 
         if (file_exists("app/DataTables/{$this->model}DataTable.php")) {
             $this->error("datatable class app/DataTables/{$this->model}Datatable already exists!");
@@ -67,12 +79,16 @@ class GenerateClasses extends Command
             $this->info("datatable class<options=bold> app/DataTables/{$this->model}Datatable.php </>created successfully!");
         }
 
+        $this->line('');
+
         if (file_exists("app/Http/Controllers/Backend/{$this->model}Controller.php")) {
             $this->error("controller class app/Http/Controllers/Backend/{$this->model}Controller already exists!");
         } else {
             Artisan::call("crud:controller {$this->model}");
             $this->info("controller class<options=bold> app/Http/Controllers/Backend/{$this->model}Controller.php </>created successfully!");
         }
+
+        $this->line('');
 
         $view_path = "backend/".($this->option('namespace') ? $this->option('namespace').'/' : '')."{$this->argument('table')}/form.blade.php";
         if (file_exists(resource_path("views/$view_path"))) {
@@ -82,8 +98,12 @@ class GenerateClasses extends Command
             $this->info("View blade<options=bold> {$view_path} </>created successfully!");
         }
 
+        $this->line('');
+
         Artisan::call("crud:routes {$this->model}");
-        $this->info("<options=bold>All classes genrated successfully!</>");
+        $this->info("<options=bold>All classes generated successfully!</>");
+
+        $this->line('');
     }
 
     protected function init()
