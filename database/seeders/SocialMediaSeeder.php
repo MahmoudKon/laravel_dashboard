@@ -14,6 +14,8 @@ class SocialMediaSeeder extends Seeder
      */
     public function run()
     {
+        truncateTables('social_medias');
+
         $rows = [
             [
                 'name'  => 'Facebook',
