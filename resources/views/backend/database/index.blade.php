@@ -17,24 +17,24 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-sm table-striped table-hover mb-0" id="list-tables">
+                    <table class="table table-sm table-striped table-hover table-bordered mb-0" id="list-tables">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>@lang('inputs.name')</th>
-                                <th>Engine</th>
-                                <th>Rows Count</th>
-                                <th>Size</th>
-                                <th>Auto Increment</th>
-                                <th>Collection</th>
-                                <th>@lang('buttons.cover')</th>
+                                <th scope="col" class="text-center">#</th>
+                                <th scope="col" class="text-center">@lang('inputs.name')</th>
+                                <th scope="col" class="text-center">Engine</th>
+                                <th scope="col" class="text-center">Rows Count</th>
+                                <th scope="col" class="text-center">Size</th>
+                                <th scope="col" class="text-center">Auto Increment</th>
+                                <th scope="col" class="text-center">Collection</th>
+                                <th scope="col" class="text-center">@lang('buttons.cover')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($tables as $table)
-                                <tr data-table="{{ $table->TABLE_NAME }}">
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $table->TABLE_NAME }}</td>
+                                <tr data-table="{{ $table->TABLE_NAME }}" class="text-center">
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td  class="text-left">{{ $table->TABLE_NAME }}</td>
                                     <td>{{ $table->ENGINE }}</td>
                                     <td>{{ $table->TABLE_ROWS }}</td>
                                     <td><i class="fa-solid fa-k"></i> {{ $table->Size }}</td>

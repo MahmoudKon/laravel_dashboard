@@ -9,26 +9,26 @@
         <h4 class="py-1 text-center bg-blue-grey bg-darken-1 text-white"> <i class="fas fa-list"></i> Columns </h4>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-sm table-striped table-hover mb-0">
+                <table class="table table-sm table-striped table-hover table-bordered mb-0">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Field</th>
-                            <th>Type</th>
-                            <th>Null</th>
-                            <th>Key</th>
-                            <th>Default</th>
-                            <th>Extra</th>
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Field</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Null</th>
+                            <th scope="col">Key</th>
+                            <th scope="col">Default</th>
+                            <th scope="col">Extra</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($row['columns'] as $column)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <th scope="row" class="text-center">{{ $loop->iteration }}</th>
                                 <td>{{ $column->Field }}</td>
                                 <td>{{ $column->Type }}</td>
-                                <td>{{ $column->Null }}</td>
-                                <td>
+                                <td class="text-center">{{ $column->Null }}</td>
+                                <td class="text-center">
                                     @if ( $column->Key == 'PRI' )
                                         <i class="fa-solid fa-key text-warning" title="Primary Key"></i>
                                     @endif
@@ -43,8 +43,8 @@
 
                                     {{ $column->Key }}
                                 </td>
-                                <td>{{ $column->Default }}</td>
-                                <td>{{ $column->Extra }}</td>
+                                <td class="text-center">{{ $column->Default }}</td>
+                                <td class="text-center">{{ $column->Extra }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -59,24 +59,24 @@
         <h4 class="py-1 text-center bg-blue-grey bg-darken-1 text-white"> <i class="fa-solid fa-diagram-project"></i> Relations </h4>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-sm table-striped table-hover mb-0">
+                <table class="table table-sm table-striped table-hover table-bordered mb-0">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>FK Column</th>
-                            <th>Related Table</th>
-                            <th>Refrence</th>
-                            <th>Show</th>
+                        <tr class="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">FK Column</th>
+                            <th scope="col">Related Table</th>
+                            <th scope="col">Refrence</th>
+                            <th scope="col">Show</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($row['relations'] as $relation)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <th scope="row" class="text-center">{{ $loop->iteration }}</th>
                                 <td>{{ $relation->column_name }}</td>
                                 <td>{{ $relation->fk_table }}</td>
-                                <td>{{ $relation->fk_column }}</td>
-                                <td>
+                                <td class="text-center">{{ $relation->fk_column }}</td>
+                                <td class="text-center">
                                     <a href='{{ routeHelper('database.show', $relation->fk_table) }}' class="btn btn-sm btn-info show-modal-form"> <i class="fas fa-eye"></i> @lang('buttons.cover') </a>
                                 </td>
                             </tr>

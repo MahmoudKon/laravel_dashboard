@@ -10,7 +10,7 @@ trait DatatableHelper
 {
     public $pageLength = 10;
     public $lengthMenu = [[5, 10, 20, 25, 30, -1], [5, 10, 20, 25, 30, 'All']];
-    public $tableClass = 'table table-bordered table-striped table-sm w-100 dataTable';
+    public $tableClass = 'table table-bordered table-striped table-hover table-sm w-100 dataTable';
 
     public function setPageLength(int|null $length = null) :void
     {

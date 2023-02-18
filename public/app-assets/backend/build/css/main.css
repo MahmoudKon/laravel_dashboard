@@ -248,3 +248,12 @@ input:disabled {
 #messenger-icon a {
     font-size:35px;
 }
+
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(245 247 250) !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgb(225 225 225 / 47%) !important;
+}
