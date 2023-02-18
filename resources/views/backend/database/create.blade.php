@@ -18,19 +18,19 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered table-responsive repeater-default">
+                        <table class="table table-striped table-hover table-bordered table-responsive repeater-default" style="min-width: 2000px">
                             <thead>
                                 <tr>
                                     <th scope="col" style="width: 300px" class="text-center">Name</th>
                                     <th scope="col" style="width: 300px" class="text-center">Type</th>
-                                    <th scope="col" style="width: 300px" class="text-center">Length/Values</th>
+                                    <th scope="col" style="width: 150px" class="text-center">Length/Values</th>
                                     <th scope="col" style="width: 300px" class="text-center">Default</th>
                                     <th scope="col" style="width: 300px" class="text-center">Attributes</th>
-                                    <th scope="col" style="width: 300px" class="text-center">Null</th>
+                                    <th scope="col" style="width: 100px" class="text-center">Null</th>
                                     <th scope="col" style="width: 300px" class="text-center">Index</th>
-                                    <th scope="col" style="width: 300px" class="text-center" title="Auto Increment">A.I</th>
+                                    <th scope="col" style="width: 100px" class="text-center" title="Auto Increment">A.I</th>
                                     <th scope="col" style="width: 300px" class="text-center">Comment</th>
-                                    <th scope="col" style="width: 300px" class="text-center" style="width: 4%">@lang('buttons.delete')</th>
+                                    <th scope="col" style="width: 100px" class="text-center" style="width: 4%">@lang('buttons.delete')</th>
                                 </tr>
                             </thead>
                             <tbody data-repeater-list="columns" >
