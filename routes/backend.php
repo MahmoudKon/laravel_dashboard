@@ -25,6 +25,8 @@ Route::controller('RouteController')->as('routes.')->prefix('routes')->group(fun
 
 Route::controller('DatabaseController')->as('database.')->prefix('database')->group(function () {
     Route::get('/','index')->name('index');
+    Route::get('create','create')->name('create');
+    Route::post('/','store')->name('store');
     Route::get('{table}','show')->name('show');
 });
 
