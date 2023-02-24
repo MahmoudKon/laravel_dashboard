@@ -81,6 +81,7 @@ return [
     'count days' => 'Count Of Days',
     'creator' => 'Creator',
 
+    'model name' => ':model Name',
 
 
 	// LANGUAGES

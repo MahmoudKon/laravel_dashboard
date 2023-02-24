@@ -6,14 +6,9 @@ use App\Http\Controllers\BasicApiController;
 
 class LogoutController extends BasicApiController
 {
-        /**
-     * logout api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function logout()
+    public function logout(): \Illuminate\Http\JsonResponse
     {
-        auth()->user()->tokens()->delete();
+        auth()->user()->token()->delete();
         return $this->sendResponse("Logged Out successfully");
     }
 }

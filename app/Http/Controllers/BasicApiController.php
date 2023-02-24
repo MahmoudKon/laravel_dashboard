@@ -6,39 +6,20 @@ use App\Http\Controllers\Controller;
 
 class BasicApiController extends Controller
 {
-    /**
-     * success response method.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendResponse(string $message, array $result = [])
+    public function sendResponse(string $message = '', array $result = []): \Illuminate\Http\JsonResponse
     {
-    	$response = [
-            'success' => true,
-            'message' => $message,
-        ];
+    	$response = ['success' => true];
+        if($message !== '') $response['message'] = $message;
+        if(! empty($result)) $response = array_merge($response, $result);
 
-        if(! empty($result)) {
-            $response = array_merge($response, $result);
-        }
         return response()->json($response, 200);
     }
 
-    /**
-     * return error response.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendError($error, $errorMessages = [], $code = 404)
+    public function sendError(string $message = '', $errorMessages = [], $code = 404): \Illuminate\Http\JsonResponse
     {
-    	$response = [
-            'success' => false,
-            'message' => $error,
-        ];
-
-        if(!empty($errorMessages)) {
-            $response['data'] = $errorMessages;
-        }
+    	$response = ['success' => false];
+        if($message !== '') $response['message'] = $message;
+        if(!empty($errorMessages)) $response['data'] = $errorMessages;
 
         return response()->json($response, $code);
     }

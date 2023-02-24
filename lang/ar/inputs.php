@@ -71,6 +71,7 @@ return [
     'compose'  => 'Compose',
 
 
+    'model name' => 'إسم :model',
 
     // GENERAL INPUTS
     'model name' => 'ال:model إسم',

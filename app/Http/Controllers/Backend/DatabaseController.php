@@ -36,6 +36,7 @@ class DatabaseController extends Controller
         $query = "CREATE TABLE `{$request->table_name}` (";
 
         foreach ($request->columns as $index => $column) {
+            if ($column['name'] == '') continue;
             $default_type = $column['default_type'] == 'NONE' ? "" : "DEFAULT ".($column['default_type'] == 'USER_DEFINED' ? $column['default_value'] : $column['default_type']);
             $extra = isset($column['extra']) ? "AUTO_INCREMENT" : '';
             $length = $column['length'] ? "({$column['length']})" : '';
@@ -54,11 +55,12 @@ class DatabaseController extends Controller
         }
         $query .= "\n ) ENGINE={$database_config['engine']} DEFAULT CHARSET={$database_config['charset']} COLLATE={$database_config['collation']};";
 
-        dd($query . $alters);
-        // DB::beginTransaction();
-        //     DB::statement($query);
-        //     DB::statement($alters);
-        // DB::commit();
+        DB::beginTransaction();
+            DB::statement($query);
+            DB::statement($alters);
+        DB::commit();
+
+        return response()->json(['reload' => true], 200);
     }
 
     public function show($table)

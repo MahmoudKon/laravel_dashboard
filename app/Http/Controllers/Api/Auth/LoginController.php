@@ -3,68 +3,31 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\BasicApiController;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 
 class LoginController extends BasicApiController
 {
-    /**
-     * login api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request)
+    public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
+        $this->validateLogin($request);
         if (auth()->attempt($this->credentials($request))) {
             return $this->sendResponse('User login successfully.', $this->createToken());
         } else {
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->sendError('These credentials do not match our records.');
         }
     }
 
-    /**
-     * refresh api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function refresh()
+    protected function validateLogin(Request $request)
     {
-        return $this->sendResponse('Token refreshed successfully.', $this->createToken());
+        $request->validate([
+            'email'    => 'required|string',
+            'password' => 'required|string',
+        ]);
     }
 
-    /**
-     * authenticatedUserDetails api
-     *
-     *  @return \Illuminate\Http\Response
-     */
-    public function authenticatedUserDetails()
-    {
-        return new UserResource(auth()->user());
-    }
-
-    /**
-     * saveAuthMobileToken api
-     *
-     *  @return \Illuminate\Http\Response
-     */
-    public function saveAuthMobileToken(){
-        if (! request()->mobile_token)
-            return response()->json(['status' => "failed", 'message' => 'Mobile token is requied!'], 422);
-
-        auth()->user()->update(['mobile_token' => request('mobile_token')]);
-        return response()->json(['status' => "success", 'message' => 'Mobile token saved successfully!'], 200);
-    }
-
-    protected function createToken()
-    {
-        $this->deleteOldTokens();
-        return [
-            'token' => "Bearer ".auth()->user()->createToken(env('API_HASH_TOKEN', 'ClubApp'))->accessToken,
-            'user'  => new UserResource(auth()->user()),
-        ];
-    }
-
-    protected function credentials(Request $request)
+    protected function credentials(Request $request): array
     {
         return [
             'email' => $request->email,
@@ -72,8 +35,38 @@ class LoginController extends BasicApiController
         ];
     }
 
-    protected function deleteOldTokens()
+    public function refresh(): \Illuminate\Http\JsonResponse
     {
-        auth()->user()->tokens()->delete();
+        return $this->sendResponse('Token refreshed successfully.', $this->createToken());
+    }
+
+    public function authenticatedUserDetails(): \App\Http\Resources\UserResource
+    {
+        return new UserResource(auth()->user());
+    }
+
+    public function saveAuthMobileToken(): \Illuminate\Http\JsonResponse
+    {
+        if (! request()->mobile_token)
+            return $this->sendError(errorMessages: ['errors' => 'Mobile token is requied!'], code: 422);
+
+        auth()->user()->update(['mobile_token' => request('mobile_token')]);
+        return $this->sendResponse('Mobile token saved successfully.');
+    }
+
+    protected function createToken(): array
+    {
+        $this->deleteCurrentToken();
+        return [
+            'token_type' => 'Bearer',
+            'token'      => auth()->user()->createToken(env('API_HASH_TOKEN', 'ClubApp'))->accessToken,
+            'user'       => new UserResource(auth()->user()),
+        ];
+    }
+
+    protected function deleteCurrentToken(): void
+    {
+        $token = auth()->user()->token();
+        if ($token) $token->delete();
     }
 }

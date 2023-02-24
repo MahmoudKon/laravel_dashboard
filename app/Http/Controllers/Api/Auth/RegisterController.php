@@ -10,28 +10,29 @@ use App\Models\User;
 
 class RegisterController extends BasicApiController
 {
-    public function register(UserRequest $request)
+    public function register(UserRequest $request): \Illuminate\Http\JsonResponse
     {
-        return $this->sendResponse(trans('flash.row created', ['model' => trans('menu.user')]), $this->createToken($request));
+        return $this->sendResponse(trans('flash.row created', ['model' => trans('menu.user')]), $this->createToken($request->validated()));
     }
 
-    protected function createToken($request)
+    protected function createToken(array $data): array
     {
-        $user = $this->createUser($request);
+        $user = $this->createUser($data);
         return [
-            'token' => "Bearer ".$user->createToken(env('API_HASH_TOKEN', 'ClubApp'))->accessToken,
-            'message' => trans('permissions.account not acctive'),
-            'user'  => new UserResource($user),
+            'token_type' => 'Bearer',
+            'token'      => $user->createToken(env('API_HASH_TOKEN', env('APP_NAME')))->accessToken,
+            'message'    => trans('permissions.account not acctive'),
+            'user'       => new UserResource($user),
         ];
     }
 
-    protected function createUser($request)
+    protected function createUser(array $data): \App\Models\User
     {
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-            'department_id' => $request->department_id,
+            'name'          => $data['name'],
+            'email'         => $data['email'],
+            'password'      => $data['password'],
+            'department_id' => $data['department_id'],
         ]);
 
         $user->syncRoles(Role::first()->id);

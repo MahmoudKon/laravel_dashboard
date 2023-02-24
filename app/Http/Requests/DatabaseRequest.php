@@ -32,6 +32,7 @@ class DatabaseRequest extends FormRequest
         return [
             'table_name' => ['required', 'string', Rule::notIn($tables)],
             'columns' => 'required|array|min:1',
+            'columns.*.name' => 'required|string',
         ];
     }
 }

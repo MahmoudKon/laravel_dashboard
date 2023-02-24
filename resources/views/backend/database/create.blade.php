@@ -9,7 +9,7 @@
         <div class="card-content collpase show">
             <div class="card-body">
 
-                <form method="post" action="{{ routeHelper('database.store') }}" class="submit-form">
+                <form method="post" action="{{ routeHelper('database.store') }}" id="submit-form">
                     @csrf
 
                     <div class="form-group">
@@ -75,6 +75,61 @@
                     $(this).next('input').hide().val('');
                 }
             });
+
+            $('body').on('submit', 'form#submit-form', function(e) {
+                e.preventDefault();
+                let form = $(this);
+                let time;
+                let progress = 0;
+                form.find('.error').remove();
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: form.attr('method'),
+                    data: new FormData(form[0]),
+                    dataType: 'JSON',
+                    processData: false,
+                    contentType: false,
+                    xhr: function () {
+                        let jqXHR = window.ActiveXObject ? new window.ActiveXObject( "Microsoft.XMLHTTP" ) : new window.XMLHttpRequest();
+                        jqXHR.upload.addEventListener( "progress", function ( evt ) {
+                            if ( evt.lengthComputable ) {
+                                let percent = Math.round( (evt.loaded * 100) / evt.total );
+                                progressBar(form.find(".progress"), percent);
+                                $.ajaxSettings.xhr(evt, evt.loaded, evt.total, percent);
+                            }
+                        }, false );
+                        return jqXHR;
+                    },
+                    beforeSend: function (jqHXR) { beforeSendRequest(form) },
+                    success: function (response, textStatus, jqXHR) {
+                        $('.modal').modal("hide").find('.form-body').empty();
+                        if (response.redirect) return window.location = response.redirect;
+
+                        if (response.reload) return location.reload(true);
+
+                        toast(response.message, null, (response.icon ?? 'success'));
+
+                        form.parent().removeClass('load');
+
+                        if (response.stop) return;
+                        form.trigger("reset");
+                        form.find('select').val('').trigger('change');
+                        rows();
+                        $('#recourds-count').text(response.count);
+                    },
+                    error: function (jqXHR, textStatus, errorMessage) {
+                        $.each(jqXHR.responseJSON.errors, function (key, val) {
+                            key = key.split('.');
+                            let input = key[0];
+                            input += key[1] ? `[${key[1]}]` : '';
+                            input += key[2] ? `[${key[2]}]` : '';
+                            $(`input[name="${input}"]`).parent().append(`<span class='text-danger error'>${val}</span>`);
+                        });
+                    },
+                    complete: function (jqXHR, textStatus) { clearInterval(time); completeRequest(form); }
+                });
+            }); // WHEN SUBMIT THE FORM SEND DATA TO CONTROLLER
         });
     </script>
 @endsection

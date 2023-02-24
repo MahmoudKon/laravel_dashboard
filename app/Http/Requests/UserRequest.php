@@ -2,11 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\HandleValidationError;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
 class UserRequest extends FormRequest
 {
+    use HandleValidationError;
+    
     /**
      * Determine if the user is authorized to make this request.
      *
