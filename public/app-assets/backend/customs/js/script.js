@@ -194,11 +194,10 @@ $(function() {
 
     // CHECK OR UNCHECK ALL INPUTS [MAKE ARRAY EMPTY OR MAKE PUSH IDS]
     $("body").on("click", "input[type=checkbox]#check-all", function() {
-        let bool = $(this);
+        let check = $(this).is(":checked");
         $('input[type=checkbox].check-box-id').each(function () {
-            $(this).prop('checked', bool.is(":checked"));
-            if (bool.is(":checked")) updateMultiDeleteArray($(this));
-            else multi_delete_rows_id = [];
+            $(this).prop('checked', check);
+            updateMultiDeleteArray($(this));
         });
     });
 
@@ -212,18 +211,30 @@ $(function() {
         multi_delete_rows_id.forEach(row_id => {
             $(`input[type=checkbox].check-box-id[value=${row_id}]`).prop('checked', true);
         });
-        $('body').find('#check-all').prop('checked', false);
+        updatedAllCheckInput();
     });
 
     // HELPER FUNCTION TO CHECK THIS ACTION WILL PUSH ID OR REMOVE IT FROM ARRAY
     function updateMultiDeleteArray(ele)
     {
-        if (ele.is(":checked"))
+        let id = ele.val();
+        let is_checked = ele.is(":checked");
+
+        if (is_checked && !multi_delete_rows_id.includes(id)) {
             multi_delete_rows_id.push(ele.val());
-        else {
+        } else if (! is_checked && multi_delete_rows_id.includes(id)) {
             const index = multi_delete_rows_id.indexOf(ele.val());
             multi_delete_rows_id.splice(index, 1);
         }
+
+        updatedAllCheckInput();
+    }
+
+    function updatedAllCheckInput()
+    {
+        let check_current_page = false;
+        if ($(`input[type=checkbox].check-box-id`).length == $(`input[type=checkbox].check-box-id:checked`).length) check_current_page = true;
+        $('body').find('#check-all').prop('checked', check_current_page);
     }
 
     // THE MAIN EVENT TO MAKE SEND IDS FOR BACKEND TO MAKE DESTROY

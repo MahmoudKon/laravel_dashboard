@@ -26,6 +26,10 @@
     <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/main.css') }}">
     {{-- ************** END FONTS AWESOME ************** --}}
 
+    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/js/gallery/photo-swipe/photoswipe.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/js/gallery/photo-swipe/default-skin/default-skin.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/pages/gallery.css') }}">
+
     {{-- ************** START RTL , LTR CSS FILES ************** --}}
     @if (App::isLocale('ar'))
         <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/vendors.css') }}">
