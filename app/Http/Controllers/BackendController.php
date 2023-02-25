@@ -81,12 +81,8 @@ class BackendController extends Controller
     public function multidelete(Request $request)
     {
         try {
-            $rows = $this->model()->whereIn('id', (array)$request['id'])->get();
-            DB::beginTransaction();
-                foreach ($rows as $row)
-                    $row->delete();
-            DB::commit();
-            return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getTableName()), 'count' => $rows->count()]), 'icon' => 'success', 'count' => $this->modelCount()]);
+            $count = $this->model()->whereIn('id', (array)$request['id'])->delete();
+            return response()->json(['message' => trans('flash.rows deleted', ['model' => trans('menu.'.$this->getTableName()), 'count' => $count]), 'icon' => 'success', 'count' => $this->modelCount()]);
         } catch (Exception $e) {
             throw new Exception( $e->getMessage() );
         }

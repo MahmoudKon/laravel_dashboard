@@ -11,22 +11,13 @@ class LoginController extends BasicApiController
 {
     public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
-        $this->validateLogin($request);
         if (auth()->attempt($this->credentials($request))) {
             return $this->sendResponse('User login successfully.', $this->createToken());
         } else {
             return $this->sendError('These credentials do not match our records.');
         }
     }
-
-    protected function validateLogin(Request $request)
-    {
-        $request->validate([
-            'email'    => 'required|string',
-            'password' => 'required|string',
-        ]);
-    }
-
+    
     protected function credentials(Request $request): array
     {
         return [
