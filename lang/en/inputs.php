@@ -5,22 +5,14 @@ return [
     'title' => 'Title',
     'email' => 'Email',
     'manager' => 'Manager',
-    'manager-of-manager' => 'Manager Of Manager',
     'action' => 'Action',
-    'ratio' => 'Ratio',
     'name' => 'Name',
     'access-data' => 'Access :model',
     'upload-image' => 'Upload Image',
     'password' => 'Password',
     'new_password' => 'New Password',
     'password_confirmation' => 'Password Confirmation',
-    'annual-credit' => 'Annual Credit',
-    'salary' => 'Salary',
     'select-data' => 'Select :data',
-    'finger-print-id' => 'Finger Print ID',
-    'behalf' => 'Behalf',
-    'insurance-deduction' => 'Insurance Deduction',
-    'patch_number' => 'Patch Number',
     'icon' => 'Icon',
     'content' => 'Content',
     'audio' => 'Audio',
@@ -43,9 +35,6 @@ return [
 
 
     'color' => 'Color',
-
-    'parent-category' => 'Parent Category',
-    'sub-categories' => 'Sub Categories',
 
     'controller' => 'Controller',
     'function' => 'Function',

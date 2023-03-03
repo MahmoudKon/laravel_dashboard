@@ -27,7 +27,7 @@
 <div class="form-group">
     <label class="control-label required">@lang('inputs.subject')</label><br>
     <div class="controls">
-        <input type="text" class="form-control" minlength="3" name="subject" placeholder="Email Subject" value="{{ env('TEST_SUBJECT') }}">
+        <input type="text" class="form-control" minlength="3" name="subject" placeholder="Email Subject" value="{{ env('EMAIL_SUBJECT') }}">
     </div>
     <x-validation-error input='subject' />
 </div>
@@ -45,4 +45,4 @@
 </div>
 
 
-@include('backend.includes.components.advanced_text', ['required' => 'required', 'name' => 'body', 'value' => env('Test_BODY')])
+@include('backend.includes.components.advanced_text', ['required' => 'required', 'name' => 'body', 'value' => env('EMAIL_BODY')])

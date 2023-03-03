@@ -8,7 +8,7 @@
 
 <div class="card-content collpase show">
     <div class="card-body">
-            <form action="{{ routeHelper(getModel().".store") }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}" enctype="multipart/form-data">
+            <form action="{{ routeHelper(getModel().".store") }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}" enctype="multipart/form-data" autocomplete="off">
 
             @csrf
 

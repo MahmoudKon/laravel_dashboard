@@ -15,8 +15,8 @@ return array(
     | The dir where to store the images (relative from public)
     |
     */
-    'dir' => ['public'],
-    // 'dir' => ['storage'],
+    // 'dir' => ['public'],
+    'dir' => ['storage'],
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ return array(
     |    ]
     */
     'disks' => [
-        'uploads'
+        'public'
     ],
 
     /*

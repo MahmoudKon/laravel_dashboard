@@ -44,7 +44,7 @@ class ResetPasswordController extends Controller
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => ['required', 'confirmed', Password::defaults()->min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
+            'password' => ['confirmed', Password::defaults()->min(8)->mixedCase()->numbers()->symbols()->uncompromised()],
         ];
     }
 }

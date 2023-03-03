@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'logo' => 'IVAS Dashboard',
     'dashboard' => 'Dashboard',
     'logout' => 'Logout',
     'hello' => 'Hello',
@@ -20,8 +19,6 @@ return [
     // DATABASE
     'database' => 'Database',
 
-    // SIMULATE
-    'simulate' => 'Simulate',
     'commands' => 'Commands',
 
     // IMAGE CROPPER
@@ -64,34 +61,13 @@ return [
     'departments' => 'Departments',
     'department' => 'Department',
 
-    // AGGREGATORS
-    'aggregators' => 'Aggregators',
-    'aggregator' => 'Aggregator',
-
     // COUNTRIES
     'countries' => 'Countries',
     'country' => 'Country',
 
-    // OPERATORS
-    'operators' => 'Operators',
-    'operator' => 'Operator',
-
-    // CATEGORIES
-    'categories' => 'Categories',
-    'category' => 'Category',
-    'subs' => 'Sub Categories',
-
     // CONTENT TYPES
     'content_types' => 'Content Types',
     'content_type' => 'Content Type',
-
-    // CONTENTS
-    'contents' => 'Contents',
-    'content' => 'Content',
-
-    // POSTS
-    'posts' => 'Posts',
-    'post' => 'Post',
 
     // GOVERNORATES
     'governorates' => 'Governorates',

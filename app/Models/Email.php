@@ -23,7 +23,7 @@ class Email extends Model
 
     public function notifier()
     {
-        return $this->belongsTo(User::class, 'notifier_id', 'id')->select('id', 'name', 'image')->withDefault(['name' => 'System', 'image' => null]);
+        return $this->belongsTo(User::class, 'notifier_id', 'id')->select('id', 'name', 'image', 'email')->withDefault(['name' => 'System', 'email' => '', 'image' => null]);
     }
 
     public function recipients()

@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'logo' => 'لوحة التحكم أي فاز',
-    'dashboard' => 'لوحة التحكم',
+		'dashboard' => 'لوحة التحكم',
     'logout' => 'تسجيل خروج',
     'hello' => 'مرحبا',
     'profile' => 'الصفحة الشخصية',
@@ -19,9 +18,6 @@ return [
 
     // DATABASE
     'database' => 'قاعدة البيانات',
-
-    // SIMULATE
-    'simulate' => 'محاكاة',
 
     'commands' => 'الأوامر',
 
@@ -65,10 +61,6 @@ return [
     'departments' => 'الأقسام',
     'department' => 'قسم',
 
-    // AGGREGATORS
-    'aggregators' => 'المجمعين',
-    'aggregator' => 'مجمع',
-
     // COUNTRIES
     'countries' => 'البلدان',
     'country' => 'البلد',
@@ -89,10 +81,6 @@ return [
     // CONTENTS
     'contents' => 'المحتوي',
     'content' => 'محتوي',
-
-    // POSTS
-    'posts' => 'المنشورات',
-    'post' => 'منشور',
 
     // GOVERNORATES
     'governorates' => 'المحافظات',

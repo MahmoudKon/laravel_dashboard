@@ -99,7 +99,7 @@ class SocialMediaDataTable extends DataTable
      *
      * @return stringwithRelations
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'social_medias_' . date('YmdHis');
     }

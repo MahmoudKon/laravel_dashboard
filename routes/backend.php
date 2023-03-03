@@ -5,11 +5,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','HomeController@index')->name('/');
 
 
-Route::controller('SimulateController')->middleware(['role:Super Admin'])->group(function () {
-    Route::get('simulate','index')->name('simulate.index');
-    Route::post('simulate/{command}','runCommand')->name('simulate.command');
-});
-
 Route::get('file-manager', 'FileManagerController@index')->name('file.manager');
 
 Route::controller('RouteController')->as('routes.')->prefix('routes')->group(function () {

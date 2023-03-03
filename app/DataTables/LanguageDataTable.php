@@ -103,7 +103,7 @@ class LanguageDataTable extends DataTable
      *
      * @return stringwithRelations
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'languages_' . date('YmdHis');
     }

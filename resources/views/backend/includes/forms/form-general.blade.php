@@ -9,7 +9,7 @@
 
     <div class="card-content collpase show">
         <div class="card-body">
-            <form action="{{ $route }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}" enctype="multipart/form-data">
+            <form action="{{ $route }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}" enctype="multipart/form-data" autocomplete="off">
                 @csrf
 
                 {{-- START FORM INPUTS --}}

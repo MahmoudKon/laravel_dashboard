@@ -80,11 +80,6 @@ class MenuSeeder extends Seeder
         $Departments = Menu::where('name->en', 'Departments')->First()->id;
         $menus = [
             [
-                'name' => ["en" => "Simulate", "ar" => "المحاكاة"],
-                'route' => "simulate.index",
-                'icon' => "fas fa-clone",
-                'parent_id' => $Configurations
-            ], [
                 'name' => ["en" => "Commands", "ar" => "الأوامر"],
                 'route' => "commands.index",
                 'icon' => "fa-solid fa-terminal",

@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewEmail;
 use App\Jobs\SendEmail;
 use App\Models\Attachment;
 use App\Models\Email;
@@ -34,8 +35,8 @@ function createEmail(array $data) :Email
             insertAttachments($email, $data['attachments']);
 
         $users_id = User::select('id')->whereIn('email', explode(',', $email->to))->when($email->cc, function($query) use ($email) {
-            $query->orWhereIn('email', explode(',', $email->cc));
-        })->pluck('id')->toArray();
+                                $query->orWhereIn('email', explode(',', $email->cc));
+                            })->pluck('id')->toArray();
 
         $email->recipients()->sync($users_id);
         $email->recipients()->attach([auth()->id() => ['is_sender' => true, 'seen' => true, 'seen_time' => now()]]);
@@ -44,20 +45,27 @@ function createEmail(array $data) :Email
 
     dispatch( new SendEmail($email, $users_id) );
 
+    foreach ($users_id as $user_id)
+        broadcast( new NewEmail( $user_id, $email ) );    
+
     return $email;
 }
 
 function insertAttachments(object $email, array $attachments)
 {
+    $rows = [];
     foreach ($attachments as $attachment) {
-        $info = [
-            'name' => $attachment->getClientOriginalName(),
-            'extension' => $attachment->extension(),
-            'size' => $attachment->getSize(),
-            'mime' => $attachment->getMimeType(),
+        $rows[] = [
+            'attachment' => (new Attachment)->upload($attachment), 
+            'info' => [
+                'name' => $attachment->getClientOriginalName(),
+                'extension' => $attachment->extension(),
+                'size' => $attachment->getSize(),
+                'mime' => $attachment->getMimeType(),
+            ]
         ];
-        $email->attachments()->create(['attachment' => (new Attachment)->upload($attachment), 'info' => $info]);
     }
+    $email->attachments()->insert($rows);
 }
 
 /**

@@ -39,7 +39,7 @@
         const APP_LOCALE = '{{ app()->getLocale() }}';
     </script>
 
-    <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+    @vite(['resources/js/app.js'])
     <script type="text/javascript" src="{{ assetHelper('build/js/main.js') }}"></script>
 
     {{-- ************** START SWEETALERT JS ************** --}}

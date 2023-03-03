@@ -6,7 +6,7 @@
     </div>
 
     <div class="card-body pb-0">
-            <form action="{{ routeHelper(getModel().".index") }}" method="get" id="search-form">
+            <form action="{{ routeHelper(getModel().".index") }}" method="get" id="search-form" autocomplete="off">
                 <input type="hidden" name="search" value="1">
             {{-- END FORM INPUTS --}}
             @include('backend.' . getModel(view:true) . '.search')

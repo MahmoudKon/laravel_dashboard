@@ -28,8 +28,9 @@
             @endif
 
             <div class="align-self-center px-2">
-                <p>{{ $email->notifier->name }}</p>
-                <hr>
+                <p class="mb-0">{{ $email->notifier->name }}</p>
+                <small class="font-small-3">{{ $email->notifier->email }}</small>
+                <hr class="my-1">
                 <p>{{ $email->subject }}</p>
             </div>
 

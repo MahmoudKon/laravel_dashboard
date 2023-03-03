@@ -19,12 +19,6 @@ return [
     'assign-roles' => 'Assign Roles',
     'copy' => 'Copy',
     'clone' => 'Clone',
-    'create-sub-category' => 'Create Sub Category',
-    'create-operator' => 'Create Operator',
-    'list-operators' => 'List Operators',
-    'list-posts' => 'List Posts',
-    'short-link' => 'Short Link',
-    'short' => 'Short',
     'yes' => 'Yes',
     'no' => 'No',
     'download' => 'Download',
@@ -33,7 +27,7 @@ return [
     'sync menus' => 'Sync Menus',
 
 
-    'return home' => 'الرجوع للصفحة الرئيسية',
+    'return home' => 'Back To Home',
 
     'download cropped image' => 'Download Cropped Image',
     'image quality' => 'Image Quality',

@@ -18,12 +18,6 @@
                 @include('backend.profile.form', ['form_type' => 'avatar', 'bg' => 'bg-gradient-directional-cyan'])
 
                 @include('backend.profile.form', ['form_type' => 'password', 'bg' => 'bg-gradient-directional-grey-blue'])
-
-                @hasanyrole(SUPERADMIN_ROLES)
-                    @include('backend.profile.form', ['form_type' => 'roles', 'bg' => 'bg-gradient-directional-blue-grey'])
-
-                    @include('backend.profile.form', ['form_type' => 'permissions', 'bg' => 'bg-gradient-directional-blue-grey'])
-                @endhasanyrole
             </div>
         </div>
     </div>

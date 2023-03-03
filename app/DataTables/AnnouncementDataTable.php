@@ -118,7 +118,7 @@ class AnnouncementDataTable extends DataTable
      *
      * @return stringwithRelations
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'announcements_' . date('YmdHis');
     }

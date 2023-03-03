@@ -4,7 +4,7 @@ return [
     'row deleted' => 'تم حذف :model بنجاح',
     'rows deleted' => 'تم حذف :count من :model بنجاح',
     'row created' => 'تم إنشاء :model جديد بنجاح',
-    'row updated' => 'تم تحديث بيانات :model بنجاح',
+		'row updated' => 'تم تحديث بيانات :model بنجاح',
 
     'save game' => 'تم حفظ الألعاب لننادي',
 

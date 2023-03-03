@@ -99,7 +99,7 @@ class DepartmentDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'Department_' . date('YmdHis');
     }

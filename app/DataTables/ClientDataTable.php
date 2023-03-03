@@ -102,7 +102,7 @@ class ClientDataTable extends DataTable
      *
      * @return stringwithRelations
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'clients_' . date('YmdHis');
     }

@@ -6,8 +6,6 @@ return [
     'row created' => 'New :model has been created successfully!',
     'row updated' => ':model has been updated successfully!',
 
-    'save game' => 'Game saved for club successfully!',
-
     'change status' => 'Status changed successfully!',
 
     'assign role' => 'New roles has been assigned to this route',

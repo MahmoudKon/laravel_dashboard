@@ -100,7 +100,7 @@ class OauthSocialDataTable extends DataTable
      *
      * @return stringwithRelations
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'oauth_socials_' . date('YmdHis');
     }

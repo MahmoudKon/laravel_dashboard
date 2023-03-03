@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password;
 
 class ForgotPasswordController extends BasicApiController
 {
@@ -54,7 +55,7 @@ class ForgotPasswordController extends BasicApiController
         if (self::$action !== self::SEND_MAIL) {
             $validation = array_merge($validation, [
                 'pincode'  => 'required|string|size:'.self::PINCODE_LENGTH,
-                'password' => 'required|string|min:6|confirmed',
+                'password' => [Password::default()->min(8)->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
             ]);
         }
 

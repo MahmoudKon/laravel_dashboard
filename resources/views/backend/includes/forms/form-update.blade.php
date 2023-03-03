@@ -7,7 +7,7 @@
 
 <div class="card-content collpase show">
     <div class="card-body">
-        <form action="{{ routeHelper(getModel().'.update', $row) }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}" enctype="multipart/form-data">
+        <form action="{{ routeHelper(getModel().'.update', $row) }}" method="post" class="{{ $use_form_ajax ? 'submit-form' : '' }}" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @method("PUT")
             <input type="hidden" name="id" value="{{ $row->id ?? '' }}">
