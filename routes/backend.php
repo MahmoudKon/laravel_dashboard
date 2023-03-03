@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/','HomeController@index')->name('/');
-
+Route::match(['get', 'post'], 'generate-password','HomeController@generatePassword')->name('generate.password');
 
 Route::get('file-manager', 'FileManagerController@index')->name('file.manager');
 

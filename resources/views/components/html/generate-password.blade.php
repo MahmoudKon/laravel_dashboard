@@ -1,0 +1,1 @@
+<a href="{{ routeHelper('generate.password') }}" {{ $attributes->merge(['class' => 'btn btn-sm btn-blue-grey show-modal-form']) }}>@lang('buttons.generate-password')</a>

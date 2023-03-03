@@ -32,6 +32,9 @@ return [
     'sync permissions' => 'مزامنةالأذونات',
     'sync menus' => 'مزامنة القوائم',
 
+    'regenerate-password' => 'إعادة إنشاء كلمة المرور',
+    'generate-password' => 'توليد كلمة المرور',
+
     'download cropped image' => 'تحميل الصورة',
     'image quality' => 'جودة الصورة',
     'select picture' => 'إختر صورة',

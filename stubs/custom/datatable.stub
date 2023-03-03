@@ -89,9 +89,9 @@ class {{ class }} extends DataTable
     /**
      * Get filename for export.
      *
-     * @return stringwithRelations
+     * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return '{{ table }}_' . date('YmdHis');
     }

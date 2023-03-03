@@ -13,6 +13,7 @@ use App\Models\Route;
 use App\Models\Setting;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -37,5 +38,14 @@ class HomeController extends Controller
         $icons = Menu::select('icon', 'name->en as name')->pluck('icon', 'name')->toArray();
         $active_announcements = Announcement::Display()->inRandomOrder()->limit(5)->get();
         return view('backend.home.index', compact('tables', 'icons', 'active_announcements'));
+    }
+
+    public function generatePassword()
+    {
+        $password = Str::password(rand(8, 20));
+
+        if (request()->isMethod('POST')) return response()->json(['password' => $password], 200);
+
+        return view('backend.home.generate-password', ['password' => $password, 'url' => request()->url()]);
     }
 }

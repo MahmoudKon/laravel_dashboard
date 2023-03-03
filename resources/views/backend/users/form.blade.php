@@ -46,7 +46,13 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text show-password"> <i class="fas fa-eye-slash"></i> </span>
                 </div>
+
                 <input type="password" class="form-control" name="password" placeholder=" @lang('inputs.password')" {{ isset($row) ? '' : 'required' }}>
+
+                <div class="input-group-prepend">
+                    <x-html.generate-password class="input-group-text" />
+                </div>
+
             </div>
             <x-validation-error input='password' />
         </div>

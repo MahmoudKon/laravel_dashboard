@@ -26,6 +26,8 @@ return [
     'sync permissions' => 'Sync Permissions',
     'sync menus' => 'Sync Menus',
 
+    'regenerate-password' => 'Regenerate Password',
+    'generate-password' => 'Generate Password',
 
     'return home' => 'Back To Home',
 

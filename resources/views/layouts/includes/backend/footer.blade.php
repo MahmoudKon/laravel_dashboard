@@ -63,6 +63,7 @@
             $(`li[data-route="{{ request()->route()->action['as'] }}"]`).addClass('active').closest('.has-sub').addClass('active open');
 
             $('#page-loading-animation').fadeOut(350, function() { $(this).remove(); });
+
         });
     </script>
 
