@@ -2120,13 +2120,8 @@
     "src": "resources/css/custom.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-4d9b9a88.js",
+    "file": "assets/app-c9e3dc30.js",
     "isEntry": true,
     "src": "resources/js/app.js"
-  },
-  "resources/sass/app.scss": {
-    "file": "assets/app-10185398.css",
-    "isEntry": true,
-    "src": "resources/sass/app.scss"
   }
 }
