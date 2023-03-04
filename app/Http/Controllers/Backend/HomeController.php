@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\LockScreenMiddleware;
 use App\Models\Announcement;
-use App\Models\Department;
 use App\Models\Language;
 use App\Models\Menu;
 use App\Models\OauthSocial;
@@ -28,7 +27,6 @@ class HomeController extends Controller
             return redirect('/');
 
         $tables['users']         = ['count' => User::count()      , 'color' => 'info'];
-        $tables['departments']   = ['count' => Department::count(), 'color' => 'primary'];
         $tables['roles']         = ['count' => Role::count()      , 'color' => 'warning'];
         $tables['routes']        = ['count' => Route::count()     , 'color' => 'success'];
         $tables['settings']      = ['count' => Setting::count()   , 'color' => 'primary'];

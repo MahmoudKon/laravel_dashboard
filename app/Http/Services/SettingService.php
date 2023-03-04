@@ -8,18 +8,18 @@ use Exception;
 
 class SettingService
 {
-    public $ContentType;
+    public $settingType;
 
     public function __construct()
     {
-        $this->ContentType = new SettingType();
+        $this->settingType = new SettingType();
     }
 
     public function handle($request, $id = null)
     {
         try {
             if (isset($request['value']))
-                $request['value'] = $this->ContentType->requestHandler($request);
+                $request['value'] = $this->settingType->requestHandler($request);
 
             return Setting::updateOrCreate(['id' => $id],$request);
         } catch (Exception $e) {

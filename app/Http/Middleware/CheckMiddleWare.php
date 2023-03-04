@@ -78,7 +78,7 @@ class CheckMiddleWare
             abort(400, 'This route not found in database!');
         }
 
-        if ($auth_user->hasPermissionTo($route->permissionName())) return $next($request);
+        if (canUser($route->permissionName())) return $next($request);
 
         // here the user not have permissions to access this page
         if ($request->ajax())

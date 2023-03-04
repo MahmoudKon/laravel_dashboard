@@ -40,8 +40,6 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="{{ assetHelper('js/scripts/forms/select/form-select2.js') }}"></script>
-
     <script>
         $(function() {
             $('body').on('change', '#controller', function() {

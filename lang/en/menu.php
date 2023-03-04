@@ -57,17 +57,13 @@ return [
     'users' => 'Users',
     'user' => 'User',
 
-    // DEPARTMENTS
-    'departments' => 'Departments',
-    'department' => 'Department',
-
     // COUNTRIES
     'countries' => 'Countries',
     'country' => 'Country',
 
-    // CONTENT TYPES
-    'content_types' => 'Content Types',
-    'content_type' => 'Content Type',
+    // INPUT TYPES
+    'input_types' => 'Input Types',
+    'input_type' => 'Input Type',
 
     // GOVERNORATES
     'governorates' => 'Governorates',

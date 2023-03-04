@@ -1,51 +1,44 @@
 <?php
 
 return [
+    // GENERAL INPUTS
+    'model name' => 'ال:model إسم',
+    'model image' => 'صورة :model',
+    'file' => 'ملف',
 	'please-select' => '--- الرجاء الإختيار ---',
-    'title' => 'العنوان',
-    'email' => 'البريد الإلكتروني',
-    'manager' => 'المدير',
-    'manager-of-manager' => 'مدير المدير',
     'action' => 'الإعدادات',
-    'ratio' => 'النسبة',
-    'name' => 'إسم',
     'access-data' => 'إمكانية الوصول لـ :model',
     'upload-image' => 'رفع صورة',
+    'select-data' => 'إختر :data',
+
+
+    // USERS
+	'username' => 'إسم المستخدم',
+	'phone' => 'رقم الهاتف',
+    'name' => 'إسم',
+    'email' => 'البريد الإلكتروني',
     'password' => 'كلمة المرور',
     'new_password' => 'كلمة المرور الجديدة',
     'password_confirmation' => 'تأكيد كلمة المرور',
-    'annual-credit' => 'الائتمان السنوي',
-    'salary' => 'الراتب',
-    'select-data' => 'إختر :data',
-    'finger-print-id' => 'رقم بصمة الإصبع',
-    'behalf' => 'بديل',
-    'insurance-deduction' => 'خصم التأمين',
-    'patch_number' => 'رقم التصحيح',
-    'icon' => 'أيقونة',
-    'content' => 'المحتوي',
-    'audio' => 'صوت',
-    'video' => 'فيديو',
-    'external-link' => 'رابط خارجي',
-    'key' => 'المفتاح',
-    'value' => 'القيمة',
-
     'logged_in' => 'تسجيل الدخول',
 
+
+    // SETTINGS
+    'audio' => 'صوت',
+    'video' => 'فيديو',
+    'key' => 'المفتاح',
+    'value' => 'القيمة',
     'autoload' => 'تحميل تلقائي',
-
     'active' => 'الحالة النشطة',
-    'published_date' => 'تاريخ النشر',
-    'url' => 'الرابط',
     'result' => 'النتيجة',
-    'select-your-location' => 'إختر المنطقة',
-
-    'visible_to_content' => '!مرئي للمحتوى',
 
 
-    'parent-category' => 'القسم الأساسي',
-    'sub-categories' => 'الأقسام الفرعية',
+    // MENU
+    'icon' => 'أيقونة',
+    'url' => 'الرابط',
 
 
+    // ROUTES
     'controller' => 'المراقب',
     'function' => 'الوظيفة',
     'method' => 'الطريقة',
@@ -56,7 +49,7 @@ return [
     'prefix' => 'اختصار',
     'where' => 'الشروط',
 
-    // EMAILS SECTION
+    // EMAILS
     'to' => 'المستقبل',
     'cc'    => 'نسخة إلي',
     'subject'    => 'الموضوع',
@@ -71,18 +64,8 @@ return [
     'compose'  => 'Compose',
 
 
-    'model name' => 'إسم :model',
-
-    // GENERAL INPUTS
-    'model name' => 'ال:model إسم',
-    'model image' => 'صورة :model',
-    'file' => 'ملف',
-
-
-    'color' => 'اللون',
-
-
     // ANNOUNCEMENTS
+    'title' => 'العنوان',
 	'desc' => 'الوصف',
 	'start_date' => 'تاريخ البدء',
 	'end_date' => 'تاريخ الإنتهاء',
@@ -91,16 +74,16 @@ return [
     'count days' => 'عدد الأيام',
     'creator' => 'المنشئ',
     'color' => 'اللون',
+    'external-link' => 'رابط خارجي',
+    'published_date' => 'تاريخ النشر',
 
 
 	// LANGUAGES
 	'short_name' => 'الإختصار',
 	'native' => 'إسم اللغه',
-
-
-	// CLIENTS
-	'username' => 'إسم المستخدم',
-	'phone' => 'رقم الهاتف',
+    'file_name' => 'إسم الملف',
+    'file_size' => 'حجم الملف',
+    'translations_count' => 'عدد الترجمات',
 
 
 	// OAUTH_SOCIALS
@@ -109,9 +92,4 @@ return [
 
 	// SOCIAL_MEDIAS
 	'is_visible' => 'قابل للعرض',
-
-    // LANGUAGES
-    'file_name' => 'إسم الملف',
-    'file_size' => 'حجم الملف',
-    'translations_count' => 'عدد الترجمات',
 ];

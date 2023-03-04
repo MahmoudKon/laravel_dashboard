@@ -1,41 +1,44 @@
 <?php
 
 return [
-    'please-select' => '--- Please Select ---',
-    'title' => 'Title',
-    'email' => 'Email',
-    'manager' => 'Manager',
-    'action' => 'Action',
-    'name' => 'Name',
+    // GENERAL INPUTS
+    'model name' => ':model Name',
+    'model image' => ':model Image',
+    'file' => 'File',
+	'please-select' => '--- Please Select ---',
+    'action' => 'Actions',
     'access-data' => 'Access :model',
     'upload-image' => 'Upload Image',
+    'select-data' => 'Select :data',
+
+
+    // USERS
+	'username' => 'Username',
+	'phone' => 'Phone',
+    'name' => 'Name',
+    'email' => 'Email',
     'password' => 'Password',
     'new_password' => 'New Password',
     'password_confirmation' => 'Password Confirmation',
-    'select-data' => 'Select :data',
-    'icon' => 'Icon',
-    'content' => 'Content',
+    'logged_in' => 'Logged In',
+
+
+    // SETTINGS
     'audio' => 'Audio',
     'video' => 'Video',
-    'external-link' => 'External Link',
     'key' => 'Key',
     'value' => 'Value',
-
-    'logged_in' => 'Logged In',
-    
-    'autoload' => 'Auto Load',
-
-    'active' => 'Activation',
-    'published_date' => 'Published Date',
-    'url' => 'URL',
+    'autoload' => 'Autoload',
+    'active' => 'Active',
     'result' => 'Result',
-    'select-your-location' => 'Select Your Location',
-
-    'visible_to_content' => 'Visible To Content!',
 
 
-    'color' => 'Color',
+    // MENU
+    'icon' => 'Icon',
+    'url' => 'Url',
 
+
+    // ROUTES
     'controller' => 'Controller',
     'function' => 'Function',
     'method' => 'Method',
@@ -61,26 +64,25 @@ return [
     'search'  => 'Search',
     'compose'  => 'Compose',
 
-	'desc' => 'Describtion',
+
+    // ANNOUNCEMENTS
+    'title' => 'Title',
+    'desc' => 'Describtion',
 	'start_date' => 'Start Date',
 	'end_date' => 'End Date',
 	'open_type' => 'Open In New Window',
     'image' => 'Image',
-    'file' => 'File',
     'count days' => 'Count Of Days',
     'creator' => 'Creator',
-
-    'model name' => ':model Name',
+    'published_date' => 'Published Date',
 
 
 	// LANGUAGES
 	'short_name' => 'Short Name',
 	'native' => 'Native',
-
-
-	// CLIENTS
-	'username' => 'Username',
-	'phone' => 'Phone',
+    'file_name' => 'File Name',
+    'file_size' => 'File Size',
+    'translations_count' => 'Translations Count',
 
 
 	// OAUTH_SOCIALS
@@ -89,10 +91,4 @@ return [
 
 	// SOCIAL_MEDIAS
 	'is_visible' => 'Is Visible',
-
-
-    // LANGUAGES
-    'file_name' => 'File Name',
-    'file_size' => 'File Size',
-    'translations_count' => 'Translations Count',
 ];

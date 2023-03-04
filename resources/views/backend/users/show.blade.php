@@ -23,16 +23,6 @@
                     <th>{{ $row->email }}</th>
                 </tr>
                 <tr>
-                    <th>@lang('menu.department')</th>
-                    <th>
-                        @if($row->department_id)
-                            <a href="{{ routeHelper('departments.edit', $row->department_id) }}" data-toggle="tooltip" data-original-title="Edit Department Details">
-                                {{ $row->department->title }}
-                            </a>
-                        @endif
-                    </th>
-                </tr>
-                <tr>
                     <th>@lang('menu.roles')</th>
                     <th>
                         @forelse ($row->roles as $role)

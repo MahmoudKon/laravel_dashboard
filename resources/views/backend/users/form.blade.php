@@ -58,14 +58,6 @@
         </div>
         {{-- END PASSWORD --}}
     </div>
-
-    <div class="col-md-6">
-        {{-- START DEPARTMENT --}}
-        <x-html.select name='department_id' :list="$departments"
-                        :selected="old('department_id', ($row->department_id ?? null))" required="required"
-                        :label="trans('inputs.select-data', ['data' => trans('menu.department')])" />
-        {{-- END DEPARTMENT --}}
-    </div>
 </div>
 
 {{-- START ROLES --}}

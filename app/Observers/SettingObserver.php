@@ -20,9 +20,9 @@ class SettingObserver
     public function updated(Setting $Setting)
     {
         $Setting->refresh();
-        $Setting->load('contentType');
+        $Setting->load('inputType');
 
-        if ($Setting->isDirty('value') && in_array($Setting->contentType->name, [SettingType::AUDIO, SettingType::VIDEO, SettingType::IMAGE])) {
+        if ($Setting->isDirty('value') && in_array($Setting->inputType->name, [SettingType::AUDIO, SettingType::VIDEO, SettingType::IMAGE])) {
             $this->remove($Setting->getOriginal('value'));
         }
 

@@ -57,30 +57,13 @@ return [
     'users' => 'المستخدمين',
     'user' => 'مستخدم',
 
-    // DEPARTMENTS
-    'departments' => 'الأقسام',
-    'department' => 'قسم',
-
     // COUNTRIES
     'countries' => 'البلدان',
     'country' => 'البلد',
 
-    // OPERATORS
-    'operators' => 'الشغلين',
-    'operator' => 'مشغل',
-
-    // CATEGORIES
-    'categories' => 'الأقسام',
-    'category' => 'القسم',
-    'subs'  => 'الأقسام الفرعية',
-
-    // CONTENT TYPES
-    'content_types' => 'أنواع المحتوي',
-    'content_type' => 'نوع المحتوي',
-
-    // CONTENTS
-    'contents' => 'المحتوي',
-    'content' => 'محتوي',
+    // INPUT TYPES
+    'input_types' => 'أنواع المدخلات',
+    'input_type' => 'نوع مدخل',
 
     // GOVERNORATES
     'governorates' => 'المحافظات',

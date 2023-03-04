@@ -2,17 +2,17 @@
 
 namespace App\DataTables;
 
-use App\Models\ContentType;
+use App\Models\InputType;
 use App\Traits\DatatableHelper;
 use App\View\Components\ToggleColumn;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class ContentTypeDataTable extends DataTable
+class InputTypeDataTable extends DataTable
 {
     use DatatableHelper;
 
-    protected $table = 'content_types';
+    protected $table = 'input_types';
 
     /**
      * Build DataTable class.
@@ -24,13 +24,13 @@ class ContentTypeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('visible_to_content', function(ContentType $contentType) {
-                $view = new ToggleColumn($contentType->id, 'visible_to_content', $contentType->visible_to_content);
+            ->editColumn('visible_to_content', function(InputType $row) {
+                $view = new ToggleColumn($row->id, 'visible_to_content', $row->visible_to_content);
                 return $view->render()->with($view->data());
             })
-            ->filterColumn('visible_to_content', function ($query, $keywords) {
+            ->filterColumn('active', function ($query, $keywords) {
                 $check = stripos('visible', $keywords) !== false ? true : false;
-                return $query->where('visible_to_content', $check);
+                return $query->where('active', $check);
             })
             ->addColumn('check', 'backend.includes.tables.checkbox')
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
@@ -40,10 +40,10 @@ class ContentTypeDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ContentType $model
+     * @param \App\Models\InputType $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ContentType $model)
+    public function query(InputType $model)
     {
         return $model->newQuery();
     }
@@ -56,7 +56,7 @@ class ContentTypeDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('contenttype-table')
+            ->setTableId('InputType-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->dom('Bfrtip')
@@ -91,7 +91,7 @@ class ContentTypeDataTable extends DataTable
             Column::make('check')->title('<label class="skin skin-square p-0 m-0"><input data-color="red" type="checkbox" class="switchery" id="check-all" style="width: 25px"></label>')->exportable(false)->printable(false)->orderable(false)->searchable(false)->width(15)->addClass('text-center')->footer(trans('buttons.delete')),
             Column::make('id')->title('#')->width('70px'),
             Column::make('name')->title(trans('inputs.name')),
-            Column::make('visible_to_content')->title(trans('inputs.visible_to_content')),
+            Column::make('active')->title(trans('inputs.active')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('inputs.action'))->footer(trans('inputs.action')),
         ];
     }
@@ -103,6 +103,6 @@ class ContentTypeDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ContentType_' . date('YmdHis');
+        return 'InputType_' . date('YmdHis');
     }
 }

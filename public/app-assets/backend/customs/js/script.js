@@ -179,7 +179,7 @@ $(function() {
         let checked = parent.find('input[type="checkbox"]:checked').length == parent.find('input[type="checkbox"]').length
                         ? false
                         : true;
-        parent.find('input[type="checkbox"]').each(function () { $(this).attr('checked', checked) });
+        parent.find('input[type="checkbox"]').each(function () { $(this).prop('checked', checked) });
     });
 });
 

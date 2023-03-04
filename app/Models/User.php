@@ -23,8 +23,6 @@ class User extends Authenticatable
 
     protected $guard_name = 'web,api';
 
-    protected $with = ['department'];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -36,7 +34,6 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
-        'department_id',
         'email_verified_at',
         'remember_token',
         'mobile_token',
@@ -67,11 +64,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class)->select('id', 'title', 'manager_id');
-    }
 
     public function socialAccounts()
     {

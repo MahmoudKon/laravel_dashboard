@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContentTypeRequest extends FormRequest
+class InputTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class ContentTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:content_types,name,'.request()->route('content_type'),
+            'name' => 'required|string|unique:input_types,name,'.request()->route('input_type'),
         ];
     }
 

@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Department;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -25,7 +23,6 @@ class UserFactory extends Factory
             'name'              => $this->faker->name(),
             'email'             => $this->faker->unique()->safeEmail(),
             'password'          => 123,
-            'department_id'     => Department::inRandomOrder()->first()->id,
             'email_verified_at' => now(),
             'remember_token'    => Str::random(10)
         ];

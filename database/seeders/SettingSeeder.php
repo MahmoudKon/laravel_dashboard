@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ContentType;
+use App\Models\InputType;
 use App\Models\Setting;
 use Illuminate\Database\Seeder;
 
@@ -21,43 +21,43 @@ class SettingSeeder extends Seeder
             [
                 'key' => 'logo',
                 'value' => 'samples/images/logo.png',
-                'content_type_id' => ContentType::where('name', 'LIKE', '%Image%')->first()->id,
+                'input_type_id' => InputType::where('name', 'LIKE', '%Image%')->first()->id,
                 'active' => true,
                 'autoload' => true,
             ], [
                 'key' => 'site_name',
                 'value' => env('APP_NAME', 'Laravel'),
-                'content_type_id' => ContentType::where('name', 'LIKE', '%Normal Text%')->first()->id,
+                'input_type_id' => InputType::where('name', 'LIKE', '%Normal Text%')->first()->id,
                 'active' => true,
                 'autoload' => true,
             ], [
                 'key' => 'success_audio',
                 'value' => 'samples/audios/success.mp3',
-                'content_type_id' => ContentType::where('name', 'LIKE', '%Audio%')->first()->id,
+                'input_type_id' => InputType::where('name', 'LIKE', '%Audio%')->first()->id,
                 'active' => true,
                 'autoload' => true,
             ], [
                 'key' => 'warrning_audio',
                 'value' => 'samples/audios/warrning.mp3',
-                'content_type_id' => ContentType::where('name', 'LIKE', '%Audio%')->first()->id,
+                'input_type_id' => InputType::where('name', 'LIKE', '%Audio%')->first()->id,
                 'active' => true,
                 'autoload' => true,
             ], [
                 'key' => 'notification_audio',
                 'value' => 'samples/audios/notification.mp3',
-                'content_type_id' => ContentType::where('name', 'LIKE', '%Audio%')->first()->id,
+                'input_type_id' => InputType::where('name', 'LIKE', '%Audio%')->first()->id,
                 'active' => true,
                 'autoload' => true,
             ], [
                 'key' => 'default_lang',
                 'value' => 'ar',
-                'content_type_id' => ContentType::where('name', 'LIKE', '%Languages%')->first()->id,
+                'input_type_id' => InputType::where('name', 'LIKE', '%Languages%')->first()->id,
                 'active' => true,
                 'autoload' => true,
             ], [
                 'key' => 'route_prefix',
                 'value' => 'dashboard',
-                'content_type_id' => ContentType::where('name', 'LIKE', '%Normal Text%')->first()->id,
+                'input_type_id' => InputType::where('name', 'LIKE', '%Normal Text%')->first()->id,
                 'active' => true,
                 'autoload' => true,
             ]

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('image')->nullable();
-            $table->foreignId('department_id')->nullable()->constrained('departments')->cascadeOnUpdate()->nullOnDelete();
+            $table->boolean('logged_in')->default(true);
             $table->timestamp('email_verified_at')->nullable();
             $table->text('mobile_token')->nullable();
             $table->rememberToken();

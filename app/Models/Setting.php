@@ -13,13 +13,13 @@ class Setting extends Model
 
     protected $table = 'settings';
 
-    protected $fillable = ['key', 'value', 'content_type_id', 'active', 'autoload'];
+    protected $fillable = ['key', 'value', 'input_type_id', 'active', 'autoload'];
 
     public $timestamps = false;
 
-    public function contentType()
+    public function inputType()
     {
-        return $this->belongsTo(ContentType::class, 'content_type_id', 'id');
+        return $this->belongsTo(InputType::class, 'input_type_id', 'id');
     }
 
     public function slug()

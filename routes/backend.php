@@ -47,10 +47,6 @@ Route::controller('ProfileController')->prefix('profile')->as('profile.')->group
 });
 
 
-Route::resource('departments','DepartmentController');
-Route::post('departments/multidelete', 'DepartmentController@multidelete')->name('departments.multidelete');
-
-
 Route::resource('roles','RoleController');
 Route::controller('RoleController')->as('roles.')->prefix('roles')->group(function () {
     Route::post('get/permissions', 'getPermissions')->name('permissions');
@@ -73,9 +69,9 @@ Route::controller('SettingController')->prefix('settings')->as('settings.')->gro
 
 
 
-Route::resource('content_types','ContentTypeController')->except('show');
-Route::post('content_types/multidelete', 'ContentTypeController@multidelete')->name('content_types.multidelete');
-Route::post('content_types/{setting}/column/{column}/toggle', 'ContentTypeController@columnToggle')->name('content_types.column.toggle');
+Route::resource('input_types','InputTypeController')->except('show');
+Route::post('input_types/multidelete', 'InputTypeController@multidelete')->name('input_types.multidelete');
+Route::post('input_types/{input_type}/column/{column}/toggle', 'InputTypeController@columnToggle')->name('input_types.column.toggle');
 
 
 Route::controller('MenuController')->prefix('menus')->as('menus.')->group(function () {

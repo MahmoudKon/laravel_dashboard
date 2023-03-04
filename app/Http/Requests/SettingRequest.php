@@ -27,7 +27,7 @@ class SettingRequest extends FormRequest
         $validations = [
             'key' => 'required_without:id|string|unique:settings,key,'.request()->route('setting'),
             'active' => 'required|boolean',
-            'content_type_id' => 'required|exists:content_types,id',
+            'input_type_id' => 'required|exists:input_types,id',
         ];
 
         return array_merge($validations, SettingType::validaionHandler($this->content_type_id));
@@ -38,7 +38,7 @@ class SettingRequest extends FormRequest
         return [
 			'key' => trans('inputs.key'),
 			'active' => trans('inputs.active'),
-			'content_type_id' => trans('menu.content_type'),
+			'input_type_id' => trans('menu.input_type'),
         ];
     }
 }

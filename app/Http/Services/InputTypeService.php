@@ -2,15 +2,15 @@
 
 namespace App\Http\Services;
 
-use App\Models\Department;
+use App\Models\InputType;
 use Exception;
 
-class DepartmentService
+class InputTypeService
 {
     public function handle($request, $id = null)
     {
         try {
-            return Department::updateOrCreate(['id' => $id],$request);
+            return InputType::updateOrCreate(['id' => $id],$request);
         } catch (Exception $e) {
             return $e;
         }

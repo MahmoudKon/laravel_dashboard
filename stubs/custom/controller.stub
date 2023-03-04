@@ -19,16 +19,16 @@ class {{ class }} extends BackendController
     public bool $use_button_ajax = false;
     public string $view_sub_path = '{{ view_sub_path }}';
 
-    public function store({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service)
+    public function store({{ model_name }}Request $request, {{ model_name }}Service $service)
     {
-        $row = ${{ model_name }}Service->handle($request->validated());
+        $row = $service->handle($request->validated());
         if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.{{ single_table }}')]));
     }
 
-    public function update({{ model_name }}Request $request, {{ model_name }}Service ${{ model_name }}Service, $id)
+    public function update({{ model_name }}Request $request, {{ model_name }}Service $service, $id)
     {
-        $row = ${{ model_name }}Service->handle($request->validated(), $id);
+        $row = $service->handle($request->validated(), $id);
         if ($row instanceof Exception ) throw new Exception( $row );
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.{{ single_table }}')]));
     }

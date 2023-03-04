@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('content_types', function (Blueprint $table) {
+        Schema::create('input_types', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->id();
             $table->string('name');
-            $table->boolean('visible_to_content')->default(false);
+            $table->boolean('active')->default(true);
         });
     }
 
@@ -29,7 +29,7 @@ return new class extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-            Schema::dropIfExists('content_types');
+            Schema::dropIfExists('input_types');
         Schema::enableForeignKeyConstraints();
     }
 };

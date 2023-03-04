@@ -7,7 +7,6 @@ use App\Http\Middleware\LockScreenMiddleware;
 use App\Traits\BackendControllerHelper;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class BackendController extends Controller
 {

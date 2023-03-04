@@ -7,7 +7,7 @@ use App\DataTables\SettingDataTable;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\SettingRequest;
 use App\Http\Services\SettingService;
-use App\Models\ContentType;
+use App\Models\InputType;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Exception;
@@ -16,17 +16,17 @@ class SettingController extends BackendController
 {
     public bool $use_form_ajax  = true;
 
-    public function store(SettingRequest $request, SettingService $SettingService)
+    public function store(SettingRequest $request, SettingService $service)
     {
-        $row = $SettingService->handle($request->validated());
+        $row = $service->handle($request->validated());
         if ($row instanceof Exception ) throw new Exception( $row );
         $redirect = '/'.getRoutePrefex().'/settings';
         return $this->redirect(trans('flash.row created', ['model' => trans('menu.setting')]), $redirect);
     }
 
-    public function update(SettingRequest $request, SettingService $SettingService, $id)
+    public function update(SettingRequest $request, SettingService $service, $id)
     {
-        $row = $SettingService->handle($request->validated(), $id);
+        $row = $service->handle($request->validated(), $id);
         if ($row instanceof Exception ) throw new Exception( $row );
         $redirect = '/'.getRoutePrefex().'/settings';
         return $this->redirect(trans('flash.row updated', ['model' => trans('menu.setting')]), $redirect);
@@ -47,7 +47,7 @@ class SettingController extends BackendController
     public function append() :array
     {
         return [
-            'types' => ContentType::pluck('name', 'id')
+            'types' => InputType::pluck('name', 'id')
         ];
     }
 }

@@ -23,5 +23,17 @@
             </div>
         </div>
         {{-- END  EMAIL --}}
+
+        {{-- START ROLES --}}
+        <div class="form-group">
+            <label>@lang('inputs.select-data', ['data' => trans('menu.roles')])</label>
+            <select class="form-control" name="role">
+                <option value="0">--- @lang('inputs.select-data', ['data' => trans('menu.roles')]) ---</option>
+                @foreach ($roles as $key => $value)
+                    <option value="{{ $key }}">{{ $value }}</option>
+                @endforeach
+            </select>
+        </div>
+        {{-- END ROLES --}}
     </div>
 </div>

@@ -111,7 +111,7 @@ trait DatatableHelper
 
     public function getSearchButton() :Button
     {
-        if ( !Route::has(getRoutePrefex('.')."$this->table.search.form") ) return new Button();
+        if ( !Route::has(getRoutePrefex('.')."$this->table.search.form") || !canUser($this->table.'-search') ) return new Button();
         return Button::make()
                     ->text('<i class="fa fa-search"></i> <span class="hidden" data-yajra-href="'.routeHelper($this->table.'.search.form').'"></span>')
                     ->addClass('btn btn-outline-warning show-search-form ' . (request()->has('search') ? 'hidden' : ''))

@@ -30,33 +30,41 @@ class AssignPermissionsToRole extends Command
      */
     public function handle()
     {
+        truncateTables(['role_has_permissions', 'role_route']);
+
         // Super Admin Sync Permissions
         $this->syncPermissions("Super Admin");
 
+        // Admin Sync Permissions
+        $this->syncPermissions("Admin", ['ProfileController', 'UserController', 'AnnouncementController', 'CityController', 'ClientController']);
 
-        // $this->syncPermissions("Normal", ['Profile']);
+        // User Sync Permissions
+        $this->syncPermissions("User", ['ProfileController', 'UserController', 'CityController', 'ClientController'], ['index', 'show', 'search']);
+        $this->syncPermissions("User", ['AnnouncementController'], except_funcs:['multidelete', 'destroy']);
+
+        $this->info("Synced...");
     }
 
-    protected function syncPermissions(string $role_name, array $controllers = [], array $funcs = [], bool $sync = true) :void
+    protected function syncPermissions(string $role_name, array $controllers = [], array $funcs = [], array $except_funcs = []) :void
     {
         $permissions = []; // Create Empty Array
         $routes = Route::when($controllers, function ($query) use($controllers) {
                         $query->whereIn('controller', $controllers);
-                    })->when($funcs, function($query) use($funcs) {
+                    })->when(count($funcs), function($query) use($funcs) {
                         $query->whereIn('func', $funcs);
+                    })->when(count($except_funcs), function($query) use($except_funcs) {
+                        $query->whereNotIn('func', $except_funcs);
                     })->get();
 
-        $role = Role::where('name', 'LIKE', "%$role_name%")->first(); // Get Role Object
-        if ($sync) $role->routes()->sync($routes->pluck('id')); // Make Sync For Role Routes
-        else     $role->routes()->attach($routes->pluck('id')); // Make Attach For Role Routes
+        $role = Role::where('name', 'LIKE', "$role_name")->first(); // Get Role Object
+        $role->routes()->attach($routes->pluck('id'));
 
         foreach ($routes as $route)  // Get All Routes For Each Controller In Array
             array_push($permissions, $route->permissionName()); // Push The Route Permission Name In The Empty Array
 
         // Make Sync Between Role And All Permissions
-        if ($sync)
-            $role->permissions()->sync(Permission::whereIn('name', $permissions)->pluck('id')->toArray());
-        else
-            $role->permissions()->attach(Permission::whereIn('name', $permissions)->pluck('id')->toArray());
+        $permissions_id = Permission::whereIn('name', $permissions)->pluck('id')->toArray();
+        $permissions_id = array_merge($permissions_id, $role->permissions()->pluck('id')->toArray());
+        $role->permissions()->sync($permissions_id);
     }
 }

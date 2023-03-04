@@ -6,8 +6,6 @@ return [
     'row created' => 'تم إنشاء :model جديد بنجاح',
 		'row updated' => 'تم تحديث بيانات :model بنجاح',
 
-    'save game' => 'تم حفظ الألعاب لننادي',
-
     'change status' => 'تم تغيير الحالة بنجاح',
 
     'assign role' => 'تم إعطاء صلاحية جديدة لهذا المسار',
@@ -17,7 +15,6 @@ return [
     'invalid data' => 'بيانات غير صالحة',
 
     'user logged out' => 'تم تسجيل خروج المستخدم بنجاح',
-
 
     'cloned successfully' => 'تم نسخ :model بنجاح',
 

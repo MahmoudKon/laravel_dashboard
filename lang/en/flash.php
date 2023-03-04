@@ -10,13 +10,11 @@ return [
 
     'assign role' => 'New roles has been assigned to this route',
 
-
     'something is wrong' => 'Something is wrong with this record!, Please refresh the page!',
 
     'invalid data' => 'Invalid data!',
 
     'user logged out' => 'User logged out successfully',
-
 
     'cloned successfully' => ':model Cloned Successfully',
 

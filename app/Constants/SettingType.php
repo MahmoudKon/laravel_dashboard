@@ -2,7 +2,7 @@
 
 namespace App\Constants;
 
-use App\Models\ContentType;
+use App\Models\InputType;
 use App\Traits\UploadFile;
 use Carbon\Carbon;
 
@@ -27,7 +27,7 @@ class SettingType {
 
     public static function viewHandler(int $type_id) :string
     {
-        self::$type_name = ContentType::findOrFail($type_id)->name ?? null;
+        self::$type_name = InputType::findOrFail($type_id)->name ?? null;
         $view_path = '';
         switch (self::$type_name) {
             case self::ADVANCED_TEXT:
@@ -83,7 +83,7 @@ class SettingType {
 
     public static function validaionHandler(int $type_id) :array
     {
-        self::$type_name = ContentType::findOrFail($type_id)->name ?? null;
+        self::$type_name = InputType::findOrFail($type_id)->name ?? null;
         $validations = [];
         $validation = request()->route('setting') ? "nullable" : "required";
 
@@ -137,7 +137,7 @@ class SettingType {
 
     public function requestHandler(array $request) :string
     {
-        self::$type_name = ContentType::findOrFail($request['content_type_id'])->name ?? null;
+        self::$type_name = InputType::findOrFail($request['input_type_id'])->name ?? null;
 
         $response = [];
         switch (self::$type_name) {
@@ -169,7 +169,7 @@ class SettingType {
 
     public static function displatHtmlHandler(int $type_id, $value)
     {
-        self::$type_name = ContentType::findOrFail($type_id)->name ?? null;
+        self::$type_name = InputType::findOrFail($type_id)->name ?? null;
 
         $view_path = '';
         switch (self::$type_name) {

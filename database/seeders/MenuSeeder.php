@@ -48,9 +48,6 @@ class MenuSeeder extends Seeder
                 'route' => "permissions.index",
                 'icon' => "fas fa-shield",
             ], [
-                'name' => ["en" => "Departments", "ar" => "الأقسام"],
-                'icon' => "fas fa-home",
-            ], [
                 'name' => ["en" => "Users", "ar" => "المستخدمين"],
                 'icon' => "fas fa-users",
             ], [
@@ -77,7 +74,6 @@ class MenuSeeder extends Seeder
         $Countries = Menu::where('name->en', 'Countries')->First()->id;
         $Routes = Menu::where('name->en', 'Routes')->First()->id;
         $Users = Menu::where('name->en', 'Users')->First()->id;
-        $Departments = Menu::where('name->en', 'Departments')->First()->id;
         $menus = [
             [
                 'name' => ["en" => "Commands", "ar" => "الأوامر"],
@@ -114,8 +110,8 @@ class MenuSeeder extends Seeder
                 'icon' => "fas fa-image",
                 'parent_id' => $Configurations
             ], [
-                'name' => ["en" => "Content Types", "ar" =>"أنواع المحتوي"],
-                'route' => "content_types.index",
+                'name' => ["en" => "Input Types", "ar" =>"أنواع المدخلات"],
+                'route' => "input_types.index",
                 'icon' => "fa fa-folder",
                 'parent_id' => $Configurations
             ], [
@@ -148,16 +144,6 @@ class MenuSeeder extends Seeder
                 'route' => "users.index",
                 'icon' => "fas fa-list",
                 'parent_id' => $Users
-            ], [
-                'name' => ["en" => "list Departments", "ar" => "عرض الأقسام"],
-                'route' => "departments.index",
-                'icon' => "fa fa-list",
-                'parent_id' => $Departments
-            ], [
-                'name' => ["en" => "Create Departments", "ar" => "إنشاء قسم"],
-                'route' => "departments.create",
-                'icon' => "fa fa-plus",
-                'parent_id' => $Departments
             ], [
                 'name' => ["en" => "Create Users", "ar" => "إنشاء مستخدم"],
                 'route' => "users.create",

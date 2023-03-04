@@ -19,7 +19,7 @@ $(function () {
                 element.empty().append(data).slideDown(300);
                 btn.addClass('hidden');
                 $('.close-search-button').removeClass('hidden');
-                initPluginElements();
+                $(".search-select2").select2();
             },
             error: function(jqXHR) {
                 handleErrors(jqXHR);
