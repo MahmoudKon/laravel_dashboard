@@ -20,50 +20,28 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset(setting('logo', '/')) }}">
     {{-- ************** START ICON ************** --}}
 
-    {{-- ************** START FONTS AWESOME ************** --}}
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('fonts/line-awesome/css/line-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/fontawesome-all.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/main.css') }}">
-    {{-- ************** END FONTS AWESOME ************** --}}
-
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/js/gallery/photo-swipe/photoswipe.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('vendors/js/gallery/photo-swipe/default-skin/default-skin.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/pages/gallery.css') }}">
+    {{-- ************** START APP STYLES ************** --}}
+    @vite(['resources/css/app.css'])
+    {{-- ************** END APP STYLES ************** --}}
 
     {{-- ************** START RTL , LTR CSS FILES ************** --}}
     @if (App::isLocale('ar'))
-        <link rel="stylesheet" type="text/css" href="{{ assetHelper('css-rtl/vendors.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/main-rtl.css') }}">
+        @vite(['resources/css/app-rtl.css'])
     @else
-        <link rel="stylesheet" type="text/css" href="{{ assetHelper('css/vendors.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/main-ltr.css') }}">
+        @vite(['resources/css/app-ltr.css'])
         {{ config()->set('sweetalert.toast_position', 'top-end') }}
     @endif
     {{-- ************** END RTL , LTR CSS FILES ************** --}}
 
-    {{-- ************** START CUSTOM CSS ************** --}}
-    <link rel="stylesheet" type="text/css" href="{{ assetHelper('build/css/custom.css') }}">
-    {{-- ************** END CUSTOM CSS ************** --}}
+    {{-- ************** START CUSTOM STYLES ************** --}}
+    @vite(['resources/css/custom.css'])
+    {{-- ************** END CUSTOM STYLES ************** --}}
 
     @yield('style')
     @stack('style')
 </head>
 
-{{-- <body class="vertical-layout vertical-menu content-detached-left-sidebar menu-expanded fixed-navbar" data-open="click"
-    data-menu="vertical-menu" data-col="content-detached-left-sidebar"> --}}
 <body id="loader-progress" class="vertical-layout vertical-menu content-left-sidebar email-application fixed-navbar menu-expanded pace-done" data-open="click" data-menu="vertical-menu" data-col="content-left-sidebar">
-
-    {{-- <div id="body-loading"> <span> ... Loading ...</span> </div> --}}
-
-    {{-- <div id="page-loading-animation">
-        <div>G</div>
-        <div>N</div>
-        <div>I</div>
-        <div>D</div>
-        <div>A</div>
-        <div>O</div>
-        <div>L</div>
-    </div> --}}
 
     <div id="page-loading-animation">
         <span></span>

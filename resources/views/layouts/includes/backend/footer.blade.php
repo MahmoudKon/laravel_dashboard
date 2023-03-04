@@ -39,8 +39,8 @@
         const APP_LOCALE = '{{ app()->getLocale() }}';
     </script>
 
+    @include('layouts.includes.backend.sections.scripts')
     @vite(['resources/js/app.js'])
-    <script type="text/javascript" src="{{ assetHelper('build/js/main.js') }}"></script>
 
     {{-- ************** START SWEETALERT JS ************** --}}
     @include('sweetalert::alert')
@@ -63,7 +63,6 @@
             $(`li[data-route="{{ request()->route()->action['as'] }}"]`).addClass('active').closest('.has-sub').addClass('active open');
 
             $('#page-loading-animation').fadeOut(350, function() { $(this).remove(); });
-
         });
     </script>
 

@@ -1,12 +1,2132 @@
 {
+  "public/app-assets/backend/fonts/feather/fonts/feather.eot": {
+    "file": "assets/feather-1550e7db.eot",
+    "src": "public/app-assets/backend/fonts/feather/fonts/feather.eot"
+  },
+  "public/app-assets/backend/fonts/feather/fonts/feather.svg": {
+    "file": "assets/feather-bc9254ee.svg",
+    "src": "public/app-assets/backend/fonts/feather/fonts/feather.svg"
+  },
+  "public/app-assets/backend/fonts/feather/fonts/feather.ttf": {
+    "file": "assets/feather-3b8fc49b.ttf",
+    "src": "public/app-assets/backend/fonts/feather/fonts/feather.ttf"
+  },
+  "public/app-assets/backend/fonts/feather/fonts/feather.woff": {
+    "file": "assets/feather-0b05b066.woff",
+    "src": "public/app-assets/backend/fonts/feather/fonts/feather.woff"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ad.svg": {
+    "file": "assets/ad-a2449219.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ad.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ae.svg": {
+    "file": "assets/ae-b586613f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ae.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/af.svg": {
+    "file": "assets/af-9b438183.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/af.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ag.svg": {
+    "file": "assets/ag-f3b5d577.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ag.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ai.svg": {
+    "file": "assets/ai-65f7dc7e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ai.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/al.svg": {
+    "file": "assets/al-ca1d2c90.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/al.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/am.svg": {
+    "file": "assets/am-bdd9443a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/am.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ao.svg": {
+    "file": "assets/ao-181801ac.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ao.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/aq.svg": {
+    "file": "assets/aq-6893b649.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/aq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ar.svg": {
+    "file": "assets/ar-8743f94c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ar.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/as.svg": {
+    "file": "assets/as-f48a28b5.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/as.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/at.svg": {
+    "file": "assets/at-cf083449.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/at.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/au.svg": {
+    "file": "assets/au-1f3a04c3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/au.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/aw.svg": {
+    "file": "assets/aw-46c45085.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/aw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ax.svg": {
+    "file": "assets/ax-774e1e02.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ax.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/az.svg": {
+    "file": "assets/az-4cb810a2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/az.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ba.svg": {
+    "file": "assets/ba-e4fed052.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ba.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bb.svg": {
+    "file": "assets/bb-9aa5c6bd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bd.svg": {
+    "file": "assets/bd-b4ba1f4c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/be.svg": {
+    "file": "assets/be-3177d580.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/be.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bf.svg": {
+    "file": "assets/bf-f50a3ca9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bg.svg": {
+    "file": "assets/bg-a95c4367.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bh.svg": {
+    "file": "assets/bh-10bb162c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bi.svg": {
+    "file": "assets/bi-ce33bf70.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bj.svg": {
+    "file": "assets/bj-0688acad.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bl.svg": {
+    "file": "assets/bl-c5720dbd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bm.svg": {
+    "file": "assets/bm-b75240a0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bn.svg": {
+    "file": "assets/bn-49e5afb4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bo.svg": {
+    "file": "assets/bo-2d95bf3e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bq.svg": {
+    "file": "assets/bq-18fd431b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/br.svg": {
+    "file": "assets/br-5fd16650.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/br.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bs.svg": {
+    "file": "assets/bs-c9bb90da.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bs.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bt.svg": {
+    "file": "assets/bt-157d6a48.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bv.svg": {
+    "file": "assets/bv-c698c2b5.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bw.svg": {
+    "file": "assets/bw-9de01c2f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/by.svg": {
+    "file": "assets/by-71aa3fb6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/by.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bz.svg": {
+    "file": "assets/bz-c882f9ee.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/bz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ca.svg": {
+    "file": "assets/ca-e265eb8d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ca.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cc.svg": {
+    "file": "assets/cc-4eddc68d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cd.svg": {
+    "file": "assets/cd-2722b50d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cf.svg": {
+    "file": "assets/cf-f02553d1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cg.svg": {
+    "file": "assets/cg-9e131445.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ch.svg": {
+    "file": "assets/ch-b2064c56.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ch.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ci.svg": {
+    "file": "assets/ci-c34b958d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ci.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ck.svg": {
+    "file": "assets/ck-562eff37.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ck.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cl.svg": {
+    "file": "assets/cl-6df7ae0c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cm.svg": {
+    "file": "assets/cm-4b451c3d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cn.svg": {
+    "file": "assets/cn-50ab0721.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/co.svg": {
+    "file": "assets/co-2e08b6e3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/co.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cr.svg": {
+    "file": "assets/cr-cb9cf59b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cu.svg": {
+    "file": "assets/cu-ca1827d2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cv.svg": {
+    "file": "assets/cv-3926545d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cw.svg": {
+    "file": "assets/cw-1bd324f6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cx.svg": {
+    "file": "assets/cx-987fbfd9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cx.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cy.svg": {
+    "file": "assets/cy-b39c9e9f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cz.svg": {
+    "file": "assets/cz-c67b9a21.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/cz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/de.svg": {
+    "file": "assets/de-25f2b25f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/de.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dj.svg": {
+    "file": "assets/dj-9c2184e1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dk.svg": {
+    "file": "assets/dk-3f8600c3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dm.svg": {
+    "file": "assets/dm-35a9c868.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/do.svg": {
+    "file": "assets/do-b2fcbd3b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/do.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dz.svg": {
+    "file": "assets/dz-49e150d0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/dz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ec.svg": {
+    "file": "assets/ec-ba35a7a8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ec.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ee.svg": {
+    "file": "assets/ee-63112cde.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ee.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/eg.svg": {
+    "file": "assets/eg-7dc8feaf.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/eg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/eh.svg": {
+    "file": "assets/eh-8e832806.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/eh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/er.svg": {
+    "file": "assets/er-d4c99e4e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/er.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/es.svg": {
+    "file": "assets/es-1493af6b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/es.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/et.svg": {
+    "file": "assets/et-f58e5cd4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/et.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/eu.svg": {
+    "file": "assets/eu-e5c12f24.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/eu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fi.svg": {
+    "file": "assets/fi-5cc57a20.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fj.svg": {
+    "file": "assets/fj-2e93f586.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fk.svg": {
+    "file": "assets/fk-5e858796.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fm.svg": {
+    "file": "assets/fm-dabdd370.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fo.svg": {
+    "file": "assets/fo-e74e8815.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/fr.svg": {
+    "file": "assets/bl-c5720dbd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ga.svg": {
+    "file": "assets/ga-eeebd970.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ga.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb-eng.svg": {
+    "file": "assets/gb-eng-7d4177be.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb-eng.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb-sct.svg": {
+    "file": "assets/gb-sct-ee9ee4fe.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb-sct.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb-wls.svg": {
+    "file": "assets/gb-wls-481b899f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb-wls.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb.svg": {
+    "file": "assets/gb-f7f0fe01.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gd.svg": {
+    "file": "assets/gd-232b8ad7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ge.svg": {
+    "file": "assets/ge-86f64815.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ge.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gf.svg": {
+    "file": "assets/gf-712a6c89.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gg.svg": {
+    "file": "assets/gg-d18cd3c6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gh.svg": {
+    "file": "assets/gh-58b20222.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gi.svg": {
+    "file": "assets/gi-d129c895.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gl.svg": {
+    "file": "assets/gl-88f44bc2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gm.svg": {
+    "file": "assets/gm-3bc2df6d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gn.svg": {
+    "file": "assets/gn-6421591f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gp.svg": {
+    "file": "assets/bl-c5720dbd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gq.svg": {
+    "file": "assets/gq-e04ac886.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gr.svg": {
+    "file": "assets/gr-e2f709a3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gs.svg": {
+    "file": "assets/gs-5658ee61.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gs.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gt.svg": {
+    "file": "assets/gt-5bdfcc15.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gu.svg": {
+    "file": "assets/gu-4d6e43ec.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gw.svg": {
+    "file": "assets/gw-67177055.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gy.svg": {
+    "file": "assets/gy-2a82f553.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/gy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hk.svg": {
+    "file": "assets/hk-4fda6bac.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hm.svg": {
+    "file": "assets/hm-9fc51f58.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hn.svg": {
+    "file": "assets/hn-58228ead.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hr.svg": {
+    "file": "assets/hr-6d5ce2eb.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ht.svg": {
+    "file": "assets/ht-4d8a02e0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ht.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hu.svg": {
+    "file": "assets/hu-834a375b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/hu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/id.svg": {
+    "file": "assets/id-0939b206.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/id.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ie.svg": {
+    "file": "assets/ie-33d5bfa2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ie.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/il.svg": {
+    "file": "assets/il-36116626.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/il.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/im.svg": {
+    "file": "assets/im-1f5ed09a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/im.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/in.svg": {
+    "file": "assets/in-8d459193.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/in.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/io.svg": {
+    "file": "assets/io-27f4ed88.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/io.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/iq.svg": {
+    "file": "assets/iq-358781c0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/iq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ir.svg": {
+    "file": "assets/ir-bbdf3144.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ir.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/is.svg": {
+    "file": "assets/is-b8f22db7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/is.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/it.svg": {
+    "file": "assets/it-9fe95b0e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/it.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/je.svg": {
+    "file": "assets/je-10fc8340.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/je.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/jm.svg": {
+    "file": "assets/jm-24fbada3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/jm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/jo.svg": {
+    "file": "assets/jo-12498346.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/jo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/jp.svg": {
+    "file": "assets/jp-696f2319.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/jp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ke.svg": {
+    "file": "assets/ke-4aa2893c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ke.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kg.svg": {
+    "file": "assets/kg-0bc32ac7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kh.svg": {
+    "file": "assets/kh-6b83770f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ki.svg": {
+    "file": "assets/ki-d04d7031.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ki.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/km.svg": {
+    "file": "assets/km-a5a889af.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/km.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kn.svg": {
+    "file": "assets/kn-4d9cc8d4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kp.svg": {
+    "file": "assets/kp-6b458a8f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kr.svg": {
+    "file": "assets/kr-bcd1b3a1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kw.svg": {
+    "file": "assets/kw-f48122f7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ky.svg": {
+    "file": "assets/ky-361ec4ca.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ky.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kz.svg": {
+    "file": "assets/kz-2b54b524.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/kz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/la.svg": {
+    "file": "assets/la-16a65569.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/la.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lb.svg": {
+    "file": "assets/lb-34686409.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lc.svg": {
+    "file": "assets/lc-058255ab.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/li.svg": {
+    "file": "assets/li-ce16c172.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/li.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lk.svg": {
+    "file": "assets/lk-7f5956bf.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lr.svg": {
+    "file": "assets/lr-4a7eb8ac.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ls.svg": {
+    "file": "assets/ls-834032c9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ls.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lt.svg": {
+    "file": "assets/lt-95231dc3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lu.svg": {
+    "file": "assets/lu-4939b6ee.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lv.svg": {
+    "file": "assets/lv-d002ca56.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/lv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ly.svg": {
+    "file": "assets/ly-c5fa4d52.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ly.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ma.svg": {
+    "file": "assets/ma-6815f048.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ma.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mc.svg": {
+    "file": "assets/mc-8a9c5e65.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/md.svg": {
+    "file": "assets/md-d748dbc3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/md.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/me.svg": {
+    "file": "assets/me-f9fdd9cd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/me.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mf.svg": {
+    "file": "assets/mf-86c192e9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mg.svg": {
+    "file": "assets/mg-391ba53c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mh.svg": {
+    "file": "assets/mh-c3ae95f1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mk.svg": {
+    "file": "assets/mk-2ee981ad.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ml.svg": {
+    "file": "assets/ml-7dee82f4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ml.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mm.svg": {
+    "file": "assets/mm-62ea7c8d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mn.svg": {
+    "file": "assets/mn-c41d2d8c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mo.svg": {
+    "file": "assets/mo-370ed63f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mp.svg": {
+    "file": "assets/mp-299c52d3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mq.svg": {
+    "file": "assets/mq-4f2b534a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mr.svg": {
+    "file": "assets/mr-a37afb73.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ms.svg": {
+    "file": "assets/ms-690357b2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ms.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mt.svg": {
+    "file": "assets/mt-2c1302ca.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mu.svg": {
+    "file": "assets/mu-ae604a98.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mv.svg": {
+    "file": "assets/mv-6c94ae29.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mw.svg": {
+    "file": "assets/mw-d0cd80ac.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mx.svg": {
+    "file": "assets/mx-293161a0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mx.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/my.svg": {
+    "file": "assets/my-c241c1c1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/my.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mz.svg": {
+    "file": "assets/mz-9a1c861b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/mz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/na.svg": {
+    "file": "assets/na-d604a82c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/na.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nc.svg": {
+    "file": "assets/nc-29492a93.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ne.svg": {
+    "file": "assets/ne-29285bc0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ne.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nf.svg": {
+    "file": "assets/nf-f71e6623.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ng.svg": {
+    "file": "assets/ng-db4b2cdb.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ng.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ni.svg": {
+    "file": "assets/ni-dcef7ac3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ni.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nl.svg": {
+    "file": "assets/nl-3e9b87a8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/no.svg": {
+    "file": "assets/no-c710b57c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/no.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/np.svg": {
+    "file": "assets/np-8fb02601.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/np.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nr.svg": {
+    "file": "assets/nr-42d35092.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nu.svg": {
+    "file": "assets/nu-875d3496.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nz.svg": {
+    "file": "assets/nz-00cca15e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/nz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/om.svg": {
+    "file": "assets/om-b6cdc8e2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/om.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pa.svg": {
+    "file": "assets/pa-7a1f27b7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pa.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pe.svg": {
+    "file": "assets/pe-bcfec4ce.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pe.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pf.svg": {
+    "file": "assets/pf-b2e98b9d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pg.svg": {
+    "file": "assets/pg-409a6781.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ph.svg": {
+    "file": "assets/ph-54b91f20.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ph.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pk.svg": {
+    "file": "assets/pk-6ab19829.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pl.svg": {
+    "file": "assets/pl-d2ca90ff.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pm.svg": {
+    "file": "assets/pm-e1352413.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pn.svg": {
+    "file": "assets/pn-0b138bc8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pr.svg": {
+    "file": "assets/pr-ebed8782.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ps.svg": {
+    "file": "assets/ps-c1251a26.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ps.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pt.svg": {
+    "file": "assets/pt-ccedb221.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pw.svg": {
+    "file": "assets/pw-97f91e2d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/pw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/py.svg": {
+    "file": "assets/py-0918183c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/py.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/qa.svg": {
+    "file": "assets/qa-960b891b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/qa.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/re.svg": {
+    "file": "assets/re-bdb202d7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/re.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ro.svg": {
+    "file": "assets/ro-8c409b0f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ro.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/rs.svg": {
+    "file": "assets/rs-a89a480f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/rs.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ru.svg": {
+    "file": "assets/ru-eadbec5e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ru.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/rw.svg": {
+    "file": "assets/rw-9754b909.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/rw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sa.svg": {
+    "file": "assets/sa-3cd8e402.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sa.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sb.svg": {
+    "file": "assets/sb-f2fbeb23.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sc.svg": {
+    "file": "assets/sc-11a98eef.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sd.svg": {
+    "file": "assets/sd-393b6a27.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/se.svg": {
+    "file": "assets/se-a0b9bd61.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/se.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sg.svg": {
+    "file": "assets/sg-a3e64d5b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sh.svg": {
+    "file": "assets/sh-337d0a54.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/si.svg": {
+    "file": "assets/si-b1fed6ee.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/si.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sj.svg": {
+    "file": "assets/sj-5e360a2c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sk.svg": {
+    "file": "assets/sk-f58c2e97.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sl.svg": {
+    "file": "assets/sl-f0b70a3e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sm.svg": {
+    "file": "assets/sm-6d6b2412.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sn.svg": {
+    "file": "assets/sn-8e4ad34d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/so.svg": {
+    "file": "assets/so-8864b28b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/so.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sr.svg": {
+    "file": "assets/sr-c026c982.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ss.svg": {
+    "file": "assets/ss-bd14d7be.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ss.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/st.svg": {
+    "file": "assets/st-f6114a4f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/st.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sv.svg": {
+    "file": "assets/sv-6272bf17.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sx.svg": {
+    "file": "assets/sx-16b4b3d7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sx.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sy.svg": {
+    "file": "assets/sy-99084356.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sz.svg": {
+    "file": "assets/sz-a09cecca.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/sz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tc.svg": {
+    "file": "assets/tc-bfce9669.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/td.svg": {
+    "file": "assets/td-a8fdd862.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/td.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tf.svg": {
+    "file": "assets/tf-c3286664.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tg.svg": {
+    "file": "assets/tg-e6ef2817.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/th.svg": {
+    "file": "assets/th-7c055d59.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/th.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tj.svg": {
+    "file": "assets/tj-c1271ec7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tk.svg": {
+    "file": "assets/tk-1d6f5dbc.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tl.svg": {
+    "file": "assets/tl-3ce08c6a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tm.svg": {
+    "file": "assets/tm-cbfb96c4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tn.svg": {
+    "file": "assets/tn-023bf326.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/to.svg": {
+    "file": "assets/to-47c1599f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/to.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tr.svg": {
+    "file": "assets/tr-ebe87e15.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tt.svg": {
+    "file": "assets/tt-d15254a7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tv.svg": {
+    "file": "assets/tv-4aa555ff.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tw.svg": {
+    "file": "assets/tw-9ccdb963.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tz.svg": {
+    "file": "assets/tz-1925993d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/tz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ua.svg": {
+    "file": "assets/ua-e0361d56.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ua.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ug.svg": {
+    "file": "assets/ug-009bc2a8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ug.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/um.svg": {
+    "file": "assets/um-54f44873.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/um.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/us.svg": {
+    "file": "assets/us-1842b7c5.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/us.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/uy.svg": {
+    "file": "assets/uy-42f8b7a3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/uy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/uz.svg": {
+    "file": "assets/uz-b34051e6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/uz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/va.svg": {
+    "file": "assets/va-1926b38b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/va.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vc.svg": {
+    "file": "assets/vc-3157bec8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ve.svg": {
+    "file": "assets/ve-832ce405.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ve.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vg.svg": {
+    "file": "assets/vg-c220e2cc.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vi.svg": {
+    "file": "assets/vi-2280072d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vn.svg": {
+    "file": "assets/vn-822c5936.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vu.svg": {
+    "file": "assets/vu-ace42b50.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/vu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/wf.svg": {
+    "file": "assets/wf-61984ada.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/wf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ws.svg": {
+    "file": "assets/ws-1e316526.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ws.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ye.svg": {
+    "file": "assets/ye-61bb989c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/ye.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/yt.svg": {
+    "file": "assets/yt-9294d8af.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/yt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/za.svg": {
+    "file": "assets/za-f928bde1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/za.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/zm.svg": {
+    "file": "assets/zm-cc5b12cd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/zm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/zw.svg": {
+    "file": "assets/zw-a54ed70e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/1x1/zw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ad.svg": {
+    "file": "assets/ad-8ea7b285.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ad.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ae.svg": {
+    "file": "assets/ae-21410857.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ae.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/af.svg": {
+    "file": "assets/af-2cd23bc2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/af.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ag.svg": {
+    "file": "assets/ag-c1912c1d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ag.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ai.svg": {
+    "file": "assets/ai-1cdb81b6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ai.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/al.svg": {
+    "file": "assets/al-952b1954.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/al.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/am.svg": {
+    "file": "assets/am-e0d51c80.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/am.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ao.svg": {
+    "file": "assets/ao-51d1bea1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ao.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/aq.svg": {
+    "file": "assets/aq-67e3cf54.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/aq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ar.svg": {
+    "file": "assets/ar-eb3c4e94.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ar.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/as.svg": {
+    "file": "assets/as-c2c106eb.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/as.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/at.svg": {
+    "file": "assets/at-1e0437eb.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/at.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/au.svg": {
+    "file": "assets/au-83c09343.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/au.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/aw.svg": {
+    "file": "assets/aw-2fd2ab44.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/aw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ax.svg": {
+    "file": "assets/ax-75624158.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ax.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/az.svg": {
+    "file": "assets/az-cb141fd4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/az.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ba.svg": {
+    "file": "assets/ba-3b57d7da.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ba.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bb.svg": {
+    "file": "assets/bb-6acee0cc.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bd.svg": {
+    "file": "assets/bd-3e3faffe.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/be.svg": {
+    "file": "assets/be-70071847.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/be.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bf.svg": {
+    "file": "assets/bf-61254809.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bg.svg": {
+    "file": "assets/bg-85b27368.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bh.svg": {
+    "file": "assets/bh-526b2b76.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bi.svg": {
+    "file": "assets/bi-73c1b9ce.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bj.svg": {
+    "file": "assets/bj-048396b9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bl.svg": {
+    "file": "assets/bl-72fbda62.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bm.svg": {
+    "file": "assets/bm-5fbe8ef9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bn.svg": {
+    "file": "assets/bn-b13d982b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bo.svg": {
+    "file": "assets/bo-cb3109d8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bq.svg": {
+    "file": "assets/bq-60e81ee3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/br.svg": {
+    "file": "assets/br-939ea418.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/br.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bs.svg": {
+    "file": "assets/bs-a994c6c8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bs.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bt.svg": {
+    "file": "assets/bt-0206c944.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bv.svg": {
+    "file": "assets/bv-2188aaf9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bw.svg": {
+    "file": "assets/bw-be1cca1a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/by.svg": {
+    "file": "assets/by-8f3aaf31.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/by.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bz.svg": {
+    "file": "assets/bz-0d34c37c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/bz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ca.svg": {
+    "file": "assets/ca-fefffa98.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ca.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cc.svg": {
+    "file": "assets/cc-9baa7ef2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cd.svg": {
+    "file": "assets/cd-ba27f1e3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cf.svg": {
+    "file": "assets/cf-1c07b600.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cg.svg": {
+    "file": "assets/cg-b631a345.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ch.svg": {
+    "file": "assets/ch-b89e4c71.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ch.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ci.svg": {
+    "file": "assets/ci-c4288583.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ci.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ck.svg": {
+    "file": "assets/ck-1070acf6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ck.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cl.svg": {
+    "file": "assets/cl-20d07d5c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cm.svg": {
+    "file": "assets/cm-fd531ef7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cn.svg": {
+    "file": "assets/cn-7afa0cfd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/co.svg": {
+    "file": "assets/co-1f4e2df1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/co.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cr.svg": {
+    "file": "assets/cr-d333a67f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cu.svg": {
+    "file": "assets/cu-ce655c0c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cv.svg": {
+    "file": "assets/cv-d69e5f92.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cw.svg": {
+    "file": "assets/cw-a1add369.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cx.svg": {
+    "file": "assets/cx-d1ab843a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cx.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cy.svg": {
+    "file": "assets/cy-0dd1768a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cz.svg": {
+    "file": "assets/cz-6b30a49a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/cz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/de.svg": {
+    "file": "assets/de-c89e53ba.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/de.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dj.svg": {
+    "file": "assets/dj-0bc3771a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dk.svg": {
+    "file": "assets/dk-75a3ce2a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dm.svg": {
+    "file": "assets/dm-3a652a9c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/do.svg": {
+    "file": "assets/do-ef1aa298.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/do.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dz.svg": {
+    "file": "assets/dz-526ad8f8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/dz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ec.svg": {
+    "file": "assets/ec-e422b292.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ec.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ee.svg": {
+    "file": "assets/ee-781d157a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ee.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/eg.svg": {
+    "file": "assets/eg-15fb5416.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/eg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/eh.svg": {
+    "file": "assets/eh-332ac864.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/eh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/er.svg": {
+    "file": "assets/er-1a57e9c3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/er.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/es.svg": {
+    "file": "assets/es-38a47615.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/es.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/et.svg": {
+    "file": "assets/et-22803dad.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/et.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/eu.svg": {
+    "file": "assets/eu-2f6d296a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/eu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fi.svg": {
+    "file": "assets/fi-d5bb488f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fj.svg": {
+    "file": "assets/fj-0c27c330.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fk.svg": {
+    "file": "assets/fk-97c29b38.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fm.svg": {
+    "file": "assets/fm-f0bed80d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fo.svg": {
+    "file": "assets/fo-baeee113.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/fr.svg": {
+    "file": "assets/fr-72f76bda.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ga.svg": {
+    "file": "assets/ga-4e451800.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ga.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb-eng.svg": {
+    "file": "assets/gb-eng-0e8af2af.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb-eng.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb-sct.svg": {
+    "file": "assets/gb-sct-6438d872.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb-sct.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb-wls.svg": {
+    "file": "assets/gb-wls-f975c546.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb-wls.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb.svg": {
+    "file": "assets/gb-2c5a4d65.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gd.svg": {
+    "file": "assets/gd-47d9b0b7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ge.svg": {
+    "file": "assets/ge-da910cc2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ge.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gf.svg": {
+    "file": "assets/gf-c5902828.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gg.svg": {
+    "file": "assets/gg-67ff13b8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gh.svg": {
+    "file": "assets/gh-6df1122f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gi.svg": {
+    "file": "assets/gi-1c5b9b1a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gl.svg": {
+    "file": "assets/gl-131d357b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gm.svg": {
+    "file": "assets/gm-caee8916.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gn.svg": {
+    "file": "assets/gn-56fb4103.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gp.svg": {
+    "file": "assets/fr-72f76bda.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gq.svg": {
+    "file": "assets/gq-e2655b1e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gr.svg": {
+    "file": "assets/gr-561c1832.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gs.svg": {
+    "file": "assets/gs-e3ced8dd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gs.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gt.svg": {
+    "file": "assets/gt-d8b8a450.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gu.svg": {
+    "file": "assets/gu-d293802c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gw.svg": {
+    "file": "assets/gw-16c125d6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gy.svg": {
+    "file": "assets/gy-c3e763d0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/gy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hk.svg": {
+    "file": "assets/hk-48b920fd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hm.svg": {
+    "file": "assets/hm-317b1cd2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hn.svg": {
+    "file": "assets/hn-8b41d1bd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hr.svg": {
+    "file": "assets/hr-87b2daf0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ht.svg": {
+    "file": "assets/ht-1905a201.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ht.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hu.svg": {
+    "file": "assets/hu-67178512.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/hu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/id.svg": {
+    "file": "assets/id-8be60716.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/id.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ie.svg": {
+    "file": "assets/ie-b32281a7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ie.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/il.svg": {
+    "file": "assets/il-92ce6d5b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/il.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/im.svg": {
+    "file": "assets/im-751d88bd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/im.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/in.svg": {
+    "file": "assets/in-48aa0eeb.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/in.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/io.svg": {
+    "file": "assets/io-bea9a8b0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/io.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/iq.svg": {
+    "file": "assets/iq-886dc60a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/iq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ir.svg": {
+    "file": "assets/ir-1bc608e5.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ir.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/is.svg": {
+    "file": "assets/is-bf510c5d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/is.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/it.svg": {
+    "file": "assets/it-f5b5e5d3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/it.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/je.svg": {
+    "file": "assets/je-3b8e443f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/je.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/jm.svg": {
+    "file": "assets/jm-44c9e35f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/jm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/jo.svg": {
+    "file": "assets/jo-1c013957.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/jo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/jp.svg": {
+    "file": "assets/jp-0cfb9ae3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/jp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ke.svg": {
+    "file": "assets/ke-d2098df2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ke.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kg.svg": {
+    "file": "assets/kg-8049b512.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kh.svg": {
+    "file": "assets/kh-e64682d5.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ki.svg": {
+    "file": "assets/ki-df8a9889.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ki.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/km.svg": {
+    "file": "assets/km-a19b136d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/km.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kn.svg": {
+    "file": "assets/kn-0d0a1cec.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kp.svg": {
+    "file": "assets/kp-3846821e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kr.svg": {
+    "file": "assets/kr-d8ce1a63.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kw.svg": {
+    "file": "assets/kw-0c01d0e9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ky.svg": {
+    "file": "assets/ky-72011276.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ky.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kz.svg": {
+    "file": "assets/kz-0cdac36d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/kz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/la.svg": {
+    "file": "assets/la-bf540c4f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/la.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lb.svg": {
+    "file": "assets/lb-e92fb9a4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lc.svg": {
+    "file": "assets/lc-a62bcc0a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/li.svg": {
+    "file": "assets/li-6687a232.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/li.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lk.svg": {
+    "file": "assets/lk-f4c61d20.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lr.svg": {
+    "file": "assets/lr-402d1675.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ls.svg": {
+    "file": "assets/ls-b1eb7f42.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ls.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lt.svg": {
+    "file": "assets/lt-c94cc091.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lu.svg": {
+    "file": "assets/lu-1bc38259.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lv.svg": {
+    "file": "assets/lv-922350dc.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/lv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ly.svg": {
+    "file": "assets/ly-a190d4de.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ly.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ma.svg": {
+    "file": "assets/ma-3453b7f7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ma.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mc.svg": {
+    "file": "assets/mc-6e5b65b2.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/md.svg": {
+    "file": "assets/md-c9811233.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/md.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/me.svg": {
+    "file": "assets/me-5183618b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/me.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mf.svg": {
+    "file": "assets/mf-810fe4cc.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mg.svg": {
+    "file": "assets/mg-9a5d0592.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mh.svg": {
+    "file": "assets/mh-66948dde.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mk.svg": {
+    "file": "assets/mk-ae1360c8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ml.svg": {
+    "file": "assets/ml-4873c449.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ml.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mm.svg": {
+    "file": "assets/mm-93ad0a8c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mn.svg": {
+    "file": "assets/mn-0f3661f3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mo.svg": {
+    "file": "assets/mo-9a7379a7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mo.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mp.svg": {
+    "file": "assets/mp-dfdbcebe.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mp.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mq.svg": {
+    "file": "assets/mq-07850900.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mq.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mr.svg": {
+    "file": "assets/mr-d0fbc8de.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ms.svg": {
+    "file": "assets/ms-ab322405.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ms.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mt.svg": {
+    "file": "assets/mt-655d4cc8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mu.svg": {
+    "file": "assets/mu-c398c3f4.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mv.svg": {
+    "file": "assets/mv-040ebe63.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mw.svg": {
+    "file": "assets/mw-4d123e07.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mx.svg": {
+    "file": "assets/mx-5fe88422.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mx.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/my.svg": {
+    "file": "assets/my-a1979ee5.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/my.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mz.svg": {
+    "file": "assets/mz-0257770a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/mz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/na.svg": {
+    "file": "assets/na-153033ba.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/na.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nc.svg": {
+    "file": "assets/nc-11a82474.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ne.svg": {
+    "file": "assets/ne-09ebe194.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ne.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nf.svg": {
+    "file": "assets/nf-6601890d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ng.svg": {
+    "file": "assets/ng-1b293850.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ng.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ni.svg": {
+    "file": "assets/ni-df622b41.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ni.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nl.svg": {
+    "file": "assets/nl-0d5b837f.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/no.svg": {
+    "file": "assets/no-16b09e51.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/no.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/np.svg": {
+    "file": "assets/np-435c73e6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/np.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nr.svg": {
+    "file": "assets/nr-88edbe2d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nu.svg": {
+    "file": "assets/nu-61be1eba.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nz.svg": {
+    "file": "assets/nz-33e61a19.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/nz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/om.svg": {
+    "file": "assets/om-4c5fdea5.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/om.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pa.svg": {
+    "file": "assets/pa-6ee6a6c1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pa.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pe.svg": {
+    "file": "assets/pe-71fe4b9e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pe.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pf.svg": {
+    "file": "assets/pf-3dc288b6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pg.svg": {
+    "file": "assets/pg-fb5a802d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ph.svg": {
+    "file": "assets/ph-3ebc3004.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ph.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pk.svg": {
+    "file": "assets/pk-8ebfeebe.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pl.svg": {
+    "file": "assets/pl-838e13f6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pm.svg": {
+    "file": "assets/pm-52aed890.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pn.svg": {
+    "file": "assets/pn-b24dea45.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pr.svg": {
+    "file": "assets/pr-ff4e4e9e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ps.svg": {
+    "file": "assets/ps-287a34ac.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ps.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pt.svg": {
+    "file": "assets/pt-bed8bb31.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pw.svg": {
+    "file": "assets/pw-eaf5b4cb.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/pw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/py.svg": {
+    "file": "assets/py-bbb4df70.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/py.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/qa.svg": {
+    "file": "assets/qa-45a157e9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/qa.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/re.svg": {
+    "file": "assets/re-a42d03d8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/re.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ro.svg": {
+    "file": "assets/ro-a3d95698.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ro.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/rs.svg": {
+    "file": "assets/rs-bc088645.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/rs.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ru.svg": {
+    "file": "assets/ru-6d002fdf.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ru.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/rw.svg": {
+    "file": "assets/rw-250618aa.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/rw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sa.svg": {
+    "file": "assets/sa-286b7bf9.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sa.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sb.svg": {
+    "file": "assets/sb-4f65b818.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sb.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sc.svg": {
+    "file": "assets/sc-0b20cee0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sd.svg": {
+    "file": "assets/sd-709f285b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sd.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/se.svg": {
+    "file": "assets/se-48a7f345.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/se.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sg.svg": {
+    "file": "assets/sg-2d948ced.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sh.svg": {
+    "file": "assets/sh-ad58d1b7.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sh.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/si.svg": {
+    "file": "assets/si-e177c876.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/si.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sj.svg": {
+    "file": "assets/sj-76a0ad61.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sk.svg": {
+    "file": "assets/sk-b49f9d2c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sl.svg": {
+    "file": "assets/sl-899b1fa8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sm.svg": {
+    "file": "assets/sm-5b9417a6.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sn.svg": {
+    "file": "assets/sn-681157a8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/so.svg": {
+    "file": "assets/so-cb826d6b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/so.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sr.svg": {
+    "file": "assets/sr-b6aa0c8c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ss.svg": {
+    "file": "assets/ss-cf6c18f8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ss.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/st.svg": {
+    "file": "assets/st-e006e9ac.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/st.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sv.svg": {
+    "file": "assets/sv-2906c65b.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sx.svg": {
+    "file": "assets/sx-51da2dab.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sx.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sy.svg": {
+    "file": "assets/sy-1adb7cca.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sz.svg": {
+    "file": "assets/sz-64a05602.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/sz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tc.svg": {
+    "file": "assets/tc-74e1ea38.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/td.svg": {
+    "file": "assets/td-a8a33c71.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/td.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tf.svg": {
+    "file": "assets/tf-2fef1153.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tg.svg": {
+    "file": "assets/tg-da1c1805.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/th.svg": {
+    "file": "assets/th-918c4bb0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/th.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tj.svg": {
+    "file": "assets/tj-4fe89e94.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tj.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tk.svg": {
+    "file": "assets/tk-ab5bd643.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tk.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tl.svg": {
+    "file": "assets/tl-3e504e13.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tl.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tm.svg": {
+    "file": "assets/tm-234a6f56.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tn.svg": {
+    "file": "assets/tn-0ab0db9a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/to.svg": {
+    "file": "assets/to-afd5709a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/to.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tr.svg": {
+    "file": "assets/tr-0286803c.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tr.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tt.svg": {
+    "file": "assets/tt-ab8a8cd8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tv.svg": {
+    "file": "assets/tv-76a66fa3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tv.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tw.svg": {
+    "file": "assets/tw-b3a3c60e.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tw.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tz.svg": {
+    "file": "assets/tz-8c37c25d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/tz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ua.svg": {
+    "file": "assets/ua-62097e2a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ua.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ug.svg": {
+    "file": "assets/ug-baa29a5a.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ug.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/um.svg": {
+    "file": "assets/um-fda23675.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/um.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/us.svg": {
+    "file": "assets/us-c5badafc.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/us.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/uy.svg": {
+    "file": "assets/uy-8b0730e8.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/uy.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/uz.svg": {
+    "file": "assets/uz-2c9366ab.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/uz.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/va.svg": {
+    "file": "assets/va-6a7be177.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/va.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vc.svg": {
+    "file": "assets/vc-a39f43db.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vc.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ve.svg": {
+    "file": "assets/ve-f997d946.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ve.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vg.svg": {
+    "file": "assets/vg-e9ced602.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vg.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vi.svg": {
+    "file": "assets/vi-677acc35.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vi.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vn.svg": {
+    "file": "assets/vn-2038d78d.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vn.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vu.svg": {
+    "file": "assets/vu-64a5acc0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/vu.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/wf.svg": {
+    "file": "assets/wf-115333ad.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/wf.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ws.svg": {
+    "file": "assets/ws-9e239a87.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ws.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ye.svg": {
+    "file": "assets/ye-a20b5cd0.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/ye.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/yt.svg": {
+    "file": "assets/yt-e95369b1.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/yt.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/za.svg": {
+    "file": "assets/za-2db9fb90.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/za.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/zm.svg": {
+    "file": "assets/zm-d0ca1edd.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/zm.svg"
+  },
+  "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/zw.svg": {
+    "file": "assets/zw-859154a3.svg",
+    "src": "public/app-assets/backend/fonts/flag-icon-css/flags/4x3/zw.svg"
+  },
+  "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.eot": {
+    "file": "assets/line-awesome-10144157.eot",
+    "src": "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.eot"
+  },
+  "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.svg": {
+    "file": "assets/line-awesome-5dcd6347.svg",
+    "src": "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.svg"
+  },
+  "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.ttf": {
+    "file": "assets/line-awesome-09929899.ttf",
+    "src": "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.ttf"
+  },
+  "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.woff": {
+    "file": "assets/line-awesome-20fe49b8.woff",
+    "src": "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.woff"
+  },
+  "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.woff2": {
+    "file": "assets/line-awesome-063a9529.woff2",
+    "src": "public/app-assets/backend/fonts/line-awesome/fonts/line-awesome.woff2"
+  },
+  "public/app-assets/backend/images/datatables/resources/details_close.png": {
+    "file": "assets/details_close-5cabfb28.png",
+    "src": "public/app-assets/backend/images/datatables/resources/details_close.png"
+  },
+  "public/app-assets/backend/images/datatables/resources/details_open.png": {
+    "file": "assets/details_open-c374a68a.png",
+    "src": "public/app-assets/backend/images/datatables/resources/details_open.png"
+  },
+  "public/app-assets/backend/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-e523f49c.ttf",
+    "src": "public/app-assets/backend/webfonts/fa-brands-400.ttf"
+  },
+  "public/app-assets/backend/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-404c746c.woff2",
+    "src": "public/app-assets/backend/webfonts/fa-brands-400.woff2"
+  },
+  "public/app-assets/backend/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-4e96a7e0.ttf",
+    "src": "public/app-assets/backend/webfonts/fa-regular-400.ttf"
+  },
+  "public/app-assets/backend/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-6a274e76.woff2",
+    "src": "public/app-assets/backend/webfonts/fa-regular-400.woff2"
+  },
+  "public/app-assets/backend/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-03f2986c.ttf",
+    "src": "public/app-assets/backend/webfonts/fa-solid-900.ttf"
+  },
+  "public/app-assets/backend/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-d76fb4e8.woff2",
+    "src": "public/app-assets/backend/webfonts/fa-solid-900.woff2"
+  },
+  "public/app-assets/backend/webfonts/fa-v4compatibility.ttf": {
+    "file": "assets/fa-v4compatibility-86a687cf.ttf",
+    "src": "public/app-assets/backend/webfonts/fa-v4compatibility.ttf"
+  },
+  "public/app-assets/backend/webfonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-0db31bef.woff2",
+    "src": "public/app-assets/backend/webfonts/fa-v4compatibility.woff2"
+  },
+  "resources/css/app-ltr.css": {
+    "file": "assets/app-ltr-5aa0bead.css",
+    "isEntry": true,
+    "src": "resources/css/app-ltr.css"
+  },
+  "resources/css/app-rtl.css": {
+    "file": "assets/app-rtl-166cdfbf.css",
+    "isEntry": true,
+    "src": "resources/css/app-rtl.css"
+  },
   "resources/css/app.css": {
-    "file": "assets/app-4ed993c7.js",
+    "file": "assets/app-58110a95.css",
     "isEntry": true,
     "src": "resources/css/app.css"
+  },
+  "resources/css/custom.css": {
+    "file": "assets/custom-2319d0f1.css",
+    "isEntry": true,
+    "src": "resources/css/custom.css"
   },
   "resources/js/app.js": {
     "file": "assets/app-4d9b9a88.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-10185398.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
   }
 }

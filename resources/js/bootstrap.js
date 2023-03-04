@@ -1,5 +1,5 @@
-import lodash from 'lodash';
-window._ = lodash;
+import _ from 'lodash';
+window._ = _;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
