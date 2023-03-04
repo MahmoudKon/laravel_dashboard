@@ -23,9 +23,14 @@ composer install --ignore-platform-reqs
 php artisan key:generate
 ```
 
-## Install npm and build assets
+## Install npm
 ```
 npm install && npm run dev
+```
+
+## Create build folder
+```
+npm run build
 ```
 
 ## Generat data
