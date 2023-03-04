@@ -1,6 +1,6 @@
 ## Make clone to project
 ```
-git clone https://github.com/MahmoudKon/laravel_dashboard.git
+git clone -b laravel_10 https://github.com/MahmoudKon/laravel_dashboard.git
 ```
 
 ## Go inside the project
