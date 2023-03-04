@@ -14,9 +14,6 @@
                         <span class="input-group-text"> <i class="fas fa-search"></i> </span>
                     </div>
                     <input type="search" class="form-control" placeholder="Search By Table Name..." id="search-in-list-tables">
-                    {{-- <div class="input-group-prepend">
-                        <a href="{{ routeHelper('database.create') }}" class="btn btn-primary btn-sm input-group-text"> @lang('buttons.create')  <i class="fas fa-plus"></i> </a>
-                    </div> --}}
                 </div>
 
                 <div class="table-responsive">
