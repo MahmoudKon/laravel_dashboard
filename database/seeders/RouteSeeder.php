@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Console\Commands\AssignPermissionsToRole;
 use App\Console\Commands\SaveRoutesInDatabase;
 use Illuminate\Database\Seeder;
 
@@ -17,5 +18,6 @@ class RouteSeeder extends Seeder
         truncateTables('routes');
 
         dispatch(new SaveRoutesInDatabase());
+        dispatch(new AssignPermissionsToRole());
     }
 }
