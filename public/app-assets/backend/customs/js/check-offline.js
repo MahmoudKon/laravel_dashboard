@@ -4,7 +4,8 @@ var current_navigator_status = 'online';
 function check_internet_connection()
 {
     new_navigator_status = navigator.onLine ? "online" : "offline";
-
+    
+    if ( ['127.0.0.1', 'http://localhost/'].includes(window.location.hostname) ) return true;
     if (new_navigator_status == current_navigator_status) return true;
 
     new_navigator_status == 'online'
