@@ -1,0 +1,14 @@
+<div class="col-md-12">
+    {{-- START {{ column }} --}}
+    <div class="form-group">
+        <label class="required">@lang('inputs.{{ trans_column }}')</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+            </div>
+            <input type="text" class="form-control datetime" required name="{{ column }}" id="{{ column }}" value="{{ $row->{{ column }} ?? old('{{ column }}') }}"  placeholder="@lang('inputs.start_date')">
+        </div>
+        <x-validation-error input='{{ column }}' />
+    </div>
+    {{-- END {{ column }} --}}
+</div>
