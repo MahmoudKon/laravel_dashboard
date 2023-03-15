@@ -1,3 +1,7 @@
+@push('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endpush
+
 <div class="col-md-12">
     {{-- START {{ column }} --}}
     <div class="form-group">
@@ -12,3 +16,12 @@
     </div>
     {{-- END {{ column }} --}}
 </div>
+            
+@push('script')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/{{ app()->getLocale() }}.js"></script>
+
+    <script>
+        $(document).ready(function() { $('.datetime').flatpickr({dateFormat: "Y-m-d", locale: "{{ app()->getLocale() }}"}); });
+    </script>
+@endpush
