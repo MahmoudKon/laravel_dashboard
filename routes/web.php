@@ -31,3 +31,5 @@ Route::redirect('/home', '/');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('maintenance');
+Messenger\Chat\MessengerRoutes::routes();
+

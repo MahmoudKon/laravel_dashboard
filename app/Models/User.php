@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Faker\Factory;
 use Illuminate\Support\Facades\Storage;
+use Messenger\Chat\Traits\Messageable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Messageable;
 
     const CODE_LENGTH = 6;
 

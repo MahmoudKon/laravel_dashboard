@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "maatwebsite/excel": "^3.1",
+        "mahmoudkon/messenger": "dev-master",
         "mcamara/laravel-localization": "^1.8",
         "psr/simple-cache": "^3.0",
         "pusher/pusher-php-server": "^7.2",
