@@ -17,7 +17,7 @@ class UserController extends ApiController
 
     public function getQuery() :object
     {
-        return $this->model::hasManager()->exceptAuth()->filter();
+        return $this->model::exceptAuth()->filter();
     }
 
     public function store(UserRequest $request, UserService $userService)
