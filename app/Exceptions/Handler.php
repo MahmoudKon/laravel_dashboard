@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use App\Jobs\ExceptionOccured;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
+use PDOException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -47,6 +48,13 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             $this->sendEmail($e);
+        });
+
+        $this->reportable(function (PDOException $e) {
+            if ($e->getCode() == 1049) {
+                $pdo = new \PDO('mysql:host=' . env('DB_HOST'), env('DB_USERNAME'), env('DB_PASSWORD'));
+                $pdo->exec('CREATE DATABASE ' . env('DB_DATABASE'));
+            }
         });
     }
 

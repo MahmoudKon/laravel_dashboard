@@ -7,10 +7,3 @@
     </div>
     {{-- END {{ column }} --}}
 </div>
-
-@push('script')
-    <script type="text/javascript" src="{{ assetHelper('vendors/js/editors/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        $(document).ready(function() {CKEDITOR.replaceAll('ckeditor'); });
-    </script>
-@endpush

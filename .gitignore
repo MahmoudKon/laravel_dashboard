@@ -1,7 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
-/public/build
+/public/build/*
+/public/build/*.json
 /storage/*.key
 /storage/*.*
 /public/uploads

@@ -107,6 +107,8 @@ function initPluginElements() {
         dropdownParent: $("#load-form"),
     });
 
+    if ($('.ckeditor').length) CKEDITOR.replaceAll('ckeditor');
+
     $('[data-toggle="tooltip"]').tooltip();
 }
 

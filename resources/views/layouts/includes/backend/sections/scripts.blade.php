@@ -15,6 +15,7 @@
 <script type="text/javascript" src="{{ assetHelper('js/scripts/customizer.min.js') }}"></script>
 <script type="text/javascript" src="{{ assetHelper('js/scripts/forms/switch.min.js') }}"></script>
 <script type="text/javascript" src="{{ assetHelper('js/scripts/popover/popover.min.js') }}"></script>
+<script type="text/javascript" src="{{ assetHelper('vendors/js/editors/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="{{ assetHelper('customs/js/public-functions.js') }}"></script>
 <script type="text/javascript" src="{{ assetHelper('customs/js/preview-file.js') }}"></script>
 <script type="text/javascript" src="{{ assetHelper('customs/js/email-notification.js') }}"></script>
