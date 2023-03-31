@@ -23,7 +23,7 @@ class LockScreenController extends Controller
         $cerdintial = ['email' => decrypt($request->email), 'password' => $request->password ];
         if (auth()->attempt($cerdintial)) {
             toast('Welcome Back '.auth()->user()->name, 'success');
-            return redirect()->route($this->redirect());
+            return redirect()->to($this->redirect());
         }
 
         return back()->with('failed', 'Password does not match. Please try again.');
@@ -35,10 +35,7 @@ class LockScreenController extends Controller
             return session('unlook-redirect');
         $previous_url = str_replace('/'.session('locale').'/', '/', url()->previous());
 
-        try {
-            return \Illuminate\Support\Facades\Route::getRoutes()->match(request()->create($previous_url))->getName();
-        } catch (Exception $e) { return '/'; }
-
+        return $previous_url;
     }
 
     protected function redirect()
