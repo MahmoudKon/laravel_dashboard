@@ -36,12 +36,12 @@ class Setting extends Model
 
     public function value()
     {
-        return SettingType::displatHtmlHandler($this->content_type_id, $this->value);
+        return SettingType::displatHtmlHandler($this->input_type_id, $this->value);
     }
 
     public function getDataHtml()
     {
-        return SettingType::displatHtmlHandler($this->content_type_id, $this->value);
+        return SettingType::displatHtmlHandler($this->input_type_id, $this->value);
     }
 
     public function scopeActive($query)

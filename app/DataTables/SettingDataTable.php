@@ -41,11 +41,11 @@ class SettingDataTable extends DataTable
             ->addColumn('value', function(Setting $setting) {
                 return $setting->value();
             })
-            ->addColumn('contentType.name', function(Setting $setting) {
-                return $setting->contentType->name;
+            ->addColumn('inputType.name', function(Setting $setting) {
+                return $setting->inputType->name;
             })
-            ->filterColumn('contentType.name', function ($query, $keywords) {
-                return $query->whereHas('contentType', function($query) use($keywords) {
+            ->filterColumn('inputType.name', function ($query, $keywords) {
+                return $query->whereHas('inputType', function($query) use($keywords) {
                     return $query->where('name', 'LIKE', "%$keywords%");
                 });
             })
@@ -62,7 +62,7 @@ class SettingDataTable extends DataTable
      */
     public function query(Setting $model)
     {
-        return $model->newQuery()->with('contentType');
+        return $model->newQuery()->with('inputType');
     }
 
     /**
@@ -109,7 +109,7 @@ class SettingDataTable extends DataTable
             Column::make('id')->title('#')->width('70px'),
             Column::make('key')->title(trans('inputs.key')),
             Column::make('value')->title(trans('inputs.value')),
-            Column::make('contentType.name')->title(trans('menu.content_type')),
+            Column::make('inputType.name')->title(trans('menu.input_type')),
             Column::make('active')->title(trans('inputs.active')),
             Column::make('autoload')->title(trans('inputs.autoload')),
             Column::computed('action')->exportable(false)->printable(false)->width(75)->addClass('text-center')->title(trans('inputs.action'))->footer(trans('inputs.action')),
