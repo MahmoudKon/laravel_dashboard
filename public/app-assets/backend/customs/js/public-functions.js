@@ -96,9 +96,10 @@ function handleErrors(jqXHR, form = null)
             form.find(`#${key.replaceAll('.', '-')}_error`).text(val).fadeIn(300);
         });
     } else if (typeof jqXHR.responseJSON !== 'undefined' && typeof jqXHR.responseJSON.line !== 'undefined') {
-            toast('File: ' + jqXHR.responseJSON.file + ' (Line: ' + jqXHR.responseJSON.line + ')', jqXHR.responseJSON.message, 'error', 6000)
+        toast('File: ' + jqXHR.responseJSON.file + ' (Line: ' + jqXHR.responseJSON.line + ')', jqXHR.responseJSON.message, 'error', 6000);
     } else {
         toast(jqXHR.responseJSON || jqXHR.statusText, null, 'error', 6000);
+        $('#load-backend-info').modal("show").find('.modal-body').empty().append(jqXHR.responseText);
     }
 }
 

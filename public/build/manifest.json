@@ -2067,6 +2067,42 @@
     "file": "assets/details_open-c374a68a.png",
     "src": "public/app-assets/backend/images/datatables/resources/details_open.png"
   },
+  "public/app-assets/backend/images/icons/textarea-expand.png": {
+    "file": "assets/textarea-expand-843ddeb4.png",
+    "src": "public/app-assets/backend/images/icons/textarea-expand.png"
+  },
+  "public/app-assets/backend/images/jqueryui/ui-anim_basic_16x16.gif": {
+    "file": "assets/ui-anim_basic_16x16-915b0a69.gif",
+    "src": "public/app-assets/backend/images/jqueryui/ui-anim_basic_16x16.gif"
+  },
+  "public/app-assets/backend/images/jqueryui/ui-icons_ffffff_256x240.png": {
+    "file": "assets/ui-icons_ffffff_256x240-98991f02.png",
+    "src": "public/app-assets/backend/images/jqueryui/ui-icons_ffffff_256x240.png"
+  },
+  "public/app-assets/backend/vendors/css/ui/images/ui-icons_444444_256x240.png": {
+    "file": "assets/ui-icons_444444_256x240-42f3fd7e.png",
+    "src": "public/app-assets/backend/vendors/css/ui/images/ui-icons_444444_256x240.png"
+  },
+  "public/app-assets/backend/vendors/css/ui/images/ui-icons_555555_256x240.png": {
+    "file": "assets/ui-icons_555555_256x240-9dab1725.png",
+    "src": "public/app-assets/backend/vendors/css/ui/images/ui-icons_555555_256x240.png"
+  },
+  "public/app-assets/backend/vendors/css/ui/images/ui-icons_777620_256x240.png": {
+    "file": "assets/ui-icons_777620_256x240-91e1ea5f.png",
+    "src": "public/app-assets/backend/vendors/css/ui/images/ui-icons_777620_256x240.png"
+  },
+  "public/app-assets/backend/vendors/css/ui/images/ui-icons_777777_256x240.png": {
+    "file": "assets/ui-icons_777777_256x240-943d9bc1.png",
+    "src": "public/app-assets/backend/vendors/css/ui/images/ui-icons_777777_256x240.png"
+  },
+  "public/app-assets/backend/vendors/css/ui/images/ui-icons_cc0000_256x240.png": {
+    "file": "assets/ui-icons_cc0000_256x240-6efc1db6.png",
+    "src": "public/app-assets/backend/vendors/css/ui/images/ui-icons_cc0000_256x240.png"
+  },
+  "public/app-assets/backend/vendors/css/ui/images/ui-icons_ffffff_256x240.png": {
+    "file": "assets/ui-icons_ffffff_256x240-6d81fc3f.png",
+    "src": "public/app-assets/backend/vendors/css/ui/images/ui-icons_ffffff_256x240.png"
+  },
   "public/app-assets/backend/webfonts/fa-brands-400.ttf": {
     "file": "assets/fa-brands-400-e523f49c.ttf",
     "src": "public/app-assets/backend/webfonts/fa-brands-400.ttf"
@@ -2110,7 +2146,7 @@
     "src": "resources/css/app-rtl.css"
   },
   "resources/css/app.css": {
-    "file": "assets/app-cc6d5a22.css",
+    "file": "assets/app-3edf2499.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },

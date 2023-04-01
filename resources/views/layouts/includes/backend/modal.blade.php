@@ -26,3 +26,11 @@
         </div>
     </div>
 </div>
+
+<div class="modal animated bounceIn text-left" id="load-backend-info" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="min-width: 1200px; min-height: 300px">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px !important; background: #18171b;"></div>
+        </div>
+    </div>
+</div>
