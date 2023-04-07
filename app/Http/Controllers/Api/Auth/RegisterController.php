@@ -32,7 +32,6 @@ class RegisterController extends BasicApiController
             'name'          => $data['name'],
             'email'         => $data['email'],
             'password'      => $data['password'],
-            'department_id' => $data['department_id'],
         ]);
 
         $user->syncRoles(Role::first()->id);

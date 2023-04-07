@@ -17,7 +17,7 @@ class LoginController extends BasicApiController
             return $this->sendError('These credentials do not match our records.');
         }
     }
-    
+
     protected function credentials(Request $request): array
     {
         return [

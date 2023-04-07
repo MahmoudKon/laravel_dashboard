@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api\Auth;
 
-use App\Models\Department;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -28,7 +27,6 @@ class LoginControllerTest extends TestCase
             'email' => "new_user_email@ivas.com",
             'password' => 123,
             'password_confirmation' => 'P@$$w0rd',
-            'department_id' => Department::first()->id,
             'behalf_id' => User::first()->id,
         ];
 
