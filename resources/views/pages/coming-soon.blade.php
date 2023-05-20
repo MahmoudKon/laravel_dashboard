@@ -45,6 +45,11 @@
             <p class="card-text lead">@lang('title.our website is under construction')</p>
         </div>
     </div>
+
+    <div class="card-footer d-flex justify-content-around">
+        <a href="#" onclick="history.back();" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left-long"></i> @lang('buttons.go-back')</a>
+        <a href="{{ route("home") }}" class="btn btn-sm btn-info"><i class="fa fa-home"></i> @lang('buttons.home-page')</a>
+    </div>
 @endsection
 
 @section('script')

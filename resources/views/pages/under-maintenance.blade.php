@@ -20,4 +20,9 @@
         </p>
         <div class="mt-2"><i class="la la-cog spinner font-large-2"></i></div>
     </div>
+
+    <div class="card-footer d-flex justify-content-around">
+        <a href="#" onclick="history.back();" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left-long"></i> @lang('buttons.go-back')</a>
+        <a href="{{ route("home") }}" class="btn btn-sm btn-info"><i class="fa fa-home"></i> @lang('buttons.home-page')</a>
+    </div>
 @endsection

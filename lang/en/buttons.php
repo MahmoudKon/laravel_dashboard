@@ -1,11 +1,14 @@
 <?php
 
 return [
+    'login' => 'Login',
     'save' => 'Save',
     'reset' => 'Reset',
     'delete' => 'Delete',
     'edit' => 'Edit',
     'back' => 'Back',
+    'go-back' => 'Go Back',
+    'home-page' => 'Go To Home Page',
     'cover' => 'Cover',
     'show' => 'Show',
     'search' => 'Search',

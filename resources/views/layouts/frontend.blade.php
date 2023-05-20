@@ -49,6 +49,7 @@
         <div class="app-content content">
             <div class="content-wrapper">
                 <div class="content-header row">
+                    {{-- NAVBARE --}}
                 </div>
                 <div class="content-body">
                     <section class="flexbox-container">
@@ -60,7 +61,6 @@
                             </div>
                         </div>
                     </section>
-                    <x-announcement />
                 </div>
             </div>
         </div>

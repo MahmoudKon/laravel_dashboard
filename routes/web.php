@@ -5,17 +5,6 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // Routes Used In Dashboard
 Route::group([], function () {
     Route::get('lockscreen', [App\Http\Controllers\LockScreenController::class, 'lock'])->name('lock');
@@ -27,9 +16,7 @@ Route::group([], function () {
     Auth::routes(['register' => false]);
 });
 
-Route::redirect('/home', '/');
+Route::get('soon', [HomeController::class, 'soon'])->name('soon');
+Route::get('maintenance', [HomeController::class, 'maintenance'])->name('maintenance');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/maintenance', [HomeController::class, 'maintenance'])->name('maintenance');
 Messenger\Chat\MessengerRoutes::routes();
-

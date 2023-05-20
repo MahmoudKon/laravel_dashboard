@@ -193,7 +193,7 @@ function truncateTables($tables)
 
 function isSuperAdmin()
 {
-    return auth()->user()->hasRole(SUPERADMIN_ROLES);
+    return auth()->check() && auth()->user()->hasRole(SUPERADMIN_ROLES);
 }
 
 function fileExtensions()

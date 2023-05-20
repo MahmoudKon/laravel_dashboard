@@ -105,9 +105,9 @@
                         <span class="status-code">@yield('code')</span>
                         <h3 class="text-capitalize error-message">@yield('message')</h3>
                         <div class="buttons-con">
-                            <div class="action-link-wrap">
-                                <a href="#" onclick="history.back();" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left-long"></i> Go Back</a>
-                                <a href="{{ routeHelper("/") }}" class="btn btn-sm btn-info"><i class="fa fa-home"></i> Go to Home Page</a>
+                            <div class="action-link-wrap" style="display: flex; justify-content: space-around;">
+                                <a href="#" onclick="history.back();" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left-long"></i> @lang('buttons.go-back')</a>
+                                <a href="{{ routeHelper("/") }}" class="btn btn-sm btn-info"><i class="fa fa-home"></i> @lang('buttons.home-page')</a>
                             </div>
                         </div>
                     </div>

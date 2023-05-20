@@ -18,9 +18,6 @@ class CheckMiddleWare
      */
     public function handle(Request $request, Closure $next)
     {
-        // Get instance on user model
-        $auth_user = auth()->user();
-
         // To check auth user is has specific roles, this roles can access to this page without conditions.
         if (!auth()->check() || isSuperAdmin()) return $next($request);
 

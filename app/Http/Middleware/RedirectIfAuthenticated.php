@@ -23,10 +23,11 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return $guard == 'client' ? redirect(RouteServiceProvider::HOME) : redirect(RouteServiceProvider::DASHBOARD);
             }
         }
 
+        dd('asd');
         return $next($request);
     }
 }
