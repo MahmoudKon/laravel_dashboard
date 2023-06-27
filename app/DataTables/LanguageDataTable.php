@@ -32,7 +32,9 @@ class LanguageDataTable extends DataTable
                 return $view->render()->with($view->data());
             })
             ->addColumn('show', function(Language $row) {
-                return "<a href='".routeHelper('languages.show', $row)."' class='btn btn-sm btn-primary'> <i class='fas fa-list'></i> ".trans('buttons.show')." </a>";
+                return $row->checkDir()
+                    ? "<a href='".url("languages/$row->short_name/translations")."' class='btn btn-sm btn-primary'> <i class='fas fa-list'></i> ".trans('buttons.show')." </a>"
+                    : '';
             })
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
             ->rawColumns(['action', 'active', 'icon', 'show']);

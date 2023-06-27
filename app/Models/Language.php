@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Language extends Model
 {
@@ -18,6 +19,11 @@ class Language extends Model
     public function scopeActive($query)
     {
         return $query->where('active', true);
+    }
+
+    public function checkDir()
+    {
+        return File::isDirectory( lang_path( $this->short_name ) );
     }
 
     public function slug()

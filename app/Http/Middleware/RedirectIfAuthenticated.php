@@ -27,7 +27,6 @@ class RedirectIfAuthenticated
             }
         }
 
-        dd('asd');
         return $next($request);
     }
 }

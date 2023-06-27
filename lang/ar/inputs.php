@@ -1,95 +1,68 @@
 <?php
 
-return [
-    // GENERAL INPUTS
-    'model name' => 'ال:model إسم',
-    'model image' => 'صورة :model',
-    'file' => 'ملف',
-	'please-select' => '--- الرجاء الإختيار ---',
-    'action' => 'الإعدادات',
-    'access-data' => 'إمكانية الوصول لـ :model',
-    'upload-image' => 'رفع صورة',
-    'select-data' => 'إختر :data',
-
-
-    // USERS
-	'username' => 'إسم المستخدم',
-	'phone' => 'رقم الهاتف',
-    'name' => 'إسم',
-    'email' => 'البريد الإلكتروني',
-    'password' => 'كلمة المرور',
-    'new_password' => 'كلمة المرور الجديدة',
-    'password_confirmation' => 'تأكيد كلمة المرور',
-    'logged_in' => 'تسجيل الدخول',
-
-
-    // SETTINGS
-    'audio' => 'صوت',
-    'video' => 'فيديو',
-    'key' => 'المفتاح',
-    'value' => 'القيمة',
-    'autoload' => 'تحميل تلقائي',
-    'active' => 'الحالة النشطة',
-    'result' => 'النتيجة',
-
-
-    // MENU
-    'icon' => 'أيقونة',
-    'url' => 'الرابط',
-
-
-    // ROUTES
-    'controller' => 'المراقب',
-    'function' => 'الوظيفة',
-    'method' => 'الطريقة',
-    'middleware' => 'الوسيط',
-    'namespace' => 'إسم المسار',
-    'uri' => 'اللينك',
-    'route' => 'المسار',
-    'prefix' => 'اختصار',
-    'where' => 'الشروط',
-
-    // EMAILS
-    'to' => 'المستقبل',
-    'cc'    => 'نسخة إلي',
-    'subject'    => 'الموضوع',
-    'body'    => 'محتوي الرسالة',
-    'messages' => 'الرسائل',
-    'seen'  => 'المرئي',
-    'inbox' => 'الواردات',
-    'sent'  => 'الصادرات',
-    'all'  => 'الكل',
-    'unseen'  => 'الغير مرئي',
-    'search'  => 'البحث',
-    'compose'  => 'Compose',
-
-
-    // ANNOUNCEMENTS
-    'title' => 'العنوان',
-	'desc' => 'الوصف',
-	'start_date' => 'تاريخ البدء',
-	'end_date' => 'تاريخ الإنتهاء',
-	'open_type' => 'فتح في صفحة جديده؟',
-    'image' => 'الصورة',
-    'count days' => 'عدد الأيام',
-    'creator' => 'المنشئ',
-    'color' => 'اللون',
-    'external-link' => 'رابط خارجي',
-    'published_date' => 'تاريخ النشر',
-
-
-	// LANGUAGES
-	'short_name' => 'الإختصار',
-	'native' => 'إسم اللغه',
-    'file_name' => 'إسم الملف',
-    'file_size' => 'حجم الملف',
-    'translations_count' => 'عدد الترجمات',
-
-
-	// OAUTH_SOCIALS
-	'display_name' => 'إسم العرض',
-
-
-	// SOCIAL_MEDIAS
-	'is_visible' => 'قابل للعرض',
-];
+return array (
+  'access-data' => 'إمكانية الوصول لـ :model',
+  'action' => 'الإعدادات',
+  'active' => 'الحالة النشطة',
+  'all' => 'الكل',
+  'audio' => 'صوت',
+  'autoload' => 'تحميل تلقائي',
+  'body' => 'محتوي الرسالة',
+  'cc' => 'نسخة إلي',
+  'color' => 'اللون',
+  'compose' => 'Compose',
+  'controller' => 'المراقب',
+  'count days' => 'عدد الأيام',
+  'creator' => 'المنشئ',
+  'desc' => 'الوصف',
+  'display_name' => 'إسم العرض',
+  'email' => 'البريد الإلكتروني',
+  'end_date' => 'تاريخ الإنتهاء',
+  'external-link' => 'رابط خارجي',
+  'file' => 'ملف',
+  'file_name' => 'إسم الملف',
+  'file_size' => 'حجم الملف',
+  'function' => 'الوظيفة',
+  'icon' => 'أيقونة',
+  'image' => 'الصورة',
+  'inbox' => 'الواردات',
+  'is_visible' => 'قابل للعرض',
+  'key' => 'المفتاح',
+  'logged_in' => 'تسجيل الدخول',
+  'messages' => 'الرسائل',
+  'method' => 'الطريقة',
+  'middleware' => 'الوسيط',
+  'model image' => 'صورة :model',
+  'model name' => 'ال:model إسم',
+  'name' => 'إسم',
+  'namespace' => 'إسم المسار',
+  'native' => 'إسم اللغه',
+  'new_password' => 'كلمة المرور الجديدة',
+  'open_type' => 'فتح في صفحة جديده؟',
+  'password' => 'كلمة المرور',
+  'password_confirmation' => 'تأكيد كلمة المرور',
+  'phone' => 'رقم الهاتف',
+  'please-select' => '--- الرجاء الإختيار ---',
+  'prefix' => 'اختصار',
+  'published_date' => 'تاريخ النشر',
+  'result' => 'النتيجة',
+  'route' => 'المسار',
+  'search' => 'البحث',
+  'seen' => 'المرئي',
+  'select-data' => 'إختر :data',
+  'sent' => 'الصادرات',
+  'short_name' => 'الإختصار',
+  'start_date' => 'تاريخ البدء',
+  'subject' => 'الموضوع',
+  'title' => 'العنوان',
+  'to' => 'المستقبل',
+  'translations_count' => 'عدد الترجمات',
+  'unseen' => 'الغير مرئي',
+  'upload-image' => 'رفع صورة',
+  'uri' => 'اللينك',
+  'url' => 'الرابط',
+  'username' => 'إسم المستخدم',
+  'value' => 'القيمة',
+  'video' => 'فيديو',
+  'where' => 'الشروط',
+);
