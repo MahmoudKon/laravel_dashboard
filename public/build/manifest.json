@@ -2146,7 +2146,7 @@
     "src": "resources/css/app-rtl.css"
   },
   "resources/css/app.css": {
-    "file": "assets/app-3edf2499.css",
+    "file": "assets/app-8c8f4dd2.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -2156,7 +2156,7 @@
     "src": "resources/css/custom.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-d36f0bfa.js",
+    "file": "assets/app-67be6cfa.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

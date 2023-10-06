@@ -2,6 +2,7 @@
 
 return [
     'login' => 'تسجيل دخول',
+    'forgot password' => 'نسيت كلمة المرور ؟',
 	'save' => 'حفظ',
     'reset' => 'إعادة تعيين',
     'delete' => 'حذف',
@@ -43,7 +44,7 @@ return [
     'select picture' => 'إختر صورة',
 
 
-    'unlook' => 'فك القفل',
+    'unlock' => 'فك القفل',
     'lock' => 'قفل',
 
 

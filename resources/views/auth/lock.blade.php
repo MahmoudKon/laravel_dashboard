@@ -13,7 +13,7 @@
 
     <!-- BEGIN USER PASSWORD INPUT -->
     <fieldset class="form-group">
-        <label for="password" class="required">Password</label>
+        <label for="password" class="required">@lang('inputs.password')</label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text show-password" data-toggle="tooltip" data-original-title="Show Password">
@@ -48,7 +48,7 @@
     @if (Route::has('password.request'))
     <div class="col-md-6 col-12 text-center text-md-right">
         <a href="{{ route('password.request') }}" class="btn btn-primary d-block w-100" data-toggle="tooltip" data-original-title="Forget and reset password">
-            <i class="fa-solid fa-key"></i> Forgot Your Password ?
+            <i class="fa-solid fa-key"></i> @lang('buttons.forgot password')
         </a>
     </div>
     @endif

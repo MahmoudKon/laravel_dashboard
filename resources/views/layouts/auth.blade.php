@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html class="loading" lang="{{ app()->getLocale() }}" dir="{{ app()->isLocale('ar') ? 'rtl' : 'ltr' }}" data-textdirection="{{ app()->isLocale('ar') ? 'rtl' : 'ltr' }}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,7 +47,7 @@
                                     <div class="card-title text-center">
                                         <div class="pb-1">
                                             @auth
-                                            <img alt="{{ auth()->user()->name }}" src="{{ auth()->user()->image }}" class="rounded-circle img-fluid center-block" style="width: 100px; height: 100px;">
+                                            <img alt="{{ auth()->user()->name }}" src="{{ asset(auth()->user()->image) }}" class="rounded-circle img-fluid center-block" style="width: 100px; height: 100px;">
                                             <h5 class="card-title mt-1">{{ auth()->user()->name }}</h5>
                                             @else
                                             <img alt="@lang('menu.logo')" src="{{ asset(setting('logo', 'samples/logo/ivas.png')) }}" style="max-width: 100px;">
