@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Builders\UserBuilder;
+use App\Traits\DumpSqlQuery;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +19,7 @@ use Messenger\Chat\Traits\Messageable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, Messageable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Messageable, DumpSqlQuery;
 
     const CODE_LENGTH = 6;
 
