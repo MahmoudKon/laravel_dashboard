@@ -66,6 +66,20 @@ class Menu extends Model
         return $this->route ? last(explode('.', $this->route)) : null;
     }
 
+    public static function setRouteName(string $url): string
+    {
+        $routes = \Illuminate\Support\Facades\Route::getRoutes()->getRoutesByMethod()['GET'];
+        $url    = str_replace(request()->root(), '', $url);
+        $url    = trim($url, '/');
+
+        $name = '';
+        if ($route = $routes[$url]) {
+            $name = $route->getAction('as');
+        }
+
+        return str_replace(ROUTE_PREFIX, '', $name);
+    }
+
     protected static function boot()
     {
         parent::boot();
@@ -76,10 +90,12 @@ class Menu extends Model
 
         self::creating(function($model) {
             $model->order = Menu::max('order') + 1;
+            $model->route = self::setRouteName($model->route);
             Cache::forget('list_menus');
         });
 
         self::updating(function($model) {
+            $model->route = self::setRouteName($model->route);
             Cache::forget('list_menus');
         });
     }
