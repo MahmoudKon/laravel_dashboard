@@ -15,6 +15,7 @@
         "laravel/passport": "^11.8",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.6",
+        "laravel/telescope": "^4.17",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "maatwebsite/excel": "^3.1",
@@ -76,7 +77,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [
-
+                "laravel/telescope"
             ]
         }
     },

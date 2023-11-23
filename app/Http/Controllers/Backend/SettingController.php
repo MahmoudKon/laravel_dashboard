@@ -34,9 +34,9 @@ class SettingController extends BackendController
 
     public function getTypeInput(Request $request)
     {
-        $view_path = SettingType::viewHandler($request->content_type_id);
+        $view_path = SettingType::viewHandler($request->input_type_id);
         $row = $this->model()->whereId($request->content_id)->first();
-        $value = $row && $row->content_type_id == $request->content_type_id ? $row->value : null;
+        $value = $row && $row->input_type_id == $request->input_type_id ? $row->value : null;
         return $view_path ? view($view_path, compact('value'), ['name' => 'value', 'value' => $value]) : '';
     }
 

@@ -30,7 +30,7 @@ class SettingRequest extends FormRequest
             'input_type_id' => 'required|exists:input_types,id',
         ];
 
-        return array_merge($validations, SettingType::validaionHandler($this->content_type_id));
+        return array_merge($validations, SettingType::validaionHandler($this->input_type_id));
     }
 
     public function attributes()
