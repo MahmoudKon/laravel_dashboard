@@ -24,8 +24,8 @@ class InputTypeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('visible_to_content', function(InputType $row) {
-                $view = new ToggleColumn($row->id, 'visible_to_content', $row->visible_to_content);
+            ->editColumn('active', function(InputType $row) {
+                $view = new ToggleColumn($row->id, 'active', $row->active);
                 return $view->render()->with($view->data());
             })
             ->filterColumn('active', function ($query, $keywords) {
@@ -34,7 +34,7 @@ class InputTypeDataTable extends DataTable
             })
             ->addColumn('check', 'backend.includes.tables.checkbox')
             ->editColumn('action', 'backend.includes.buttons.table-buttons')
-            ->rawColumns(['action', 'check', 'visible_to_content']);
+            ->rawColumns(['action', 'check', 'active']);
     }
 
     /**
