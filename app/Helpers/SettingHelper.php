@@ -16,7 +16,7 @@ class SettingHelper
     public static function setSettingCache($force = false) :void
     {
         $website_settings = $list_menus = $active_languages = $social_medias = [];
-        
+
         self::clearCache();
 
         if (! app()->runningInConsole() || $force) {
@@ -33,7 +33,7 @@ class SettingHelper
     public static function setSettings() :array
     {
         return Cache::remember('website_settings', 60 * 60 * 24, function () {
-                    return Setting::active()->autoload()->pluck('value', 'key')->toArray();
+                    return Setting::autoload()->pluck('value', 'key')->toArray();
                 });
     }
 
