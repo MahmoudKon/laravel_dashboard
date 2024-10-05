@@ -40,7 +40,6 @@ class EmailRequest extends FormRequest
             'cc'  => trans('inputs.cc'),
             'subject'  => trans('inputs.subject'),
             'attachments'  => trans('inputs.attachments'),
-            'attachments'  => trans('inputs.attachments'),
             'body'  => trans('inputs.body'),
         ];
     }

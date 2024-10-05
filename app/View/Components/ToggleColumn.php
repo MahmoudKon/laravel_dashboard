@@ -11,7 +11,7 @@ class ToggleColumn extends Component
      *
      * @return void
      */
-    public function __construct(public int $id, public string $column = 'active', public bool $value)
+    public function __construct(public int $id, public string $column = 'active', public bool $value = false)
     {
         //
     }

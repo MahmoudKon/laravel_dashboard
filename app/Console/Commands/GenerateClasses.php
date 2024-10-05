@@ -42,7 +42,7 @@ class GenerateClasses extends Command
 
         if (! Schema::hasTable($this->table)) {
             $this->error("table $this->table not exists!");
-            return ;
+            return 1;
         }
 
         if (file_exists("app/Models/{$this->model}.php")) {
@@ -104,6 +104,8 @@ class GenerateClasses extends Command
         $this->info("<options=bold>All classes generated successfully!</>");
 
         $this->line('');
+
+        return 1;
     }
 
     protected function init()

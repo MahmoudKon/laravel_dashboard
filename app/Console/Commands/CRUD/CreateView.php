@@ -42,7 +42,7 @@ class CreateView extends GeneratorCommand
      */
     public function handle()
     {
-        if ($this->checkModelExists()) return;
+        if ($this->checkModelExists()) return 1;
 
         $this->getColumns();
 
@@ -50,7 +50,7 @@ class CreateView extends GeneratorCommand
 
         if (File::exists($path)) {
             echo "File {$path} already exists! \n";
-            return;
+            return 1;
         }
 
         $this->createDir($path);
@@ -58,6 +58,8 @@ class CreateView extends GeneratorCommand
         File::put($path, $this->appendText());
 
         $this->line('<bg=green;fg=white;options=bold>View</> Created Successfully!');
+
+        return 1;
     }
 
     /**

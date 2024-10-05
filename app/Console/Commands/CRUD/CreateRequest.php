@@ -49,12 +49,14 @@ class CreateRequest extends GeneratorCommand
      */
     public function handle()
     {
-        if ($this->checkModelExists()) return;
+        if ($this->checkModelExists()) return 1;
 
         $this->getColumns();
         $this->createContent();
         $this->createFile();
         $this->info("model class<options=bold> {$this->request}.php </>created successfully!");
+
+        return 1;
     }
 
     /**

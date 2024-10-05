@@ -34,7 +34,7 @@ class SendEmail extends Mailable
         return $this->subject($this->email->subject)
                             ->to($to)
                             ->cc($cc)
-                            ->attachMany($this->email->attachments->pluck('attachment'))
+                            ->attachMany($this->email->attachments->pluck('attachment')->toArray())
                             ->view('emails.send-email', ['body' => $this->email->body]);
     }
 }

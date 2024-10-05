@@ -43,6 +43,7 @@ class AssignPermissionsToRole extends Command
         $this->syncPermissions("User", ['AnnouncementController'], except_funcs:['multidelete', 'destroy']);
 
         echo "\nSynced...\n";
+        return 1;
     }
 
     protected function syncPermissions(string $role_name, array $controllers = [], array $funcs = [], array $except_funcs = []) :void

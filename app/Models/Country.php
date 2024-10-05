@@ -22,11 +22,6 @@ class Country extends Model
         return json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 
-    public function operators()
-    {
-        return $this->hasMany(Operator::class);
-    }
-
     protected function name(): Attribute
     {
         return Attribute::make(

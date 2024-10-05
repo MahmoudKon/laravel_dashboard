@@ -41,6 +41,8 @@ class CreateRoute extends Command
         $this->appendRoutes();
 
         $this->createMenu();
+
+        return 1;
     }
 
     protected function createRoutes()

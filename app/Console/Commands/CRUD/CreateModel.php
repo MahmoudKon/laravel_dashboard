@@ -49,12 +49,14 @@ class CreateModel extends GeneratorCommand
      */
     public function handle()
     {
-        if($this->checkModelExists()) return;
+        if($this->checkModelExists()) return 1;
         $path = $this->getPath( $this->model );
         $this->makeDirectory($path);
 
         $this->files->put($path, $this->getSourceFile());
         $this->info("model class<options=bold> {$this->model}.php </>created successfully!");
+
+        return 1;
     }
 
     /**

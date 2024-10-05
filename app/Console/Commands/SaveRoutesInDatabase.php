@@ -97,5 +97,7 @@ class SaveRoutesInDatabase extends Command
         }
 
         dispatch(new AssignPermissionsToRole());
+
+        return 1;
     }
 }

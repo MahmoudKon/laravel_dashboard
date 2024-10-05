@@ -10,6 +10,5 @@ trait DumpSqlQuery
     {
         $query = str_replace('?', "'?'", $builder->toSql());
         dd( vsprintf(str_replace('?', '%s', $query), $builder->getBindings()) );
-        return $this;
     }
 }

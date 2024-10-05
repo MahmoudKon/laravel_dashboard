@@ -29,12 +29,13 @@ class GovernorateRequest extends FormRequest
 
         return $validations;
     }
-    
+
     public function attributes()
     {
+        $attributes = [];
         foreach (config('languages') as $lang)
             $attributes["name.$lang"] = trans('inputs.name') .' / '. trans("title.$lang");
-        
+
         return $attributes;
     }
 }

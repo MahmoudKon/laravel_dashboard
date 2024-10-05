@@ -34,11 +34,12 @@ class CreateController extends Command
      */
     public function handle()
     {
-        if ($this->checkModelExists()) return ;
+        if ($this->checkModelExists()) return 1;
 
         $this->createFile();
 
         $this->info("controller class<options=bold> {$this->path}{$this->controller}.php </>created successfully!");
+        return 1;
     }
 
     /**

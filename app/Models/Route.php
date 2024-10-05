@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 
@@ -23,9 +24,9 @@ class Route extends Model
         'where',
     ];
 
-    public function roles()
+    public function roles(): BelongsToMany
     {
-        return $this->BelongsToMany(Role::class, 'role_route', 'route_id', 'role_id')->withPivot('role_id');
+        return $this->belongsToMany(Role::class, 'role_route', 'route_id', 'role_id')->withPivot('role_id');
     }
 
     public function hasRole($role_id)

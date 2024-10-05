@@ -13,7 +13,7 @@ class PasswordPinCode extends Model
 
     protected $fillable = ['email', 'pincode', 'expired'];
 
-    public $timestamps = ["created_at"];
+    public $timestamps = true;
 
     const UPDATED_AT = null;
 

@@ -24,7 +24,6 @@ class MenuRequest extends FormRequest
     public function rules()
     {
         $validations = [
-            'route' => 'required|string',
             'route' => 'nullable|string',
             'icon'  => 'nullable|string',
             'color' => 'nullable|string|max:100',
@@ -41,7 +40,6 @@ class MenuRequest extends FormRequest
     public function attributes()
     {
         $attributes = [
-			'route' => trans('inputs.route'),
 			'route' => trans('inputs.route'),
 			'icon' => trans('inputs.icon'),
 			'parent_id' => trans('menu.menu'),

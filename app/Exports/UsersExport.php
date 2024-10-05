@@ -20,7 +20,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
     */
     public function collection()
     {
-        return User::with('department:id,title')->get();
+        return User::get();
     }
 
     public function map($user): array
@@ -30,13 +30,12 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithS
             $this->index,
             $user->name,
             $user->email,
-            $user->department->title,
         ];
     }
 
     public function headings(): array
     {
-        return ['#', 'Name', 'Email', 'Department'];
+        return ['#', 'Name', 'Email'];
     }
 
     public function styles(Worksheet $sheet)

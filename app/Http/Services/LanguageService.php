@@ -93,7 +93,7 @@ class LanguageService
         }
     }
 
-    public static function convertArrayToCollection(array $items, int $perPage = 5, int|null $page = null, array $options = []) :object
+    public static function convertArrayToCollection(array|Collection $items, int $perPage = 5, int|null $page = null, array $options = []) :object
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);

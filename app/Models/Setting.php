@@ -6,6 +6,7 @@ use App\Constants\SettingType;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Setting extends Model
 {
@@ -17,7 +18,7 @@ class Setting extends Model
 
     public $timestamps = false;
 
-    public function inputType()
+    public function inputType(): BelongsTo
     {
         return $this->belongsTo(InputType::class, 'input_type_id', 'id');
     }

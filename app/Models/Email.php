@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Email extends Model
 {
@@ -16,17 +19,17 @@ class Email extends Model
 
     public $fillable = ['subject', 'body', 'to', 'cc', 'model', 'view', 'ids', 'notifier_id'];
 
-    public function attachments()
+    public function attachments(): HasMany
     {
         return $this->hasMany(Attachment::class);
     }
 
-    public function notifier()
+    public function notifier(): BelongsTo
     {
         return $this->belongsTo(User::class, 'notifier_id', 'id')->select('id', 'name', 'image', 'email')->withDefault(['name' => 'System', 'email' => '', 'image' => null]);
     }
 
-    public function recipients()
+    public function recipients(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'email_recipient', 'email_id', 'recipient_id')->withPivot(['seen', 'email_id', 'recipient_id']);
     }

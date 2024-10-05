@@ -45,13 +45,15 @@ class CreateDatatable extends GeneratorCommand
      */
     public function handle()
     {
-        if($this->checkModelExists()) return;
+        if($this->checkModelExists()) return 1;
         $path = $this->getPath($this->datatable);
 
         $this->addTranslations();
         $this->makeDirectory($path);
         $this->files->put($path, $this->getSourceFile());
         $this->info("request class<options=bold> {$this->datatable}.php </>created successfully!");
+
+        return 1;
     }
 
     /**

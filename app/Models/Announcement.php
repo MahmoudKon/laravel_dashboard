@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
 class Announcement extends Model
@@ -26,7 +27,7 @@ class Announcement extends Model
         return "<a href='".routeHelper($this->getTable().'.edit', $this)."'>$this->title</a>";
     }
 
-	public function creator()
+	public function creator(): BelongsTo
 	{
 		return $this->belongsTo(User::class, 'creator_id', 'id')->select('name', 'id', 'email')->withDefault(['id' => null, 'name' => '']);
 	}

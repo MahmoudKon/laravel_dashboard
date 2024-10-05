@@ -58,7 +58,7 @@ class ApiController extends BasicApiController
         if (!$row) return $this->sendError(trans('flash.something is wrong'));
         $row->update(['visible' => ! $row->visible]);
         return response()->json(['success' => true, 'message' => trans('flash.change status'), 'icon' => 'success'], 200);
-        return $this->sendResponse(trans('flash.change status', ['model' => trans('menu.'.$this->getModelName())]), [ $this->getModelName() => new $this->resource($row) ]);
+        // return $this->sendResponse(trans('flash.change status', ['model' => trans('menu.'.$this->getModelName())]), [ $this->getModelName() => new $this->resource($row) ]);
     }
 
     protected function getModelName(bool $plural = false) :string

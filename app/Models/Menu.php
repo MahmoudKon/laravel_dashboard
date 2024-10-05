@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Translatable\HasTranslations;
 
@@ -28,12 +29,12 @@ class Menu extends Model
         return $this->belongsTo(self::class, 'parent_id', 'id');
     }
 
-    public function subs()
+    public function subs(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id', 'id')->with('subs');
     }
 
-    public function visibleSubs()
+    public function visibleSubs(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id', 'id')->getVisible()->with('visibleSubs');
     }
@@ -70,10 +71,10 @@ class Menu extends Model
     {
         $routes = \Illuminate\Support\Facades\Route::getRoutes()->getRoutesByMethod()['GET'];
         $url    = str_replace(request()->root(), '', $url);
-        $url    = trim($url, '/');
+        // $url    = trim($url, '/');
 
-        $name = '';
-        if ($route = $routes[$url]) {
+        $name = $url;
+        if (isset($routes[$url]) && $route = $routes[$url]) {
             $name = $route->getAction('as');
         }
 

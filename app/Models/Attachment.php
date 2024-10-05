@@ -6,6 +6,7 @@ use App\Traits\UploadFile;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
@@ -16,7 +17,7 @@ class Attachment extends Model
 
     public $timestamps = false;
 
-    public function email()
+    public function email(): BelongsTo
     {
         return $this->belongsTo(Email::class);
     }
@@ -33,7 +34,7 @@ class Attachment extends Model
     {
         return Attribute::make(
             get: fn ($value) => json_decode($value),
-            set: fn ($value) => json_encode($value, true),
+            set: fn ($value) => json_encode($value, 1),
         );
     }
 

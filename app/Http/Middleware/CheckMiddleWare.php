@@ -81,5 +81,7 @@ class CheckMiddleWare
         if ($request->ajax())
             return response()->json(['message' => 'You do not have permission to access this page!', 'title' => 'ROLES'], 403);
         abort(403, 'You do not have permission to access this page!');
+
+        return $next($request);
     }
 }

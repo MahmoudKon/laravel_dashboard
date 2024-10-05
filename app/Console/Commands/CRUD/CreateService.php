@@ -40,13 +40,15 @@ class CreateService extends GeneratorCommand
 
     public function handle()
     {
-        if ($this->checkModelExists()) return;
+        if ($this->checkModelExists()) return 1;
 
         $path = $this->getPath($this->service);
 
         $this->makeDirectory($path);
         $this->files->put($path, $this->getSourceFile());
         $this->info("request class<options=bold> {$this->service}.php </>created successfully!");
+
+        return 1;
     }
 
     /**

@@ -1,0 +1,171 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Return type \\(int\\) of method App\\\\Console\\\\Commands\\\\CRUD\\\\CreateDatatable\\:\\:handle\\(\\) should be compatible with return type \\(bool\\|null\\) of method Illuminate\\\\Console\\\\GeneratorCommand\\:\\:handle\\(\\)$#"
+			count: 1
+			path: app/Console/Commands/CRUD/CreateDatatable.php
+
+		-
+			message: "#^Return type \\(int\\) of method App\\\\Console\\\\Commands\\\\CRUD\\\\CreateModel\\:\\:handle\\(\\) should be compatible with return type \\(bool\\|null\\) of method Illuminate\\\\Console\\\\GeneratorCommand\\:\\:handle\\(\\)$#"
+			count: 1
+			path: app/Console/Commands/CRUD/CreateModel.php
+
+		-
+			message: "#^Empty array passed to foreach\\.$#"
+			count: 1
+			path: app/Console/Commands/CRUD/CreateRequest.php
+
+		-
+			message: "#^Return type \\(int\\) of method App\\\\Console\\\\Commands\\\\CRUD\\\\CreateRequest\\:\\:handle\\(\\) should be compatible with return type \\(bool\\|null\\) of method Illuminate\\\\Console\\\\GeneratorCommand\\:\\:handle\\(\\)$#"
+			count: 1
+			path: app/Console/Commands/CRUD/CreateRequest.php
+
+		-
+			message: "#^Method App\\\\Console\\\\Commands\\\\CRUD\\\\CreateService\\:\\:handle\\(\\) should return bool\\|null but returns int\\.$#"
+			count: 2
+			path: app/Console/Commands/CRUD/CreateService.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$view$#"
+			count: 1
+			path: app/Console/Commands/CRUD/CreateView.php
+
+		-
+			message: "#^Method App\\\\DataTables\\\\AnnouncementDataTable\\:\\:filename\\(\\) has invalid return type App\\\\DataTables\\\\stringwithRelations\\.$#"
+			count: 1
+			path: app/DataTables/AnnouncementDataTable.php
+
+		-
+			message: "#^PHPDoc tag @return with type App\\\\DataTables\\\\stringwithRelations is incompatible with native type string\\.$#"
+			count: 1
+			path: app/DataTables/AnnouncementDataTable.php
+
+		-
+			message: "#^Method App\\\\DataTables\\\\ClientDataTable\\:\\:filename\\(\\) has invalid return type App\\\\DataTables\\\\stringwithRelations\\.$#"
+			count: 1
+			path: app/DataTables/ClientDataTable.php
+
+		-
+			message: "#^PHPDoc tag @return with type App\\\\DataTables\\\\stringwithRelations is incompatible with native type string\\.$#"
+			count: 1
+			path: app/DataTables/ClientDataTable.php
+
+		-
+			message: "#^Method App\\\\DataTables\\\\LanguageDataTable\\:\\:filename\\(\\) has invalid return type App\\\\DataTables\\\\stringwithRelations\\.$#"
+			count: 1
+			path: app/DataTables/LanguageDataTable.php
+
+		-
+			message: "#^PHPDoc tag @return with type App\\\\DataTables\\\\stringwithRelations is incompatible with native type string\\.$#"
+			count: 1
+			path: app/DataTables/LanguageDataTable.php
+
+		-
+			message: "#^Method App\\\\DataTables\\\\OauthSocialDataTable\\:\\:filename\\(\\) has invalid return type App\\\\DataTables\\\\stringwithRelations\\.$#"
+			count: 1
+			path: app/DataTables/OauthSocialDataTable.php
+
+		-
+			message: "#^PHPDoc tag @return with type App\\\\DataTables\\\\stringwithRelations is incompatible with native type string\\.$#"
+			count: 1
+			path: app/DataTables/OauthSocialDataTable.php
+
+		-
+			message: "#^Method App\\\\DataTables\\\\SocialMediaDataTable\\:\\:filename\\(\\) has invalid return type App\\\\DataTables\\\\stringwithRelations\\.$#"
+			count: 1
+			path: app/DataTables/SocialMediaDataTable.php
+
+		-
+			message: "#^PHPDoc tag @return with type App\\\\DataTables\\\\stringwithRelations is incompatible with native type string\\.$#"
+			count: 1
+			path: app/DataTables/SocialMediaDataTable.php
+
+		-
+			message: "#^Call to an undefined method Yajra\\\\DataTables\\\\Html\\\\Column\\:\\:class\\(\\)\\.$#"
+			count: 1
+			path: app/DataTables/UserDataTable.php
+
+		-
+			message: "#^Method App\\\\Exceptions\\\\Handler\\:\\:sendEmail\\(\\) has invalid return type App\\\\Exceptions\\\\response\\.$#"
+			count: 1
+			path: app/Exceptions/Handler.php
+
+		-
+			message: "#^Method App\\\\Exceptions\\\\Handler\\:\\:sendEmail\\(\\) should return App\\\\Exceptions\\\\response but return statement is missing\\.$#"
+			count: 1
+			path: app/Exceptions/Handler.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$email$#"
+			count: 1
+			path: app/Helpers/EmailHelper.php
+
+		-
+			message: "#^Call to function is_bool\\(\\) with non\\-empty\\-array\\|non\\-falsy\\-string will always evaluate to false\\.$#"
+			count: 1
+			path: app/Helpers/Helper.php
+
+		-
+			message: "#^Function activeMenu\\(\\) never returns bool so it can be removed from the return type\\.$#"
+			count: 1
+			path: app/Helpers/Helper.php
+
+		-
+			message: "#^Expression in empty\\(\\) is not falsy\\.$#"
+			count: 4
+			path: app/Helpers/SettingHelper.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: app/Http/Controllers/Auth/SocialLoginController.php
+
+		-
+			message: "#^Call to an undefined static method App\\\\Models\\\\Email\\:\\:current\\(\\)\\.$#"
+			count: 1
+			path: app/Http/Controllers/Backend/EmailController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Backend\\\\MenuController\\:\\:create\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\View\\\\View\\.$#"
+			count: 1
+			path: app/Http/Controllers/Backend/MenuController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Backend\\\\MenuController\\:\\:edit\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\View\\\\View\\.$#"
+			count: 1
+			path: app/Http/Controllers/Backend/MenuController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Backend\\\\MenuController\\:\\:store\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\Http\\\\JsonResponse\\.$#"
+			count: 1
+			path: app/Http/Controllers/Backend/MenuController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Backend\\\\MenuController\\:\\:update\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\Http\\\\JsonResponse\\.$#"
+			count: 1
+			path: app/Http/Controllers/Backend/MenuController.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$request with type Illuminate\\\\Http\\\\Request is not subtype of native type App\\\\Http\\\\Requests\\\\MenuRequest\\.$#"
+			count: 2
+			path: app/Http/Controllers/Backend/MenuController.php
+
+		-
+			message: "#^Argument of an invalid type App\\\\Models\\\\Route supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: app/Http/Controllers/Backend/RouteController.php
+
+		-
+			message: "#^Offset 0 does not exist on App\\\\Models\\\\Route\\.$#"
+			count: 1
+			path: app/Http/Controllers/Backend/RouteController.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Middleware\\\\CheckMiddleWare\\:\\:handle\\(\\) should return Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Http\\\\Response but returns Illuminate\\\\Http\\\\JsonResponse\\.$#"
+			count: 2
+			path: app/Http/Middleware/CheckMiddleWare.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: app/Http/Middleware/CheckMiddleWare.php
